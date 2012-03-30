@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ ! -n "$BEAMLINE" ];
+then
+  echo "Please set BEAMLINE environment variable."
+  exit 1
+fi
+
+echo JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda --rcp_workspace=/$SOFTWAREFOLDER/$BEAMLINE/var --restart --debug --debugport=8003 $@
+JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda --rcp_workspace=/$SOFTWAREFOLDER/$BEAMLINE/var --restart --debug --debugport=8003 $@

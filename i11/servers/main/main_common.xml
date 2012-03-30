@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:corba="http://www.diamond.ac.uk/schema/gda/corba"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd 
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<!-- Beamline energy setup lookup table -->
+	<import resource="EnergyLUT.xml"/>	
+	<import resource="GDAMetadata.xml"/>
+	
+	<!--  Front End Devices -->
+	<import resource="ID.xml"/>
+	<import resource="ForntEndAperture.xml"/>
+	<!-- Optics Hutch -->
+	<import resource="S1.xml" />
+	<import resource="DCM.xml" />
+	<import resource="S2.xml" />
+<!-- 	<import resource="BPM1.xml" /> -->
+	<import resource="M1.xml"/>
+	<import resource="S3.xml" />
+<!-- 	<import resource="BPM2.xml" /> -->
+	<import resource="Io.xml" />
+	
+	<!-- Experiment Hutch -->
+	<import resource="S4.xml" />
+	<import resource="BPM3.xml" />
+	<import resource="OpticalTable.xml" />
+	<import resource="Ie.xml" />
+	<import resource="S5.xml" />
+	<import resource="BeamMonitor.xml"/>
+	<import resource="Diffractometer.xml"/>
+	<import resource="SmallSampleTable.xml"/>
+	<import resource="LargeSampleTable.xml"/>
+	<import resource="Robot.xml"/>
+	
+	<!-- Detectors -->
+	<!-- Multi-channel Analyser Crystal detectors: mac11, mac29, ... -->
+	<import resource="MACDetectors.xml" />
+	<import resource="MACScannables.xml"/>
+	<!-- Multi-Channel Scaler (Struck): mcs1, mcs2 -->
+	<import resource="MCS.xml"/>
+	<import resource="Mar345.xml"/>
+	
+	<!--  Sample Environment -->
+	<!-- Oxford Cryostream 700 -->
+	<import resource="OxfordCryoStream.xml"/>
+	<import resource="OxfordCryoStream2.xml"/>
+	<import resource="PhenixCryostat.xml"/>
+	<!-- Eurotherm 2000 Devices -->
+	<import resource="CyberStarBlower.xml"/>
+	<import resource="MRIFurnace.xml"/>
+	<import resource="StoeFurnace.xml"/>
+	<!-- 4K Cryostat -->
+	<import resource="LakeShore.xml"/>
+	<import resource="TestMotors.xml"/>
+
+	<!-- Beamline objects -->
+	<import resource="BeamlineInfo.xml"/>
+	<import resource="BeamInfo.xml"/>
+	<import resource="SampleInfo.xml"/>
+	<!-- EPICS CVScan object -->
+	<import resource="MACDataWriter.xml"/>
+	<import resource="CVScan.xml"/>
+
+	<import resource="../servers_common.xml" />
+
+</beans>

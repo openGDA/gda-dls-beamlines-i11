@@ -1,0 +1,4 @@
+#!/bin/bash
+echo JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda client $@ --restart --debug --debugport 8006
+JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda client $@ --restart --debug --debugport 8006
+

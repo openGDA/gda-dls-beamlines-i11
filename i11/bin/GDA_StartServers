@@ -1,0 +1,10 @@
+#!/bin/bash
+`dirname $0`/gda nameserver --stop $@
+`dirname $0`/gda logserver --stop $@
+`dirname $0`/gda eventserver --stop $@
+`dirname $0`/gda objectserver --stop $@
+
+`dirname $0`/gda nameserver $@
+`dirname $0`/gda logserver $@
+`dirname $0`/gda eventserver $@
+JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda objectserver  $@ --profile=main --mode=live --headless #--debug --debugport=8002

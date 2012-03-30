@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<bean id="base" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="tmar_base_mtr"/>
+	</bean>
+	<bean id="rot" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="tmar_rot_mtr"/>
+	</bean>
+	<bean id="stx" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="tmar_x_mtr"/>
+	</bean>
+	<bean id="sty" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="tmar_y_mtr"/>
+	</bean>
+	<bean id="stz" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="tmar_z_mtr"/>
+	</bean>
+	<bean id="slitx" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="bmar_slitx_mtr"/>
+	</bean>
+	<bean id="slity" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="bmar_slity_mtr"/>
+	</bean>
+	<bean id="colx" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="bmar_colx_mtr"/>
+	</bean>
+	<bean id="coly" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="bmar_coly_mtr"/>
+	</bean>
+	<bean id="phdx" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="bmar_phdx_mtr"/>
+	</bean>
+	
+	<bean id="mar" class="gda.device.scannable.scannablegroup.ScannableGroup">
+		<property name="groupMembers">
+			<list>
+				<ref bean="base"/>
+				<ref bean="rot"/>
+				<ref bean="stx"/>
+				<ref bean="sty"/>
+				<ref bean="stz"/>
+				<ref bean="slitx"/>
+				<ref bean="slity"/>
+				<ref bean="colx"/>
+				<ref bean="coly"/>
+				<ref bean="phdx"/>
+			</list>
+		</property>
+	</bean>
+</beans>

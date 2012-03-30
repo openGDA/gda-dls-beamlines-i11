@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	<import resource="BeamlineInfo.xml"/>
+	<import resource="BeamInfo.xml"/>
+	<import resource="SampleInfo.xml"/>
+	<import resource="GDAMetadata.xml"/>
+	<bean id="macdatawriter" class="gda.hrpd.data.EpicsCVscanDataWriter">
+		<property name="beamInfo" ref="beam"></property>
+		<property name="beamlineInfo" ref="beamline"></property>
+		<property name="sampleInfo" ref="SampleInfo"></property>
+		<property name="metadata" ref="GDAMetadata"></property>
+	</bean>
+
+</beans>

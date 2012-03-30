@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export BEAMLINE=i11
+
+. /dls/$BEAMLINE/etc/${BEAMLINE}_profile.sh
+
+# when remote server restart on a different date, a new gda_out file is logged, 
+# i.e. GDA session logs (for the same date restart a single log file is used)
+export LOGFILE=/dls/$BEAMLINE/var/gda_output_`date +%F-%T`.txt
+echo Running /dls/$BEAMLINE/software/gda/config/bin/GDA_StartServers to output to $LOGFILE
+touch $LOGFILE
+rm /dls/$BEAMLINE/var/gda_output.txt
+ln -s $LOGFILE /dls/$BEAMLINE/var/gda_output.txt
+
+/dls/$BEAMLINE/software/gda/config/bin/GDA_StartServers >> /dls/$BEAMLINE/var/gda_output.txt 2>&1 &
