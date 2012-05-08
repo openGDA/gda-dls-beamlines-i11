@@ -7,7 +7,7 @@
 zenity --title "Are you sure?" --question --text "Are you sure you want to restart the GDA servers?" --window-icon=question
 SURE=$?
 if [ $SURE == 1 ]; then
-  exit
+	exit
 fi
 rm -f /$SOFTWAREFOLDER/$BEAMLINE/var/object_server_startup_server_*
 ssh  -i /$SOFTWAREFOLDER/$BEAMLINE/${BEAMLINE}ssh.key gda@${BEAMLINE}-control.diamond.ac.uk 
@@ -23,9 +23,9 @@ sleep 10
 zenity --title "Start the Client?" --question --text "The GDA servers have restarted. Click OK to start the GDA Client." --window-icon=question
 STARTCLIENT=$?
 if [ $STARTCLIENT == 0 ]; then
-nohup GDA_StartClient
+	nohup GDA_StartClient
 if [ "X$LOGPANEL" == "X" ] ; then
-wmctrl -r "GDA Log Panel" -e 0,1921,0,1000,1000
+	wmctrl -r "GDA Log Panel" -e 0,1921,0,1000,1000
 fi
 fi
 
