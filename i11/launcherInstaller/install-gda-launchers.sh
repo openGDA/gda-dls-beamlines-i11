@@ -59,6 +59,7 @@ sudo ln -sf /var/Desktop/gda-logpanel.desktop /usr/share/applications/gda-logpan
 sudo ln -sf /var/Desktop/gda-servers.desktop /usr/share/applications/gda-servers.desktop
 sudo ln -sf /var/Desktop/gda-client.desktop /usr/share/applications/gda-client.desktop
 sudo ln -sf /var/Desktop/gda-user-guide.desktop /usr/share/applications/gda-user-guide.desktop
+sudo ln -sf /var/Desktop/gda.desktop /usr/share/applications/gda.desktop
 sudo ln -sf /var/Desktop/gda-startup-guide.desktop /usr/share/applications/gda-startup-guide.desktop
 sudo ln -sf /var/Desktop/gda-beamline-manual.desktop /usr/share/applications/gda-beamline-manual.desktop
 sudo ln -sf /var/Desktop/gda-logfile.desktop /usr/share/applications/gda-logfile.desktop
