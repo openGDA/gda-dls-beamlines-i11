@@ -4,15 +4,17 @@ Created on 15 Feb 2011
 @author: fy65
 '''
 from peloop.adcchannel import voltage, electrometer
-from peloop.eventreceiver import evr
-from peloop.functiongenerator import fg
+from peloop.eventreceiver import EventReceiver
+from peloop.functiongenerator import FunctionGenerator
 from gda.data import NumTracker, PathConstructor
 from gda.jython.commands.GeneralCommands import alias
 from gdascripts.scannable.timerelated import _Timer
 from gdascripts.utils import frange
 from time import sleep
-#from localStation import mythen
+from localStation import mythen, interruptable
 
+fg=FunctionGenerator("fg")
+evr=EventReceiver("evr")
 scanNumTracker = NumTracker("tmp");
 
 # default acquisition parameters
@@ -58,9 +60,9 @@ def pescan(starttime=pre_condition_time, stoptime=stop_time, gatewidth=gate_widt
         for t1 in frange(starttime, stoptime, gatewidth):
             #print t1
             voltage.resetCounter()
-            voltage.setRepetition(collectionNumber)
+            voltage.setCollectionNumber(collectionNumber)
             electrometer.resetCounter()
-            electrometer.setRepetition(collectionNumber)
+            electrometer.setCollectionNumber(collectionNumber)
             print "move event receiver to delay=%s width=%s" % (t1-starttime, gatewidth)
             evr.moveTo([t1-starttime,gatewidth])
             mythen.gated(nf, ng, scanNumber, mythen.getDataDirectory(),collectionNumber)
