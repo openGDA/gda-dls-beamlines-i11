@@ -10,12 +10,12 @@ from gov.aps.jca import CAException
 import sys
 
 #EPICS PVs
-evrdelaypv="BL11I-MO-EVR-01:FRONT-DELAY:SET"
-evrdelayrbv="BL11I-MO-EVR-01:FRONT-DELAY"
-evrwidthpv="BL11I-MO-EVR-01:FRONT-WIDTH:SET"
-evrwidthrbv="BL11I-MO-EVR-01:FRONT-WIDTH"
-evrenablepv="BL11I-MO-EVR-01:FRONT-ENABLE:SET"
-evrpolaritypv="BL11I-MO-EVR-01:FRONT-POLARITY:SET"
+evrdelaypv="BL11I-EA-EVR-01:FRONT-DELAY:SET"
+evrdelayrbv="BL11I-EA-EVR-01:FRONT-DELAY"
+evrwidthpv="BL11I-EA-EVR-01:FRONT-WIDTH:SET"
+evrwidthrbv="BL11I-EA-EVR-01:FRONT-WIDTH"
+evrenablepv="BL11I-EA-EVR-01:FRONT-ENABLE:SET"
+evrpolaritypv="BL11I-EA-EVR-01:FRONT-POLARITY:SET"
 
 class EventReceiver(ScannableMotionBase):
     
@@ -27,32 +27,32 @@ class EventReceiver(ScannableMotionBase):
         self.delayrbv=CAClient(delayrbv)
         self.width=CAClient(width)
         self.widthrbv=CAClient(widthrbv)
-        self.enable=CAClient(enable)
+        self._enable=CAClient(enable)
         self.polarity=CAClient(polarity)
     
     # function generator controls
-    def enable(self):
+    def enableField(self):
         try:
-            if not self.enable.isConfigured():
-                self.enable.configure()
-            self.enable.caput(1)
+            if not self._enable.isConfigured():
+                self._enable.configure()
+            self._enable.caput(1)
         except FactoryException, e:
-            print "create channel error (%s): %s" % (self.enable.getChannel().getName(),e)
+            print "create channel error (%s): %s" % (self._enable.getChannel().getName(),e)
         except CAException, e:
-            print "caput Error (%s): %s" % (self.enable.getChannel().getName(),e)
+            print "caput Error (%s): %s" % (self._enable.getChannel().getName(),e)
         except:
             print "Unexpected error:", sys.exc_info()[0]
             raise
 
     def disable(self):
         try:
-            if not self.enable.isConfigured():
-                self.enable.configure()
-            self.enable.caput(0)
+            if not self._enable.isConfigured():
+                self._enable.configure()
+            self._enable.caput(0)
         except FactoryException, e:
-            print "create channel error (%s): %s" % (self.enable.getChannel().getName(),e)
+            print "create channel error (%s): %s" % (self._enable.getChannel().getName(),e)
         except CAException, e:
-            print "caput Error (%s): %s" % (self.enable.getChannel().getName(),e)
+            print "caput Error (%s): %s" % (self._enable.getChannel().getName(),e)
         except:
             print "Unexpected error:", sys.exc_info()[0]
             raise
@@ -136,8 +136,8 @@ class EventReceiver(ScannableMotionBase):
             raise
 
     def atScanStart(self):
-        '''enable event channel'''
-        self.enable()
+        '''enableField event channel'''
+        self.enableField()
         
     def atScanEnd(self):
         '''disable event channel'''
@@ -193,4 +193,3 @@ class EventReceiver(ScannableMotionBase):
 
 #    def toString(self):
 #        return self.name + " : " + str(self.getPosition())
-evr=EventReceiver("evr")

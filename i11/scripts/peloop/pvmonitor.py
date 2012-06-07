@@ -17,13 +17,13 @@ class PVMonitor(ScannableMotionBase, MonitorListener):
         self.numberofgates=0
         self.filename=None
         self.filenames=[]
-        self.repetition=0
+        self.collectionNumber=0
 
     def resetCounter(self):
         self.counter=0
         
     def resetRepetition(self):
-        self.repetition=0
+        self.collectionNumber=0
         
     def setNumberOfGates(self, num):
         self.numberofgates=num
@@ -47,8 +47,8 @@ class PVMonitor(ScannableMotionBase, MonitorListener):
     
     def getExtraNames(self):
         repetition=[]
-        for i in range(self.repetition):
-            repetition[i]="repetition-"+str(i)
+        for i in range(self.collectionNumber):
+            repetition[i]="collectionNumber-"+str(i)
         return repetition
 
     def rawGetPosition(self):
@@ -68,10 +68,10 @@ class PVMonitor(ScannableMotionBase, MonitorListener):
             datasets[self.counter] = [float(val) for val in mevent.getDBR().getDoubleValue()]
             self.counter += 1
         if self.counter == self.numberofgates-1:
-            self.filenames[self.repetition]=self.filename+"-"+self.getName()+"-"+str(self.repetition)
+            self.filenames[self.collectionNumber]=self.filename+"-"+self.getName()+"-"+str(self.collectionNumber)
             #kick off a thread to process and save data so not to block monitor event process here.
-            savedata=SaveData(name=self.getName()+"-"+str(self.repetition), args=(self.filenames[self.repetition]+".dat", "w"), kwargs=datasets)
+            savedata=SaveData(name=self.getName()+"-"+str(self.collectionNumber), args=(self.filenames[self.collectionNumber]+".dat", "w"), kwargs=datasets)
             savedata.start()
-            self.repetition+=1
+            self.collectionNumber+=1
             self.resetCounter()
             

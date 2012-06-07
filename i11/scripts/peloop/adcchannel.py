@@ -24,6 +24,7 @@ def sum_datasets(datasets):
 #EPICS PVs
 adcppv="BL11I-EA-PE-01:HV"
 adcepv="BL11I-EA-PE-01:EL"
+adcgatepv="BL11i-ea-pe-01:TRIG"
 
 class ADCChannel(ScannableMotionBase, MonitorListener):
     
@@ -38,7 +39,7 @@ class ADCChannel(ScannableMotionBase, MonitorListener):
         self.numberofframes=0
         self.filename=None
         self.filenames=[]
-        self.repetition=0 #0 means no repetition
+        self.collectionNumber=0 #0 means no collectionNumber
         self.voltagesmonitor=None
         self.firstMonitor = True
         self.voltages = {}
@@ -47,10 +48,10 @@ class ADCChannel(ScannableMotionBase, MonitorListener):
         self.counter=0
         
     def resetRepetition(self):
-        self.repetition=0
+        self.collectionNumber=0
         
-    def setRepetition(self, num):
-        self.repetition=num
+    def setCollectionNumber(self, num):
+        self.collectionNumber=num
         
     def setNumberOfGates(self, num):
         self.numberofgates=num
@@ -165,13 +166,13 @@ class ADCChannel(ScannableMotionBase, MonitorListener):
             #print self.voltages[self.counter][:5]
             self.counter += 1
         if self.counter == self.numberofgates:
-            self.filenames.append(self.filename+"_"+self.getName()+"_"+str(self.repetition))
+            self.filenames.append(self.filename+"_"+self.getName()+"_"+str(self.collectionNumber))
             #kick off a thread to process and save data so not to block monitor event process here.
-            #savedata=SaveData(name=self.getName()+"-"+str(self.repetition), args=(self.filenames[self.repetition]+".dat", "w", self.getName()), kwargs=voltages)
+            #savedata=SaveData(name=self.getName()+"-"+str(self.collectionNumber), args=(self.filenames[self.collectionNumber]+".dat", "w", self.getName()), kwargs=voltages)
             #savedata.start()
-            self.save(args=(self.filenames[self.repetition]+".dat", "w", self.getName()), kwargs=self.voltages)
+            self.save(args=(self.filenames[self.collectionNumber]+".dat", "w", self.getName()), kwargs=self.voltages)
             self.voltages={}
-            self.repetition+=1
+            self.collectionNumber+=1
             self.resetCounter()
             self.filenames=[]
             
@@ -187,7 +188,7 @@ class ADCChannel(ScannableMotionBase, MonitorListener):
             
     def getExtraNames(self):
         repetition=[]
-        for i in range(self.repetition):
+        for i in range(self.collectionNumber):
             repetition.append(str(i))
         return repetition
     
@@ -218,3 +219,4 @@ class ADCChannel(ScannableMotionBase, MonitorListener):
 #        return self.name + " : " + str(self.getPosition())
 voltage=ADCChannel("voltage",adcppv)
 electrometer=ADCChannel("electrometer", adcepv)
+gate=ADCChannel("gate", adcgatepv)

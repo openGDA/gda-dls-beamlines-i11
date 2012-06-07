@@ -1,5 +1,13 @@
 '''
+file: functiongenerator.py
+
+This module defines class that enables controls of agilent33220A function generator via EPICS.
+To instantiate you must name the object in the format of "name" plus a number such as "tfg1" or "tfg2".
+The number must map onto TFG device available in EPICS IOCs.
+
 Created on 15 Feb 2011
+updated on 22 June 2011
+updated on 28 Feb 2012 - make doc clearer
 
 @author: fy65
 '''
@@ -9,22 +17,32 @@ from gda.factory import FactoryException
 from gov.aps.jca import CAException
 import sys
 
-#EPICS PVs
-fgfuncpv="BL11I-EA-FGEN-01:FUNC"
-fgoutonpv="BL11I-EA-FGEN-01:OUT"
-fgfreqpv="BL11I-EA-FGEN-01:FREQ"
-fgfreqrbv="BL11I-EA-FGEN-01:FREQ:RBV"
-fgamppv="BL11I-EA-FGEN-01:AMP"
-fgamprbv="BL11I-EA-FGEN-01:AMP:RBV"
-fgoffsetpv="BL11I-EA-FGEN-01:OFF"
-fgoffsetrbv="BL11I-EA-FGEN-01:OFF:RBV"
-fgsympv="BL11I-EA-FGEN-01:SYMM"
-fgsymrbv="BL11I-EA-FGEN-01:SYMM:RBV"
-
 class FunctionGenerator(ScannableMotionBase):
     
-    def __init__(self, name, func=fgfuncpv, output=fgoutonpv, freq=fgfreqpv, amp=fgamppv, fgoffset=fgoffsetpv, freqrbv=fgfreqrbv, amprbv=fgamprbv,offsetrbv=fgoffsetrbv, symmetry=fgsympv, symmetryrbv=fgsymrbv):
+    def __init__(self, name):
         self.setName(name)
+        num = int(name[-1])
+        #EPICS PVs
+        func="BL11I-EA-FGEN-0%d:FUNC" % num
+        output="BL11I-EA-FGEN-0%d:OUT" % num
+        freq="BL11I-EA-FGEN-0%d:FREQ" % num
+        freqrbv="BL11I-EA-FGEN-0%d:FREQ:RBV" % num
+        amp="BL11I-EA-FGEN-0%d:AMP" % num
+        amprbv="BL11I-EA-FGEN-0%d:AMP:RBV" % num
+        offset="BL11I-EA-FGEN-0%d:OFF" % num
+        offsetrbv="BL11I-EA-FGEN-0%d:OFF:RBV" % num
+        sym="BL11I-EA-FGEN-0%d:SYMM" % num
+        symrbv="BL11I-EA-FGEN-0%d:SYMM:RBV" % num
+        
+        dutycyc="BL11I-EA-FGEN-0%d:DCYC" % num
+        dutycycrbv="BL11I-EA-FGEN-0%d:DCYC:RBV" % num
+        trigger="BL11I-EA-FGEN-0%d:TRIGSRC" % num
+        burstmode="BL11I-EA-FGEN-0%d:BURSTMODE" % num
+        burstncyc="BL11I-EA-FGEN-0%d:BURSTNCYC" % num
+        burstncycrbv="BL11I-EA-FGEN-0%d:BURSTNCYC:RBV" % num
+        burststate="BL11I-EA-FGEN-0%d:BURST" % num
+        disable="BL11I-EA-FGEN-0%d:DISABLE" % num        
+        
         self.setInputNames(["frequency","amplitude","shift","symmetry"])
         self.setExtraNames([])
         self.function=CAClient(func)
@@ -33,17 +51,25 @@ class FunctionGenerator(ScannableMotionBase):
         self.frequencyrbv=CAClient(freqrbv)
         self.amplitude=CAClient(amp)
         self.amplituderbv=CAClient(amprbv)
-        self.shiftcli=CAClient(fgoffset)
+        self.shiftcli=CAClient(offset)
         self.shiftrbv=CAClient(offsetrbv)
-        self.symmetry=CAClient(symmetry)
-        self.symmetryrbv=CAClient(symmetryrbv)
-    
+        self.symmetry=CAClient(sym)
+        self.symmetryrbv=CAClient(symrbv)
+        self.dutycycle=CAClient(dutycyc)
+        self.dutycyclerbv=CAClient(dutycycrbv)
+        self.triggersrc=CAClient(trigger)
+        self.burstmode=CAClient(burstmode)
+        self.burstncyc=CAClient(burstncyc)
+        self.burstncycrbv=CAClient(burstncycrbv)
+        self.burststate=CAClient(burststate)
+        self.disable=CAClient(disable)
+        
     # function generator controls
     def setFunction(self, function):
         try:
             if not self.function.isConfigured():
                 self.function.configure()
-            self.function.caput(function)
+            self.function.caputWait(function)
         except FactoryException, e:
             print "create channel error (%s): %s" % (self.function.getChannel().getName(),e)
         except CAException, e:
@@ -69,7 +95,7 @@ class FunctionGenerator(ScannableMotionBase):
         try:
             if not self.output.isConfigured():
                 self.output.configure()
-            self.output.caput(output)
+            self.output.caputWait(output)
         except FactoryException, e:
             print "create channel error (%s): %s" % (self.output.getChannel().getName(),e)
         except CAException, e:
@@ -95,7 +121,7 @@ class FunctionGenerator(ScannableMotionBase):
         try:
             if not self.frequency.isConfigured():
                 self.frequency.configure()
-            self.frequency.caput(frequency)
+            self.frequency.caputWait(frequency)
         except FactoryException, e:
             print "create channel error (%s): %s" % (self.frequency.getChannel().getName(),e)
         except CAException, e:
@@ -121,7 +147,7 @@ class FunctionGenerator(ScannableMotionBase):
         try:
             if not self.amplitude.isConfigured():
                 self.amplitude.configure()
-            self.amplitude.caput(amplitude)
+            self.amplitude.caputWait(amplitude)
         except FactoryException, e:
             print "create channel error: %s" % (self.amplitude.getChannel().getName(),e)
         except CAException, e:
@@ -147,7 +173,7 @@ class FunctionGenerator(ScannableMotionBase):
         try:
             if not self.shiftcli.isConfigured():
                 self.shiftcli.configure()
-            self.shiftcli.caput(amplitude)
+            self.shiftcli.caputWait(amplitude)
         except FactoryException, e:
             print "create channel error: %s" % (self.shiftcli.getChannel().getName(),e)
         except CAException, e:
@@ -174,7 +200,7 @@ class FunctionGenerator(ScannableMotionBase):
         try:
             if not self.symmetry.isConfigured():
                 self.symmetry.configure()
-            self.symmetry.caput(value)
+            self.symmetry.caputWait(value)
         except FactoryException, e:
             print "create channel error (%s): %s" % (self.symmetry.getChannel().getName(),e)
         except CAException, e:
@@ -192,6 +218,154 @@ class FunctionGenerator(ScannableMotionBase):
             print "create channel error (%s): %s" % (self.symmetryrbv.getChannel().getName(),e)
         except CAException, e:
             print "caget Error (%s): %s" % (self.symmetryrbv.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+   
+    def setDutyCycle(self, value):
+        try:
+            if not self.dutycycle.isConfigured():
+                self.dutycycle.configure()
+            self.dutycycle.caputWait(value)
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.dutycycle.getChannel().getName(),e)
+        except CAException, e:
+            print "caput Error (%s): %s" % (self.dutycycle.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def getDutyCycle(self):
+        try:
+            if not self.dutycyclerbv.isConfigured():
+                self.dutycyclerbv.configure()
+            return float(self.dutycyclerbv.caget())
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.dutycyclerbv.getChannel().getName(),e)
+        except CAException, e:
+            print "caget Error (%s): %s" % (self.dutycyclerbv.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def setTriggerSource(self, src):
+        ''' set the trigger source for the function generator:
+        0 - IMM, 1 - EXT, 2 - BUS.
+        '''
+        try:
+            if not self.triggersrc.isConfigured():
+                self.triggersrc.configure()
+            self.triggersrc.caputWait(src)
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.triggersrc.getChannel().getName(),e)
+        except CAException, e:
+            print "caput Error (%s): %s" % (self.triggersrc.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def getTriggerSource(self):
+        ''' get the trigger source for the function generator:
+        0 - IMM, 1 - EXT, 2 - BUS.
+        '''
+        try:
+            if not self.triggersrc.isConfigured():
+                self.triggersrc.configure()
+            return float(self.triggersrc.caget())
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.triggersrc.getChannel().getName(),e)
+        except CAException, e:
+            print "caget Error (%s): %s" % (self.triggersrc.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def setBurstMode(self, mode):
+        ''' set the burst mode for the function generator:
+        0 - TRIG, 1 - GAT.
+        '''
+        try:
+            if not self.burstmode.isConfigured():
+                self.burstmode.configure()
+            self.burstmode.caputWait(mode)
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burstmode.getChannel().getName(),e)
+        except CAException, e:
+            print "caput Error (%s): %s" % (self.burstmode.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def getBurstMode(self):
+        ''' get the trigger source for the function generator:
+        0 - TRIG, 1 - GAT.
+        '''
+        try:
+            if not self.burstmode.isConfigured():
+                self.burstmode.configure()
+            return float(self.burstmode.caget())
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burstmode.getChannel().getName(),e)
+        except CAException, e:
+            print "caget Error (%s): %s" % (self.burstmode.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def setBurstState(self, state):
+        ''' set the burst state for the function generator:
+        0 - OFF, 1 - ON.
+        '''
+        try:
+            if not self.burststate.isConfigured():
+                self.burststate.configure()
+            self.burststate.caputWait(state)
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burststate.getChannel().getName(),e)
+        except CAException, e:
+            print "caput Error (%s): %s" % (self.burststate.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def getBurstState(self):
+        ''' get the trigger source for the function generator:
+        0 - OFF, 1 - ON.
+        '''
+        try:
+            if not self.burststate.isConfigured():
+                self.burststate.configure()
+            return float(self.burststate.caget())
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burststate.getChannel().getName(),e)
+        except CAException, e:
+            print "caget Error (%s): %s" % (self.burststate.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def setBurstNCycle(self, value):
+        try:
+            if not self.burstncyc.isConfigured():
+                self.burstncyc.configure()
+            self.burstncyc.caputWait(value)
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burstncyc.getChannel().getName(),e)
+        except CAException, e:
+            print "caput Error (%s): %s" % (self.burstncyc.getChannel().getName(),e)
+        except:
+            print "Unexpected error:", sys.exc_info()[0]
+            raise
+
+    def getBurstNCycle(self):
+        try:
+            if not self.burstncycrbv.isConfigured():
+                self.burstncycrbv.configure()
+            return float(self.burstncycrbv.caget())
+        except FactoryException, e:
+            print "create channel error (%s): %s" % (self.burstncycrbv.getChannel().getName(),e)
+        except CAException, e:
+            print "caget Error (%s): %s" % (self.burstncycrbv.getChannel().getName(),e)
         except:
             print "Unexpected error:", sys.exc_info()[0]
             raise
@@ -274,8 +448,12 @@ class FunctionGenerator(ScannableMotionBase):
 
     def isBusy(self):
         return (self.getPosition() != self.getTargetPosition())
+    
+    def stop(self):
+        '''switch off output'''
+        #self.setOutput(0)
+        pass
 
 #    def toString(self):
 #        return self.name + " : (" + str(self.getPosition()[0]), str(self.getPosition()[1]), str(self.getPosition()[2]), str(self.getPosition()[3])+")"
-    
-fg=FunctionGenerator("fg")
+
