@@ -14,7 +14,9 @@ print "-------------------------------------------------------------------------
 print "Set if scan returns to the original positions on completion (1) or not (0)."
 scansReturnToOriginalPositions=0;
 print
-
+#adding default scannables here
+add_default Io #@UndefinedVariable
+add_default Ie #@UndefinedVariable
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Functions for dirtecory operations: pwd(), lwf(), nwf(), nfn(), setSubdirectory(dirName)"
 # set up a nice method for getting the latest file path
@@ -174,13 +176,17 @@ mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.o
 # E=15 keV old file
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2010Oct04.raw"
 # E=15 keV April 2011 file
-mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011April15.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011April15.raw"
 # E = 25 keV
 # mythen_flat_field_file = "/dls/i11/data/2010/ee0/PSD/20100707/sum_flat_field_E25keV_T12500eV_2010July07.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011Dec09.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_19Apr2012.raw"
+#flat filed file 03 May 2012 with new controller
+mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_03May2012.raw"
 mythen_data_directory = "/dls/i11/data/2009/ee0"
 
 mythen_client = gda.device.detector.mythen.client.TextClientMythenClient()
-mythen_client.setHost("i11-mcs01")
+mythen_client.setHost("i11-mcs02")
 #mythen_client = gda.device.detector.mythen.client.DummyMythenClient(18)
 
 mythen_bad_channels = gda.device.detector.mythen.data.FileBadChannelProvider(java.io.File(mythen_bad_channels_file))
@@ -210,7 +216,7 @@ delta1=finder.find("delta")
 def normal_mythen():
     mythen = gda.device.detector.mythen.MythenDetectorImpl()
     mythen.setName("mythen")
-    mythen.setDetectorID("mcs01")
+    mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
@@ -222,7 +228,7 @@ def normal_mythen():
 def summing_mythen():
     mythen = gda.device.detector.mythen.SummingMythenDetector()
     mythen.setName("smythen")
-    mythen.setDetectorID("mcs01")
+    mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
@@ -236,7 +242,7 @@ def summing_mythen():
 def shutter_mythen():
     mythen = gda.device.detector.mythen.ShutterControlledMythenDetectorImpl()
     mythen.setName("shmythen")
-    mythen.setDetectorID("mcs01")
+    mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
@@ -256,6 +262,11 @@ def psd(t,n=1.0):
     scan ds 1.0 n 1.0 mythen t
 
 alias psd
+print
+print "-----------------------------------------------------------------------------------------------------------------"
+print "The default scannable list: "
+list_defaults #@UndefinedVariable
+sleep(0.5)
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
