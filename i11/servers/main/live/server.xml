@@ -53,6 +53,8 @@
 	<import resource="ID.xml"/>
 	<import resource="Ie.xml"/>
 	<import resource="Io.xml"/>
+	<import resource="etl1.xml"/>
+	<import resource="etl2.xml"/>
 	<import resource="LakeShore.xml"/>
 	<import resource="LargeSampleTable.xml"/>
 	<import resource="M1.xml"/>

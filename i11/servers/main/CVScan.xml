@@ -13,6 +13,8 @@
 		<property name="dataWriter" ref="macdatawriter"/>
 		<property name="controller" ref="cvscan_controller"/>
 		<property name="beamMonitor" ref="bm"/>
+		<property name="psdScannableMotor" ref="delta"/>
+		<property name="psdSafePosition" ref="psdsafeposition"/>
 		<property name="plotPanelName" value="MAC"/>
 		<property name="local" value="true"/>
 		<property name="level" value="9"/>

@@ -17,10 +17,10 @@
 	<import resource="S1.xml" />
 	<import resource="DCM.xml" />
 	<import resource="S2.xml" />
-<!-- 	<import resource="BPM1.xml" /> -->
+<!--	<import resource="BPM1.xml" />-->
 	<import resource="M1.xml"/>
 	<import resource="S3.xml" />
-<!-- 	<import resource="BPM2.xml" /> -->
+<!--	<import resource="BPM2.xml" />-->
 	<import resource="Io.xml" />
 	
 	<!-- Experiment Hutch -->
@@ -55,6 +55,8 @@
 	<!-- 4K Cryostat -->
 	<import resource="LakeShore.xml"/>
 	<import resource="TestMotors.xml"/>
+	
+	<import resource="DetectorsSafePositions.xml"/>
 
 	<!-- Beamline objects -->
 	<import resource="BeamlineInfo.xml"/>
@@ -63,7 +65,10 @@
 	<!-- EPICS CVScan object -->
 	<import resource="MACDataWriter.xml"/>
 	<import resource="CVScan.xml"/>
-
+	<import resource="etl1.xml" />
+	<import resource="etl2.xml" />
+	<import resource="tfg2.xml"/>
+	
 	<import resource="../servers_common.xml" />
 
 </beans>
