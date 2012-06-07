@@ -8,7 +8,7 @@ from gda.jython.commands import GeneralCommands
 print "=================================================================================================================";
 print "Performing beamline specific initialisation code (i11).";
 print
-from gda.jython.commands.GeneralCommands import vararg_alias, alias
+from gda.jython.commands.GeneralCommands import alias
 from gda.jython.commands.ScannableCommands import scan 
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Set if scan returns to the original positions on completion (1) or not (0)."
@@ -17,6 +17,7 @@ print
 #adding default scannables here
 add_default Io #@UndefinedVariable
 add_default Ie #@UndefinedVariable
+
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Functions for dirtecory operations: pwd(), lwf(), nwf(), nfn(), setSubdirectory(dirName)"
 # set up a nice method for getting the latest file path
@@ -64,13 +65,16 @@ def setSubdirectory(dirname):
         os.mkdir(pwd())
     except :
         pass
+def getSubdirectory():
+    return finder.find("GDAMetadata").getMetadataValue("subdirectory")
+
 print
 
 from gda.factory import Finder
 #from javashell import *
 #from math import * 
-#from time import sleep
-import java
+from time import sleep
+import java #@UnresolvedImport
 
 finder=Finder.getInstance()
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -172,13 +176,11 @@ mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.o
 # Flat field file
 # E=12 keV
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011Jan12.raw"
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011May09.raw"
-# E=15 keV old file
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2010Oct04.raw"
-# E=15 keV April 2011 file
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011April15.raw"
 # E = 25 keV
 # mythen_flat_field_file = "/dls/i11/data/2010/ee0/PSD/20100707/sum_flat_field_E25keV_T12500eV_2010July07.raw"
+# E=15 keV 15 Sep 2011 file
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T_7500eV_2011Sep15.raw"
+# E=15 keV 09 Dec 2011 file
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011Dec09.raw"
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_19Apr2012.raw"
 #flat filed file 03 May 2012 with new controller
@@ -208,6 +210,14 @@ mythen_open_shutter_task.setShutterScannable(fastshutter1)
 mythen_close_shutter_task = gda.device.detector.mythen.tasks.CloseShutterTask()
 mythen_close_shutter_task.setShutterScannable(fastshutter1)
 
+#added safty object for detectors
+macsafeposition=finder.find("macsafeposition")
+psdsafeposition=finder.find("psdsafeposition")
+# task that checks MAC detector position to avoid collision
+mythen_check_collision_task=gda.hrpd.pmac.CheckCollisionTask()
+mythen_check_collision_task.setCheckedScannable(tth) #@UndefinedVariable
+mythen_check_collision_task.setSafePosition(macsafeposition) #@UndefinedVariable
+
 # task that plots the last data point into a panel
 mythen_plot_last_data_task = gda.device.detector.mythen.tasks.PlotLastPointTask()
 mythen_plot_last_data_task.setPanelName("Mythen")
@@ -220,7 +230,7 @@ def normal_mythen():
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
-    mythen.setAtScanStartTasks([mythen_open_shutter_task])
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
     mythen.setAtScanEndTasks([mythen_close_shutter_task])
     return mythen
@@ -233,7 +243,7 @@ def summing_mythen():
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
     mythen.setNumberOfModules(18)
-    mythen.setAtScanStartTasks([mythen_open_shutter_task])
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
     mythen.setAtScanEndTasks([mythen_close_shutter_task])
     mythen.step = 0.004
@@ -246,9 +256,9 @@ def shutter_mythen():
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
     mythen.setDeltaScannable(delta1)
-    mythen.setOpenShutterTask(mythen_open_shutter_task)
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
-    mythen.setCloseShutterTask(mythen_close_shutter_task)
+    mythen.setAtScanEndTasks([mythen_close_shutter_task])
     return mythen
 
 mythen = normal_mythen()
@@ -259,17 +269,37 @@ from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
 def psd(t,n=1.0):
-    scan ds 1.0 n 1.0 mythen t
+    scan ds 1.0 n 1.0 mythen t 
 
-alias psd
+alias("psd")
+
+
 print
 print "-----------------------------------------------------------------------------------------------------------------"
 print "The default scannable list: "
 list_defaults #@UndefinedVariable
 sleep(0.5)
 
+
 print
 print "-----------------------------------------------------------------------------------------------------------------"
+print "create detector collision prevention commands: 'move' and 'asynmove' "
+print "    move -- synchronous, blocking until completed, like 'pos'        "
+print "    asynmove -- asynchronous, non-blocking move                      "
+run("avoidcollision.py") #@UndefinedVariable
+
+print
+print "-----------------------------------------------------------------------------------------------------------------"
+print "method to change MYTHEN flat field file dynamically, temporarily. "
+print "    >>>setMythenFlatFieldFile('flatfield_filename')"
+print "This must be called each time you reset_namespce or restart GDA servers"
+def setMythenFlatFieldFile(filename):
+    mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(filename))
+    mythen_data_converter.setFlatFieldData(mythen_flat_field)
+    mythen.setDataConverter(mythen_data_converter)
+
+print
+print "---------------------------------------------------------numFrames--------------------------------------------------------"
 print "Create rocking theta scannable 'rocktheta'"
 print "    To change the rocking limits, use 'rocktheta.setLowerLimit(10)', 'rocktheta.setUpperLimit(10)'; "
 print "    To view the rocking limits, use 'rocktheta.getLowerLimit()', 'rockthets.getUpperLimit()'."
@@ -280,7 +310,8 @@ print "Create 'psdrt' command for PSD data collection with theta rocking"
 def psdrt(t, n=1.0):
     scan ds 1.0 n 1.0 mythen t rocktheta
 
-alias psdrt
+alias("psdrt")
+
 print
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Create commands to enable/disable plot update from server."
@@ -306,12 +337,30 @@ print "Create an 'interruptable()' function which can be used to make for-loop i
 print "    To use this, you must place 'interruptable()' call as the 1st or last line in your for-loop."
 def interruptable():
     GeneralCommands.pause()
-
+print "-----------------------------------------------------------------------------------------------------------------"
+print "Create 'cvscan' command"
+alias("cvscan") 
+print
+from timerelated import clock, t, dt, w #@UnusedImport
 print
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Create a wait scannable called 'w' which can be used to delay data point collection in a scan."
-w=waittime
+print "create 'adc2' object to provide access to ADC2 device"
+from peloop.adccontrol import AdcControl
+adc2=AdcControl("adc2")
+print "create 'fg2' object to provide access to the 2nd Function generator device"
+from peloop.functiongenerator import FunctionGenerator
+fg2=FunctionGenerator("fg2")
+print "create 'tfg2' object to provide control of Time Frame Generator device"
+from peloop.tfg2 import TFG2
+tfg2=TFG2("tfg2")
 
+print "create 'pedata' object to capture the PE data from ADC2 device"
+from peloop.pedatacapturer import DataCapturer
+pedata=DataCapturer("pedata")
+print "create 'pel' object for PE Loop experiment"
+from tfg_peloop import PELoop
+pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)
+daserver=finder.find("daserver")
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";
@@ -329,7 +378,7 @@ else:
 #print "create I11 specific XPS scan commands: cvscan, robotscan, robotscan2d, stagescan, tempscan"
 #from gda.hrpd.commands.ScanCommands import cvscan, robotscan, robotscan2d, stagescan, tempscan #@UnusedImport
 # create command alias
-#vararg_alias("cvscan") 
+
 #vararg_alias("robotscan") 
 #vararg_alias("robotscan2d") 
 #vararg_alias("stagescan") 
