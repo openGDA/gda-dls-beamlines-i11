@@ -148,6 +148,14 @@ pmtIo=DetectorControlClass('pmtIo', 'BL11I-DI-IMON-01:E1:CTRL', 'BL11I-DI-IMON-0
 llimIe=DetectorControlClass('llimIe', 'BL11I-DI-IMON-02:E1:LLIM', 'BL11I-DI-IMON-02:E1:LLIM:RBV', 'mv', '%4.0f'); pds.append(llimIe)
 ulimIe=DetectorControlClass('ulimIe', 'BL11I-DI-IMON-02:E1:ULIM', 'BL11I-DI-IMON-02:E1:ULIM:RBV', 'mv', '%4.0f'); pds.append(ulimIe)
 pmtIe=DetectorControlClass('pmtIe', 'BL11I-DI-IMON-02:E1:CTRL', 'BL11I-DI-IMON-02:E1:CTRL:RBV', 'mv', '%4.0f'); pds.append(pmtIe)
+# etl1 
+llimetl1=DetectorControlClass('llimetl1', 'BL11I-EA-ENV-01:E1:LLIM', 'BL11I-EA-ENV-01:E1:LLIM:RBV', 'mv', '%4.0f'); pds.append(llimetl1)
+ulimetl1=DetectorControlClass('ulimetl1', 'BL11I-EA-ENV-01:E1:ULIM', 'BL11I-EA-ENV-01:E1:ULIM:RBV', 'mv', '%4.0f'); pds.append(ulimetl1)
+pmtetl1=DetectorControlClass('pmtetl1', 'BL11I-EA-ENV-01:E1:CTRL', 'BL11I-EA-ENV-01:E1:CTRL:RBV', 'mv', '%4.0f'); pds.append(pmtetl1)
+# etl2 
+llimetl2=DetectorControlClass('llimetl2', 'BL11I-DI-IMON-02:E1:LLIM', 'BL11I-DI-IMON-02:E1:LLIM:RBV', 'mv', '%4.0f'); pds.append(llimetl2)
+ulimetl2=DetectorControlClass('ulimetl2', 'BL11I-DI-IMON-02:E1:ULIM', 'BL11I-DI-IMON-02:E1:ULIM:RBV', 'mv', '%4.0f'); pds.append(ulimetl2)
+pmtetl2=DetectorControlClass('pmtetl2', 'BL11I-DI-IMON-02:E1:CTRL', 'BL11I-DI-IMON-02:E1:CTRL:RBV', 'mv', '%4.0f'); pds.append(pmtetl2)
 
 print "finished ETL Detector object creation"
     
