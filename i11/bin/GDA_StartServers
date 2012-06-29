@@ -7,4 +7,11 @@
 `dirname $0`/gda nameserver $@
 `dirname $0`/gda logserver $@
 `dirname $0`/gda eventserver $@
-JAVA_OPTS="-Xms128m -Xmx1024m" `dirname $0`/gda_command objectserver  $@ --profile=main --mode=live --headless #--debug --debugport=8002
+
+if [ -n "$JAVA_OPTS" ] ; then
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC $JAVA_OPTS"
+else
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
+fi
+
+`dirname $0`/gda objectserver  --smart --trace --debug -p 8001 --restart -v --mode=live $@

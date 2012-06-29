@@ -23,7 +23,12 @@ else #if used
     fi
 fi
 
-export JAVA_OPTS=-Dgda.logPanel.logging.port=$PORT $JAVA_OPTS
+if [ -n "$JAVA_OPTS" ] ; then
+	export JAVA_OPTS=-Dgda.logPanel.logging.port=$PORT $JAVA_OPTS
+else
+	export JAVA_OPTS=-Dgda.logPanel.logging.port=$PORT
+fi
+
 echo "Staring GDA Log Panel locally"
-echo "`dirname $0`/gda_command logpanel --restart $@"
-`dirname $0`/gda_command logpanel --restart $@
+echo "`dirname $0`/gda logpanel --restart $@"
+`dirname $0`/gda logpanel --restart $@
