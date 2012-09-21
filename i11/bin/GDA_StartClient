@@ -3,7 +3,13 @@
 notify-send -t 10000 "GDA is starting..."
 
 . /$SOFTWAREFOLDER/$BEAMLINE/software/gda/$BEAMLINE-config/bin/gda_environment.sh
-
+if [ -f "/etc/profile.d/modules.sh" ]; then
+	. /etc/profile.d/modules.sh	
+	module load java/gda
+else
+	echo "cannot source /etc/profile.d/modules.sh"	
+	exit 1
+fi
 # Start log panel if not already started
 LOGPANEL=$(ps -ef | grep LogPanel | grep -v grep)
 if [ "X$LOGPANEL" == "X" ] ; then
@@ -16,12 +22,13 @@ fi
 lpoptions -d b.i11.cc2.col.1 -o job-sheets=none,none
 
 if [ -n "$JAVA_OPTS" ] ; then
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=128m $JAVA_OPTS"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=128m -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof $JAVA_OPTS"
 else
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=128m"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=128m -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof"
 fi
 
-`dirname $0`/gda client  $@ -x ../clients/main/live/client.xml
+`dirname $0`/gda_command client  $@ -x ../clients/main/live/client.xml
+
 
 if [ "X$LOGPANEL" == "X" ] ; then
 	sleep 5

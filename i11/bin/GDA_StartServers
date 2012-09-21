@@ -1,4 +1,12 @@
 #!/bin/bash
+if [ -f "/etc/profile.d/modules.sh" ]; then
+	. /etc/profile.d/modules.sh	
+	module load java/gda
+else
+	echo "cannot source /etc/profile.d/modules.sh"	
+	exit 1
+fi
+
 `dirname $0`/gda nameserver --stop $@
 `dirname $0`/gda logserver --stop $@
 `dirname $0`/gda eventserver --stop $@
@@ -9,9 +17,9 @@
 `dirname $0`/gda eventserver $@
 
 if [ -n "$JAVA_OPTS" ] ; then
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC $JAVA_OPTS"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof $JAVA_OPTS"
 else
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof"
 fi
 
-`dirname $0`/gda objectserver  --smart --trace --debug -p 8001 --restart -v --mode=live $@
+`dirname $0`/gda_command objectserver  --smart --trace --debug -p 8001 --restart -v --mode=live $@

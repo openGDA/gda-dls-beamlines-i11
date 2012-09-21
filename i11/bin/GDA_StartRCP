@@ -9,6 +9,13 @@ fi
 notify-send -t 10000 "GDA RCP Client is starting..."
 
 . /$SOFTWAREFOLDER/$BEAMLINE/software/gda/$BEAMLINE-config/bin/gda_environment.sh
+if [ -f "/etc/profile.d/modules.sh" ]; then
+	. /etc/profile.d/modules.sh	
+	module load java/gda
+else
+	echo "cannot scd ..ource /etc/profile.d/modules.sh"	
+	exit 1
+fi
 
 # Start log panel if not already started
 LOGPANEL=$(ps -ef | grep LogPanel | grep -v grep)
@@ -22,12 +29,12 @@ fi
 lpoptions -d b.i11.cc2.col.1 -o job-sheets=none,none
 
 if [ -n "$JAVA_OPTS" ] ; then
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:MaxHeapFreeRatio=70 -XX:+DisableExplicitGC -XX:+UseGCOverheadLimit -XX:-UseParallelGC -XX:ParallelGCThreads=8 $JAVA_OPTS"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:MaxHeapFreeRatio=70 -XX:+DisableExplicitGC -XX:+UseGCOverheadLimit -XX:-UseParallelGC -XX:ParallelGCThreads=8 -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof $JAVA_OPTS"
 else
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:MaxHeapFreeRatio=70 -XX:+DisableExplicitGC -XX:+UseGCOverheadLimit -XX:-UseParallelGC -XX:ParallelGCThreads=8"
+	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:MaxHeapFreeRatio=70 -XX:+DisableExplicitGC -XX:+UseGCOverheadLimit -XX:-UseParallelGC -XX:ParallelGCThreads=8 -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof"
 fi
 
-`dirname $0`/gda rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda-${BEAMLINE} --restart --debug --debugport=8003 $@
+`dirname $0`/gda_command rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda-${BEAMLINE} --restart $@ #--debug --debugport=8003 $@
 
 #To run the RCP client directly
 #/$SOFTWAREFOLDER/${BEAMLINE}/software/gda/client/gda-${BEAMLINE} $@ & 
