@@ -7,7 +7,7 @@
 		<property name="local" value="true"/>
 		<property name="configureAtStartup" value="true"/>
 		<property name="deviceName" value="ENV.STOEFURN"/>
-		<property name="maxRampRate" value="1.2"/>
+		<property name="maxRampRate" value="50.0"/>
 		<property name="minRampRate" value="0.01"/>
 		<property name="maxOutput" value="35.0"/>
 	</bean>

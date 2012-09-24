@@ -20,4 +20,7 @@
 	<bean id="otmot_pitch_motor" class="gda.device.motor.EpicsMotor">
 		<property name="deviceName" value="OTMOT.PITCH"/>
 	</bean>
+	<bean id="otmot_posn_motor" class="gda.device.motor.EpicsMotor">
+		<property name="deviceName" value="OTMOT.POSN"/>
+	</bean>
 </beans>

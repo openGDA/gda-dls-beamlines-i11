@@ -50,6 +50,7 @@
 	<import resource="Ic2.xml"/>
 	<import resource="Ic3.xml"/>
 	<import resource="Ic4.xml"/>
+	<import resource="Ic5.xml"/>
 	<import resource="ID.xml"/>
 	<import resource="Ie.xml"/>
 	<import resource="Io.xml"/>
