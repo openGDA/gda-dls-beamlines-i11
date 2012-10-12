@@ -17,9 +17,9 @@ fi
 `dirname $0`/gda eventserver $@
 
 if [ -n "$JAVA_OPTS" ] ; then
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof $JAVA_OPTS"
+	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof $JAVA_OPTS"
 else
-	export JAVA_OPTS="-Xms128m -Xmx1024m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof"
+	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaobjectserver.hprof"
 fi
 
 `dirname $0`/gda_command objectserver  --smart --trace --debug -p 8001 --restart -v --mode=live $@
