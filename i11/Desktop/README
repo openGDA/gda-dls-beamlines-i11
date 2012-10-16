@@ -32,7 +32,7 @@ For example I have added a entry for mythen detector for i11 as
 
 To make your .desktop entry appear under "Data Acquisition", please make sure you specify 
 
-	Categories=X-ogda;
+	Categories=X-opengda;
 
 in your .deaktop file.
 

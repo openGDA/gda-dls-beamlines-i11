@@ -5,7 +5,7 @@
 		<Name>Data Acquisition</Name>
     		<Directory>gda.directory</Directory>
     		<Include>
-			<Category>X-ogda</Category>
+			<Category>X-opengda</Category>
 		</Include>
 	</Menu>
  </Menu> 
