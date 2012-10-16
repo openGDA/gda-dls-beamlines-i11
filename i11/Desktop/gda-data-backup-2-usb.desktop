@@ -9,5 +9,5 @@ Terminal=true
 Name[en_GB]=Backup data to USB 
 GenericName[en_GB]=Backup data to USB
 Comment[en_GB]=Backup data to USB
-Categories=X-ogda;
+Categories=X-opengda;
 

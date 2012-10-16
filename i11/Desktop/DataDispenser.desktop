@@ -11,3 +11,4 @@ Name[en_GB]=DataDispenser Client
 GenericName[en_GB]=
 Comment[en_GB]=Starts the DataDispenser Client
 Icon=/dls_sw/apps/DataDispenser/current/static/images/dispenser-64x64.png
+Categories=X-opengda;

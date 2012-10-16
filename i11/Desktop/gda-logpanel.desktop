@@ -9,4 +9,4 @@ Terminal=false
 Name[en_GB]=1. Start GDA Log Display
 GenericName[en_GB]=Start GDA Log Display
 Comment[en_GB]=Open GDA LogPanel
-Categories=X-ogda;
+Categories=X-opengda;

@@ -9,4 +9,4 @@ Terminal=true
 Name[en_GB]=View GDA Log File
 GenericName[en_GB]=View GDA Log File
 Comment[en_GB]=View GDA Log File on Terminal
-Categories=X-ogda;
+Categories=X-opengda;
