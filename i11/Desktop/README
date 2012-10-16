@@ -8,14 +8,19 @@ Important: Both Applications -> Data Acquisition menu, and desktop "GDA_Launcher
 
 1.1 Desktop entry files now available as listed below:
 
+	DataDispenser.desktop			: start data dispenser for data copying
 	gda-beamline-manual.desktop		: launch Beamline-specific manual if available
-	gda-client.desktop				: launch GDA Client
+	gda-client.desktop				: launch GDA Swing Client
 	gda-data-backup-2-usb.desktop 	: back up data to UBS disk
-	gda-logfile.desktop				: display GDA log file "gda_output.txt" on terminal
+	gda-logfile.desktop				: display GDA log file "gda_output.txt" on Linux terminal
+	gda-rcp.desktop					: starting GDA RCP client
 	gda-logpanel.desktop			: open GDA log panel
 	gda-servers.desktop				: launch GDA servers - Name Server, Log Server, Event Server, and Object Server
+	gda-start-mythen-detector.desktop	: launch Mythen QT GUI
 	gda-startup-guide.desktop		: display GDA startup guide
 	gda-user-guide.desktop			: display GDA user Guide - web link we provide
+	gda.desktop						: start GDA servers and then Swing client
+	gdarcp.desktop					: starting GDA Servers and then RCP client
 
 1.2 The following files define the menu configuration
 
