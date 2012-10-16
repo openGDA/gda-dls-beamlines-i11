@@ -34,10 +34,10 @@ else
 	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:MaxHeapFreeRatio=70 -XX:+DisableExplicitGC -XX:+UseGCOverheadLimit -XX:-UseParallelGC -XX:ParallelGCThreads=8 -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof"
 fi
 
-`dirname $0`/gda_command rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda-${BEAMLINE} --restart $@ #--debug --debugport=8003 $@
+#`dirname $0`/gda_command rcpclient --rcp_image=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/client/gda-${BEAMLINE} --restart $@ -x ../clients/rcp/live/client.xml #--debug --debugport=8003 $@
 
 #To run the RCP client directly
-#/$SOFTWAREFOLDER/${BEAMLINE}/software/gda/client/gda-${BEAMLINE} $@ & 
+/$SOFTWAREFOLDER/${BEAMLINE}/software/gda/client/gda-${BEAMLINE} $@ & 
 if [ "X$LOGPANEL" == "X" ] ; then
 	sleep 5
 	wmctrl -r "GDA Log Panel" -e 0,1921,0,1000,1000

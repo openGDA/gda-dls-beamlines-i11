@@ -36,8 +36,6 @@ else
 	export JAVA_OPTS=-Dgda.logPanel.logging.port=$PORT
 fi
 
-
-export JAVA_OPTS=-Dgda.logPanel.logging.port=$PORT $JAVA_OPTS
 echo "Staring GDA Log Panel locally"
 echo "`dirname $0`/gda_command logpanel --restart $@"
 `dirname $0`/gda_command logpanel --restart $@

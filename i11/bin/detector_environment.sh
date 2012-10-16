@@ -7,9 +7,9 @@ then
 fi
 
 # for Mythen
-export ROOTSYS=/dls/i11/software/mythen/root
-export QTDIR=/dls/i11/software/mythen/qt
-export MYTHENDIR=/dls/i11/software/mythen/NewMythenMCS
+export ROOTSYS=/dls_sw/i11/software/mythen/root
+export QTDIR=/dls_sw/i11/software/mythen/qt
+export MYTHENDIR=/dls_sw/i11/software/mythen/NewMythenMCS
 
 export PATH=$QTDIR/bin:$ROOTSYS/bin:$MYTHENDIR/bin:$PATH
 export LD_LIBRARY_PATH=$QTDIR/lib:$ROOTSYS/lib:$LD_LIBRARY_PATH

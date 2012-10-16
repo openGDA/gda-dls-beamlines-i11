@@ -8,7 +8,7 @@ then
   echo "Please set BEAMLINE environment variable."
   exit 1
 fi
-export SOFTWAREFOLDER=dls
+export SOFTWAREFOLDER=dls_sw
 export GDA_ROOT=/$SOFTWAREFOLDER/$BEAMLINE/software/gda
 export GDA_CONFIG=${GDA_ROOT}/config
 export GDA_DATADIR=/$SOFTWAREFOLDER/$BEAMLINE/data

@@ -10,6 +10,7 @@ else
 	echo "cannot source /etc/profile.d/modules.sh"	
 	exit 1
 fi
+
 # Start log panel if not already started
 LOGPANEL=$(ps -ef | grep LogPanel | grep -v grep)
 if [ "X$LOGPANEL" == "X" ] ; then
@@ -28,7 +29,6 @@ else
 fi
 
 `dirname $0`/gda_command client  $@ -x ../clients/main/live/client.xml
-
 
 if [ "X$LOGPANEL" == "X" ] ; then
 	sleep 5
