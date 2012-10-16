@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>uk.ac.diamond.scisoft.python</project>
+		<project>uk.ac.gda.api</project>
 		<project>uk.ac.gda.beamline.i11.feature</project>
 		<project>uk.ac.gda.beamline.i11.site</project>
 		<project>uk.ac.gda.client</project>
