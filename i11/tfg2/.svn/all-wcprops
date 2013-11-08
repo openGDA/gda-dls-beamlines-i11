@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/readme.txt
+END
+tfg2_id_dsa
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/tfg2_id_dsa
+END
+da.server.tfg2procServ
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/da.server.tfg2procServ
+END
+daq_servers
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/daq_servers
+END
+Dasrvman.doc
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/Dasrvman.doc
+END
+server_list
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/server_list
+END
+procServ
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/procServ
+END
+tfg2_id_dsa.pub
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/subversion/gda/!svn/ver/50296/branches/8.12/configurations/diamond/i11/tfg2/tfg2_id_dsa.pub
+END
