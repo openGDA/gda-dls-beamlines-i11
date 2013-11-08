@@ -61,7 +61,7 @@
 	<import resource="M1.xml"/>
 	<import resource="MachineStatus.xml"/>
 	<import resource="MACMotors.xml"/>
-	<import resource="Mar345.xml"/>
+<!-- 	<import resource="Mar345.xml"/> -->
 	<import resource="MCSSis3820.xml"/>
 	<import resource="MRIFurnace.xml"/>
 	<import resource="OpticalTable.xml"/>
