@@ -46,4 +46,10 @@
 	<bean id="d6x_mtr" class="gda.device.motor.EpicsMotor">
 		<property name="deviceName" value="D6.X"/>
 	</bean>
+		<bean id="oavx_mtr" class="gda.device.motor.EpicsMotor">
+		<property name="deviceName" value="OAV.X"/>
+	</bean>
+	<bean id="oavy_mtr" class="gda.device.motor.EpicsMotor">
+		<property name="deviceName" value="OAV.Y"/>
+	</bean>
 </beans>

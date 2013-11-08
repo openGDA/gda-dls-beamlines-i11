@@ -45,6 +45,12 @@
 	<bean id="phdx" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="d6x_mtr"/>
 	</bean>
+	<bean id="oavx" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="oavx_mtr"/>
+	</bean>
+	<bean id="oavy" class="gda.device.scannable.ScannableMotor">
+		<property name="motor" ref="oavy_mtr"/>
+	</bean>
 	<bean id="mar" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
@@ -62,6 +68,8 @@
 				<ref bean="bsx"/>
 				<ref bean="bsy"/>
 				<ref bean="phdx"/>
+				<ref bean="oavx"/>
+				<ref bean="oavy"/>
 			</list>
 		</property>
 	</bean>
