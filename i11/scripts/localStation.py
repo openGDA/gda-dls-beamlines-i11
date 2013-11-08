@@ -15,8 +15,8 @@ print "Set if scan returns to the original positions on completion (1) or not (0
 scansReturnToOriginalPositions=0;
 print
 #adding default scannables here
-add_default Io #@UndefinedVariable
-add_default Ie #@UndefinedVariable
+#add_default Io #@UndefinedVariable
+#add_default Ie #@UndefinedVariable
 
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Functions for dirtecory operations: pwd(), lwf(), nwf(), nfn(), setSubdirectory(dirName)"
@@ -174,8 +174,10 @@ sys.path = [LocalProperties.get("gda.root") + "/uk.ac.gda.devices.mythen/bin"] +
 mythen_bad_channels_file = "/dls/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list"
 mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.off"
 # Flat field file
+mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
 # E=12 keV
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011Jan12.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011May09.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Flat_Field_Sum_E12keV_09Jul2012.raw"
 # E = 25 keV
 # mythen_flat_field_file = "/dls/i11/data/2010/ee0/PSD/20100707/sum_flat_field_E25keV_T12500eV_2010July07.raw"
 # E=15 keV 15 Sep 2011 file
@@ -184,7 +186,7 @@ mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.o
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011Dec09.raw"
 #mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_19Apr2012.raw"
 #flat filed file 03 May 2012 with new controller
-mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_03May2012.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_03May2012.raw"
 mythen_data_directory = "/dls/i11/data/2009/ee0"
 
 mythen_client = gda.device.detector.mythen.client.TextClientMythenClient()
@@ -237,7 +239,7 @@ def normal_mythen():
 
 def summing_mythen():
     mythen = gda.device.detector.mythen.SummingMythenDetector()
-    mythen.setName("smythen")
+    mythen.setName("detector")
     mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
@@ -269,7 +271,9 @@ from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
 def psd(t,n=1.0):
-    scan ds 1.0 n 1.0 mythen t 
+    scan ds 1.0 n 1.0 mythen t Io t Ie  # @UndefinedVariable
+    scaler2(1)  # @UndefinedVariable
+    
 
 alias("psd")
 
@@ -286,7 +290,8 @@ print "-------------------------------------------------------------------------
 print "create detector collision prevention commands: 'move' and 'asynmove' "
 print "    move -- synchronous, blocking until completed, like 'pos'        "
 print "    asynmove -- asynchronous, non-blocking move                      "
-run("avoidcollision.py") #@UndefinedVariable
+#from avoidcollision import *  # @UnusedWildImport
+run("avoidcollision.py")
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -308,7 +313,8 @@ theta1=finder.find("theta")
 rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 print "Create 'psdrt' command for PSD data collection with theta rocking"
 def psdrt(t, n=1.0):
-    scan ds 1.0 n 1.0 mythen t rocktheta
+    scan ds 1.0 n 1.0 mythen t rocktheta Io t Ie  # @UndefinedVariable
+    scaler2(1)  # @UndefinedVariable
 
 alias("psdrt")
 
@@ -361,6 +367,12 @@ print "create 'pel' object for PE Loop experiment"
 from tfg_peloop import PELoop
 pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)
 daserver=finder.find("daserver")
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "create derivative scannable 'deriv' object to provide derivative value of enegry to elt1"
+from scan_detetor_with_derivative import DeviceDerivativeClass
+deriv = DeviceDerivativeClass("deriv", "energy", "etl1", "derivative");
+
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";
