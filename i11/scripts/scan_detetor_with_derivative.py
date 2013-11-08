@@ -10,6 +10,7 @@ Created on 24 Jun 2010
 @author: fy65
 '''
 from gda.device.scannable import ScannableBase
+from gda.factory import Finder
 
 class DeviceDerivativeClass(ScannableBase):
 #	def __init__(self, name, strUnit, strFormat):
@@ -27,8 +28,8 @@ class DeviceDerivativeClass(ScannableBase):
 		self.x1 = 0.0;
 		self.x2 = 0.0;
 		self.y = 0.0;
-		self.refObj1 = globals()[scannableX]
-		self.refObj2 = globals()[scannableY]
+		self.refObj1 = Finder.getInstance().find(scannableX)
+		self.refObj2 = Finder.getInstance().find(scannableY)
 		self.deviceFun = deviceFun
 		
 
@@ -55,7 +56,7 @@ class DeviceDerivativeClass(ScannableBase):
 
 lastx1 = 0
 lastx2 = 0
-dr = DeviceDerivativeClass("derivative", "energy", "mac15", "derivative");
+dr = DeviceDerivativeClass("dr", "energy", "mac15", "derivative");
 
 def derivative(x1, x2):
 	'''returns the differential ratio of two scannables'''
