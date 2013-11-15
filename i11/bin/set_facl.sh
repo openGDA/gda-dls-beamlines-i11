@@ -6,12 +6,12 @@ then
   exit 1
 fi
 # before running this: ssh ${BEAMLINE}-storage
-if [ `hostname` = "${BEAMLINE}-control.diamond.ac.uk" ] ; then
-	echo "You have logged into `hostname`"
-else
-	echo "You must log into ${BEAMLINE}-storage.diamond.ac.uk to run this script."
-	exit 0
-fi
+#if [ `hostname` = "${BEAMLINE}-control.diamond.ac.uk" ] ; then
+	#	echo "You have logged into `hostname`"
+#else
+	#	echo "You must log into ${BEAMLINE}-storage.diamond.ac.uk to run this script."
+	#	exit 0
+#fi
 
 ## set gda and config directory permissions
 echo "gda and dls_dasc all permissions to /gda, otherwise rw only..."
