@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property file="${gda.config}/logging/live/log.properties" />
+	<property file="${gda.config}/logging/dummy/log.properties" />
 
     <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
         <Name>Finest</Name>
