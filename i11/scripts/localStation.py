@@ -3,49 +3,62 @@
 # @author: Fajin Yuan
 # updated 23/12/2010
 
-from gda.data import PathConstructor, NumTracker
-from gda.jython.commands import GeneralCommands
+
 print "=================================================================================================================";
-print "Performing beamline specific initialisation code (i11).";
+print "Performing beamline I11 specific initialisation.";
 print
-from gda.jython.commands.GeneralCommands import alias
+from gda.data import PathConstructor, NumTracker
+from gda.jython.commands.GeneralCommands import alias, run
+from gda.jython.commands.GeneralCommands import pause as enable_pause_or_interrupt
 from gda.jython.commands.ScannableCommands import scan 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Set if scan returns to the original positions on completion (1) or not (0)."
+print "Set scan returns to the original positions on completion to false (0); default is 0."
+print "   To set scan returns to its start positions on completion please do:"
+print "      >>>scansReturnToOriginalPositions=1"
 scansReturnToOriginalPositions=0;
 print
-#adding default scannables here
+#Please change the following lines to add default scannables to i11 GDA server engine
+#print "-----------------------------------------------------------------------------------------------------------------"
+#print "Adding default scannable objects to GDA system: Io, Te"
 #add_default Io #@UndefinedVariable
 #add_default Ie #@UndefinedVariable
 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Functions for dirtecory operations: pwd(), lwf(), nwf(), nfn(), setSubdirectory(dirName)"
+print "commands for directory/file operations: "
+print "   >>>pwd - return the current data directory"
+print "   >>>lwf - return the full path of the last working data file"
+print "   >>>nwf - return the full path of the next working data file"
+print "   >>>nfn - return the next data file number to be collected"
+print "   >>>setSubdirectory('test') - change data directory to a sub-directory named 'test', created first if not exist"
+print "   >>>getSubdirectory() - return the current sub-directory setting if exist"
+print "Please note: users can only create sub-directory within their permitted visit data directory via GDA, not themselves."
+print "To create another sub-directory 'child-test' inside a sub-directory 'test', you must specify the full path as 'test/child-test' "
 # set up a nice method for getting the latest file path
-i11NumTracker = NumTracker("tmp");
+i11NumTracker = NumTracker("i11");
 
 # function to find the working directory
 def pwd():
     '''return the working directory'''
-    dir = PathConstructor.createFromDefaultProperty()
-    return dir
+    cwd = PathConstructor.createFromDefaultProperty()
+    return cwd
     
 alias("pwd")
 
 # function to find the last working file path
 def lwf():
     '''return the last working file path root'''
-    dir = PathConstructor.createFromDefaultProperty()
+    cwd = PathConstructor.createFromDefaultProperty()
     filenumber = i11NumTracker.getCurrentFileNumber();
-    return os.path.join(dir,str(filenumber))
+    return os.path.join(cwd,str(filenumber))
     
 alias("lwf")
 
 # function to find the next working file path
 def nwf():
     '''query the next working file path root'''
-    dir = PathConstructor.createFromDefaultProperty()
+    cwd = PathConstructor.createFromDefaultProperty()
     filenumber = i11NumTracker.getCurrentFileNumber();
-    return os.path.join(dir,str(filenumber+1))
+    return os.path.join(cwd,str(filenumber+1))
     
 alias("nwf")
 
@@ -65,15 +78,14 @@ def setSubdirectory(dirname):
         os.mkdir(pwd())
     except :
         pass
+    
 def getSubdirectory():
     return finder.find("GDAMetadata").getMetadataValue("subdirectory")
 
 print
 
 from gda.factory import Finder
-#from javashell import *
-#from math import * 
-from time import sleep
+from time import sleep  # @UnusedImport
 import java #@UnresolvedImport
 
 finder=Finder.getInstance()
@@ -167,8 +179,7 @@ def setwavelength(wavelength):
 print
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Setup PSD or mythen detector system."
-import sys, gda
-sys.path = [LocalProperties.get("gda.root") + "/uk.ac.gda.devices.mythen/bin"] + sys.path
+import gda
 
 # These can be changed
 mythen_bad_channels_file = "/dls/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list"
@@ -271,7 +282,7 @@ from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
 def psd(t,n=1.0):
-    scan ds 1.0 n 1.0 mythen t Io t Ie  # @UndefinedVariable
+    scan(ds, 1.0, n, 1.0, mythen, t, Io, t, Ie)  # @UndefinedVariable
     scaler2(1)  # @UndefinedVariable
     
 
@@ -291,7 +302,7 @@ print "create detector collision prevention commands: 'move' and 'asynmove' "
 print "    move -- synchronous, blocking until completed, like 'pos'        "
 print "    asynmove -- asynchronous, non-blocking move                      "
 #from avoidcollision import *  # @UnusedWildImport
-run("avoidcollision.py")
+run("avoidcollision.py") 
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -313,7 +324,7 @@ theta1=finder.find("theta")
 rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 print "Create 'psdrt' command for PSD data collection with theta rocking"
 def psdrt(t, n=1.0):
-    scan ds 1.0 n 1.0 mythen t rocktheta Io t Ie  # @UndefinedVariable
+    scan(ds, 1.0, n, 1.0, mythen, t, rocktheta, Io, t, Ie)  # @UndefinedVariable
     scaler2(1)  # @UndefinedVariable
 
 alias("psdrt")
@@ -342,7 +353,7 @@ print "-------------------------------------------------------------------------
 print "Create an 'interruptable()' function which can be used to make for-loop interruptable in GDA."
 print "    To use this, you must place 'interruptable()' call as the 1st or last line in your for-loop."
 def interruptable():
-    GeneralCommands.pause()
+    enable_pause_or_interrupt()
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Create 'cvscan' command"
 alias("cvscan") 
