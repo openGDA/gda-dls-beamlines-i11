@@ -58,11 +58,10 @@ sudo chmod -R 777 /var/Desktop
 sudo ln -sf /var/Desktop/gda-logpanel.desktop /usr/share/applications/gda-logpanel.desktop
 sudo ln -sf /var/Desktop/gda-servers.desktop /usr/share/applications/gda-servers.desktop
 sudo ln -sf /var/Desktop/gda-client.desktop /usr/share/applications/gda-client.desktop
-sudo ln -sf /var/Desktop/gda-rcp.desktop /usr/share/applications/gda-rcp.desktop
+sudo ln -sf /var/Desktop/gda-swing.desktop /usr/share/applications/gda-swing.desktop
 sudo ln -sf /var/Desktop/gda-user-guide.desktop /usr/share/applications/gda-user-guide.desktop
-sudo ln -sf /var/Desktop/gda-rcp.desktop /usr/share/applications/gda-rcp.desktop
 sudo ln -sf /var/Desktop/gda.desktop /usr/share/applications/gda.desktop
-sudo ln -sf /var/Desktop/gdarcp.desktop /usr/share/applications/gdarcp.desktop
+sudo ln -sf /var/Desktop/gdaswing.desktop /usr/share/applications/gdaswing.desktop
 sudo ln -sf /var/Desktop/gda-startup-guide.desktop /usr/share/applications/gda-startup-guide.desktop
 sudo ln -sf /var/Desktop/gda-beamline-manual.desktop /usr/share/applications/gda-beamline-manual.desktop
 sudo ln -sf /var/Desktop/gda-logfile.desktop /usr/share/applications/gda-logfile.desktop
