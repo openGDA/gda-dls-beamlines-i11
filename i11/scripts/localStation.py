@@ -238,6 +238,7 @@ mythen_plot_last_data_task.setPanelName("Mythen")
 delta1=finder.find("delta")
 def normal_mythen():
     mythen = gda.device.detector.mythen.MythenDetectorImpl()
+    mythen.configure()
     mythen.setName("mythen")
     mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
@@ -246,10 +247,12 @@ def normal_mythen():
     mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
     mythen.setAtScanEndTasks([mythen_close_shutter_task])
+    mythen.setHasChannelInfo(False)
     return mythen
 
 def summing_mythen():
     mythen = gda.device.detector.mythen.SummingMythenDetector()
+    mythen.configure()
     mythen.setName("detector")
     mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
@@ -260,10 +263,12 @@ def summing_mythen():
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
     mythen.setAtScanEndTasks([mythen_close_shutter_task])
     mythen.step = 0.004
+    mythen.setHasChannelInfo(False)
     return mythen
 
 def shutter_mythen():
     mythen = gda.device.detector.mythen.ShutterControlledMythenDetectorImpl()
+    mythen.configure()
     mythen.setName("shmythen")
     mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
@@ -272,6 +277,7 @@ def shutter_mythen():
     mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
     mythen.setAtPointEndTasks([mythen_plot_last_data_task])
     mythen.setAtScanEndTasks([mythen_close_shutter_task])
+    mythen.setHasChannelInfo(False)
     return mythen
 
 mythen = normal_mythen()
