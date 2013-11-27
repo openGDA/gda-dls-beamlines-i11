@@ -9,7 +9,6 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd">
 	
-	<import resource="../clients-common.xml" />
 	 
 <!-- import server objects required in GUI -->
     <corba:import namespace="i11" names="Plot_Manager, Ic4, beam, ehshutter, spin"/>
@@ -110,4 +109,5 @@
 		</property>
 	</bean>
 
+	<import resource="../clients-common.xml" />
 </beans>

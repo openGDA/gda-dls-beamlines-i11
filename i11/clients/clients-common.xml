@@ -13,6 +13,8 @@
 
     <corba:import namespace="i11" names="command_server, ScanDataStore, SimpleServlet"/>
 	
+	<import resource="scanDataPointServer.xml"/>
+	
 <!--  create connection to remote objects via netService -->
 	<bean class="gda.factory.corba.util.AdapterFactory">
 		<constructor-arg index="0" value="${gda.factory.factoryName}" />

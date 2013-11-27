@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:corba="http://www.diamond.ac.uk/schema/gda/corba"
+       xmlns:gda="http://www.diamond.ac.uk/schema/gda/gda"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd
+		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<corba:import namespace="i11" names="Ic4, beam, ehshutter, spin"/>
+
+	<bean id="statusView" class="gda.rcp.views.CompositeFactoryExecutableExtension">
+		<property name="viewTitle" value="Status" />
+		<property name="compositeFactories">
+			<list>
+				<bean class="uk.ac.gda.dls.client.views.BatonStatusCompositeFactory">
+					<property name="label" value="Baton" />
+				</bean>
+				<bean class="uk.ac.gda.beamline.i11.views.BeamStatusCompositeFactory">
+					<property name="label" value="Beam" />
+					<property name="curramp" ref="Ic4"/>
+					<property name="threshold" value="0.05"/>
+				</bean>
+				<!-- <bean class="uk.ac.gda.dls.client.views.HealthCheckCompositeFactory"> 
+					<property name="healthScannable" ref="beamline_health"></property> <property 
+					name="label" value="Health"/> </bean> -->
+				<bean class="gda.rcp.views.ActionBtnCompositeFactory">
+					<property name="tooltipText" value="Stop all motors" />
+					<property name="buttonText" value="Panic Stop" />
+					<property name="buttonImagePath" value="icons/stop.png" />
+					<property name="foregroundColorId" value="3" />
+					<property name="actionId" value="uk.ac.gda.client.StopAll" />
+				</bean>
+				<bean class="gda.rcp.views.GroupCompositeFactory">
+					<property name="label" value="Machine" />
+					<property name="columns" value="2" />
+					<property name="compositeFactories">
+						<list>
+							<bean
+								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
+								<property name="scannable" ref="ringCurrent" />
+								<property name="label" value="Ring Current" />
+								<property name="units" value="mA" />
+								<property name="decimalPlaces" value="2" />
+							</bean>
+							<bean
+								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
+								<property name="scannable" ref="timeToRefill" />
+								<property name="label" value="Time to refill" />
+								<property name="units" value="s" />
+								<property name="decimalPlaces" value="0" />
+							</bean>
+
+							<bean
+								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
+								<property name="scannable" ref="idGap" />
+								<property name="label" value="ID Gap" />
+								<property name="units" value="mm" />
+								<property name="decimalPlaces" value="3" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="uk.ac.gda.dls.client.views.LatestFileNameCompositeFactory">
+					<property name="label" value="Latest Detector File" />
+					<property name="fileProcessor" ref="imageFileDisplayer" />
+					<property name="highestExistingFileMonitorDataProvider" ref="highestExistingFileMonitor" />
+					<property name="showButtonSeparator" value="true" />
+					<property name="separatePlayPauseButtons" value="true" />
+				</bean>
+				<bean class="gda.rcp.views.OpenViewListBoxCompositeFactory">
+					<property name="label" value="Plots"/>
+					<property name="tooltipText" value="Open the live plot view for the selected detector"/>
+					<property name="options">
+						<list>
+							<bean class="gda.rcp.views.OpenViewOption">
+								<constructor-arg value="Select a detector" />
+								<constructor-arg value="" />
+							</bean>
+							<bean class="gda.rcp.views.OpenViewOption">
+								<constructor-arg value="Mythen" />
+								<constructor-arg value="uk.ac.gda.epics.client.mythen.views.mytheView" />
+							</bean>
+							<bean class="gda.rcp.views.OpenViewOption">
+								<constructor-arg value="MAC" />
+								<constructor-arg value="uk.ac.gda.client.hrpd.views.MACPlotView" />
+							</bean>
+							<bean class="gda.rcp.views.OpenViewOption">
+								<constructor-arg value="DataPlot" />
+								<constructor-arg value="uk.ac.gda.beamline.i11.dataPlot" />
+							</bean>
+<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
+<!-- 								<constructor-arg value="Pixium" /> -->
+<!-- 								<constructor-arg value="uk.ac.gda.beamline.i11.PixiumView" /> -->
+<!-- 							</bean> -->
+							
+							<bean class="gda.rcp.views.OpenViewOption">
+								<constructor-arg value="WebCams" />
+								<constructor-arg value="uk.ac.gda.video.views.cameraview" />
+							</bean>
+						</list>
+					</property>
+				</bean>				
+				<bean class="uk.ac.gda.dls.client.feedback.FeedbackCompositeFactory"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

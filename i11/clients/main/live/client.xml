@@ -14,7 +14,6 @@
 		file:${gda.config}/epics/live/epics.properties,
 		file:${gda.config}/properties/live/java.properties,
 		file:${gda.config}/properties/gda.properties" />
-
 	<import resource="../main-common.xml" />
 
 </beans>
