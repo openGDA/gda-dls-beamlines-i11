@@ -9,84 +9,29 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<bean id="plot_server" class="uk.ac.diamond.scisoft.analysis.plotserver.PlotServerBase" />
-    <bean id="SimpleServlet" class="gda.util.simpleServlet.FindableSimpleServlet" />
-	<bean id="ScanDataStore" class="gda.util.simpleServlet.FindableSimpleServlet" />
-
+	<!-- SWING plot -->
 	<bean id="Plot_Manager" class="gda.analysis.plotmanager.PlotManager" />
-
-	<bean id="imageFitter" class="gda.device.detector.nexusprocessor.DataSetFitter">
-		<property name="enable" value="false" />
-	</bean>
-	<bean id="imageStats" class="gda.device.detector.nexusprocessor.DatasetStats" >
-		<property name="enable" value="false" />
-	</bean>
-	<bean id="imagePlotter" class="gda.device.detector.nexusprocessor.DataSetPlotter">
-		<property name="plotName" value="Detector Image" />
-		<property name="enable" value="false" />
-	</bean>
-	<bean id="imageROI" class="gda.device.detector.nexusprocessor.DatasetCreatorFromROI" >
-		<property name="enable" value="false" />
-	</bean>
 	
-	<util:list id="imageProcessors"
-		value-type="gda.device.detector.nexusprocessor.DataSetProcessor">
-		<ref bean="imageFitter" />
-		<ref bean="imageStats" />
-		<ref bean="imagePlotter" />
-	</util:list>
-
-	<bean id="cam_ad_processor" class="gda.device.detector.nexusprocessor.NexusProviderDatasetProcessor">
-		<constructor-arg value="" />
-		<constructor-arg value="data" />
-		<constructor-arg value="SDS" />
-		<constructor-arg ref="imageProcessors"/>
-		<constructor-arg ref="imageROI"/>
-	</bean>
-
-	<bean id="cam_ad_filename_processor" class="gda.device.detector.nexusprocessor.NexusProviderFilenameProcessor">
-		<constructor-arg value="" />
-		<constructor-arg value="image_data" />
-		<constructor-arg value="SDS" />
-		<constructor-arg ref="imageProcessors"/>
-		<constructor-arg ref="imageROI"/>
-	</bean>
-
-	<bean id="cam_ad_processors" class="gda.device.detector.nexusprocessor.NexusTreeProviderProcessors">
-		<property name="processors">
-			<list>
-				<ref bean="cam_ad_processor" />
-			</list>
-		</property>
-	</bean>
-
+	<import resource="scanDataPointServer.xml"/>
 	<import resource="commandQueueProcessor.xml" />
 	<import resource="CommandServer.xml" />
 
-	<bean id="highestExistingFileMonitor" class="gda.device.detectorfilemonitor.impl.SimpleHighestExistingFileMonitor" />
-	<bean class="uk.ac.gda.remoting.server.GdaRmiServiceExporter">
-		<property name="serviceName" value="gda/highestExistingFileMonitor" />
-		<property name="service" ref="highestExistingFileMonitor" />
-		<property name="serviceInterface"
-			value="gda.device.detectorfilemonitor.HighestExistingFileMonitor" />
-	</bean>
-
-
+	<import resource="dataFileMonitor.xml"/>
+	<import resource="dataArchieval.xml"/>
+	<import resource="dataWriter.xml"/>
 	
-	<bean id="FileRegistrar" class="gda.data.fileregistrar.FileRegistrar">
-		<property name="directory" value="/dls/bl-misc/dropfiles/icat/dropZone/${gda.instrument}-"/>
-	</bean>
-	<bean id="DataWriterFactory" class="gda.data.scan.datawriter.DefaultDataWriterFactory">
-		<property name="dataWriterExtenders">
-			<list>
-				<ref bean="FileRegistrar"/>
-			</list>
-		</property>
-	</bean>
+	<import resource="imageProcessors.xml"/>
+
+<!-- 	<import resource="RCPController.xml"/> -->
 
 	<bean id="visitPathConstructor" class="gda.data.ObservablePathConstructor">
 		<property name="template" value="${gda.data.scan.datawriter.datadir}" />
 		<property name="gdaMetadata" ref="GDAMetadata" />
 		<property name="local" value="true" />
+	</bean>
+	
+	<bean id="metadata" class="gda.data.metadata.NXMetaDataProvider">
+		<property name="name" value="metadata"/>
 	</bean>
 	
 	 <!-- ScriptControllers must be after command_server -->
