@@ -22,8 +22,9 @@
 	<import resource="batonStateProvider.xml"/>
 	
 	<import resource="dataFileMonitor.xml"/>
-	<import resource="imageFileDisplayer.xml"/>
+	<import resource="detectorFileDisplayer.xml"/>
 <!-- 	<import resource="RCPController.xml"/> -->
+	<import resource="beamlineStatus.xml"/>
 	<import resource="statusView.xml"/>
 	
 	<import resource="../clients-common.xml" />
