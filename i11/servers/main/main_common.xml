@@ -69,6 +69,7 @@
 	<import resource="etl2.xml" />
 	<import resource="tfg2.xml"/>
 	<import resource="usermotors.xml"/>
+	<import resource="wavelength.xml"/>
 	
 	<import resource="../servers_common.xml" />
 
