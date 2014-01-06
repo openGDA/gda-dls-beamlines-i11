@@ -251,10 +251,11 @@
 		<config>clients/scanDataPointServer.xml</config>
 		<config>clients/rcp/RCPController.xml</config>
 		<config>clients/rcp/live/machineStatus.xml</config>
-		<config>clients/rcp/imageFileDisplayer.xml</config>
 		<config>clients/rcp/dataFileMonitor.xml</config>
 		<config>clients/rcp/commandRunner.xml</config>
 		<config>clients/rcp/batonStateProvider.xml</config>
+		<config>clients/rcp/live/spinner.xml</config>
+		<config>clients/rcp/detectorFileDisplayer.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
@@ -390,6 +391,7 @@
 				<config>servers/scriptControllers.xml</config>
 				<config>servers/servers_common.xml</config>
 				<config>servers/main/mythen.xml</config>
+				<config>clients/rcp/live/spinner.xml</config>
 			</configs>
 			<profiles>
 				<profile><![CDATA[server]]></profile>
