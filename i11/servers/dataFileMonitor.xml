@@ -7,8 +7,7 @@
 	<bean class="uk.ac.gda.remoting.server.GdaRmiServiceExporter">
 		<property name="serviceName" value="gda/highestExistingFileMonitor" />
 		<property name="service" ref="highestExistingFileMonitor" />
-		<property name="serviceInterface"
-			value="gda.device.detectorfilemonitor.HighestExistingFileMonitor" />
+		<property name="serviceInterface" value="gda.device.detectorfilemonitor.HighestExistingFileMonitor" />
 	</bean>
 	
 </beans>
