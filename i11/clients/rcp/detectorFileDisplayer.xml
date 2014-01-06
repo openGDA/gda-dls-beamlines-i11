@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="imageFileDisplayer" class="uk.ac.gda.dls.client.views.ImageFileDisplayer">
-		<property name="viewName" value="Detector Image"/>
-		<property name="viewID" value="uk.ac.gda.beamline.i11.DetectorPlot"/>
+	<bean id="detectorFileDisplayer" class="uk.ac.gda.beamline.i11.views.DetectorFileDisplayer">
+		<property name="viewID" value="uk.ac.gda.beamline.i11.views.DetectorFilePlotView"/>
+		<property name="viewName" value="DetectorPlot"/>
+		<property name="newPlot" value="true"/>
+		<property name="plotType" value="#{ T(org.dawnsci.plotting.api.PlotType).XY}"/>
 	</bean>
 
 </beans>
