@@ -17,7 +17,9 @@ package uk.ac.gda.beamline.i11.views;
  * with GDA. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import gda.device.DeviceException;
 import gda.device.IBeamMonitor;
+import gda.device.ISpin;
 import gda.observable.IObserver;
 import gda.rcp.views.CompositeFactory;
 
@@ -44,12 +46,12 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BeamStatusCompositeFactory implements CompositeFactory {
+public class SpinStatusCompositeFactory implements CompositeFactory {
 	
-	static final Logger logger = LoggerFactory.getLogger(BeamStatusCompositeFactory.class);
+	static final Logger logger = LoggerFactory.getLogger(SpinStatusCompositeFactory.class);
 	
 	private String label;
-	private IBeamMonitor beamMonitor;
+	private ISpin spin;
 
 	public String getLabel() {
 		return label;
@@ -61,36 +63,37 @@ public class BeamStatusCompositeFactory implements CompositeFactory {
 
 	@Override
 	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
-		return new BeamStatusComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, beamMonitor);
+		return new SpinStatusComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, spin);
 	}
 
-	public IBeamMonitor getBeamMonitor() {
-		return beamMonitor;
+	public ISpin getSpin() {
+		return spin;
 	}
 
-	public void setBeamMonitor(IBeamMonitor beamMonitor) {
-		this.beamMonitor = beamMonitor;
+	public void setSpin(ISpin spin) {
+		this.spin = spin;
 	}
+
 }
 
-class BeamStatusComposite extends Composite {
-	private static final Logger logger = LoggerFactory.getLogger(BeamStatusComposite.class);
+class SpinStatusComposite extends Composite {
+	private static final Logger logger = LoggerFactory.getLogger(SpinStatusComposite.class);
 	
-	private final Color BEAM_ON_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
-	private final Color BEAM_OFF_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_RED);
-	private final String BEAM_ON_TOOL_TIP="X-ray ON!\nRight click - monitor control";
-	private final String BEAM_OFF_TOOL_TIP="X-ray OFF!\nRight click - monitor control";
+	private final Color SPIN_ON_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
+	private final Color SPIN_OFF_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_RED);
+	private final String SPIN_ON_TOOL_TIP="Spin ON!\nRight click - spin control";
+	private final String SPIN_OFF_TOOL_TIP="Spin OFF!\nRight click - spin control";
 	
 	private Display display;
 	private Color currentColor;
-	private Canvas beamCanvas;
+	private Canvas canvas;
 	
-	private MenuItem switchOnMonitor;
-	private MenuItem switchOffMonitor;
-	private IBeamMonitor bm;
+	private MenuItem spinOn;
+	private MenuItem spinOff;
+	private ISpin spin;
 
 
-	public BeamStatusComposite(Composite parent, int style, final Display display, String label, IBeamMonitor bm) {
+	public SpinStatusComposite(Composite parent, int style, final Display display, String label, ISpin spin) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -105,29 +108,33 @@ class BeamStatusComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		
-		this.bm=bm;
+		this.spin=spin;
 		
-		currentColor = BEAM_OFF_COLOR;
+		currentColor = SPIN_OFF_COLOR;
 		
-		if (bm.isBeamOn()) {
-			currentColor=BEAM_ON_COLOR;
-		} else {
-			currentColor=BEAM_OFF_COLOR;
+		try {
+			if (spin.getState().equalsIgnoreCase("enabled")) {
+				currentColor=SPIN_ON_COLOR;
+			} else {
+				currentColor=SPIN_OFF_COLOR;
+			}
+		} catch (DeviceException e1) {
+			logger.error("Failed to get spin status", e1);
 		}
 
-		beamCanvas = new Canvas(grp, SWT.NONE);
+		canvas = new Canvas(grp, SWT.NONE);
 		GridData gridData = new GridData(GridData.VERTICAL_ALIGN_FILL);
 		gridData.widthHint = 40;
 		gridData.heightHint = 40;
-		beamCanvas.setLayoutData(gridData);
-		beamCanvas.addPaintListener(new PaintListener() {
+		canvas.setLayoutData(gridData);
+		canvas.addPaintListener(new PaintListener() {
 			@Override
 			public void paintControl(PaintEvent e) {
 				GC gc = e.gc;
 				gc.setAntialias(SWT.ON);
 				gc.setBackground(currentColor);
 				gc.setLineWidth(1);
-				Rectangle clientArea = beamCanvas.getClientArea();
+				Rectangle clientArea = canvas.getClientArea();
 				final int margin = 4;
 				final Point topLeft = new Point(margin, margin);
 				final Point size = new Point(clientArea.width - margin * 2, clientArea.height - margin * 2);
@@ -135,15 +142,21 @@ class BeamStatusComposite extends Composite {
 				gc.drawOval(topLeft.x, topLeft.y, size.x, size.y);
 			}
 		});
-		beamCanvas.setMenu(createPopup(this));
+		canvas.setMenu(createPopup(this));
 		// initialize tooltip
-		if (bm.isBeamOn()) {
-			beamCanvas.setToolTipText(BEAM_ON_TOOL_TIP);
-		} else {
-			beamCanvas.setToolTipText(BEAM_OFF_TOOL_TIP);
+		try {
+			if (spin.getState().equalsIgnoreCase("enabled")) {
+				canvas.setToolTipText(SPIN_ON_TOOL_TIP);
+				spinOn.setSelection(true);
+			} else {
+				canvas.setToolTipText(SPIN_OFF_TOOL_TIP);
+				spinOff.setSelection(true);
+			}
+		} catch (DeviceException e1) {
+			logger.error("Failed to get spin status", e1);
 		}
 						
-		final IObserver beamObserver = new IObserver() {
+		final IObserver spinObserver = new IObserver() {
 			@Override
 			public void update(final Object theObserved, final Object changeCode) {
 				Display.getDefault().asyncExec(new Runnable() {
@@ -154,11 +167,13 @@ class BeamStatusComposite extends Composite {
 							if (changeCode instanceof Boolean) {
 								value = ((Boolean) changeCode).booleanValue();
 								if (!value) {
-									currentColor=BEAM_OFF_COLOR;
-									beamCanvas.setToolTipText(BEAM_OFF_TOOL_TIP);
+									currentColor=SPIN_OFF_COLOR;
+									canvas.setToolTipText(SPIN_OFF_TOOL_TIP);
+									spinOff.setSelection(true);
 								} else {
-									currentColor=BEAM_ON_COLOR;
-									beamCanvas.setToolTipText(BEAM_ON_TOOL_TIP);
+									currentColor=SPIN_ON_COLOR;
+									canvas.setToolTipText(SPIN_ON_TOOL_TIP);
+									spinOn.setSelection(true);
 								}
 							}
 						}
@@ -167,7 +182,7 @@ class BeamStatusComposite extends Composite {
 				});
 			}
 		};
-		bm.addIObserver(beamObserver);
+		spin.addIObserver(spinObserver);
 	}
 
 	private void updateBatonCanvas() {
@@ -175,8 +190,8 @@ class BeamStatusComposite extends Composite {
 			
 			@Override
 			public void run() {
-				beamCanvas.redraw();
-				beamCanvas.update();
+				canvas.redraw();
+				canvas.update();
 			}
 		});
 	}
@@ -184,17 +199,12 @@ class BeamStatusComposite extends Composite {
 	private Menu createPopup(Composite parent) {
 		Menu menu = new Menu(parent.getShell(), SWT.POP_UP);
 		
-		switchOnMonitor = new MenuItem(menu, SWT.RADIO);
-		switchOnMonitor.setText("Monitor ON");
-		switchOnMonitor.addSelectionListener(popupSelectionListener);
-		switchOffMonitor = new MenuItem(menu, SWT.RADIO);
-		switchOffMonitor.setText("Monitor OFF");
-		switchOffMonitor.addSelectionListener(popupSelectionListener);
-		if (bm.isMonitorOn()) {
-			switchOnMonitor.setSelection(true);
-		} else {
-			switchOffMonitor.setSelection(true);
-		}
+		spinOn = new MenuItem(menu, SWT.RADIO);
+		spinOn.setText("Spin ON");
+		spinOn.addSelectionListener(popupSelectionListener);
+		spinOff = new MenuItem(menu, SWT.RADIO);
+		spinOff.setText("Spin OFF");
+		spinOff.addSelectionListener(popupSelectionListener);
 		return menu;
 	}
 	
@@ -209,12 +219,16 @@ class BeamStatusComposite extends Composite {
 			else 
 				return;
 			
-			if (selected.equals(switchOnMonitor)) {
-				bm.on();
-				logger.info("Switch ON beam monitor.");
-			} else if (selected.equals(switchOffMonitor)) {
-				bm.off();
-				logger.info("Switch OFF beam monitor.");
+			try {
+				if (selected.equals(spinOn)) {
+					spin.on();
+					logger.info("Switch ON beam monitor.");
+				} else if (selected.equals(spinOff)) {
+					spin.off();
+					logger.info("Switch OFF beam monitor.");
+				}
+			} catch (DeviceException e) {
+				logger.error("Failed to control spin", e);
 			}
 		}
 	};
