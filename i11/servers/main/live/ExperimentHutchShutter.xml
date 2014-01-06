@@ -4,6 +4,7 @@
 
 	<bean id="ehshutter" class="gda.spring.EpicsPneumaticFactoryBean">
 		<property name="deviceName" value="SHTR1" />
+		<property name="statusPvIndicatesPositionOnly" value="true"/>
 	</bean>
 
 </beans>
