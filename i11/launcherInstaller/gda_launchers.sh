@@ -16,7 +16,7 @@ if [ ! -n "$BEAMLINE" ]; then
 fi
 
 if [ ! -n "$SOFTWAREFOLDER" ]; then
-	SOFTWAREFOLDER=dls 
+	SOFTWAREFOLDER=dls_sw 
 	if [ ! -h "/$SOFTWAREFOLDER/$BEAMLINE/software/gda" ]; then
 		echo "GDA is not installed at /$SOFTWAREFOLDER/$BEAMLINE/software/gda. " >> $HOME/login.log
 		SOFTWAREFOLDER=dls_sw
