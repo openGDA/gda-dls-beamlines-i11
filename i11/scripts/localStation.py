@@ -253,7 +253,7 @@ def normal_mythen():
 def summing_mythen():
     mythen = gda.device.detector.mythen.SummingMythenDetector()
     mythen.configure()
-    mythen.setName("detector")
+    mythen.setName("smythen")
     mythen.setDetectorID("mcs02")
     mythen.setMythenClient(mythen_client)
     mythen.setDataConverter(mythen_data_converter)
