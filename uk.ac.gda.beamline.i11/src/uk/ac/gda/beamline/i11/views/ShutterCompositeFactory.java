@@ -20,9 +20,6 @@ package uk.ac.gda.beamline.i11.views;
 
 import gda.device.DeviceException;
 import gda.device.EnumPositioner;
-import gda.device.EnumPositionerStatus;
-import gda.device.IBeamMonitor;
-import gda.device.ISpin;
 import gda.device.scannable.ScannablePositionChangeEvent;
 import gda.observable.IObserver;
 import gda.rcp.views.CompositeFactory;
@@ -90,7 +87,7 @@ public class ShutterCompositeFactory implements CompositeFactory {
 }
 
 class ShutterComposite extends Composite {
-	private static final Logger logger = LoggerFactory.getLogger(SpinStatusComposite.class);
+	private static final Logger logger = LoggerFactory.getLogger(ShutterComposite.class);
 
 	private final Color OPEN_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_GREEN);
 	private final Color CLOSE_COLOR = Display.getDefault().getSystemColor(SWT.COLOR_RED);
@@ -170,9 +167,7 @@ class ShutterComposite extends Composite {
 		});
 		if (isControlPermitted()) {
 			canvas.setMenu(createPopup(this));
-		}
-		// initialize tooltip
-		if (isControlPermitted()) {
+			// initialize tooltip
 			if (currentPos.equalsIgnoreCase("Open")) {
 				canvas.setToolTipText(OPEN_TOOL_TIP);
 				openShutter.setSelection(true);
@@ -194,7 +189,11 @@ class ShutterComposite extends Composite {
 				canvas.setToolTipText(OPEN_TOOL_TIP_NO_CONTROL);
 			} else if (currentPos.equalsIgnoreCase("Close")) {
 				canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
-			} else if (currentPos.equalsIgnoreCase("Reset")) {
+			} else if (currentPos.equalsIgnoreCase("Closed")) {
+				canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
+			}else if (currentPos.equalsIgnoreCase("Reset")) {
+				canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
+			} else if (currentPos.equalsIgnoreCase("Fault")) {
 				canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
 			}
 		}
@@ -279,9 +278,11 @@ class ShutterComposite extends Composite {
 		closeShutter = new MenuItem(menu, SWT.RADIO);
 		closeShutter.setText("Close");
 		closeShutter.addSelectionListener(popupSelectionListener);
-		resetShutter = new MenuItem(menu, SWT.RADIO);
-		resetShutter.setText("Reset");
-		resetShutter.addSelectionListener(popupSelectionListener);
+		if (!(shutter.getName().equalsIgnoreCase("fastshutter"))) {
+			resetShutter = new MenuItem(menu, SWT.RADIO);
+			resetShutter.setText("Reset");
+			resetShutter.addSelectionListener(popupSelectionListener);
+		}
 		return menu;
 	}
 
