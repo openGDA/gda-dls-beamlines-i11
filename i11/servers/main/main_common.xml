@@ -70,6 +70,7 @@
 	<import resource="tfg2.xml"/>
 	<import resource="usermotors.xml"/>
 	<import resource="wavelength.xml"/>
+	<import resource="mythen3.xml"/>
 	
 	<import resource="../servers_common.xml" />
 

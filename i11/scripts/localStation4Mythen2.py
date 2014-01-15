@@ -181,6 +181,109 @@ print "-------------------------------------------------------------------------
 print "Setup PSD or mythen detector system."
 import gda
 
+# These can be changed
+mythen_bad_channels_file = "/dls/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list"
+mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.off"
+# Flat field file
+mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
+# E=12 keV
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011May09.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Flat_Field_Sum_E12keV_09Jul2012.raw"
+# E = 25 keV
+# mythen_flat_field_file = "/dls/i11/data/2010/ee0/PSD/20100707/sum_flat_field_E25keV_T12500eV_2010July07.raw"
+# E=15 keV 15 Sep 2011 file
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T_7500eV_2011Sep15.raw"
+# E=15 keV 09 Dec 2011 file
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011Dec09.raw"
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_19Apr2012.raw"
+#flat filed file 03 May 2012 with new controller
+#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_03May2012.raw"
+mythen_data_directory = "/dls/i11/data/2009/ee0"
+
+mythen_client = gda.device.detector.mythen.client.TextClientMythenClient()
+mythen_client.setHost("i11-mcs02")
+#mythen_client = gda.device.detector.mythen.client.DummyMythenClient(18)
+
+mythen_bad_channels = gda.device.detector.mythen.data.FileBadChannelProvider(java.io.File(mythen_bad_channels_file))
+mythen_ang_cal_params = gda.device.detector.mythen.data.AngularCalibrationParametersFile(java.io.File(mythen_ang_cal_params_file))
+mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(mythen_flat_field_file))
+
+mythen_data_converter = gda.device.detector.mythen.data.DataConverter()
+mythen_data_converter.setBadChannelProvider(mythen_bad_channels)
+mythen_data_converter.setAngularCalibrationParameters(mythen_ang_cal_params)
+mythen_data_converter.setFlatFieldData(mythen_flat_field)
+mythen_data_converter.setBeamlineOffset(0.08208)
+
+fastshutter1=finder.find("fastshutter")
+# task that opens the fast shutter
+mythen_open_shutter_task = gda.device.detector.mythen.tasks.OpenShutterTask()
+mythen_open_shutter_task.setShutterScannable(fastshutter1)
+
+# task that closes the fast shutter
+mythen_close_shutter_task = gda.device.detector.mythen.tasks.CloseShutterTask()
+mythen_close_shutter_task.setShutterScannable(fastshutter1)
+
+#added safty object for detectors
+macsafeposition=finder.find("macsafeposition")
+psdsafeposition=finder.find("psdsafeposition")
+# task that checks MAC detector position to avoid collision
+mythen_check_collision_task=gda.hrpd.pmac.CheckCollisionTask()
+mythen_check_collision_task.setCheckedScannable(tth) #@UndefinedVariable
+mythen_check_collision_task.setSafePosition(macsafeposition) #@UndefinedVariable
+
+# task that plots the last data point into a panel
+mythen_plot_last_data_task = gda.device.detector.mythen.tasks.PlotLastPointTask()
+mythen_plot_last_data_task.setPanelName("Mythen")
+
+delta1=finder.find("delta")
+def normal_mythen():
+    mythen = gda.device.detector.mythen.MythenDetectorImpl()
+    mythen.configure()
+    mythen.setName("mythen")
+    mythen.setDetectorID("mcs02")
+    mythen.setMythenClient(mythen_client)
+    mythen.setDataConverter(mythen_data_converter)
+    mythen.setDeltaScannable(delta1)
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
+    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
+    mythen.setAtScanEndTasks([mythen_close_shutter_task])
+    mythen.setHasChannelInfo(False)
+    return mythen
+
+def summing_mythen():
+    mythen = gda.device.detector.mythen.SummingMythenDetector()
+    mythen.configure()
+    mythen.setName("smythen")
+    mythen.setDetectorID("mcs02")
+    mythen.setMythenClient(mythen_client)
+    mythen.setDataConverter(mythen_data_converter)
+    mythen.setDeltaScannable(delta1)
+    mythen.setNumberOfModules(18)
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
+    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
+    mythen.setAtScanEndTasks([mythen_close_shutter_task])
+    mythen.step = 0.004
+    mythen.setHasChannelInfo(False)
+    return mythen
+
+def shutter_mythen():
+    mythen = gda.device.detector.mythen.ShutterControlledMythenDetectorImpl()
+    mythen.configure()
+    mythen.setName("shmythen")
+    mythen.setDetectorID("mcs02")
+    mythen.setMythenClient(mythen_client)
+    mythen.setDataConverter(mythen_data_converter)
+    mythen.setDeltaScannable(delta1)
+    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
+    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
+    mythen.setAtScanEndTasks([mythen_close_shutter_task])
+    mythen.setHasChannelInfo(False)
+    return mythen
+
+mythen = normal_mythen()
+smythen = summing_mythen()
+shmythen = shutter_mythen()
+
 from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
@@ -190,6 +293,7 @@ def psd(t,n=1.0):
     
 
 alias("psd")
+
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -213,7 +317,8 @@ print "    >>>setMythenFlatFieldFile('flatfield_filename')"
 print "This must be called each time you reset_namespce or restart GDA servers"
 def setMythenFlatFieldFile(filename):
     mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(filename))
-    mythen.getDataConverter().setFlatFieldData(mythen_flat_field)  # @UndefinedVariable
+    mythen_data_converter.setFlatFieldData(mythen_flat_field)
+    mythen.setDataConverter(mythen_data_converter)
 
 print
 print "---------------------------------------------------------numFrames--------------------------------------------------------"
@@ -277,7 +382,7 @@ from peloop.pedatacapturer import DataCapturer
 pedata=DataCapturer("pedata")
 print "create 'pel' object for PE Loop experiment"
 from tfg_peloop import PELoop
-pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)  # @UndefinedVariable
+pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)
 daserver=finder.find("daserver")
 
 print "-----------------------------------------------------------------------------------------------------------------"
