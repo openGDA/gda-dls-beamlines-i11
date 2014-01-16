@@ -212,6 +212,8 @@ class ShutterComposite extends Composite {
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPEN_TOOL_TIP);
 										openShutter.setSelection(true);
+										closeShutter.setSelection(false);
+										resetShutter.setSelection(false);
 									} else {
 										canvas.setToolTipText(OPEN_TOOL_TIP_NO_CONTROL);
 									}
@@ -219,7 +221,9 @@ class ShutterComposite extends Composite {
 									currentColor = CLOSE_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSE_TOOL_TIP);
+										openShutter.setSelection(false);
 										closeShutter.setSelection(true);
+										resetShutter.setSelection(false);
 									} else {
 										canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
 									}
@@ -227,7 +231,9 @@ class ShutterComposite extends Composite {
 									currentColor = CLOSE_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSE_TOOL_TIP);
+										openShutter.setSelection(false);
 										closeShutter.setSelection(true);
+										resetShutter.setSelection(false);
 									} else {
 										canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
 									}
@@ -235,6 +241,8 @@ class ShutterComposite extends Composite {
 									currentColor = RESET_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(RESET_TOOL_TIP);
+										openShutter.setSelection(false);
+										closeShutter.setSelection(false);
 										resetShutter.setSelection(true);
 									} else {
 										canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
@@ -243,6 +251,8 @@ class ShutterComposite extends Composite {
 									currentColor = RESET_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(RESET_TOOL_TIP);
+										openShutter.setSelection(false);
+										closeShutter.setSelection(false);
 										resetShutter.setSelection(true);
 									} else {
 										canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
