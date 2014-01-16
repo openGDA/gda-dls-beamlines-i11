@@ -26,6 +26,8 @@ import gda.observable.IObserver;
 import gda.observable.ObservableComponent;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.vfs.FileChangeEvent;
@@ -51,7 +53,7 @@ public class DataFileListener implements FileListener, Configurable, IObservable
 	 */
 	private boolean recursive = false;
 	
-	private ArrayList<FileObject> dataFileCollected = new ArrayList<FileObject>();
+	private List<FileObject> dataFileCollected = Collections.synchronizedList(new ArrayList<FileObject>());
 	/**
 	 * set the list of directories not to be monitored
 	 */
@@ -234,11 +236,11 @@ public class DataFileListener implements FileListener, Configurable, IObservable
 		this.directory = directory;
 	}
 
-	public ArrayList<FileObject> getDataFileCollected() {
+	public List<FileObject> getDataFileCollected() {
 		return dataFileCollected;
 	}
 
-	public void setDataFileCollected(ArrayList<FileObject> dataFileCollected) {
+	public void setDataFileCollected(List<FileObject> dataFileCollected) {
 		this.dataFileCollected = dataFileCollected;
 	}
 

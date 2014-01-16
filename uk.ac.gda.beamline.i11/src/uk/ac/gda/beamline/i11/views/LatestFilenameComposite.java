@@ -22,6 +22,7 @@ import gda.device.detectorfilemonitor.FileProcessor;
 import gda.observable.IObserver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
@@ -628,7 +629,7 @@ class LatestFilenameComposite extends Composite {
 	 * 
 	 */
 	private List<FileObject> detectorFilteredFileList(String filtername) {
-		List<FileObject> dataFileCollectedForDetector = new ArrayList<FileObject>();
+		List<FileObject> dataFileCollectedForDetector = Collections.synchronizedList(new ArrayList<FileObject>());
 		for (FileObject file : dirWatcher.getDataFileCollected()) {
 			if (FilenameUtils.getName(file.getName().getBaseName()).contains(filtername)) {
 				dataFileCollectedForDetector.add(file);
