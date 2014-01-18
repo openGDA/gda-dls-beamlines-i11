@@ -53,7 +53,7 @@ public class ShutterCompositeFactory implements CompositeFactory {
 
 	private String label;
 	private EnumPositioner shutter;
-	private boolean controlPermitted=false;
+	private boolean controlPermitted = false;
 
 	public String getLabel() {
 		return label;
@@ -65,7 +65,8 @@ public class ShutterCompositeFactory implements CompositeFactory {
 
 	@Override
 	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
-		return new ShutterComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, shutter, controlPermitted);
+		return new ShutterComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, shutter,
+				controlPermitted);
 	}
 
 	public EnumPositioner getShutter() {
@@ -109,10 +110,10 @@ class ShutterComposite extends Composite {
 	private MenuItem resetShutter;
 
 	private EnumPositioner shutter;
-	private boolean controlPermitted=false;
+	private boolean controlPermitted = false;
 
-
-	public ShutterComposite(Composite parent, int style, final Display display, String label, EnumPositioner shutter, boolean controlPermitted) {
+	public ShutterComposite(Composite parent, int style, final Display display, String label, EnumPositioner shutter,
+			boolean controlPermitted) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -191,7 +192,7 @@ class ShutterComposite extends Composite {
 				canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
 			} else if (currentPos.equalsIgnoreCase("Closed")) {
 				canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
-			}else if (currentPos.equalsIgnoreCase("Reset")) {
+			} else if (currentPos.equalsIgnoreCase("Reset")) {
 				canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
 			} else if (currentPos.equalsIgnoreCase("Fault")) {
 				canvas.setToolTipText(RESET_TOOL_TIP_NO_CONTROL);
@@ -203,10 +204,9 @@ class ShutterComposite extends Composite {
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						String value = "";
 						if (theObserved instanceof EnumPositioner) {
 							if (changeCode instanceof ScannablePositionChangeEvent) {
-								value = ((ScannablePositionChangeEvent) changeCode).newPosition.toString();
+								final String value = ((ScannablePositionChangeEvent) changeCode).newPosition.toString();
 								if (value.equalsIgnoreCase("Open")) {
 									currentColor = OPEN_COLOR;
 									if (isControlPermitted()) {
@@ -318,7 +318,7 @@ class ShutterComposite extends Composite {
 					logger.info("Reset shutter.");
 				}
 			} catch (DeviceException e) {
-				logger.error("Failed to control shutter "+ shutter.getName(), e);
+				logger.error("Failed to control shutter " + shutter.getName(), e);
 			}
 		}
 	};
