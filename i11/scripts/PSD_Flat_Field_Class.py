@@ -15,9 +15,9 @@ REQUIRED_PIXEL_COUNT      =100000
 QUICK_SCAN_TIME           = 60   # 1 min scan
 SLOW_SCAN_TIME            = 1800 # 30 mins scn
 
-PSD_FLATFIELD_DIR="/dls/i11/software/mythen/diamond/flatfield"
-PSD_CALIBRATION_DIR="/dls/i11/software/mythen/diamond/calibration"
-CURRENT_FLAT_FIELD_FILE="/dls/i11/software/mythen/diamond/flatfield/current_flat_field_file"
+PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
+PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
+CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_file"
 BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector_standard.lst"
 
 Usage:
@@ -57,9 +57,9 @@ REQUIRED_PIXEL_COUNT      =100000
 QUICK_SCAN_TIME           = 60   # 1 min scan
 SLOW_SCAN_TIME            = 1800 # 30 mins scn
 
-PSD_FLATFIELD_DIR="/dls/i11/software/mythen/diamond/flatfield"
-PSD_CALIBRATION_DIR="/dls/i11/software/mythen/diamond/calibration"
-CURRENT_FLAT_FIELD_FILE="/dls/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
+PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
+PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
+CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
 BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector_standard.lst"
 scanNumTracker = NumTracker("tmp");
 
@@ -118,11 +118,11 @@ class FlatFieldCalibration(ScannableMotionBase):
     
     def prepareFlatFieldCollection(self):
         scanNumTracker.incrementNumber()
-        self.originalsubdir=getSubdirectory()
+        self.originalsubdir=getSubdirectory()  # @UndefinedVariable
         self.originaldeltavelocity=float(self.motor.getSpeed())
         #create a new directory to store flat field calibration data if not yet exist
-        setSubdirectory("PSD")
-        setSubdirectory("PSD/"+datetime.date.today().strftime("%Y%m%d"))
+        setSubdirectory("PSD")  # @UndefinedVariable
+        setSubdirectory("PSD/"+datetime.date.today().strftime("%Y%m%d"))  # @UndefinedVariable
         print "moving delta motor to start angle: " + str(float(self.getLowerGdaLimits()[0])) +" Please wait..."
         self.motor.setSpeed((float(self.getUpperGdaLimits()[0])-float(self.getLowerGdaLimits()[0]))/self.quickscantime)
         self.motor.moveTo(float(self.getLowerGdaLimits()[0]))
@@ -135,7 +135,7 @@ class FlatFieldCalibration(ScannableMotionBase):
         self.detector.stop()
         self.motor.stop()
         if self.originalsubdir is not None:
-            setSubdirectory(self.originalsubdir)
+            setSubdirectory(self.originalsubdir)  # @UndefinedVariable
         if self.originaldeltavelocity is not None:
             self.motor.setSpeed(self.originaldeltavelocity)
         
@@ -165,11 +165,11 @@ class FlatFieldCalibration(ScannableMotionBase):
             #plot and view flat field raw data
             plot(RAW,self.sum_flat_field_file)
             print "Please check the flat field file for any dead pixels, etc.and check that all the bad channels are in the bed channel list at "+BAD_CHANNEL_LIST
-            #apply this flat field correction to PSD in GDA permenantly
+            #apply this flat field correction to PSD in GDA permanently
             self.applyFlatFieldCalibration()
         except:
             print "Flat field Collection aborted."
-            print "Unexpacted error:", sys.exc_info()[0], sys.exc_info()[1]
+            print "Unexpected error:", sys.exc_info()[0], sys.exc_info()[1]  # @UndefinedVariable
         finally:
             print "Flat Field Collection Completed."
             self.stop()
@@ -193,7 +193,7 @@ class FlatFieldCalibration(ScannableMotionBase):
                 print "moving delta to %f ..." % (self.getLowerGdaLimits()[0])
                 self.motor.asynchronousMoveTo(float(self.getLowerGdaLimits()[0]))
             self.detector.collectData()
-            sleep(1) #must give time for detector for detector to respond to request.
+            sleep(2) #must give time for detector for detector to respond to request.
             while self.detector.isBusy():
                 sleep(0.1)
             
