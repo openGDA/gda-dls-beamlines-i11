@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<corba:import namespace="i11" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter"/>
+	<corba:import namespace="i11" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, wavelength"/>
 	
 	<bean id="bm" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
 		<property name="serviceUrl" value="${gda.rmi.prefix}/bm" />
@@ -25,7 +25,7 @@
 			<list>
 				<bean class="gda.rcp.views.GroupCompositeFactory">
 					<property name="label" value="Status" />
-					<property name="columns" value="3" />
+					<property name="columns" value="4" />
 					<property name="compositeFactories">
 						<list>
 							<bean class="uk.ac.gda.dls.client.views.BatonStatusCompositeFactory">
@@ -38,6 +38,10 @@
 							<bean class="uk.ac.gda.beamline.i11.views.SpinStatusCompositeFactory">
 								<property name="label" value="Spin" />
 								<property name="spin" ref="spin"/>
+							</bean>
+							<bean class="uk.ac.gda.beamline.i11.views.BeamStopStatusCompositeFactory">
+								<property name="label" value="BStop" />
+								<property name="pvName" value="BL11I-PS-SHTR-01:RAWILK.B5"/>
 							</bean>
 						</list>
 					</property>
