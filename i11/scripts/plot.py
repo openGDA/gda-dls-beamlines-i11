@@ -19,6 +19,7 @@ import java #@UnresolvedImport
 import re
 from gda.configuration.properties import LocalProperties
 import os
+from uk.ac.diamond.scisoft.analysis import SDAPlotter
 
 INT_RE = re.compile(r"^[-]?\d+$")
 def representsInt(s):
@@ -131,8 +132,10 @@ def plotdata(filename, dataType=MAC, plotPane="DataPlot", Overlay=True):
             data.setName(filename)
             if Overlay:
                 Plotter.plotOver(plotPane, dataset.getChannelArray(), data)
+                SDAPlotter.addPlot(plotPane, "", dataset.getChannelArray(), data, "delta", "counts")
             else:
                 Plotter.plot(plotPane, dataset.getChannelArray(), data)
+                SDAPlotter.plot(plotPane, "", dataset.getChannelArray(), data, "delta", "counts")
     else:
         print "Data Type is not recognised or supported."
     print "Plotting completed."

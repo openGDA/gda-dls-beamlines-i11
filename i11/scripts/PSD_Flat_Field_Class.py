@@ -1,9 +1,9 @@
 '''
-This module implements falt field calibration of PSD detector described in document 
+This module implements flat field calibration of PSD detector described in document 
 S:\Science\Beamlines\Approved\I11\Beamline Manuals\PSD\PSD_Flat_Field_notes_v0.4.doc.
 It consists of two type of scans:
-1. 2 quick scans of 1 min duration to calculate number of scans required for a full flat field calibration;
-2. several slow scans for a full flat flied data to the specified counts (>100000);
+1. 2 quick scans of 1 minimum duration to calculate number of scans required for a full flat field calibration;
+2. several slow scans for a full flat field data to the specified counts (>100000);
 3. sum all slow scan raw count together to provide one single flat field calibration file;
 4. plot the summed data to identify dead channels, so they can be set in the bad channel list file (outside this script);
 5. set GDA to use this new flat field calibration data file for PSD.
@@ -18,15 +18,15 @@ SLOW_SCAN_TIME            = 1800 # 30 mins scn
 PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
 PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
 CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_file"
-BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector_standard.lst"
+BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector.lst"
 
 Usage:
     To run with default parameters, just type
     >>>flatfield
     To change start angle
-    >>>flatfield.setStartAngle(-10)
+    >>>flatfield.setStartAngle(-15)
     To change stop angle
-    >>>flatfield.setStopAngle(80)
+    >>>flatfield.setStopAngle(79.5)
     To change quick scan time
     >>>flatfield.setQuickScanTime(60)
     To change slow scan time
@@ -37,6 +37,8 @@ Usage:
 It is recommended the pixel count for a good flat field calibration must be at least 100000.
     
 Created on 25 Jul 2012
+updated on 20 Jan 2014
+
 @author: fy65
 '''
 import os
@@ -48,11 +50,11 @@ import math
 import threading
 from time import sleep
 from plot import plot,RAW
-from gda.data import NumTracker, PathConstructor
+from gda.data import NumTracker
 
 #default vaules
 START_ANGLE               = -15
-STOP_ANGLE                = 80
+STOP_ANGLE                = 79.5
 REQUIRED_PIXEL_COUNT      =100000
 QUICK_SCAN_TIME           = 60   # 1 min scan
 SLOW_SCAN_TIME            = 1800 # 30 mins scn
@@ -162,8 +164,9 @@ class FlatFieldCalibration(ScannableMotionBase):
             
             print "Sum all scanned raw data into one flat field data file..."
             self.sum_flat_field_file = sumScanRawData(numberofscan)
-            #plot and view flat field raw data
+            #plot and view flat field raw data in SWING GUI
             plot(RAW,self.sum_flat_field_file)
+            
             print "Please check the flat field file for any dead pixels, etc.and check that all the bad channels are in the bed channel list at "+BAD_CHANNEL_LIST
             #apply this flat field correction to PSD in GDA permanently
             self.applyFlatFieldCalibration()
