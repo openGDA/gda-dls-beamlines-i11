@@ -20,3 +20,4 @@ How to setup procServ on tfg2 - as user on i13-ws001
 
 16. Add a link in /etc/rc2.d to run daq_servers:
 b13i-ea-tfg2-01:/etc/rc2.d# ln -s ../init.d/daq_servers S99daq_servers
+17. need to make sure the shell scripts must be executable on the tg=fg2 server.
