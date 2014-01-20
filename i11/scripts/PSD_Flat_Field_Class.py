@@ -61,7 +61,7 @@ PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
 PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
 CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
 BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector_standard.lst"
-scanNumTracker = NumTracker("tmp");
+scanNumTracker = NumTracker("i11");
 
 class FlatFieldCalibration(ScannableMotionBase):
     def __init__(self, name, motor=delta, detector=mythen, beamenergy=energy): #@UndefinedVariable
@@ -251,7 +251,7 @@ def averageScanRawCount(numberofscan, detector=mythen): #@UndefinedVariable
 def sumScanRawData(numberofscan, beamenergy=energy, detector=mythen): #@UndefinedVariable
     filenames = []
     for i in range(numberofscan):
-        filenames.append(str(detector.getDataDirectory()) + str(os.sep) + str(detector.buildRawFilename(i)))
+        filenames.append(str(detector.getDataDirectory()) + str(os.sep) + str(detector.buildRawFilename(i+1)))
     
     now = datetime.datetime.now()
     photonenergy = int(round(float(beamenergy.getPosition())))
