@@ -234,7 +234,7 @@ public class WatchDirectory implements Configurable, IObservable {
 				try {
 					dataFilesInDirectory(dir);
 				} catch (IOException e) {
-					logger.error("TODO put description of error here", e);
+					logger.error("Failed to add collected data to list", e);
 					throw new FactoryException("Failed to add files in directory " + dir + " to the data file list", e);
 				}
 			}
