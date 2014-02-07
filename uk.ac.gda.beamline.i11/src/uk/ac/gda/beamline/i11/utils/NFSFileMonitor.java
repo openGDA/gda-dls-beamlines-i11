@@ -46,8 +46,7 @@ public class NFSFileMonitor {
 				Thread.sleep(5000);
 			}
 		} catch (FileSystemException e) {
-			// TODO Auto-generated catch block
-			logger.error("TODO put description of error here", e);
+			logger.error(e.getMessage(), e);
 		}
 		
 		
