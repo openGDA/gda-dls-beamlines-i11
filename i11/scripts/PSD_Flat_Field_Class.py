@@ -182,6 +182,9 @@ class FlatFieldCalibration(ScannableMotionBase):
         return self._busy
         
     def rawGetPosition(self):
+        if self.sum_flat_field_file is None:
+            print "New flat field file not created yet."
+            return 0
         return self.sum_flat_field_file
         
     def scanFlatField(self, numberofscan, time):
@@ -199,7 +202,7 @@ class FlatFieldCalibration(ScannableMotionBase):
             sleep(2) #must give time for detector for detector to respond to request.
             while self.detector.isBusy():
                 sleep(0.1)
-            
+            sleep(1)
             self.detector.atPointEnd()
             scancounter += 1
         self.detector.atScanEnd()
