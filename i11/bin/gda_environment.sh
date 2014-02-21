@@ -23,5 +23,5 @@ export IDL_JAVA_WRAPPER_CLASS=${GDA_CONFIG}/idlobjects
 
 export CLASSPATH="$CLASSPATH:${IDL_DIR}/resource/bridges/export/java/javaidlb.jar:${IDL_JAVA_WRAPPER_CLASS}"
 
-export PATH=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin:/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/pytools/src:/dls_sw/dasc/bin/iKittenScripts:/$SOFTWAREFOLDER/$BEAMLINE/bin:$PATH
+export PATH=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin:/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/pytools/src:/dls_sw/dasc/bin/dicat_scripts:/$SOFTWAREFOLDER/$BEAMLINE/bin:$PATH
 
