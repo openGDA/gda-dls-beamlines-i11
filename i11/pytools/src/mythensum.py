@@ -9,8 +9,8 @@ import math
 usage = "%s file1 file2 ... fileN > output_filename"
 parser = OptionParser(usage % "%prog")
 
-parser.add_option("-m", "--mythen", action="store_true", dest="mythen", help="Sum  mythen frame data taking at the same delta position.")
-parser.add_option("-r", "--rebinned", action="store_false", dest="mythen", help="Sum rebinned mythen data", default=True)
+#parser.add_option("-m", "--mythen", action="store_true", dest="mythen", help="Sum  mythen frame data taking at the same delta position.")
+#parser.add_option("-r", "--rebinned", action="store_false", dest="mythen", help="Sum rebinned mythen data", default=True)
 
 (options, args) = parser.parse_args()
 
@@ -19,10 +19,10 @@ def read_mythen_file(filename):
 	lines = f.readlines()
 	f.close()
 	lines = map(string.split, map(string.strip, lines))
-	if options.mythen:
-		lines = [(float(x[0]), float(x[1]), float(x[2])) for x in lines]
-	else:
-		lines = [(float(x[0]), float(x[1])) for x in lines]
+#	if options.mythen:
+	lines = [(float(x[0]), float(x[1]), float(x[2])) for x in lines]
+#	else:
+#		lines = [(float(x[0]), float(x[1])) for x in lines]
 	return lines
 
 def sum_datasets(datasets):
@@ -65,7 +65,7 @@ def sum_datasets(datasets):
 	return new_dataset
 
 if len(args) == 0:
-	print >>sys.stderr, "usage: %s" % (usage % "mythensum")
+	print >>sys.stderr, "usage: %s" % (usage % "mythensum.py")
 	sys.exit(1)
 	
 if len(args) == 1 and str(args[0]).find("*") != -1:

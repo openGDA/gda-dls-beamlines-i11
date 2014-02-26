@@ -8,12 +8,13 @@
         <cs:dependency name="uk.ac.gda.beamline.i11" componentType="osgi.bundle"/>
         <cs:dependency name="uk.ac.gda.beamline.i11.site" componentType="eclipse.feature"/>
         <cs:dependency name="uk.ac.gda.common" componentType="osgi.bundle"/>
+        <cs:dependency name="uk.ac.gda.devices.mythen" componentType="osgi.bundle"/>
+        <cs:dependency name="uk.ac.gda.devices.mythen.visualisation" componentType="osgi.bundle"/>
+        <cs:dependency name="uk.ac.gda.devices.pixium" componentType="osgi.bundle"/>
         <cs:dependency name="uk.ac.gda.dls" componentType="osgi.bundle"/>
         <cs:dependency name="uk.ac.gda.dls.client" componentType="osgi.bundle"/>
         <cs:dependency name="uk.ac.gda.hrpd" componentType="osgi.bundle"/>
         <cs:dependency name="uk.ac.gda.swingclient" componentType="osgi.bundle"/>
-        <cs:dependency name="uk.ac.gda.devices.mythen" componentType="osgi.bundle"/>
-        <cs:dependency name="uk.ac.gda.devices.mythen.visualisation" componentType="osgi.bundle"/>
-        <cs:dependency name="uk.ac.gda.devices.pixium" componentType="osgi.bundle"/>
+        <cs:dependency name="uk.ac.gda.devices.cirrus" componentType="osgi.bundle"/>
     </cs:dependencies>
 </cs:cspec>
