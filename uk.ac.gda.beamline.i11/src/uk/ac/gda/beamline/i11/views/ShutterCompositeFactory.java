@@ -43,7 +43,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,8 +63,8 @@ public class ShutterCompositeFactory implements CompositeFactory {
 	}
 
 	@Override
-	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
-		return new ShutterComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, shutter,
+	public Composite createComposite(Composite parent, int style) {
+		return new ShutterComposite(parent, style, label, shutter,
 				controlPermitted);
 	}
 
@@ -112,7 +111,7 @@ class ShutterComposite extends Composite {
 	private EnumPositioner shutter;
 	private boolean controlPermitted = false;
 
-	public ShutterComposite(Composite parent, int style, final Display display, String label, EnumPositioner shutter,
+	public ShutterComposite(Composite parent, int style, String label, EnumPositioner shutter,
 			boolean controlPermitted) {
 		super(parent, style);
 
@@ -124,7 +123,7 @@ class ShutterComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(grp);
 		grp.setText(label);
 
-		this.display = display;
+		this.display = parent.getDisplay();
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 
