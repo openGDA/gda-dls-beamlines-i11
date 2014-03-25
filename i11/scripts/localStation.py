@@ -2,6 +2,7 @@
 # Description: For beamline specific initialisation.
 # @author: Fajin Yuan
 # updated 23/12/2010
+from types import NoneType
 
 
 print "=================================================================================================================";
@@ -185,7 +186,7 @@ from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
 def psd(t,n=1.0):
-    scan(ds, 1.0, n, 1.0, mythen, t, Io, t, Ie)  # @UndefinedVariable
+    scan(ds, 1.0, n, 1.0, mythen, t, Io, t, Ie, delta)  # @UndefinedVariable
     scaler2(1)  # @UndefinedVariable
     
 
@@ -225,7 +226,7 @@ theta1=finder.find("theta")
 rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 print "Create 'psdrt' command for PSD data collection with theta rocking"
 def psdrt(t, n=1.0):
-    scan(ds, 1.0, n, 1.0, mythen, t, rocktheta, Io, t, Ie)  # @UndefinedVariable
+    scan(ds, 1.0, n, 1.0, mythen, t, rocktheta, Io, t, Ie, delta)  # @UndefinedVariable
     scaler2(1)  # @UndefinedVariable
 
 alias("psdrt")
@@ -285,6 +286,63 @@ print "create derivative scannable 'deriv' object to provide derivative value of
 from scan_detetor_with_derivative import DeviceDerivativeClass
 deriv = DeviceDerivativeClass("deriv", "energy", "etl1", "derivative");
 
+print "-----------------------------------------------------------------------------------------------------------------"
+print "create extra pixium scannables: pixium_PUMode, pixium_BaseExposure, pixium_BaseAcquirePeriod, pixium_EarlyFrames, pixium_TotalCount,pixium_FanSpeed1,pixium_FanSpeed2,pixium_DetectorTemperature"
+try:
+    pixium_PUMode = DisplayEpicsPVClass('pixium_PUMode', 'BL11I-EA-DET-10:CAM:PuMode_RBV', 'PU', '%i')
+    pixium_BaseExposure = DisplayEpicsPVClass('pixium_BaseExposure', 'BL11I-EA-DET-10:CAM:AcquireTime_RBV', 's', '%.3f')
+    pixium_BaseAcquirePeriod = DisplayEpicsPVClass('pixium_BaseAcquirePeriod', 'BL11I-EA-DET-10:CAM:AcquirePeriod_RBV', 's', '%.3f')
+    pixium_EarlyFrames = DisplayEpicsPVClass('pixium_EarlyFrames', 'BL11I-EA-DET-10:CAM:MotionBlur', 'status', '%.0f')
+
+    pixium_TotalCount = DisplayEpicsPVClass('pixium_TotalCount', 'BL11I-EA-DET-10:STAT:Total_RBV', 'count', '%.0f') 
+    pixium_FanSpeed1 = DisplayEpicsPVClass('pixium_FanSpeed1', 'BL11I-EA-DET-10:CAM:DetectorFan1Speed', 'rpm', '%.0f')
+    pixium_FanSpeed2 = DisplayEpicsPVClass('pixium_FanSpeed2', 'BL11I-EA-DET-10:CAM:DetectorFan2Speed', 'rpm', '%.0f')
+    pixium_DetectorTemperature = DisplayEpicsPVClass('pixium_DetectorTemperature', 'BL11I-EA-DET-10:CAM:DetectorTemperature', 'degree', '%.1f') 
+except:
+    print "cannot create extra pixium scannables"
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "setup meta-data provider commands:meta_add, meta_ll, meta_ls, meta_rm "
+import metashop
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "adding meta scannables to PIXIUM use: meta_add_allPIXIUM()"
+_meta_scannables_names_PIXIUM = []
+# append items to the list below as required
+#_meta_scannables_names_PIXIUMi12.append("ring")
+_meta_scannables_names_PIXIUM.append("pixium_PUMode")
+_meta_scannables_names_PIXIUM.append("pixium_BaseExposure")
+_meta_scannables_names_PIXIUM.append("pixium_BaseAcquirePeriod")
+_meta_scannables_names_PIXIUM.append("pixium_EarlyFrames")
+
+_meta_scannables_PIXIUM = []
+def meta_add_allPIXIUM():
+    for sname in _meta_scannables_names_PIXIUM:
+        if type(finder.find(sname)) is not NoneType:
+            _meta_scannables_PIXIUM.append(finder.find(sname))
+        else:
+            try:
+                print "at adding: " + sname
+                eval(sname)
+                _meta_scannables_PIXIUM.append(eval(sname))
+            except:
+                msg = "\t Unable to find a meta scannable named: " + sname
+                print msg
+    for s in _meta_scannables_PIXIUM:
+        metashop.meta_add(s)
+alias("meta_add_allPIXIUM")
+
+print "Remove meta scannables from PIXIUM, use: meta_rm_allPIXIUM()"
+def meta_rm_allPIXIUM():
+    for sname in _meta_scannables_names_PIXIUM:
+        try:
+            print "at removing: " + sname
+            eval(sname)
+            metashop.meta_rm(eval(sname))
+        except:
+            msg = "\t Unable to find a meta scannable named: " + sname
+            print msg
+alias("meta_rm_allPIXIUM")
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";
@@ -296,6 +354,8 @@ if bm1.isBeamOn():
     print "PHOTON BEAM IS ON SAMPLE NOW."
 else:
     print "NO PHOTON BEAM ON SAMPLE."
+
+
 # setup I11 specific scans
 #### The XPS CVScan commands and objects - replaced by PMAC CVScan object
 #print "---------------------------------------------------------------------------------------------"
