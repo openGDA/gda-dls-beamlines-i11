@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,8 +61,8 @@ public class BeamStopStatusCompositeFactory implements CompositeFactory {
 	}
 
 	@Override
-	public Composite createComposite(Composite parent, int style) {
-		return new BeamStopStatusComposite(parent, style, label,
+	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
+		return new BeamStopStatusComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label,
 				getPvName());
 	}
 
@@ -89,7 +90,7 @@ class BeamStopStatusComposite extends Composite {
 
 	private String pvName;
 
-	public BeamStopStatusComposite(Composite parent, int style, String label, String pv) {
+	public BeamStopStatusComposite(Composite parent, int style, final Display display, String label, String pv) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -100,7 +101,7 @@ class BeamStopStatusComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(grp);
 		grp.setText(label);
 
-		this.display = parent.getDisplay();
+		this.display = display;
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		this.pvName = pv;

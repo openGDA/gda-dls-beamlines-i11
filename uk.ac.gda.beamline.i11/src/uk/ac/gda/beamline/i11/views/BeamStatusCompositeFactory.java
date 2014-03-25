@@ -40,6 +40,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,8 +60,8 @@ public class BeamStatusCompositeFactory implements CompositeFactory {
 	}
 
 	@Override
-	public Composite createComposite(Composite parent, int style) {
-		return new BeamStatusComposite(parent, style, label, beamMonitor);
+	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
+		return new BeamStatusComposite(parent, style, iWorkbenchPartSite.getShell().getDisplay(), label, beamMonitor);
 	}
 
 	public IBeamMonitor getBeamMonitor() {
@@ -89,7 +90,7 @@ class BeamStatusComposite extends Composite {
 	private IBeamMonitor bm;
 
 
-	public BeamStatusComposite(Composite parent, int style, String label, IBeamMonitor bm) {
+	public BeamStatusComposite(Composite parent, int style, final Display display, String label, IBeamMonitor bm) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -100,7 +101,7 @@ class BeamStatusComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(grp);
 		grp.setText(label);
 
-		this.display = parent.getDisplay();
+		this.display = display;
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		

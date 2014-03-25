@@ -24,6 +24,7 @@ import gda.rcp.views.CompositeFactory;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.springframework.beans.factory.InitializingBean;
 
 import uk.ac.gda.beamline.i11.utils.DataFileListener;
@@ -70,7 +71,7 @@ public class LatestFilenameCompositeFactory implements CompositeFactory, Initial
 	}
 
 	@Override
-	public Composite createComposite(Composite parent, int style) {
+	public Composite createComposite(Composite parent, int style, IWorkbenchPartSite iWorkbenchPartSite) {
 		final Image toLatestImage = GDAClientActivator.getImageDescriptor("icons/control_end_blue.png").createImage();
 		final Image toStartImage = GDAClientActivator.getImageDescriptor("icons/control_start_blue.png").createImage();
 		final Image backOneImage = GDAClientActivator.getImageDescriptor("icons/control_rewind_blue.png").createImage();
