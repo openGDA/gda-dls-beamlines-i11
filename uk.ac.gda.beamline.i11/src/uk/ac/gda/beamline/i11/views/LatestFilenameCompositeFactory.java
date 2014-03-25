@@ -24,6 +24,7 @@ import gda.rcp.views.CompositeFactory;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.springframework.beans.factory.InitializingBean;
 
 import uk.ac.gda.beamline.i11.utils.DataFileListener;

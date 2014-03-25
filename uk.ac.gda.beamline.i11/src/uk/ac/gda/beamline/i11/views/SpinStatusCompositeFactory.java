@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +63,7 @@ public class SpinStatusCompositeFactory implements CompositeFactory {
 
 	@Override
 	public Composite createComposite(Composite parent, int style) {
-		return new SpinStatusComposite(parent, style, label, spin);
+		return new SpinStatusComposite(parent, style, parent.getDisplay(), label, spin);
 	}
 
 	public ISpin getSpin() {
@@ -92,7 +93,7 @@ class SpinStatusComposite extends Composite {
 	private ISpin spin;
 
 
-	public SpinStatusComposite(Composite parent, int style, String label, ISpin spin) {
+	public SpinStatusComposite(Composite parent, int style, final Display display, String label, ISpin spin) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -103,7 +104,7 @@ class SpinStatusComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(grp);
 		grp.setText(label);
 
-		this.display = parent.getDisplay();
+		this.display = display;
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		
@@ -162,7 +163,7 @@ class SpinStatusComposite extends Composite {
 					@Override
 					public void run() {
 						boolean value = false;
-						if (theObserved instanceof IBeamMonitor) {
+						if (theObserved instanceof ISpin) {
 							if (changeCode instanceof Boolean) {
 								value = ((Boolean) changeCode).booleanValue();
 								if (!value) {
