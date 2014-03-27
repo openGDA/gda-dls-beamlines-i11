@@ -60,7 +60,7 @@ public class BeamStatusCompositeFactory implements CompositeFactory {
 
 	@Override
 	public Composite createComposite(Composite parent, int style) {
-		return new BeamStatusComposite(parent, style, label, beamMonitor);
+		return new BeamStatusComposite(parent, style, parent.getDisplay(), label, beamMonitor);
 	}
 
 	public IBeamMonitor getBeamMonitor() {
@@ -89,7 +89,7 @@ class BeamStatusComposite extends Composite {
 	private IBeamMonitor bm;
 
 
-	public BeamStatusComposite(Composite parent, int style, String label, IBeamMonitor bm) {
+	public BeamStatusComposite(Composite parent, int style, final Display display, String label, IBeamMonitor bm) {
 		super(parent, style);
 
 		GridDataFactory.fillDefaults().applyTo(this);
@@ -100,7 +100,7 @@ class BeamStatusComposite extends Composite {
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(grp);
 		grp.setText(label);
 
-		this.display = parent.getDisplay();
+		this.display = display;
 		GridLayoutFactory.swtDefaults().numColumns(1).applyTo(this);
 		GridDataFactory.fillDefaults().applyTo(this);
 		

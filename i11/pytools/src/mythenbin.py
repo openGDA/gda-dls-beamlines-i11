@@ -89,7 +89,7 @@ binned_data = bin_datasets(datasets, options.binsize, options.fillgaps, options.
 if options.function == "max":
 	output_format = "%f %f %f"
 else:
-	output_format = "%f %f"
+	output_format = "%f %f %f"
 
 for line in binned_data:
 	print output_format % line

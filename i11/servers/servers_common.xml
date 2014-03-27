@@ -8,6 +8,8 @@
 		http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd 
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	
+
 	<bean id="plot_server" class="uk.ac.diamond.scisoft.analysis.plotserver.PlotServerBase" />
 	<!-- SWING plot -->
 	<bean id="Plot_Manager" class="gda.analysis.plotmanager.PlotManager" />
@@ -28,10 +30,6 @@
 		<property name="template" value="${gda.data.scan.datawriter.datadir}" />
 		<property name="gdaMetadata" ref="GDAMetadata" />
 		<property name="local" value="true" />
-	</bean>
-	
-	<bean id="metadata" class="gda.data.metadata.NXMetaDataProvider">
-		<property name="name" value="metadata"/>
 	</bean>
 	
 	 <!-- ScriptControllers must be after command_server -->

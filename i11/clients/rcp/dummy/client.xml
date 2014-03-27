@@ -18,6 +18,7 @@
 		file:${gda.config}/epics/dummy/epics.properties,
 		file:${gda.config}/properties/dummy/java.properties,
 		file:${gda.config}/properties/gda.properties" />
+		
 		<import resource="../rcp-common.xml"/>
 	
 </beans>

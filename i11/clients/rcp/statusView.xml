@@ -51,22 +51,22 @@
 					<property name="columns" value="4" />
 					<property name="compositeFactories">
 						<list>
-							<bean class="uk.ac.gda.beamline.i11.views.ShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.i11.views.BeamlineMbbinaryShutterCompositeFactory">
 								<property name="label" value="Fast" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="fastshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.ShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.i11.views.BeamlinePneumaticShutterCompositeFactory">
 								<property name="label" value="EH" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="ehshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.ShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.i11.views.FrontEndPneumaticShutterCompositeFactory">
 								<property name="label" value="FE" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="feshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.ShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.i11.views.FrontEndPneumaticShutterCompositeFactory">
 								<property name="label" value="Port" />
 								<property name="controlPermitted" value="false" />
 								<property name="shutter" ref="portshutter" />
