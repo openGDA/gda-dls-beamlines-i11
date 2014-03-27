@@ -29,9 +29,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.handlers.IHandlerService;
@@ -67,7 +65,7 @@ public class ImageButtonCompositeFactory implements CompositeFactory, Initializi
 
 	@Override
 	public Composite createComposite(Composite parent, int style) {
-		return new ImageButtonComposite(parent, style, PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite(), label, tooltipText, getImagePath(), actionId);
+		return new ImageButtonComposite(parent, style, label, tooltipText, getImagePath(), actionId);
 	}
 
 	public String getTooltipText() {
@@ -99,7 +97,7 @@ class ImageButtonComposite extends Composite {
 	private static final Logger logger = LoggerFactory.getLogger(ImageButtonComposite.class);
 	private Canvas canvas;
 
-	public ImageButtonComposite(Composite parent, int style, final IWorkbenchPartSite iWorkbenchPartSite,
+	public ImageButtonComposite(Composite parent, int style,
 			String label, String tooltip, String imagePath,	final String actionId) {
 		super(parent, style);
 
@@ -128,8 +126,8 @@ class ImageButtonComposite extends Composite {
 			public void mouseUp(MouseEvent event) {
 				if (event.button == 1) {
 					if (event.button == 1) {
-						ICommandService cmdService = (ICommandService) iWorkbenchPartSite.getService(ICommandService.class);
-						IHandlerService hdlService = (IHandlerService) iWorkbenchPartSite.getService(IHandlerService.class);
+						ICommandService cmdService = (ICommandService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+						IHandlerService hdlService = (IHandlerService) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(IHandlerService.class);
 						Command cmd = cmdService.getCommand(actionId);
 						try {
 							hdlService.executeCommand(cmd.getId(), null);
