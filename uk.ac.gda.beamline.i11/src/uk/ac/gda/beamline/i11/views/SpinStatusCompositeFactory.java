@@ -162,18 +162,18 @@ class SpinStatusComposite extends Composite {
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						boolean value = false;
+						String value = "";
 						if (theObserved instanceof ISpin) {
-							if (changeCode instanceof Boolean) {
-								value = ((Boolean) changeCode).booleanValue();
-								if (!value) {
-									currentColor=SPIN_OFF_COLOR;
-									canvas.setToolTipText(SPIN_OFF_TOOL_TIP);
-									spinOff.setSelection(true);
-								} else {
+							if (changeCode instanceof String) {
+								value = ((String) changeCode);
+								if (value.equalsIgnoreCase("Enabled")) {
 									currentColor=SPIN_ON_COLOR;
 									canvas.setToolTipText(SPIN_ON_TOOL_TIP);
 									spinOn.setSelection(true);
+								} else {
+									currentColor=SPIN_OFF_COLOR;
+									canvas.setToolTipText(SPIN_OFF_TOOL_TIP);
+									spinOff.setSelection(true);
 								}
 							}
 						}
