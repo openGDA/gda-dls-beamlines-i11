@@ -203,7 +203,7 @@ class BeamlinePneumaticShutterComposite extends Composite {
 						if (theObserved instanceof EnumPositioner) {
 							if (changeCode instanceof ScannablePositionChangeEvent) {
 								final String value = ((ScannablePositionChangeEvent) changeCode).toString().toLowerCase();
-								if (value.contains("open")) {
+								if (value.contains("open")&& !value.contains("opening")) {
 									currentColor = OPEN_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPEN_TOOL_TIP);
