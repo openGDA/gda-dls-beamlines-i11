@@ -202,8 +202,8 @@ class BeamlinePneumaticShutterComposite extends Composite {
 					public void run() {
 						if (theObserved instanceof EnumPositioner) {
 							if (changeCode instanceof ScannablePositionChangeEvent) {
-								final String value = ((ScannablePositionChangeEvent) changeCode).newPosition.toString();
-								if (value.equalsIgnoreCase("Open")) {
+								final String value = ((ScannablePositionChangeEvent) changeCode).toString().toLowerCase();
+								if (value.contains("open")) {
 									currentColor = OPEN_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPEN_TOOL_TIP);
@@ -213,7 +213,7 @@ class BeamlinePneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(OPEN_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Opening")) {
+								} else if (value.contains("opening")) {
 									currentColor = OPENING_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPENING_TOOL_TIP);
@@ -223,7 +223,7 @@ class BeamlinePneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(OPENING_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Closed")) {
+								} else if (value.contains("closed")) {
 									currentColor = CLOSE_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSE_TOOL_TIP);
@@ -233,7 +233,7 @@ class BeamlinePneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Closing")) {
+								} else if (value.contains("closing")) {
 									currentColor = CLOSING_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSING_TOOL_TIP);
@@ -243,7 +243,7 @@ class BeamlinePneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(CLOSING_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Fault")) {
+								} else if (value.contains("fault")) {
 									currentColor = RESET_COLOR;
 									if (isControlPermitted()) {
 										openShutter.setSelection(false);

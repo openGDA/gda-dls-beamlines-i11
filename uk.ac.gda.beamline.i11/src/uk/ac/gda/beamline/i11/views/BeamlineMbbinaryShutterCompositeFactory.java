@@ -43,7 +43,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -185,8 +184,8 @@ class BeamlineMbbinaryShutterComposite extends Composite {
 					public void run() {
 						if (theObserved instanceof EnumPositioner) {
 							if (changeCode instanceof ScannablePositionChangeEvent) {
-								final String value = ((ScannablePositionChangeEvent) changeCode).newPosition.toString();
-								if (value.equalsIgnoreCase("OPEN")) {
+								final String value =((ScannablePositionChangeEvent) changeCode).toString().toLowerCase();
+								if (value.contains("open")) {
 									currentColor = OPEN_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPEN_TOOL_TIP);
@@ -195,7 +194,7 @@ class BeamlineMbbinaryShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(OPEN_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("CLOSE")) {
+								} else if (value.contains("close")) {
 									currentColor = CLOSE_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSE_TOOL_TIP);

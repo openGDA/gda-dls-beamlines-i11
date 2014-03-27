@@ -43,7 +43,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -213,8 +212,8 @@ class FrontEndPneumaticShutterComposite extends Composite {
 					public void run() {
 						if (theObserved instanceof EnumPositioner) {
 							if (changeCode instanceof ScannablePositionChangeEvent) {
-								final String value = ((ScannablePositionChangeEvent) changeCode).newPosition.toString();
-								if (value.equalsIgnoreCase("Open")) {
+								final String value = ((ScannablePositionChangeEvent) changeCode).toString().toLowerCase();
+								if (value.contains("open")) {
 									currentColor = OPEN_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPEN_TOOL_TIP);
@@ -225,7 +224,7 @@ class FrontEndPneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(OPEN_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Opening")) {
+								} else if (value.contains("opening")) {
 									currentColor = OPENING_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(OPENING_TOOL_TIP);
@@ -237,7 +236,7 @@ class FrontEndPneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(OPENING_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Closed")) {
+								} else if (value.contains("closed")) {
 									currentColor = CLOSE_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSE_TOOL_TIP);
@@ -248,7 +247,7 @@ class FrontEndPneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(CLOSE_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Closing")) {
+								} else if (value.contains("closing")) {
 									currentColor = CLOSING_COLOR;
 									if (isControlPermitted()) {
 										canvas.setToolTipText(CLOSING_TOOL_TIP);
@@ -259,7 +258,7 @@ class FrontEndPneumaticShutterComposite extends Composite {
 									} else {
 										canvas.setToolTipText(CLOSING_TOOL_TIP_NO_CONTROL);
 									}
-								} else if (value.equalsIgnoreCase("Fault")) {
+								} else if (value.contains("fault")) {
 									currentColor = UNKNOWN_COLOR;
 									if (isControlPermitted()) {
 										openShutter.setSelection(false);
