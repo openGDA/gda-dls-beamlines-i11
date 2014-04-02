@@ -8,4 +8,4 @@ echo "Stopping GDA server processes..."
 
 SSHOPTS="-o StrictHostKeyChecking=no -o BatchMode=yes"
 
-ssh $SSHOPTS -i /$SOFTWAREFOLDER/$BEAMLINE/software/gda_versions/var/${BEAMLINE}ssh.key gda2@${BEAMLINE}-control.diamond.ac.uk GDA_StopServers
+ssh $SSHOPTS -i /$SOFTWAREFOLDER/$BEAMLINE/software/gda_versions/var/gdastopkey gda2@${BEAMLINE}-control.diamond.ac.uk
