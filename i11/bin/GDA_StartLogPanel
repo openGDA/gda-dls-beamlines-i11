@@ -2,13 +2,7 @@
 
 . "/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin/gda_environment.sh"
 
-if [ -f "/etc/profile.d/modules.sh" ]; then
-	. /etc/profile.d/modules.sh	
-	module load java/gda
-else
-	echo "cannot scd ..ource /etc/profile.d/modules.sh"	
-	exit 1
-fi
+. /dls_sw/$BEAMLINE/software/gda/workspace_git/gda-diamond.git/dls-config/bin/loadjava.sh
 
 PORT_6790_USED=`ps -ef | grep gda.logPanel.logging.port=6790 | grep -v grep`
 PORT_6791_USED=`ps -ef | grep gda.logPanel.logging.port=6791 | grep -v grep`
