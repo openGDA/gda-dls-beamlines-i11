@@ -10,5 +10,6 @@ else
 	exit 1
 fi
 
+echo "Staring GDA Log Panel locally"
 module load gdalogpanel
 gdalogpanel
