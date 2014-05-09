@@ -6,5 +6,6 @@
 	<!-- Ion Chamber -->
 	<bean id="Ic5" class="gda.device.currentamplifier.EpicsCurrAmpSingle">
 		<property name="deviceName" value="IC5.AMP"/>
+		<property name="enableValueMonitoring" value="false"/>
 	</bean>
 </beans>

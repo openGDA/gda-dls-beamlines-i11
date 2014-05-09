@@ -8,6 +8,7 @@
 	</bean>
 	<bean id="d1" class="gda.device.currentamplifier.EpicsCurrAmpSingle">
 		<property name="deviceName" value="D1.AMP"/>
+		<property name="enableValueMonitoring" value="false"/>
 	</bean>
 
 </beans>

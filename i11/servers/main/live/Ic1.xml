@@ -5,5 +5,6 @@
 
 	<bean id="Ic1" class="gda.device.currentamplifier.EpicsCurrAmpSingle">
 		<property name="deviceName" value="IC1.AMP"/>
+		<property name="enableValueMonitoring" value="false"/>
 	</bean>
 </beans>
