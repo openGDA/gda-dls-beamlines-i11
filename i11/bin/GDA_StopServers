@@ -11,7 +11,7 @@ GDA=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/workspace_git/gda-core.git/uk.ac.gda
 
 echo "Stopping main object server..."
 $GDA --stop objectserver --profile main
+$GDA --stop eventserver --verbose
 $GDA --stop nameserver --verbose
 $GDA --stop logserver --verbose
-$GDA --stop eventserver --verbose
 echo "Done"
