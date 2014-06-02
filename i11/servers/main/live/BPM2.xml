@@ -8,8 +8,10 @@
 	</bean>
 	<bean id="bpm2_amp" class="gda.device.enumpositioner.EpicsCurrAmpQuadController">
 		<property name="deviceName" value="BPM2.AMP"/>
+		<property name="poll" value="true"/>
 	</bean>
 	<bean id="bpm2_bpm" class="gda.device.monitor.EpicsBpmController">
 		<property name="deviceName" value="BPM2.BPM"/>
+		<property name="poll" value="true"/>
 	</bean>
 </beans>

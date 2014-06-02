@@ -7,7 +7,12 @@ else
 	exit 1
 fi
 
-. /dls_sw/$BEAMLINE/software/gda/workspace_git/gda-diamond.git/dls-config/bin/loadjava.sh
 
-echo `dirname $0`/gda_command servers --stop $@
-`dirname $0`/gda_command servers --stop $@
+GDA=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/workspace_git/gda-core.git/uk.ac.gda.core/bin/gda
+
+echo "Stopping main object server..."
+$GDA --stop objectserver --profile main
+$GDA --stop eventserver --verbose
+$GDA --stop nameserver --verbose
+$GDA --stop logserver --verbose
+echo "Done"

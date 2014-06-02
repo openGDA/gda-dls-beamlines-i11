@@ -3,8 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="Ic1" class="gda.device.currentamplifier.EpicsCurrAmpSingle">
-		<property name="deviceName" value="IC1.AMP"/>
-		<property name="enableValueMonitoring" value="false"/>
+	<bean id="epicscvscan" class="uk.ac.gda.hrpd.cvscan.EpicsCVScan">
+		<property name="pv_root" value="BL11I-EA-MAC-01"/>
+		<property name="local" value="true"/>
 	</bean>
+
 </beans>
