@@ -5,9 +5,11 @@
 
 	<bean id="s4_amp" class="gda.device.enumpositioner.EpicsCurrAmpQuadController">
 		<property name="deviceName" value="S4.AMP"/>
+		<property name="poll" value="true"/>
 	</bean>
 	<bean id="s4_bpm" class="gda.device.monitor.EpicsBpmController">
 		<property name="deviceName" value="S4.BPM"/>
+		<property name="poll" value="true"/>
 	</bean>
 	
 	<!-- S4 Motors (individual Motions) -->
