@@ -36,7 +36,7 @@
 		<property name="plotName" value="MYTHEN"/>
 		<property name="xAxisMin" value="0.000"/>
 		<property name="xAxisMax" value="100.000"/>
-		<property name="eventAdminName" value="eventadmin"/>
+		<property name="eventAdminName" value="mytheneventadmin"/>
 		<property name="epicsProgressMonitor" ref="mythenprogressmonitor"/>
 		<property name="startListener" ref="startListener"/>
 		<property name="exposureTimeListener" ref="exposureTimeListener"/>
