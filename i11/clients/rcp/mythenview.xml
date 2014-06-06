@@ -25,14 +25,14 @@
 		<property name="poll" value="true"/>
 	</bean>
 
-	<bean id="mythenprogressmonitor" class="uk.ac.gda.devices.mythen.visualisation.views.EpicsDetectorRunableWithProgress">
+	<bean id="mythenprogressmonitor" class="uk.ac.gda.epics.client.mythen.views.EpicsDetectorRunableWithProgress">
 		<property name="exposureTimeListener" ref="exposureTimeListener"/> <!--essential-->
 		<property name="timeRemainingListener" ref="timeRemainingListener"/> <!--essential-->
 		<property name="epicsProcessName" value="Mythen acquiring"/> <!--essential-->
 		<property name="stopScannable" ref="stopscannable"/> <!--essential-->
 	</bean>
 	
-	<bean id="mythenliveplotfactory" class="uk.ac.gda.devices.mythen.visualisation.viewfactories.LivePlotViewFactory">
+	<bean id="mythenliveplotfactory" class="uk.ac.gda.epics.client.mythen.viewfactories.LivePlotViewFactory">
 		<property name="plotName" value="MYTHEN"/>
 		<property name="xAxisMin" value="0.000"/>
 		<property name="xAxisMax" value="100.000"/>
