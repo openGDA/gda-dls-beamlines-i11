@@ -12,50 +12,65 @@
 	<!-- Live data traces -->
 	<bean id="mac1x" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC2X"/>
+		<property name="name" value="mac1x"/>
 	</bean>
 	<bean id="mac2x" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac2x"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC1X"/>
 	</bean>
 	<bean id="mac3x" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac3x"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC3X"/>
 	</bean>
 	<bean id="mac4x" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac4x"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC4X"/>
 	</bean>
 	<bean id="mac5x" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac5x"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC5X"/>
 	</bean>
 	<bean id="mac1y" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac1y"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC1Y"/>
 	</bean>
 	<bean id="mac2y" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac2y"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC2Y"/>
 	</bean>
 	<bean id="mac3y" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac3y"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC3Y"/>
 	</bean>
 	<bean id="mac4y" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac4y"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC4Y"/>
 	</bean>
 	<bean id="mac5y" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="mac1x"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MAC5Y"/>
 	</bean>
 	<!-- live data ready or available -->
 	<bean id="pulsedone" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsIntegerDataListener">
+		<property name="name" value="pulsedone"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:GPULSES"/>
 	</bean>
 	<!-- reduced data set -->
 	<bean id="allx" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="allx"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:ALLX"/>
 	</bean>
 	<bean id="ally" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="ally"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:ALLY"/>
 	</bean>
 	<bean id="allye" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataArrayListener">
+		<property name="name" value="allye"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:ALLYE"/>
 	</bean>
 	<!-- detector state -->
 	<bean id="state" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsEnumDataListener">
+		<property name="name" value="state"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:STATE"/>
 	</bean>
 	
@@ -63,12 +78,15 @@
 		<property name="pvName" value="BL11I-EA-MAC-01:ABORT"/>
 	</bean>
 	<bean id="messagelistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsStringDataListener">
+		<property name="name" value="messagelistener"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MESSAGE"/>
 	</bean>
 	<bean id="worklistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsIntegerDataListener">
+		<property name="name" value="worklistener"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:GPULSES"/>
 	</bean>
 	<bean id="totalworklistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsIntegerDataListener">
+		<property name="name" value="totalworklistener"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:NPULSES"/>
 	</bean>
 	<bean id="epicsprogressmonitor" class="uk.ac.gda.client.hrpd.views.EpicsRunableWithProgress">
