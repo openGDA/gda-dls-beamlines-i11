@@ -5,7 +5,7 @@
 	
 	<bean id="dataFilenameObserver" class="gda.jython.scriptcontroller.ScriptControllerBase"/>
 	
-	<bean id="ncvscan" class="uk.ac.gda.hrpd.cvscan.CVScan">
+	<bean id="cvscan" class="uk.ac.gda.hrpd.cvscan.CVScan">
 		<property name="detectors">
 			<list>
 				<ref bean="mcs1"/>

@@ -26,6 +26,8 @@
 <!-- 	<import resource="RCPController.xml"/> -->
 	<import resource="beamlineStatus.xml"/>
 	<import resource="statusView.xml"/>
+	<import resource="cvscan.xml"/>
+	<import resource="mythenview.xml"/>
 	
 	<import resource="../clients-common.xml" />
 
