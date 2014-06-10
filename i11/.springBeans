@@ -257,6 +257,7 @@
 		<config>clients/rcp/live/spinner.xml</config>
 		<config>clients/rcp/detectorFileDisplayer.xml</config>
 		<config>clients/rcp/cvscan.xml</config>
+		<config>clients/rcp/mythenview.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
