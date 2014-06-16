@@ -1,4 +1,11 @@
 '''
+scannable for Alicat mass flow controller to provide access to its properties, i.e. 
+get and set methods.
+Build in default flow tolerance is 0.01, and reading precision is 3 decimals.
+
+usage example:
+    mfc1=AlicatMassFlowController("mfc1","BL11I-EA-GIR-01:MFC1:",0.01,"%.3f")
+    
 Created on 6 Dec 2013
 updated on 16 June 2014
 
