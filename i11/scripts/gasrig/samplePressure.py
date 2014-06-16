@@ -39,6 +39,7 @@ class SamplePressure(ScannableBase, MonitorListener):
         
     def atScanStart(self):
         '''intialise parameters before scan'''
+        #TODOS check requested sample pressure can be reached 
         if not self.outcli.isConfigured():
             self.outcli.configure()
         if not self.incli.isConfigured():
