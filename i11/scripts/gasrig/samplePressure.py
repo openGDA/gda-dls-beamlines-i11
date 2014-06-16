@@ -116,8 +116,9 @@ class SamplePressure(ScannableBase, MonitorListener):
                 sleep(5)  # wait time in seconds
                 #check if smaple pressure required greater the system pressure then exit
                 if self.sysp.getPosition()<target:
-                    print "System pressure is less than the demanding target."
-                    break 
+                    #TODOs recharge the system pressure here???
+                    print "System pressure %f is less than the demanding sample pressure %f. Please abort this scan or re-charge the system pressure." % (self.sysp.getPosition(),target)
+
         elif SampleP>target:
             while SampleP > target:  # final sample pressure in bar
                 SampleP -= increment  # increments in bar
@@ -131,10 +132,6 @@ class SamplePressure(ScannableBase, MonitorListener):
                 except:
                     print "error moving to position"
                 sleep(5)  # wait time in seconds
-                #TODO check if smaple pressure required greater the system pressure then exit 
-                if self.sysp.getPosition()<target:
-                    print "System pressure is less than the demanding target."
-                    break 
         else:
             print "already at the sample pressure."
             return
