@@ -14,11 +14,13 @@ from gda.analysis import ScanFileHolder, Plotter
 from gda.analysis.io import MACLoader, SRSLoader, ScanFileHolderException
 from gda.data import NumTracker, PathConstructor
 from gda.jython.commands.GeneralCommands import alias
-from java.io import IOException, File
-import java
+from java.io import IOException, File #@UnresolvedImport
+import java #@UnresolvedImport
 import re
 from gda.configuration.properties import LocalProperties
 import os
+from uk.ac.diamond.scisoft.analysis import SDAPlotter
+from uk.ac.diamond.scisoft.analysis.dataset import DoubleDataset
 
 INT_RE = re.compile(r"^[-]?\d+$")
 def representsInt(s):
@@ -27,6 +29,7 @@ def representsInt(s):
 MAC=0
 SRS=1
 PSD=2
+RAW=3
 
 def plot(datatype, filename, panelname="DataPlot"):
     ''' Plot collected data in the Graph,  erase existing lines on the graph.
@@ -123,6 +126,18 @@ def plotdata(filename, dataType=MAC, plotPane="DataPlot", Overlay=True):
                     Plotter.plotOver(plotPane, dataset.getAngleDataSet(), data)
                 else:
                     Plotter.plot(plotPane, dataset.getAngleDataSet(), data)
+    elif dataType == RAW:
+            # mythen raw data file
+            dataset = loadMythenRawData(filename)
+            data=DoubleDataset(dataset.getCountArray())
+            channeldata=DoubleDataset(dataset.getChannelArray())
+            data.setName(filename)
+            if Overlay:
+                Plotter.plotOver(plotPane, channeldata, data)
+                SDAPlotter.addPlot(plotPane, "", channeldata, data, "delta", "counts")
+            else:
+                Plotter.plot(plotPane, channeldata, data)
+                SDAPlotter.plot(plotPane, "", channeldata, data, "delta", "counts")
     else:
         print "Data Type is not recognised or supported."
     print "Plotting completed."
@@ -187,6 +202,22 @@ def loadMythenSRSFile(filename):
         print "MythenSrsFileLoader failed. " , err
     return filenamelist
   
+def loadMythenRawData(filename):
+    '''load the mythen frame data.'''
+    from gda.device.detector.mythen.data import MythenRawDataset
+    
+    if str(filename).startswith(File.separator):
+        try:
+            dataset = MythenRawDataset(java.io.File(filename))
+        except:
+            print "Fail to load data file: "+filename
+        return dataset
+    try:
+        dataset = MythenRawDataset(java.io.File(os.path.join(PathConstructor.createFromDefaultProperty(),str(filename))))
+    except:
+        print "Fail to load data file: "+filename
+    return dataset
+
 def loadMythenData(filename):
     '''load the mythen frame data.'''
     from gda.device.detector.mythen.data import MythenProcessedDataset, MythenMergedDataset

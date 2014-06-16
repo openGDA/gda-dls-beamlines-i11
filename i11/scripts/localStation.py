@@ -2,50 +2,66 @@
 # Description: For beamline specific initialisation.
 # @author: Fajin Yuan
 # updated 23/12/2010
+from types import NoneType
+from gasrig.gdaScriptDose import DoseControl
+from gasrig.gadSriptVac import VacControl
 
-from gda.data import PathConstructor, NumTracker
-from gda.jython.commands import GeneralCommands
+
 print "=================================================================================================================";
-print "Performing beamline specific initialisation code (i11).";
+print "Performing beamline I11 specific initialisation.";
 print
-from gda.jython.commands.GeneralCommands import alias
+from gda.data import PathConstructor, NumTracker
+from gda.jython.commands.GeneralCommands import alias, run
+from gda.jython.commands.GeneralCommands import pause as enable_pause_or_interrupt
 from gda.jython.commands.ScannableCommands import scan 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Set if scan returns to the original positions on completion (1) or not (0)."
+print "Set scan returns to the original positions on completion to false (0); default is 0."
+print "   To set scan returns to its start positions on completion please do:"
+print "      >>>scansReturnToOriginalPositions=1"
 scansReturnToOriginalPositions=0;
 print
-#adding default scannables here
-add_default Io #@UndefinedVariable
-add_default Ie #@UndefinedVariable
+#Please change the following lines to add default scannables to i11 GDA server engine
+#print "-----------------------------------------------------------------------------------------------------------------"
+#print "Adding default scannable objects to GDA system: Io, Te"
+#add_default Io #@UndefinedVariable
+#add_default Ie #@UndefinedVariable
 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Functions for dirtecory operations: pwd(), lwf(), nwf(), nfn(), setSubdirectory(dirName)"
+print "commands for directory/file operations: "
+print "   >>>pwd - return the current data directory"
+print "   >>>lwf - return the full path of the last working data file"
+print "   >>>nwf - return the full path of the next working data file"
+print "   >>>nfn - return the next data file number to be collected"
+print "   >>>setSubdirectory('test') - change data directory to a sub-directory named 'test', created first if not exist"
+print "   >>>getSubdirectory() - return the current sub-directory setting if exist"
+print "Please note: users can only create sub-directory within their permitted visit data directory via GDA, not themselves."
+print "To create another sub-directory 'child-test' inside a sub-directory 'test', you must specify the full path as 'test/child-test' "
 # set up a nice method for getting the latest file path
-i11NumTracker = NumTracker("tmp");
+i11NumTracker = NumTracker("i11");
 
 # function to find the working directory
 def pwd():
     '''return the working directory'''
-    dir = PathConstructor.createFromDefaultProperty()
-    return dir
+    cwd = PathConstructor.createFromDefaultProperty()
+    return cwd
     
 alias("pwd")
 
 # function to find the last working file path
 def lwf():
     '''return the last working file path root'''
-    dir = PathConstructor.createFromDefaultProperty()
+    cwd = PathConstructor.createFromDefaultProperty()
     filenumber = i11NumTracker.getCurrentFileNumber();
-    return os.path.join(dir,str(filenumber))
+    return os.path.join(cwd,str(filenumber))
     
 alias("lwf")
 
 # function to find the next working file path
 def nwf():
     '''query the next working file path root'''
-    dir = PathConstructor.createFromDefaultProperty()
+    cwd = PathConstructor.createFromDefaultProperty()
     filenumber = i11NumTracker.getCurrentFileNumber();
-    return os.path.join(dir,str(filenumber+1))
+    return os.path.join(cwd,str(filenumber+1))
     
 alias("nwf")
 
@@ -65,15 +81,14 @@ def setSubdirectory(dirname):
         os.mkdir(pwd())
     except :
         pass
+    
 def getSubdirectory():
     return finder.find("GDAMetadata").getMetadataValue("subdirectory")
 
 print
 
 from gda.factory import Finder
-#from javashell import *
-#from math import * 
-from time import sleep
+from time import sleep  # @UnusedImport
 import java #@UnresolvedImport
 
 finder=Finder.getInstance()
@@ -167,112 +182,17 @@ def setwavelength(wavelength):
 print
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Setup PSD or mythen detector system."
-import sys, gda
-sys.path = [LocalProperties.get("gda.root") + "/uk.ac.gda.devices.mythen/bin"] + sys.path
-
-# These can be changed
-mythen_bad_channels_file = "/dls/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list"
-mythen_ang_cal_params_file = "/dls/i11/software/mythen/diamond/calibration/ang.off"
-# Flat field file
-# E=12 keV
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E12keV_T6keV_2011Jan12.raw"
-# E = 25 keV
-# mythen_flat_field_file = "/dls/i11/data/2010/ee0/PSD/20100707/sum_flat_field_E25keV_T12500eV_2010July07.raw"
-# E=15 keV 15 Sep 2011 file
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T_7500eV_2011Sep15.raw"
-# E=15 keV 09 Dec 2011 file
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_2011Dec09.raw"
-#mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_19Apr2012.raw"
-#flat filed file 03 May 2012 with new controller
-mythen_flat_field_file = "/dls/i11/software/mythen/diamond/flatfield/Sum_Flat_Field_E15keV_T7500eV_03May2012.raw"
-mythen_data_directory = "/dls/i11/data/2009/ee0"
-
-mythen_client = gda.device.detector.mythen.client.TextClientMythenClient()
-mythen_client.setHost("i11-mcs02")
-#mythen_client = gda.device.detector.mythen.client.DummyMythenClient(18)
-
-mythen_bad_channels = gda.device.detector.mythen.data.FileBadChannelProvider(java.io.File(mythen_bad_channels_file))
-mythen_ang_cal_params = gda.device.detector.mythen.data.AngularCalibrationParametersFile(java.io.File(mythen_ang_cal_params_file))
-mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(mythen_flat_field_file))
-
-mythen_data_converter = gda.device.detector.mythen.data.DataConverter()
-mythen_data_converter.setBadChannelProvider(mythen_bad_channels)
-mythen_data_converter.setAngularCalibrationParameters(mythen_ang_cal_params)
-mythen_data_converter.setFlatFieldData(mythen_flat_field)
-mythen_data_converter.setBeamlineOffset(0.08208)
-
-fastshutter1=finder.find("fastshutter")
-# task that opens the fast shutter
-mythen_open_shutter_task = gda.device.detector.mythen.tasks.OpenShutterTask()
-mythen_open_shutter_task.setShutterScannable(fastshutter1)
-
-# task that closes the fast shutter
-mythen_close_shutter_task = gda.device.detector.mythen.tasks.CloseShutterTask()
-mythen_close_shutter_task.setShutterScannable(fastshutter1)
-
-#added safty object for detectors
-macsafeposition=finder.find("macsafeposition")
-psdsafeposition=finder.find("psdsafeposition")
-# task that checks MAC detector position to avoid collision
-mythen_check_collision_task=gda.hrpd.pmac.CheckCollisionTask()
-mythen_check_collision_task.setCheckedScannable(tth) #@UndefinedVariable
-mythen_check_collision_task.setSafePosition(macsafeposition) #@UndefinedVariable
-
-# task that plots the last data point into a panel
-mythen_plot_last_data_task = gda.device.detector.mythen.tasks.PlotLastPointTask()
-mythen_plot_last_data_task.setPanelName("Mythen")
-
-delta1=finder.find("delta")
-def normal_mythen():
-    mythen = gda.device.detector.mythen.MythenDetectorImpl()
-    mythen.setName("mythen")
-    mythen.setDetectorID("mcs02")
-    mythen.setMythenClient(mythen_client)
-    mythen.setDataConverter(mythen_data_converter)
-    mythen.setDeltaScannable(delta1)
-    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
-    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
-    mythen.setAtScanEndTasks([mythen_close_shutter_task])
-    return mythen
-
-def summing_mythen():
-    mythen = gda.device.detector.mythen.SummingMythenDetector()
-    mythen.setName("smythen")
-    mythen.setDetectorID("mcs02")
-    mythen.setMythenClient(mythen_client)
-    mythen.setDataConverter(mythen_data_converter)
-    mythen.setDeltaScannable(delta1)
-    mythen.setNumberOfModules(18)
-    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
-    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
-    mythen.setAtScanEndTasks([mythen_close_shutter_task])
-    mythen.step = 0.004
-    return mythen
-
-def shutter_mythen():
-    mythen = gda.device.detector.mythen.ShutterControlledMythenDetectorImpl()
-    mythen.setName("shmythen")
-    mythen.setDetectorID("mcs02")
-    mythen.setMythenClient(mythen_client)
-    mythen.setDataConverter(mythen_data_converter)
-    mythen.setDeltaScannable(delta1)
-    mythen.setAtScanStartTasks([mythen_open_shutter_task, mythen_check_collision_task])
-    mythen.setAtPointEndTasks([mythen_plot_last_data_task])
-    mythen.setAtScanEndTasks([mythen_close_shutter_task])
-    return mythen
-
-mythen = normal_mythen()
-smythen = summing_mythen()
-shmythen = shutter_mythen()
+import gda
 
 from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
 def psd(t,n=1.0):
-    scan ds 1.0 n 1.0 mythen t 
+    scan(ds, 1.0, n, 1.0, mythen, t, Io, t, Ie, delta)  # @UndefinedVariable
+    scaler2(1)  # @UndefinedVariable
+    
 
 alias("psd")
-
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -286,7 +206,8 @@ print "-------------------------------------------------------------------------
 print "create detector collision prevention commands: 'move' and 'asynmove' "
 print "    move -- synchronous, blocking until completed, like 'pos'        "
 print "    asynmove -- asynchronous, non-blocking move                      "
-run("avoidcollision.py") #@UndefinedVariable
+#from avoidcollision import *  # @UnusedWildImport
+run("avoidcollision.py") 
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -295,8 +216,7 @@ print "    >>>setMythenFlatFieldFile('flatfield_filename')"
 print "This must be called each time you reset_namespce or restart GDA servers"
 def setMythenFlatFieldFile(filename):
     mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(filename))
-    mythen_data_converter.setFlatFieldData(mythen_flat_field)
-    mythen.setDataConverter(mythen_data_converter)
+    mythen.getDataConverter().setFlatFieldData(mythen_flat_field)  # @UndefinedVariable
 
 print
 print "---------------------------------------------------------numFrames--------------------------------------------------------"
@@ -308,7 +228,8 @@ theta1=finder.find("theta")
 rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 print "Create 'psdrt' command for PSD data collection with theta rocking"
 def psdrt(t, n=1.0):
-    scan ds 1.0 n 1.0 mythen t rocktheta
+    scan(ds, 1.0, n, 1.0, mythen, t, rocktheta, Io, t, Ie, delta)  # @UndefinedVariable
+    scaler2(1)  # @UndefinedVariable
 
 alias("psdrt")
 
@@ -336,7 +257,7 @@ print "-------------------------------------------------------------------------
 print "Create an 'interruptable()' function which can be used to make for-loop interruptable in GDA."
 print "    To use this, you must place 'interruptable()' call as the 1st or last line in your for-loop."
 def interruptable():
-    GeneralCommands.pause()
+    enable_pause_or_interrupt()
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Create 'cvscan' command"
 alias("cvscan") 
@@ -359,8 +280,74 @@ from peloop.pedatacapturer import DataCapturer
 pedata=DataCapturer("pedata")
 print "create 'pel' object for PE Loop experiment"
 from tfg_peloop import PELoop
-pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)
+pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)  # @UndefinedVariable
 daserver=finder.find("daserver")
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "create derivative scannable 'deriv' object to provide derivative value of enegry to elt1"
+from scan_detetor_with_derivative import DeviceDerivativeClass
+deriv = DeviceDerivativeClass("deriv", "energy", "etl1", "derivative");
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "create extra pixium scannables: pixium_PUMode, pixium_BaseExposure, pixium_BaseAcquirePeriod, pixium_EarlyFrames, pixium_TotalCount,pixium_FanSpeed1,pixium_FanSpeed2,pixium_DetectorTemperature"
+try:
+    pixium_PUMode = DisplayEpicsPVClass('pixium_PUMode', 'BL11I-EA-DET-10:CAM:PuMode_RBV', 'PU', '%i')
+    pixium_BaseExposure = DisplayEpicsPVClass('pixium_BaseExposure', 'BL11I-EA-DET-10:CAM:AcquireTime_RBV', 's', '%.3f')
+    pixium_BaseAcquirePeriod = DisplayEpicsPVClass('pixium_BaseAcquirePeriod', 'BL11I-EA-DET-10:CAM:AcquirePeriod_RBV', 's', '%.3f')
+    pixium_EarlyFrames = DisplayEpicsPVClass('pixium_EarlyFrames', 'BL11I-EA-DET-10:CAM:MotionBlur', 'status', '%.0f')
+
+    pixium_TotalCount = DisplayEpicsPVClass('pixium_TotalCount', 'BL11I-EA-DET-10:STAT:Total_RBV', 'count', '%.0f') 
+    pixium_FanSpeed1 = DisplayEpicsPVClass('pixium_FanSpeed1', 'BL11I-EA-DET-10:CAM:DetectorFan1Speed', 'rpm', '%.0f')
+    pixium_FanSpeed2 = DisplayEpicsPVClass('pixium_FanSpeed2', 'BL11I-EA-DET-10:CAM:DetectorFan2Speed', 'rpm', '%.0f')
+    pixium_DetectorTemperature = DisplayEpicsPVClass('pixium_DetectorTemperature', 'BL11I-EA-DET-10:CAM:DetectorTemperature', 'degree', '%.1f') 
+except:
+    print "cannot create extra pixium scannables"
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "setup meta-data provider commands:meta_add, meta_ll, meta_ls, meta_rm "
+import metashop
+
+print "-----------------------------------------------------------------------------------------------------------------"
+print "adding meta scannables to PIXIUM use: meta_add_allPIXIUM()"
+_meta_scannables_names_PIXIUM = []
+# append items to the list below as required
+#_meta_scannables_names_PIXIUMi12.append("ring")
+_meta_scannables_names_PIXIUM.append("pixium_PUMode")
+_meta_scannables_names_PIXIUM.append("pixium_BaseExposure")
+_meta_scannables_names_PIXIUM.append("pixium_BaseAcquirePeriod")
+_meta_scannables_names_PIXIUM.append("pixium_EarlyFrames")
+
+_meta_scannables_PIXIUM = []
+def meta_add_allPIXIUM():
+    for sname in _meta_scannables_names_PIXIUM:
+        if type(finder.find(sname)) is not NoneType:
+            _meta_scannables_PIXIUM.append(finder.find(sname))
+        else:
+            try:
+                print "at adding: " + sname
+                eval(sname)
+                _meta_scannables_PIXIUM.append(eval(sname))
+            except:
+                msg = "\t Unable to find a meta scannable named: " + sname
+                print msg
+    for s in _meta_scannables_PIXIUM:
+        metashop.meta_add(s)
+alias("meta_add_allPIXIUM")
+
+print "Remove meta scannables from PIXIUM, use: meta_rm_allPIXIUM()"
+def meta_rm_allPIXIUM():
+    for sname in _meta_scannables_names_PIXIUM:
+        try:
+            print "at removing: " + sname
+            eval(sname)
+            metashop.meta_rm(eval(sname))
+        except:
+            msg = "\t Unable to find a meta scannable named: " + sname
+            print msg
+alias("meta_rm_allPIXIUM")
+
+dose=DoseControl("dose","BL11I-EA-GIR-01:BPR:P:RD")
+vac=VacControl("vac")
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";
@@ -372,6 +359,8 @@ if bm1.isBeamOn():
     print "PHOTON BEAM IS ON SAMPLE NOW."
 else:
     print "NO PHOTON BEAM ON SAMPLE."
+
+
 # setup I11 specific scans
 #### The XPS CVScan commands and objects - replaced by PMAC CVScan object
 #print "---------------------------------------------------------------------------------------------"

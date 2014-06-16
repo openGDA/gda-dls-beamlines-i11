@@ -1,8 +1,8 @@
 #!/bin/bash
 
-notify-send -t 10000 "GDA is starting..."
+notify-send -t 10000 "GDA Client is starting..."
 
-. /$SOFTWAREFOLDER/$BEAMLINE/software/gda/$BEAMLINE-config/bin/gda_environment.sh
+. /$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin/gda_environment.sh
 if [ -f "/etc/profile.d/modules.sh" ]; then
 	. /etc/profile.d/modules.sh	
 	module load java/gda
@@ -23,9 +23,9 @@ fi
 lpoptions -d b.i11.cc2.col.1 -o job-sheets=none,none
 
 if [ -n "$JAVA_OPTS" ] ; then
-	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof $JAVA_OPTS"
+	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:ErrorFile=/tmp/hs_err_pid%p.log -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof $JAVA_OPTS"
 else
-	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof"
+	export JAVA_OPTS="-Xms128m -Xmx2048m -XX:MaxPermSize=256m -XX:ErrorFile=/tmp/hs_err_pid%p.log -XX:-HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/gdaclient.hprof"
 fi
 
 `dirname $0`/gda_command client  $@ -x ../clients/main/live/client.xml

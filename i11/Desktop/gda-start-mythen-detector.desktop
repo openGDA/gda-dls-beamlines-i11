@@ -2,11 +2,11 @@
 Encoding=UTF-8
 Name=gda-start-mythen-detector
 Type=Application
-Exec=/dls_sw/i11/software/mythen/NewMythenMCS/bin/NewMythenII -x04sa -f /dls_sw/i11/software/mythen/diamond/config/config.txt
+Exec=/dls/i11/software/mythen/NewMythenMCS/bin/NewMythenII -x04sa -f /dls/i11/software/mythen/diamond/config/config.txt
 Terminal=false
 Name[en_GB]=Start Mythen Detector
 GenericName[en_GB]=Start Mythen Detector
 Comment[en_GB]=Start Mythen Detector
-Icon[en_GB]=/dls_sw/i11/software/mythen/mythen/build/NewMythenMCS/src/mythen.jpg
-Icon=/dls_sw/i11/software/mythen/mythen/build/NewMythenMCS/src/mythen.jpg
+Icon[en_GB]=/dls/i11/software/mythen/mythen/build/NewMythenMCS/src/mythen.jpg
+Icon=/dls/i11/software/mythen/mythen/build/NewMythenMCS/src/mythen.jpg
 Categories=X-opengda;

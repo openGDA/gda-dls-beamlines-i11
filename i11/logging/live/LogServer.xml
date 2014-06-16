@@ -21,6 +21,12 @@
         <ReconnectionDelay>10000</ReconnectionDelay>
         <IncludeCallerData>true</IncludeCallerData>
     </appender>    
+    <appender name="WS008_LogPanel1" class="ch.qos.logback.classic.net.SocketAppender">
+        <RemoteHost>i11-ws008.diamond.ac.uk</RemoteHost>
+        <Port>${gda.logPanel.logging.port}</Port>
+        <ReconnectionDelay>10000</ReconnectionDelay>
+        <IncludeCallerData>true</IncludeCallerData>
+    </appender>    
     <appender name="DebugFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${gda.logs.dir}/gda.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -50,6 +56,7 @@
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="WS001_LogPanel1"/>
         <appender-ref ref="WS002_LogPanel1"/>
+        <appender-ref ref="WS008_LogPanel1"/>
         <appender-ref ref="DebugFILE"/>
     </root>
 </configuration>

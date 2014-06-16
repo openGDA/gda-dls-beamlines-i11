@@ -11,10 +11,10 @@ fi
 export SOFTWAREFOLDER=dls_sw
 export GDA_ROOT=/$SOFTWAREFOLDER/$BEAMLINE/software/gda
 export GDA_CONFIG=${GDA_ROOT}/config
-export GDA_DATADIR=/$SOFTWAREFOLDER/$BEAMLINE/data
+export GDA_DATADIR=/dls/$BEAMLINE/data
 
 #IDL VM settings
-export IDL_DIR=/$SOFTWAREFOLDER/$BEAMLINE/software/itt/idl
+export IDL_DIR=/dls/$BEAMLINE/software/itt/idl
 export IDL_DLM_PATH=${IDL_DIR}/bin/bin.linux.x86
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${IDL_DLM_PATH}
 export PATH=$PATH:${IDL_DLM_PATH}
@@ -23,5 +23,5 @@ export IDL_JAVA_WRAPPER_CLASS=${GDA_CONFIG}/idlobjects
 
 export CLASSPATH="$CLASSPATH:${IDL_DIR}/resource/bridges/export/java/javaidlb.jar:${IDL_JAVA_WRAPPER_CLASS}"
 
-export PATH=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin:/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/pytools/src:/dls_sw/dasc/bin/iKittenScripts:/$SOFTWAREFOLDER/$BEAMLINE/bin:$PATH
+export PATH=/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/bin:/$SOFTWAREFOLDER/$BEAMLINE/software/gda/config/pytools/src:/dls_sw/dasc/bin/dicat_scripts:/$SOFTWAREFOLDER/$BEAMLINE/bin:$PATH
 

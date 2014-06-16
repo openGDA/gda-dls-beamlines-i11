@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://serv0002.cs.diamond.ac.uk/repos/controls/diamond/release/support/gda/2011-3/gdaApp/src/genericBeamlineSchema.xsd">
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://serv0002.cs.diamond.ac.uk/repos/controls/diamond/release/support/gda/2012-4/gdaApp/src/genericBeamlineSchema.xsd">
 	<simplePv desc="GBC Temperature 1" name="GBC.TEMP1">
 		<RECORD desc="Temperature" pv="BL11I-RS-ABSB-01:TEMP1" ro="true" type="pv"/>
 	</simplePv>
@@ -165,6 +165,24 @@
 		<LLIM desc="sets lower threshold" pv="BL11I-DI-IMON-02:E1:LLIM" ro="false" type="pv"/>
 		<ULIMRBV desc="gets upper threshold" pv="BL11I-DI-IMON-02:E1:ULIM:RBV" ro="false" type="pv"/>
 		<LLIMRBV desc="gets lower threshold" pv="BL11I-DI-IMON-02:E1:LLIM:RBV" ro="false" type="pv"/>
+	</ETLdetector>
+	<ETLdetector desc="ENV ETL detector 1" name="ENV.E1">
+		<HVADC desc="read the hv output voltage" pv="BL11I-EA-ENV-01:E1:HVADC" ro="true" type="pv"/>
+		<HVRBV desc="gets hv control voltage" pv="BL11I-EA-ENV-01:E1:CTRL:RBV" ro="true" type="pv"/>
+		<HV desc="sets hv control voltage" pv="BL11I-EA-ENV-01:E1:CTRL" ro="false" type="pv"/>
+		<ULIM desc="sets upper threshold" pv="BL11I-EA-ENV-01:E1:ULIM" ro="false" type="pv"/>
+		<LLIM desc="sets lower threshold" pv="BL11I-EA-ENV-01:E1:LLIM" ro="false" type="pv"/>
+		<ULIMRBV desc="gets upper threshold" pv="BL11I-EA-ENV-01:E1:ULIM:RBV" ro="false" type="pv"/>
+		<LLIMRBV desc="gets lower threshold" pv="BL11I-EA-ENV-01:E1:LLIM:RBV" ro="false" type="pv"/>
+	</ETLdetector>
+	<ETLdetector desc="ENV ETL detector 2" name="ENV.E2">
+		<HVADC desc="read the hv output voltage" pv="BL11I-EA-ENV-01:E2:HVADC" ro="true" type="pv"/>
+		<HVRBV desc="gets hv control voltage" pv="BL11I-EA-ENV-01:E2:CTRL:RBV" ro="true" type="pv"/>
+		<HV desc="sets hv control voltage" pv="BL11I-EA-ENV-01:E2:CTRL" ro="false" type="pv"/>
+		<ULIM desc="sets upper threshold" pv="BL11I-EA-ENV-01:E2:ULIM" ro="false" type="pv"/>
+		<LLIM desc="sets lower threshold" pv="BL11I-EA-ENV-01:E2:LLIM" ro="false" type="pv"/>
+		<ULIMRBV desc="gets upper threshold" pv="BL11I-EA-ENV-01:E2:ULIM:RBV" ro="false" type="pv"/>
+		<LLIMRBV desc="gets lower threshold" pv="BL11I-EA-ENV-01:E2:LLIM:RBV" ro="false" type="pv"/>
 	</ETLdetector>
 	<ETLdetector desc="ETL detector 1" name="MAC1.E1">
 		<HVADC desc="read the hv output voltage" pv="BL11I-EA-MAC-01:E1:HVADC" ro="true" type="pv"/>
@@ -571,23 +589,47 @@
 		<ULIMRBV desc="gets upper threshold" pv="BL11I-EA-MAC-05:E9:ULIM:RBV" ro="false" type="pv"/>
 		<LLIMRBV desc="gets lower threshold" pv="BL11I-EA-MAC-05:E9:LLIM:RBV" ro="false" type="pv"/>
 	</ETLdetector>
-	<simpleScaler desc="Scaler Card 1" name="SCAL1">
+	<simpleMotor desc="Energy" name="DCM.ENERGY">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ENERGY" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Offset" name="DCM.OFFSET">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:OFFSET" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Bragg Angle" name="DCM.BRAGG">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:BRAGG" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Crystal Gap" name="DCM.T2">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:T2" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Roll 1" name="DCM.ROLL1">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ROLL1" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Pitch 2" name="DCM.PITCH2">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:PITCH2" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Roll 2" name="DCM.ROLL2">
+		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ROLL2" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Wavelength (virtual)" name="DCM.LAMBDA">
+		<RECORD desc="Motor Record" pv="BL11I-OP-DCM-01:LAMBDA" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleScaler desc="Scaler Card" name="SCAL1">
 		<RECORD desc="Scaler" pv="BL11I-EA-COUNT-01" ro="false" type="scaler"/>
 	</simpleScaler>
-	<simpleScaler desc="Scaler Card 2" name="SCAL2">
+	<simpleScaler desc="Scaler Card" name="SCAL2">
 		<RECORD desc="Scaler" pv="BL11I-EA-COUNT-02" ro="false" type="scaler"/>
 	</simpleScaler>
-	<mcaGroup desc="Scaler 1 MCS" name="SCAL1.MCS">
-		<ERASESTART desc="Clear all spectrums and start acquiring" pv="BL11I-EA-COUNT-01:MCA-01:EraseStart" ro="false" type="binary"/>
+	<mcaGroup desc="Scaler MCS" name="SCAL1.MCS">
 		<ERASE desc="Clear all spectrums" pv="BL11I-EA-COUNT-01:MCA-01:EraseAll" ro="false" type="binary"/>
+		<ERASESTART desc="Clear all spectrums and start acquiring" pv="BL11I-EA-COUNT-01:MCA-01:EraseStart" ro="false" type="binary"/>
 		<START desc="Start acquiring" pv="BL11I-EA-COUNT-01:MCA-01:StartAll" ro="false" type="binary"/>
+		<ACQ desc="Acquiring status" pv="BL11I-EA-COUNT-01:MCA-01:Acquiring" ro="true" type="binary"/>
 		<STOP desc="Stop acquiring" pv="BL11I-EA-COUNT-01:MCA-01:StopAll" ro="false" type="binary"/>
-		<NBINS desc="Number of bins to use in spectrum" pv="BL11I-EA-COUNT-01:MCA-01:NuseAll" ro="false" type="pv"/>
+		<TACQ desc="Set total acquisition time" pv="BL11I-EA-COUNT-01:MCA-01:PresetReal" ro="false" type="pv"/>
+		<TREAL desc="Real time since start of acquisition" pv="BL11I-EA-COUNT-01:MCA-01:ElapsedReal" ro="true" type="pv"/>
 		<STATRATE desc="Status update rate" pv="BL11I-EA-COUNT-01:MCA-01:StatusAll.SCAN" ro="false" type="pv"/>
 		<READRATE desc="Data update rate" pv="BL11I-EA-COUNT-01:MCA-01:ReadAll.SCAN" ro="false" type="pv"/>
-		<TREAL desc="Real time since start of acquisition" pv="BL11I-EA-COUNT-01:MCA-01:ElapsedReal" ro="true" type="pv"/>
-		<ACQ desc="Acquiring status" pv="BL11I-EA-COUNT-01:MCA-01:Acquiring" ro="true" type="binary"/>
-		<TACQ desc="Set total acquisition time" pv="BL11I-EA-COUNT-01:MCA-01:PresetReal" ro="false" type="pv"/>
+		<NBINS desc="Number of bins to use in spectrum" pv="BL11I-EA-COUNT-01:MCA-01:NuseAll" ro="false" type="pv"/>
 		<TDWELL desc="Set integration time [s] for incrementing bin number" pv="BL11I-EA-COUNT-01:MCA-01:Dwell" ro="false" type="pv"/>
 		<BINADV desc="Set internal or external bin advance signal" pv="BL11I-EA-COUNT-01:MCA-01:ChannelAdvance" ro="false" type="binary"/>
 		<EXTPRE desc="External bin advance prescaler" pv="BL11I-EA-COUNT-01:MCA-01:Prescale" ro="false" type="pv"/>
@@ -624,17 +666,17 @@
 		<SIG31 desc="SIS3820 input signal number 31" pv="BL11I-EA-COUNT-01:MCA-01:mca31" ro="false" type="mca"/>
 		<SIG32 desc="SIS3820 input signal number 32" pv="BL11I-EA-COUNT-01:MCA-01:mca32" ro="false" type="mca"/>
 	</mcaGroup>
-	<mcaGroup desc="Scaler 2 MCS" name="SCAL2.MCS">
-		<ERASESTART desc="Clear all spectrums and start acquiring" pv="BL11I-EA-COUNT-02:MCA-01:EraseStart" ro="false" type="binary"/>
+	<mcaGroup desc="Scaler MCS" name="SCAL2.MCS">
 		<ERASE desc="Clear all spectrums" pv="BL11I-EA-COUNT-02:MCA-01:EraseAll" ro="false" type="binary"/>
+		<ERASESTART desc="Clear all spectrums and start acquiring" pv="BL11I-EA-COUNT-02:MCA-01:EraseStart" ro="false" type="binary"/>
 		<START desc="Start acquiring" pv="BL11I-EA-COUNT-02:MCA-01:StartAll" ro="false" type="binary"/>
+		<ACQ desc="Acquiring status" pv="BL11I-EA-COUNT-02:MCA-01:Acquiring" ro="true" type="binary"/>
 		<STOP desc="Stop acquiring" pv="BL11I-EA-COUNT-02:MCA-01:StopAll" ro="false" type="binary"/>
-		<NBINS desc="Number of bins to use in spectrum" pv="BL11I-EA-COUNT-02:MCA-01:NuseAll" ro="false" type="pv"/>
+		<TACQ desc="Set total acquisition time" pv="BL11I-EA-COUNT-02:MCA-01:PresetReal" ro="false" type="pv"/>
+		<TREAL desc="Real time since start of acquisition" pv="BL11I-EA-COUNT-02:MCA-01:ElapsedReal" ro="true" type="pv"/>
 		<STATRATE desc="Status update rate" pv="BL11I-EA-COUNT-02:MCA-01:StatusAll.SCAN" ro="false" type="pv"/>
 		<READRATE desc="Data update rate" pv="BL11I-EA-COUNT-02:MCA-01:ReadAll.SCAN" ro="false" type="pv"/>
-		<TREAL desc="Real time since start of acquisition" pv="BL11I-EA-COUNT-02:MCA-01:ElapsedReal" ro="true" type="pv"/>
-		<ACQ desc="Acquiring status" pv="BL11I-EA-COUNT-02:MCA-01:Acquiring" ro="true" type="binary"/>
-		<TACQ desc="Set total acquisition time" pv="BL11I-EA-COUNT-02:MCA-01:PresetReal" ro="false" type="pv"/>
+		<NBINS desc="Number of bins to use in spectrum" pv="BL11I-EA-COUNT-02:MCA-01:NuseAll" ro="false" type="pv"/>
 		<TDWELL desc="Set integration time [s] for incrementing bin number" pv="BL11I-EA-COUNT-02:MCA-01:Dwell" ro="false" type="pv"/>
 		<BINADV desc="Set internal or external bin advance signal" pv="BL11I-EA-COUNT-02:MCA-01:ChannelAdvance" ro="false" type="binary"/>
 		<EXTPRE desc="External bin advance prescaler" pv="BL11I-EA-COUNT-02:MCA-01:Prescale" ro="false" type="pv"/>
@@ -671,30 +713,6 @@
 		<SIG31 desc="SIS3820 input signal number 31" pv="BL11I-EA-COUNT-02:MCA-01:mca31" ro="false" type="mca"/>
 		<SIG32 desc="SIS3820 input signal number 32" pv="BL11I-EA-COUNT-02:MCA-01:mca32" ro="false" type="mca"/>
 	</mcaGroup>
-	<simpleMotor desc="Energy" name="DCM.ENERGY">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ENERGY" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Offset" name="DCM.OFFSET">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:OFFSET" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Bragg Angle" name="DCM.BRAGG">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:BRAGG" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Crystal Gap" name="DCM.T2">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:T2" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Roll 1" name="DCM.ROLL1">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ROLL1" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Pitch 2" name="DCM.PITCH2">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:PITCH2" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Roll 2" name="DCM.ROLL2">
-		<RECORD desc="Motor" pv="BL11I-OP-DCM-01:ROLL2" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Wavelength (virtual)" name="DCM.LAMBDA">
-		<RECORD desc="Motor Record" pv="BL11I-OP-DCM-01:LAMBDA" ro="false" type="motor"/>
-	</simpleMotor>
 	<xiaArray desc="Xia Filter Array" name="XIA">
 		<AA1F1 desc="Actual position of filter 1 - array 1" pv="BL11I-DI-XIA-01:A1:F1STATE" ro="true" type="binary"/>
 		<AA1F2 desc="Actual position of filter 2 - array 1" pv="BL11I-DI-XIA-01:A1:F2STATE" ro="true" type="binary"/>
@@ -738,6 +756,7 @@
 		<RANGE desc="Range Selection" pv="BL11I-DI-QBPM-03:RANGE_MENU" ro="false" type="mbbinary"/>
 		<VENDOR desc="Vendor String" pv="BL11I-DI-QBPM-03:VENDOR" ro="true" type="pv"/>
 		<MODEL desc="Model String" pv="BL11I-DI-QBPM-03:MODEL" ro="true" type="pv"/>
+		<DISABLE desc="disable comms" pv="BL11I-DI-QBPM-03:DISABLE" ro="false" type="binary"/>
 	</currAmpQuad>
 	<bpm desc="BPM3 bpm" name="BPM3.BPM">
 		<INTENSITY desc="Summed intensity value" pv="BL11I-DI-QBPM-03:INTEN" ro="true" type="pv"/>
@@ -746,6 +765,7 @@
 	</bpm>
 	<currAmpQuad desc="Slits 4 current amp" name="S4.AMP">
 		<RANGE desc="Range Selection" pv="BL11I-DI-IAMP-04:SETRANGE" ro="false" type="mbbinary"/>
+		<RANGE_READBACK desc="Range Readback" pv="BL11I-DI-IAMP-04:MRREADBACK" ro="true" type="mbbinary"/>
 		<VENDOR desc="Vendor String" pv="BL11I-DI-IAMP-04:VENDOR" ro="true" type="pv"/>
 		<MODEL desc="Model String" pv="BL11I-DI-IAMP-04:MODEL" ro="true" type="pv"/>
 		<I1 desc="Channel 1 Current" pv="BL11I-AL-SLITS-04:BPMI1" ro="true" type="pv"/>
@@ -762,6 +782,625 @@
 	<simplePv desc="Pitch 2 absolute value" name="DCM.PITCH2LVDT">
 		<RECORD desc="analogue input" pv="BL11I-OP-DCM-01:PITCH2:LVDT" ro="true" type="pv"/>
 	</simplePv>
+	<ADBase desc="MAR345DET.CAM ADBase class instance" name="MAR345DET.CAM_ADBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:cam1:PortName_RBV" ro="true" type="pv"/>
+		<Manufacturer_RBV desc="Readback for Manufacturer" pv="BL11I-EA-DET-02:cam1:Manufacturer_RBV" ro="true" type="pv"/>
+		<Model_RBV desc="Readback for Model" pv="BL11I-EA-DET-02:cam1:Model_RBV" ro="true" type="pv"/>
+		<MaxSizeX_RBV desc="Readback for MaxSizeX" pv="BL11I-EA-DET-02:cam1:MaxSizeX_RBV" ro="true" type="pv"/>
+		<MaxSizeY_RBV desc="Readback for MaxSizeY" pv="BL11I-EA-DET-02:cam1:MaxSizeY_RBV" ro="true" type="pv"/>
+		<DataType desc="Set DataType" pv="BL11I-EA-DET-02:cam1:DataType" ro="false" type="mbbinary"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:cam1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode desc="Set ColorMode" pv="BL11I-EA-DET-02:cam1:ColorMode" ro="false" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:cam1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BinX desc="Set BinX" pv="BL11I-EA-DET-02:cam1:BinX" ro="false" type="pv"/>
+		<BinX_RBV desc="Readback for BinX" pv="BL11I-EA-DET-02:cam1:BinX_RBV" ro="true" type="pv"/>
+		<BinY desc="Set BinY" pv="BL11I-EA-DET-02:cam1:BinY" ro="false" type="pv"/>
+		<BinY_RBV desc="Readback for BinY" pv="BL11I-EA-DET-02:cam1:BinY_RBV" ro="true" type="pv"/>
+		<MinX desc="Set MinX" pv="BL11I-EA-DET-02:cam1:MinX" ro="false" type="pv"/>
+		<MinX_RBV desc="Readback for MinX" pv="BL11I-EA-DET-02:cam1:MinX_RBV" ro="true" type="pv"/>
+		<MinY desc="Set MinY" pv="BL11I-EA-DET-02:cam1:MinY" ro="false" type="pv"/>
+		<MinY_RBV desc="Readback for MinY" pv="BL11I-EA-DET-02:cam1:MinY_RBV" ro="true" type="pv"/>
+		<SizeX desc="Set SizeX" pv="BL11I-EA-DET-02:cam1:SizeX" ro="false" type="pv"/>
+		<SizeX_RBV desc="Readback for SizeX" pv="BL11I-EA-DET-02:cam1:SizeX_RBV" ro="true" type="pv"/>
+		<SizeY desc="Set SizeY" pv="BL11I-EA-DET-02:cam1:SizeY" ro="false" type="pv"/>
+		<SizeY_RBV desc="Readback for SizeY" pv="BL11I-EA-DET-02:cam1:SizeY_RBV" ro="true" type="pv"/>
+		<ReverseX desc="Set ReverseX" pv="BL11I-EA-DET-02:cam1:ReverseX" ro="false" type="binary"/>
+		<ReverseX_RBV desc="Readback for ReverseX" pv="BL11I-EA-DET-02:cam1:ReverseX_RBV" ro="true" type="binary"/>
+		<ReverseY desc="Set ReverseY" pv="BL11I-EA-DET-02:cam1:ReverseY" ro="false" type="binary"/>
+		<ReverseY_RBV desc="Readback for ReverseY" pv="BL11I-EA-DET-02:cam1:ReverseY_RBV" ro="true" type="binary"/>
+		<ArraySizeX_RBV desc="Readback for ArraySizeX" pv="BL11I-EA-DET-02:cam1:ArraySizeX_RBV" ro="true" type="pv"/>
+		<ArraySizeY_RBV desc="Readback for ArraySizeY" pv="BL11I-EA-DET-02:cam1:ArraySizeY_RBV" ro="true" type="pv"/>
+		<ArraySizeZ_RBV desc="Readback for ArraySizeZ" pv="BL11I-EA-DET-02:cam1:ArraySizeZ_RBV" ro="true" type="pv"/>
+		<ArraySize_RBV desc="Readback for ArraySize" pv="BL11I-EA-DET-02:cam1:ArraySize_RBV" ro="true" type="pv"/>
+		<AcquireTime desc="Set AcquireTime" pv="BL11I-EA-DET-02:cam1:AcquireTime" ro="false" type="pv"/>
+		<AcquireTime_RBV desc="Readback for AcquireTime" pv="BL11I-EA-DET-02:cam1:AcquireTime_RBV" ro="true" type="pv"/>
+		<AcquirePeriod desc="Set AcquirePeriod" pv="BL11I-EA-DET-02:cam1:AcquirePeriod" ro="false" type="pv"/>
+		<AcquirePeriod_RBV desc="Readback for AcquirePeriod" pv="BL11I-EA-DET-02:cam1:AcquirePeriod_RBV" ro="true" type="pv"/>
+		<TimeRemaining_RBV desc="Readback for TimeRemaining" pv="BL11I-EA-DET-02:cam1:TimeRemaining_RBV" ro="true" type="pv"/>
+		<Gain desc="Set Gain" pv="BL11I-EA-DET-02:cam1:Gain" ro="false" type="pv"/>
+		<Gain_RBV desc="Readback for Gain" pv="BL11I-EA-DET-02:cam1:Gain_RBV" ro="true" type="pv"/>
+		<FrameType desc="Set FrameType" pv="BL11I-EA-DET-02:cam1:FrameType" ro="false" type="mbbinary"/>
+		<FrameType_RBV desc="Readback for FrameType" pv="BL11I-EA-DET-02:cam1:FrameType_RBV" ro="true" type="mbbinary"/>
+		<ImageMode desc="Set ImageMode" pv="BL11I-EA-DET-02:cam1:ImageMode" ro="false" type="mbbinary"/>
+		<ImageMode_RBV desc="Readback for ImageMode" pv="BL11I-EA-DET-02:cam1:ImageMode_RBV" ro="true" type="mbbinary"/>
+		<TriggerMode desc="Set TriggerMode" pv="BL11I-EA-DET-02:cam1:TriggerMode" ro="false" type="mbbinary"/>
+		<TriggerMode_RBV desc="Readback for TriggerMode" pv="BL11I-EA-DET-02:cam1:TriggerMode_RBV" ro="true" type="mbbinary"/>
+		<NumExposures desc="Set NumExposures" pv="BL11I-EA-DET-02:cam1:NumExposures" ro="false" type="pv"/>
+		<NumExposures_RBV desc="Readback for NumExposures" pv="BL11I-EA-DET-02:cam1:NumExposures_RBV" ro="true" type="pv"/>
+		<NumExposuresCounter_RBV desc="Readback for NumExposuresCounter" pv="BL11I-EA-DET-02:cam1:NumExposuresCounter_RBV" ro="true" type="pv"/>
+		<NumImages desc="Set NumImages" pv="BL11I-EA-DET-02:cam1:NumImages" ro="false" type="pv"/>
+		<NumImages_RBV desc="Readback for NumImages" pv="BL11I-EA-DET-02:cam1:NumImages_RBV" ro="true" type="pv"/>
+		<NumImagesCounter_RBV desc="Readback for NumImagesCounter" pv="BL11I-EA-DET-02:cam1:NumImagesCounter_RBV" ro="true" type="pv"/>
+		<Acquire desc="Set Acquire" pv="BL11I-EA-DET-02:cam1:Acquire" ro="false" type="pv"/>
+		<Acquire_RBV desc="Readback for Acquire" pv="BL11I-EA-DET-02:cam1:Acquire_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:cam1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:cam1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:cam1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DetectorState_RBV desc="Readback for DetectorState" pv="BL11I-EA-DET-02:cam1:DetectorState_RBV" ro="true" type="mbbinary"/>
+		<ArrayCallbacks desc="Set ArrayCallbacks" pv="BL11I-EA-DET-02:cam1:ArrayCallbacks" ro="false" type="binary"/>
+		<ArrayCallbacks_RBV desc="Readback for ArrayCallbacks" pv="BL11I-EA-DET-02:cam1:ArrayCallbacks_RBV" ro="true" type="binary"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:cam1:NDAttributesFile" ro="false" type="array"/>
+		<StatusMessage_RBV desc="Readback for StatusMessage" pv="BL11I-EA-DET-02:cam1:StatusMessage_RBV" ro="true" type="array"/>
+		<StringToServer_RBV desc="Readback for StringToServer" pv="BL11I-EA-DET-02:cam1:StringToServer_RBV" ro="true" type="array"/>
+		<StringFromServer_RBV desc="Readback for StringFromServer" pv="BL11I-EA-DET-02:cam1:StringFromServer_RBV" ro="true" type="array"/>
+		<ReadStatus desc="Force read of Status" pv="BL11I-EA-DET-02:cam1:ReadStatus" ro="false" type="binary"/>
+		<ShutterMode desc="Set ShutterMode" pv="BL11I-EA-DET-02:cam1:ShutterMode" ro="false" type="mbbinary"/>
+		<ShutterMode_RBV desc="Readback for ShutterMode" pv="BL11I-EA-DET-02:cam1:ShutterMode_RBV" ro="true" type="mbbinary"/>
+		<ShutterControl desc="Set ShutterControl" pv="BL11I-EA-DET-02:cam1:ShutterControl" ro="false" type="binary"/>
+		<ShutterControl_RBV desc="Readback for ShutterControl" pv="BL11I-EA-DET-02:cam1:ShutterControl_RBV" ro="true" type="binary"/>
+		<ShutterStatus_RBV desc="Readback for ShutterStatus" pv="BL11I-EA-DET-02:cam1:ShutterStatus_RBV" ro="true" type="binary"/>
+		<ShutterOpenDelay desc="Set ShutterOpenDelay" pv="BL11I-EA-DET-02:cam1:ShutterOpenDelay" ro="false" type="pv"/>
+		<ShutterOpenDelay_RBV desc="Readback for ShutterOpenDelay" pv="BL11I-EA-DET-02:cam1:ShutterOpenDelay_RBV" ro="true" type="pv"/>
+		<ShutterCloseDelay desc="Set ShutterCloseDelay" pv="BL11I-EA-DET-02:cam1:ShutterCloseDelay" ro="false" type="pv"/>
+		<ShutterCloseDelay_RBV desc="Readback for ShutterCloseDelay" pv="BL11I-EA-DET-02:cam1:ShutterCloseDelay_RBV" ro="true" type="pv"/>
+		<ShutterOpenEPICSPV desc="PV to write ShutterOpenEPICSCmd to" pv="BL11I-EA-DET-02:cam1:ShutterOpenEPICS.OUT" ro="false" type="pv"/>
+		<ShutterOpenEPICSCmd desc="Open command to be sent to ShutterOpenEPICS" pv="BL11I-EA-DET-02:cam1:ShutterOpenEPICS" ro="false" type="pv"/>
+		<ShutterCloseEPICSPV desc="PV to write ShutterCloseEPICSCmd to" pv="BL11I-EA-DET-02:cam1:ShutterCloseEPICS.OUT" ro="false" type="pv"/>
+		<ShutterCloseEPICSCmd desc="Close command to be sent to ShutterCloseEPICSPV" pv="BL11I-EA-DET-02:cam1:ShutterCloseEPICS.OCAL" ro="false" type="pv"/>
+		<ShutterStatusEPICS_RBV desc="Readback for ShutterStatusEPICS" pv="BL11I-EA-DET-02:cam1:ShutterStatusEPICS_RBV" ro="true" type="mbbinary"/>
+		<ShutterStatusEPICSPV desc="PV to read ShutterStatusEPICS_RBV from. Must be a &quot;CP&quot; link" pv="BL11I-EA-DET-02:cam1:ShutterStatusEPICS_RBV.INP" ro="false" type="pv"/>
+		<ShutterStatusEPICSCloseVal desc="Value of ShutterStatusEPICSPV when shutter is closed" pv="BL11I-EA-DET-02:cam1:ShutterStatusEPICS_RBV.ZRVL" ro="false" type="pv"/>
+		<ShutterStatusEPICSOpenVal desc="Value of ShutterStatusEPICSPV when shutter is open" pv="BL11I-EA-DET-02:cam1:ShutterStatusEPICS_RBV.ONVL" ro="false" type="pv"/>
+		<Temperature desc="Set Temperature" pv="BL11I-EA-DET-02:cam1:Temperature" ro="false" type="pv"/>
+		<Temperature_RBV desc="Readback for Temperature" pv="BL11I-EA-DET-02:cam1:Temperature_RBV" ro="true" type="pv"/>
+	</ADBase>
+	<NDPluginBase desc="MAR345DET.ARR1 NDPluginBase class instance" name="MAR345DET.ARR1_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:image1:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:image1:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:image1:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:image1:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:image1:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:image1:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:image1:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:image1:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:image1:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:image1:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:image1:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:image1:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:image1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:image1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:image1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:image1:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:image1:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:image1:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:image1:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:image1:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:image1:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:image1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:image1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:image1:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:image1:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:image1:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:image1:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.ROI1 NDPluginBase class instance" name="MAR345DET.ROI1_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:ROI1:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:ROI1:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:ROI1:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:ROI1:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:ROI1:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:ROI1:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:ROI1:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:ROI1:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:ROI1:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:ROI1:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:ROI1:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:ROI1:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:ROI1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:ROI1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:ROI1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:ROI1:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:ROI1:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:ROI1:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:ROI1:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:ROI1:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:ROI1:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:ROI1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:ROI1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:ROI1:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:ROI1:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:ROI1:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:ROI1:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.PROC1 NDPluginBase class instance" name="MAR345DET.PROC1_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:Proc1:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:Proc1:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:Proc1:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:Proc1:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:Proc1:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:Proc1:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:Proc1:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:Proc1:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:Proc1:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:Proc1:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:Proc1:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:Proc1:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:Proc1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:Proc1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:Proc1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:Proc1:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:Proc1:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:Proc1:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:Proc1:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:Proc1:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:Proc1:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:Proc1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:Proc1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:Proc1:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:Proc1:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:Proc1:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:Proc1:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.STATS1 NDPluginBase class instance" name="MAR345DET.STATS1_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:Stats1:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:Stats1:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:Stats1:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:Stats1:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:Stats1:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:Stats1:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:Stats1:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:Stats1:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:Stats1:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:Stats1:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:Stats1:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:Stats1:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:Stats1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:Stats1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:Stats1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:Stats1:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:Stats1:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:Stats1:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:Stats1:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:Stats1:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:Stats1:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:Stats1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:Stats1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:Stats1:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:Stats1:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:Stats1:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:Stats1:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.STATS2 NDPluginBase class instance" name="MAR345DET.STATS2_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:Stats2:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:Stats2:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:Stats2:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:Stats2:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:Stats2:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:Stats2:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:Stats2:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:Stats2:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:Stats2:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:Stats2:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:Stats2:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:Stats2:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:Stats2:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:Stats2:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:Stats2:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:Stats2:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:Stats2:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:Stats2:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:Stats2:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:Stats2:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:Stats2:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:Stats2:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:Stats2:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:Stats2:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:Stats2:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:Stats2:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:Stats2:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.HDF5 NDPluginBase class instance" name="MAR345DET.HDF5_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:HDF5:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:HDF5:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:HDF5:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:HDF5:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:HDF5:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:HDF5:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:HDF5:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:HDF5:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:HDF5:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:HDF5:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:HDF5:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:HDF5:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:HDF5:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:HDF5:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:HDF5:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:HDF5:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:HDF5:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:HDF5:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:HDF5:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:HDF5:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:HDF5:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:HDF5:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:HDF5:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:HDF5:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:HDF5:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:HDF5:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:HDF5:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="MAR345DET.MJPG1 NDPluginBase class instance" name="MAR345DET.MJPG1_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-EA-DET-02:MJPG1:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-EA-DET-02:MJPG1:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-EA-DET-02:MJPG1:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-EA-DET-02:MJPG1:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-EA-DET-02:MJPG1:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-EA-DET-02:MJPG1:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-EA-DET-02:MJPG1:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-EA-DET-02:MJPG1:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-EA-DET-02:MJPG1:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-EA-DET-02:MJPG1:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-EA-DET-02:MJPG1:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-EA-DET-02:MJPG1:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-EA-DET-02:MJPG1:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-EA-DET-02:MJPG1:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-EA-DET-02:MJPG1:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-EA-DET-02:MJPG1:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-EA-DET-02:MJPG1:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-EA-DET-02:MJPG1:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-EA-DET-02:MJPG1:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-EA-DET-02:MJPG1:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-EA-DET-02:MJPG1:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-EA-DET-02:MJPG1:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-EA-DET-02:MJPG1:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-EA-DET-02:MJPG1:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-EA-DET-02:MJPG1:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-EA-DET-02:MJPG1:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-EA-DET-02:MJPG1:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDFile desc="MAR345DET.CAM NDFile class instance" name="MAR345DET.CAM_NDFile">
+		<FilePath desc="Set FilePath" pv="BL11I-EA-DET-02:cam1:FilePath" ro="false" type="array"/>
+		<FilePath_RBV desc="Readback for FilePath" pv="BL11I-EA-DET-02:cam1:FilePath_RBV" ro="true" type="array"/>
+		<FileName desc="Set FileName" pv="BL11I-EA-DET-02:cam1:FileName" ro="false" type="array"/>
+		<FileName_RBV desc="Readback for FileName" pv="BL11I-EA-DET-02:cam1:FileName_RBV" ro="true" type="array"/>
+		<FileNumber desc="Set FileNumber" pv="BL11I-EA-DET-02:cam1:FileNumber" ro="false" type="pv"/>
+		<FileNumber_RBV desc="Readback for FileNumber" pv="BL11I-EA-DET-02:cam1:FileNumber_RBV" ro="true" type="pv"/>
+		<AutoIncrement desc="Set AutoIncrement" pv="BL11I-EA-DET-02:cam1:AutoIncrement" ro="false" type="binary"/>
+		<AutoIncrement_RBV desc="Readback for AutoIncrement" pv="BL11I-EA-DET-02:cam1:AutoIncrement_RBV" ro="true" type="binary"/>
+		<FileTemplate desc="Set FileTemplate" pv="BL11I-EA-DET-02:cam1:FileTemplate" ro="false" type="array"/>
+		<FileTemplate_RBV desc="Readback for FileTemplate" pv="BL11I-EA-DET-02:cam1:FileTemplate_RBV" ro="true" type="array"/>
+		<FullFileName_RBV desc="Readback for FullFileName" pv="BL11I-EA-DET-02:cam1:FullFileName_RBV" ro="true" type="array"/>
+		<AutoSave desc="Set AutoSave" pv="BL11I-EA-DET-02:cam1:AutoSave" ro="false" type="binary"/>
+		<AutoSave_RBV desc="Readback for AutoSave" pv="BL11I-EA-DET-02:cam1:AutoSave_RBV" ro="true" type="binary"/>
+		<WriteFile desc="Set WriteFile" pv="BL11I-EA-DET-02:cam1:WriteFile" ro="false" type="pv"/>
+		<WriteFile_RBV desc="Readback for WriteFile" pv="BL11I-EA-DET-02:cam1:WriteFile_RBV" ro="true" type="binary"/>
+		<ReadFile desc="Set ReadFile" pv="BL11I-EA-DET-02:cam1:ReadFile" ro="false" type="pv"/>
+		<ReadFile_RBV desc="Readback for ReadFile" pv="BL11I-EA-DET-02:cam1:ReadFile_RBV" ro="true" type="binary"/>
+		<FileFormat desc="Set FileFormat" pv="BL11I-EA-DET-02:cam1:FileFormat" ro="false" type="mbbinary"/>
+		<FileFormat_RBV desc="Readback for FileFormat" pv="BL11I-EA-DET-02:cam1:FileFormat_RBV" ro="true" type="mbbinary"/>
+		<FileWriteMode desc="Set FileWriteMode" pv="BL11I-EA-DET-02:cam1:FileWriteMode" ro="false" type="mbbinary"/>
+		<FileWriteMode_RBV desc="Readback for FileWriteMode" pv="BL11I-EA-DET-02:cam1:FileWriteMode_RBV" ro="true" type="mbbinary"/>
+		<Capture desc="Set Capture" pv="BL11I-EA-DET-02:cam1:Capture" ro="false" type="pv"/>
+		<Capture_RBV desc="Readback for Capture" pv="BL11I-EA-DET-02:cam1:Capture_RBV" ro="true" type="binary"/>
+		<NumCapture desc="Set NumCapture" pv="BL11I-EA-DET-02:cam1:NumCapture" ro="false" type="pv"/>
+		<NumCapture_RBV desc="Readback for NumCapture" pv="BL11I-EA-DET-02:cam1:NumCapture_RBV" ro="true" type="pv"/>
+		<NumCaptured_RBV desc="Readback for NumCaptured" pv="BL11I-EA-DET-02:cam1:NumCaptured_RBV" ro="true" type="pv"/>
+	</NDFile>
+	<NDFile desc="MAR345DET.HDF5 NDFile class instance" name="MAR345DET.HDF5_NDFile">
+		<FilePath desc="Set FilePath" pv="BL11I-EA-DET-02:HDF5:FilePath" ro="false" type="array"/>
+		<FilePath_RBV desc="Readback for FilePath" pv="BL11I-EA-DET-02:HDF5:FilePath_RBV" ro="true" type="array"/>
+		<FileName desc="Set FileName" pv="BL11I-EA-DET-02:HDF5:FileName" ro="false" type="array"/>
+		<FileName_RBV desc="Readback for FileName" pv="BL11I-EA-DET-02:HDF5:FileName_RBV" ro="true" type="array"/>
+		<FileNumber desc="Set FileNumber" pv="BL11I-EA-DET-02:HDF5:FileNumber" ro="false" type="pv"/>
+		<FileNumber_RBV desc="Readback for FileNumber" pv="BL11I-EA-DET-02:HDF5:FileNumber_RBV" ro="true" type="pv"/>
+		<AutoIncrement desc="Set AutoIncrement" pv="BL11I-EA-DET-02:HDF5:AutoIncrement" ro="false" type="binary"/>
+		<AutoIncrement_RBV desc="Readback for AutoIncrement" pv="BL11I-EA-DET-02:HDF5:AutoIncrement_RBV" ro="true" type="binary"/>
+		<FileTemplate desc="Set FileTemplate" pv="BL11I-EA-DET-02:HDF5:FileTemplate" ro="false" type="array"/>
+		<FileTemplate_RBV desc="Readback for FileTemplate" pv="BL11I-EA-DET-02:HDF5:FileTemplate_RBV" ro="true" type="array"/>
+		<FullFileName_RBV desc="Readback for FullFileName" pv="BL11I-EA-DET-02:HDF5:FullFileName_RBV" ro="true" type="array"/>
+		<AutoSave desc="Set AutoSave" pv="BL11I-EA-DET-02:HDF5:AutoSave" ro="false" type="binary"/>
+		<AutoSave_RBV desc="Readback for AutoSave" pv="BL11I-EA-DET-02:HDF5:AutoSave_RBV" ro="true" type="binary"/>
+		<WriteFile desc="Set WriteFile" pv="BL11I-EA-DET-02:HDF5:WriteFile" ro="false" type="pv"/>
+		<WriteFile_RBV desc="Readback for WriteFile" pv="BL11I-EA-DET-02:HDF5:WriteFile_RBV" ro="true" type="binary"/>
+		<ReadFile desc="Set ReadFile" pv="BL11I-EA-DET-02:HDF5:ReadFile" ro="false" type="pv"/>
+		<ReadFile_RBV desc="Readback for ReadFile" pv="BL11I-EA-DET-02:HDF5:ReadFile_RBV" ro="true" type="binary"/>
+		<FileFormat desc="Set FileFormat" pv="BL11I-EA-DET-02:HDF5:FileFormat" ro="false" type="mbbinary"/>
+		<FileFormat_RBV desc="Readback for FileFormat" pv="BL11I-EA-DET-02:HDF5:FileFormat_RBV" ro="true" type="mbbinary"/>
+		<FileWriteMode desc="Set FileWriteMode" pv="BL11I-EA-DET-02:HDF5:FileWriteMode" ro="false" type="mbbinary"/>
+		<FileWriteMode_RBV desc="Readback for FileWriteMode" pv="BL11I-EA-DET-02:HDF5:FileWriteMode_RBV" ro="true" type="mbbinary"/>
+		<Capture desc="Set Capture" pv="BL11I-EA-DET-02:HDF5:Capture" ro="false" type="pv"/>
+		<Capture_RBV desc="Readback for Capture" pv="BL11I-EA-DET-02:HDF5:Capture_RBV" ro="true" type="binary"/>
+		<NumCapture desc="Set NumCapture" pv="BL11I-EA-DET-02:HDF5:NumCapture" ro="false" type="pv"/>
+		<NumCapture_RBV desc="Readback for NumCapture" pv="BL11I-EA-DET-02:HDF5:NumCapture_RBV" ro="true" type="pv"/>
+		<NumCaptured_RBV desc="Readback for NumCaptured" pv="BL11I-EA-DET-02:HDF5:NumCaptured_RBV" ro="true" type="pv"/>
+	</NDFile>
+	<mar345 desc="MAR345DET.CAM mar345 class instance" name="MAR345DET.CAM_mar345">
+		<Abort desc="Set Abort" pv="BL11I-EA-DET-02:cam1:Abort" ro="false" type="binary"/>
+		<Abort_RBV desc="Readback for Abort" pv="BL11I-EA-DET-02:cam1:Abort_RBV" ro="true" type="binary"/>
+		<Erase desc="Set Erase" pv="BL11I-EA-DET-02:cam1:Erase" ro="false" type="pv"/>
+		<Erase_RBV desc="Readback for Erase" pv="BL11I-EA-DET-02:cam1:Erase_RBV" ro="true" type="binary"/>
+		<NumErase desc="Set NumErase" pv="BL11I-EA-DET-02:cam1:NumErase" ro="false" type="pv"/>
+		<NumErase_RBV desc="Readback for NumErase" pv="BL11I-EA-DET-02:cam1:NumErase_RBV" ro="true" type="pv"/>
+		<NumErased_RBV desc="Readback for NumErased" pv="BL11I-EA-DET-02:cam1:NumErased_RBV" ro="true" type="pv"/>
+		<EraseMode desc="Set EraseMode" pv="BL11I-EA-DET-02:cam1:EraseMode" ro="false" type="mbbinary"/>
+		<EraseMode_RBV desc="Readback for EraseMode" pv="BL11I-EA-DET-02:cam1:EraseMode_RBV" ro="true" type="mbbinary"/>
+		<ChangeMode desc="Set ChangeMode" pv="BL11I-EA-DET-02:cam1:ChangeMode" ro="false" type="pv"/>
+		<ChangeMode_RBV desc="Readback for ChangeMode" pv="BL11I-EA-DET-02:cam1:ChangeMode_RBV" ro="true" type="binary"/>
+		<ScanSize desc="Set ScanSize" pv="BL11I-EA-DET-02:cam1:ScanSize" ro="false" type="mbbinary"/>
+		<ScanSize_RBV desc="Readback for ScanSize" pv="BL11I-EA-DET-02:cam1:ScanSize_RBV" ro="true" type="mbbinary"/>
+		<ScanResolution desc="Set ScanResolution" pv="BL11I-EA-DET-02:cam1:ScanResolution" ro="false" type="mbbinary"/>
+		<ScanResolution_RBV desc="Readback for ScanResolution" pv="BL11I-EA-DET-02:cam1:ScanResolution_RBV" ro="true" type="mbbinary"/>
+	</mar345>
+	<NDStdArrays desc="MAR345DET.ARR1 NDStdArrays class instance" name="MAR345DET.ARR1_NDStdArrays">
+		<ArrayData desc="Set ArrayData" pv="BL11I-EA-DET-02:image1:ArrayData" ro="false" type="array"/>
+	</NDStdArrays>
+	<NDROI desc="MAR345DET.ROI1 NDROI class instance" name="MAR345DET.ROI1_NDROI">
+		<Label desc="Set Label" pv="BL11I-EA-DET-02:ROI1:Name" ro="false" type="pv"/>
+		<Label_RBV desc="Readback for Label" pv="BL11I-EA-DET-02:ROI1:Name_RBV" ro="true" type="pv"/>
+		<BinX desc="Set BinX" pv="BL11I-EA-DET-02:ROI1:BinX" ro="false" type="pv"/>
+		<BinX_RBV desc="Readback for BinX" pv="BL11I-EA-DET-02:ROI1:BinX_RBV" ro="true" type="pv"/>
+		<BinY desc="Set BinY" pv="BL11I-EA-DET-02:ROI1:BinY" ro="false" type="pv"/>
+		<BinY_RBV desc="Readback for BinY" pv="BL11I-EA-DET-02:ROI1:BinY_RBV" ro="true" type="pv"/>
+		<BinZ desc="Set BinZ" pv="BL11I-EA-DET-02:ROI1:BinZ" ro="false" type="pv"/>
+		<BinZ_RBV desc="Readback for BinZ" pv="BL11I-EA-DET-02:ROI1:BinZ_RBV" ro="true" type="pv"/>
+		<MinX desc="Set MinX" pv="BL11I-EA-DET-02:ROI1:MinX" ro="false" type="pv"/>
+		<MinX_RBV desc="Readback for MinX" pv="BL11I-EA-DET-02:ROI1:MinX_RBV" ro="true" type="pv"/>
+		<MinY desc="Set MinY" pv="BL11I-EA-DET-02:ROI1:MinY" ro="false" type="pv"/>
+		<MinY_RBV desc="Readback for MinY" pv="BL11I-EA-DET-02:ROI1:MinY_RBV" ro="true" type="pv"/>
+		<MinZ desc="Set MinZ" pv="BL11I-EA-DET-02:ROI1:MinZ" ro="false" type="pv"/>
+		<MinZ_RBV desc="Readback for MinZ" pv="BL11I-EA-DET-02:ROI1:MinZ_RBV" ro="true" type="pv"/>
+		<SizeX desc="Set SizeX" pv="BL11I-EA-DET-02:ROI1:SizeX" ro="false" type="pv"/>
+		<SizeX_RBV desc="Readback for SizeX" pv="BL11I-EA-DET-02:ROI1:SizeX_RBV" ro="true" type="pv"/>
+		<SizeY desc="Set SizeY" pv="BL11I-EA-DET-02:ROI1:SizeY" ro="false" type="pv"/>
+		<SizeY_RBV desc="Readback for SizeY" pv="BL11I-EA-DET-02:ROI1:SizeY_RBV" ro="true" type="pv"/>
+		<SizeZ desc="Set SizeZ" pv="BL11I-EA-DET-02:ROI1:SizeZ" ro="false" type="pv"/>
+		<SizeZ_RBV desc="Readback for SizeZ" pv="BL11I-EA-DET-02:ROI1:SizeZ_RBV" ro="true" type="pv"/>
+		<MaxSizeX_RBV desc="Readback for MaxSizeX" pv="BL11I-EA-DET-02:ROI1:MaxSizeX_RBV" ro="true" type="pv"/>
+		<MaxSizeY_RBV desc="Readback for MaxSizeY" pv="BL11I-EA-DET-02:ROI1:MaxSizeY_RBV" ro="true" type="pv"/>
+		<MaxSizeZ_RBV desc="Readback for MaxSizeZ" pv="BL11I-EA-DET-02:ROI1:MaxSizeZ_RBV" ro="true" type="pv"/>
+		<ReverseX desc="Set ReverseX" pv="BL11I-EA-DET-02:ROI1:ReverseX" ro="false" type="binary"/>
+		<ReverseX_RBV desc="Readback for ReverseX" pv="BL11I-EA-DET-02:ROI1:ReverseX_RBV" ro="true" type="binary"/>
+		<ReverseY desc="Set ReverseY" pv="BL11I-EA-DET-02:ROI1:ReverseY" ro="false" type="binary"/>
+		<ReverseY_RBV desc="Readback for ReverseY" pv="BL11I-EA-DET-02:ROI1:ReverseY_RBV" ro="true" type="binary"/>
+		<ReverseZ desc="Set ReverseZ" pv="BL11I-EA-DET-02:ROI1:ReverseZ" ro="false" type="binary"/>
+		<ReverseZ_RBV desc="Readback for ReverseZ" pv="BL11I-EA-DET-02:ROI1:ReverseZ_RBV" ro="true" type="binary"/>
+		<ArraySizeX_RBV desc="Readback for ArraySizeX" pv="BL11I-EA-DET-02:ROI1:ArraySizeX_RBV" ro="true" type="pv"/>
+		<ArraySizeY_RBV desc="Readback for ArraySizeY" pv="BL11I-EA-DET-02:ROI1:ArraySizeY_RBV" ro="true" type="pv"/>
+		<ArraySizeZ_RBV desc="Readback for ArraySizeZ" pv="BL11I-EA-DET-02:ROI1:ArraySizeZ_RBV" ro="true" type="pv"/>
+		<EnableScale desc="Set EnableScale" pv="BL11I-EA-DET-02:ROI1:EnableScale" ro="false" type="binary"/>
+		<EnableScale_RBV desc="Readback for EnableScale" pv="BL11I-EA-DET-02:ROI1:EnableScale_RBV" ro="true" type="binary"/>
+		<Scale desc="Set Scale" pv="BL11I-EA-DET-02:ROI1:Scale" ro="false" type="pv"/>
+		<Scale_RBV desc="Readback for Scale" pv="BL11I-EA-DET-02:ROI1:Scale_RBV" ro="true" type="pv"/>
+		<DataTypeOut desc="Set DataTypeOut" pv="BL11I-EA-DET-02:ROI1:DataTypeOut" ro="false" type="mbbinary"/>
+		<DataTypeOut_RBV desc="Readback for DataTypeOut" pv="BL11I-EA-DET-02:ROI1:DataTypeOut_RBV" ro="true" type="mbbinary"/>
+	</NDROI>
+	<NDProcess desc="MAR345DET.PROC1 NDProcess class instance" name="MAR345DET.PROC1_NDProcess">
+		<DataTypeOut desc="Set DataTypeOut" pv="BL11I-EA-DET-02:Proc1:DataTypeOut" ro="false" type="mbbinary"/>
+		<DataTypeOut_RBV desc="Readback for DataTypeOut" pv="BL11I-EA-DET-02:Proc1:DataTypeOut_RBV" ro="true" type="mbbinary"/>
+		<SaveBackground desc="Set SaveBackground" pv="BL11I-EA-DET-02:Proc1:SaveBackground" ro="false" type="binary"/>
+		<SaveBackground_RBV desc="Readback for SaveBackground" pv="BL11I-EA-DET-02:Proc1:SaveBackground_RBV" ro="true" type="binary"/>
+		<EnableBackground desc="Set EnableBackground" pv="BL11I-EA-DET-02:Proc1:EnableBackground" ro="false" type="binary"/>
+		<EnableBackground_RBV desc="Readback for EnableBackground" pv="BL11I-EA-DET-02:Proc1:EnableBackground_RBV" ro="true" type="binary"/>
+		<ValidBackground_RBV desc="Readback for ValidBackground" pv="BL11I-EA-DET-02:Proc1:ValidBackground_RBV" ro="true" type="binary"/>
+		<SaveFlatField desc="Set SaveFlatField" pv="BL11I-EA-DET-02:Proc1:SaveFlatField" ro="false" type="binary"/>
+		<SaveFlatField_RBV desc="Readback for SaveFlatField" pv="BL11I-EA-DET-02:Proc1:SaveFlatField_RBV" ro="true" type="binary"/>
+		<EnableFlatField desc="Set EnableFlatField" pv="BL11I-EA-DET-02:Proc1:EnableFlatField" ro="false" type="binary"/>
+		<EnableFlatField_RBV desc="Readback for EnableFlatField" pv="BL11I-EA-DET-02:Proc1:EnableFlatField_RBV" ro="true" type="binary"/>
+		<ValidFlatField_RBV desc="Readback for ValidFlatField" pv="BL11I-EA-DET-02:Proc1:ValidFlatField_RBV" ro="true" type="binary"/>
+		<ScaleFlatField desc="Set ScaleFlatField" pv="BL11I-EA-DET-02:Proc1:ScaleFlatField" ro="false" type="pv"/>
+		<ScaleFlatField_RBV desc="Readback for ScaleFlatField" pv="BL11I-EA-DET-02:Proc1:ScaleFlatField_RBV" ro="true" type="pv"/>
+		<EnableOffsetScale desc="Set EnableOffsetScale" pv="BL11I-EA-DET-02:Proc1:EnableOffsetScale" ro="false" type="binary"/>
+		<EnableOffsetScale_RBV desc="Readback for EnableOffsetScale" pv="BL11I-EA-DET-02:Proc1:EnableOffsetScale_RBV" ro="true" type="binary"/>
+		<Offset desc="Set Offset" pv="BL11I-EA-DET-02:Proc1:Offset" ro="false" type="pv"/>
+		<Offset_RBV desc="Readback for Offset" pv="BL11I-EA-DET-02:Proc1:Offset_RBV" ro="true" type="pv"/>
+		<Scale desc="Set Scale" pv="BL11I-EA-DET-02:Proc1:Scale" ro="false" type="pv"/>
+		<Scale_RBV desc="Readback for Scale" pv="BL11I-EA-DET-02:Proc1:Scale_RBV" ro="true" type="pv"/>
+		<EnableLowClip desc="Set EnableLowClip" pv="BL11I-EA-DET-02:Proc1:EnableLowClip" ro="false" type="binary"/>
+		<EnableLowClip_RBV desc="Readback for EnableLowClip" pv="BL11I-EA-DET-02:Proc1:EnableLowClip_RBV" ro="true" type="binary"/>
+		<LowClip desc="Set LowClip" pv="BL11I-EA-DET-02:Proc1:LowClip" ro="false" type="pv"/>
+		<LowClip_RBV desc="Readback for LowClip" pv="BL11I-EA-DET-02:Proc1:LowClip_RBV" ro="true" type="pv"/>
+		<EnableHighClip desc="Set EnableHighClip" pv="BL11I-EA-DET-02:Proc1:EnableHighClip" ro="false" type="binary"/>
+		<EnableHighClip_RBV desc="Readback for EnableHighClip" pv="BL11I-EA-DET-02:Proc1:EnableHighClip_RBV" ro="true" type="binary"/>
+		<HighClip desc="Set HighClip" pv="BL11I-EA-DET-02:Proc1:HighClip" ro="false" type="pv"/>
+		<HighClip_RBV desc="Readback for HighClip" pv="BL11I-EA-DET-02:Proc1:HighClip_RBV" ro="true" type="pv"/>
+		<EnableFilter desc="Set EnableFilter" pv="BL11I-EA-DET-02:Proc1:EnableFilter" ro="false" type="binary"/>
+		<EnableFilter_RBV desc="Readback for EnableFilter" pv="BL11I-EA-DET-02:Proc1:EnableFilter_RBV" ro="true" type="binary"/>
+		<ResetFilter desc="Set ResetFilter" pv="BL11I-EA-DET-02:Proc1:ResetFilter" ro="false" type="binary"/>
+		<ResetFilter_RBV desc="Readback for ResetFilter" pv="BL11I-EA-DET-02:Proc1:ResetFilter_RBV" ro="true" type="binary"/>
+		<NumFilter desc="Set NumFilter" pv="BL11I-EA-DET-02:Proc1:NumFilter" ro="false" type="pv"/>
+		<NumFilter_RBV desc="Readback for NumFilter" pv="BL11I-EA-DET-02:Proc1:NumFilter_RBV" ro="true" type="pv"/>
+		<NumFilterRecip desc="Set NumFilterRecip" pv="BL11I-EA-DET-02:Proc1:NumFilterRecip" ro="false" type="pv"/>
+		<NumFiltered_RBV desc="Readback for NumFiltered" pv="BL11I-EA-DET-02:Proc1:NumFiltered_RBV" ro="true" type="pv"/>
+		<OOffset desc="Set OOffset" pv="BL11I-EA-DET-02:Proc1:OOffset" ro="false" type="pv"/>
+		<OOffset_RBV desc="Readback for OOffset" pv="BL11I-EA-DET-02:Proc1:OOffset_RBV" ro="true" type="pv"/>
+		<OScale desc="Set OScale" pv="BL11I-EA-DET-02:Proc1:OScale" ro="false" type="pv"/>
+		<OScale_RBV desc="Readback for OScale" pv="BL11I-EA-DET-02:Proc1:OScale_RBV" ro="true" type="pv"/>
+		<OC1 desc="Set OC1" pv="BL11I-EA-DET-02:Proc1:OC1" ro="false" type="pv"/>
+		<OC1_RBV desc="Readback for OC1" pv="BL11I-EA-DET-02:Proc1:OC1_RBV" ro="true" type="pv"/>
+		<OC2 desc="Set OC2" pv="BL11I-EA-DET-02:Proc1:OC2" ro="false" type="pv"/>
+		<OC2_RBV desc="Readback for OC2" pv="BL11I-EA-DET-02:Proc1:OC2_RBV" ro="true" type="pv"/>
+		<OC3 desc="Set OC3" pv="BL11I-EA-DET-02:Proc1:OC3" ro="false" type="pv"/>
+		<OC3_RBV desc="Readback for OC3" pv="BL11I-EA-DET-02:Proc1:OC3_RBV" ro="true" type="pv"/>
+		<OC4 desc="Set OC4" pv="BL11I-EA-DET-02:Proc1:OC4" ro="false" type="pv"/>
+		<OC4_RBV desc="Readback for OC4" pv="BL11I-EA-DET-02:Proc1:OC4_RBV" ro="true" type="pv"/>
+		<FOffset desc="Set FOffset" pv="BL11I-EA-DET-02:Proc1:FOffset" ro="false" type="pv"/>
+		<FOffset_RBV desc="Readback for FOffset" pv="BL11I-EA-DET-02:Proc1:FOffset_RBV" ro="true" type="pv"/>
+		<FScale desc="Set FScale" pv="BL11I-EA-DET-02:Proc1:FScale" ro="false" type="pv"/>
+		<FScale_RBV desc="Readback for FScale" pv="BL11I-EA-DET-02:Proc1:FScale_RBV" ro="true" type="pv"/>
+		<FC1 desc="Set FC1" pv="BL11I-EA-DET-02:Proc1:FC1" ro="false" type="pv"/>
+		<FC1_RBV desc="Readback for FC1" pv="BL11I-EA-DET-02:Proc1:FC1_RBV" ro="true" type="pv"/>
+		<FC2 desc="Set FC2" pv="BL11I-EA-DET-02:Proc1:FC2" ro="false" type="pv"/>
+		<FC2_RBV desc="Readback for FC2" pv="BL11I-EA-DET-02:Proc1:FC2_RBV" ro="true" type="pv"/>
+		<FC3 desc="Set FC3" pv="BL11I-EA-DET-02:Proc1:FC3" ro="false" type="pv"/>
+		<FC3_RBV desc="Readback for FC3" pv="BL11I-EA-DET-02:Proc1:FC3_RBV" ro="true" type="pv"/>
+		<FC4 desc="Set FC4" pv="BL11I-EA-DET-02:Proc1:FC4" ro="false" type="pv"/>
+		<FC4_RBV desc="Readback for FC4" pv="BL11I-EA-DET-02:Proc1:FC4_RBV" ro="true" type="pv"/>
+		<ROffset desc="Set ROffset" pv="BL11I-EA-DET-02:Proc1:ROffset" ro="false" type="pv"/>
+		<ROffset_RBV desc="Readback for ROffset" pv="BL11I-EA-DET-02:Proc1:ROffset_RBV" ro="true" type="pv"/>
+		<RC1 desc="Set RC1" pv="BL11I-EA-DET-02:Proc1:RC1" ro="false" type="pv"/>
+		<RC1_RBV desc="Readback for RC1" pv="BL11I-EA-DET-02:Proc1:RC1_RBV" ro="true" type="pv"/>
+		<RC2 desc="Set RC2" pv="BL11I-EA-DET-02:Proc1:RC2" ro="false" type="pv"/>
+		<RC2_RBV desc="Readback for RC2" pv="BL11I-EA-DET-02:Proc1:RC2_RBV" ro="true" type="pv"/>
+		<FilterType desc="Set FilterType" pv="BL11I-EA-DET-02:Proc1:FilterType" ro="false" type="mbbinary"/>
+		<FilterTypeSeq desc="Set FilterTypeSeq" pv="BL11I-EA-DET-02:Proc1:FilterTypeSeq" ro="false" type="pv"/>
+		<RecursiveAveSeq desc="Set RecursiveAveSeq" pv="BL11I-EA-DET-02:Proc1:RecursiveAveSeq" ro="false" type="pv"/>
+		<RecursiveSumSeq desc="Set RecursiveSumSeq" pv="BL11I-EA-DET-02:Proc1:RecursiveSumSeq" ro="false" type="pv"/>
+		<DifferenceSeq desc="Set DifferenceSeq" pv="BL11I-EA-DET-02:Proc1:DifferenceSeq" ro="false" type="pv"/>
+		<RecursiveAveDiffSeq desc="Set RecursiveAveDiffSeq" pv="BL11I-EA-DET-02:Proc1:RecursiveAveDiffSeq" ro="false" type="pv"/>
+		<CopyToFilterSeq desc="Set CopyToFilterSeq" pv="BL11I-EA-DET-02:Proc1:CopyToFilterSeq" ro="false" type="pv"/>
+	</NDProcess>
+	<NDStats desc="MAR345DET.STATS1 NDStats class instance" name="MAR345DET.STATS1_NDStats">
+		<ComputeStatistics desc="Set ComputeStatistics" pv="BL11I-EA-DET-02:Stats1:ComputeStatistics" ro="false" type="binary"/>
+		<ComputeStatistics_RBV desc="Readback for ComputeStatistics" pv="BL11I-EA-DET-02:Stats1:ComputeStatistics_RBV" ro="true" type="binary"/>
+		<BgdWidth desc="Set BgdWidth" pv="BL11I-EA-DET-02:Stats1:BgdWidth" ro="false" type="pv"/>
+		<BgdWidth_RBV desc="Readback for BgdWidth" pv="BL11I-EA-DET-02:Stats1:BgdWidth_RBV" ro="true" type="pv"/>
+		<MinValue_RBV desc="Readback for MinValue" pv="BL11I-EA-DET-02:Stats1:MinValue_RBV" ro="true" type="pv"/>
+		<MaxValue_RBV desc="Readback for MaxValue" pv="BL11I-EA-DET-02:Stats1:MaxValue_RBV" ro="true" type="pv"/>
+		<MeanValue_RBV desc="Readback for MeanValue" pv="BL11I-EA-DET-02:Stats1:MeanValue_RBV" ro="true" type="pv"/>
+		<Sigma_RBV desc="Readback for Sigma" pv="BL11I-EA-DET-02:Stats1:Sigma_RBV" ro="true" type="pv"/>
+		<Total_RBV desc="Readback for Total" pv="BL11I-EA-DET-02:Stats1:Total_RBV" ro="true" type="pv"/>
+		<Net_RBV desc="Readback for Net" pv="BL11I-EA-DET-02:Stats1:Net_RBV" ro="true" type="pv"/>
+		<ComputeCentroid desc="Set ComputeCentroid" pv="BL11I-EA-DET-02:Stats1:ComputeCentroid" ro="false" type="binary"/>
+		<ComputeCentroid_RBV desc="Readback for ComputeCentroid" pv="BL11I-EA-DET-02:Stats1:ComputeCentroid_RBV" ro="true" type="binary"/>
+		<CentroidThreshold desc="Set CentroidThreshold" pv="BL11I-EA-DET-02:Stats1:CentroidThreshold" ro="false" type="pv"/>
+		<CentroidThreshold_RBV desc="Readback for CentroidThreshold" pv="BL11I-EA-DET-02:Stats1:CentroidThreshold_RBV" ro="true" type="pv"/>
+		<CentroidX_RBV desc="Readback for CentroidX" pv="BL11I-EA-DET-02:Stats1:CentroidX_RBV" ro="true" type="pv"/>
+		<CentroidY_RBV desc="Readback for CentroidY" pv="BL11I-EA-DET-02:Stats1:CentroidY_RBV" ro="true" type="pv"/>
+		<SigmaX_RBV desc="Readback for SigmaX" pv="BL11I-EA-DET-02:Stats1:SigmaX_RBV" ro="true" type="pv"/>
+		<SigmaY_RBV desc="Readback for SigmaY" pv="BL11I-EA-DET-02:Stats1:SigmaY_RBV" ro="true" type="pv"/>
+		<SigmaXY_RBV desc="Readback for SigmaXY" pv="BL11I-EA-DET-02:Stats1:SigmaXY_RBV" ro="true" type="pv"/>
+		<ComputeProfiles desc="Set ComputeProfiles" pv="BL11I-EA-DET-02:Stats1:ComputeProfiles" ro="false" type="binary"/>
+		<ComputeProfiles_RBV desc="Readback for ComputeProfiles" pv="BL11I-EA-DET-02:Stats1:ComputeProfiles_RBV" ro="true" type="binary"/>
+		<ProfileSizeX_RBV desc="Readback for ProfileSizeX" pv="BL11I-EA-DET-02:Stats1:ProfileSizeX_RBV" ro="true" type="pv"/>
+		<ProfileSizeY_RBV desc="Readback for ProfileSizeY" pv="BL11I-EA-DET-02:Stats1:ProfileSizeY_RBV" ro="true" type="pv"/>
+		<CursorX desc="Set CursorX" pv="BL11I-EA-DET-02:Stats1:CursorX" ro="false" type="pv"/>
+		<CursorX_RBV desc="Readback for CursorX" pv="BL11I-EA-DET-02:Stats1:CursorX_RBV" ro="true" type="pv"/>
+		<CursorY desc="Set CursorY" pv="BL11I-EA-DET-02:Stats1:CursorY" ro="false" type="pv"/>
+		<CursorY_RBV desc="Readback for CursorY" pv="BL11I-EA-DET-02:Stats1:CursorY_RBV" ro="true" type="pv"/>
+		<ProfileAverageX_RBV desc="Readback for ProfileAverageX" pv="BL11I-EA-DET-02:Stats1:ProfileAverageX_RBV" ro="true" type="array"/>
+		<ProfileAverageY_RBV desc="Readback for ProfileAverageY" pv="BL11I-EA-DET-02:Stats1:ProfileAverageY_RBV" ro="true" type="array"/>
+		<ProfileThresholdX_RBV desc="Readback for ProfileThresholdX" pv="BL11I-EA-DET-02:Stats1:ProfileThresholdX_RBV" ro="true" type="array"/>
+		<ProfileThresholdY_RBV desc="Readback for ProfileThresholdY" pv="BL11I-EA-DET-02:Stats1:ProfileThresholdY_RBV" ro="true" type="array"/>
+		<ProfileCentroidX_RBV desc="Readback for ProfileCentroidX" pv="BL11I-EA-DET-02:Stats1:ProfileCentroidX_RBV" ro="true" type="array"/>
+		<ProfileCentroidY_RBV desc="Readback for ProfileCentroidY" pv="BL11I-EA-DET-02:Stats1:ProfileCentroidY_RBV" ro="true" type="array"/>
+		<ProfileCursorX_RBV desc="Readback for ProfileCursorX" pv="BL11I-EA-DET-02:Stats1:ProfileCursorX_RBV" ro="true" type="array"/>
+		<ProfileCursorY_RBV desc="Readback for ProfileCursorY" pv="BL11I-EA-DET-02:Stats1:ProfileCursorY_RBV" ro="true" type="array"/>
+		<ComputeHistogram desc="Set ComputeHistogram" pv="BL11I-EA-DET-02:Stats1:ComputeHistogram" ro="false" type="binary"/>
+		<ComputeHistogram_RBV desc="Readback for ComputeHistogram" pv="BL11I-EA-DET-02:Stats1:ComputeHistogram_RBV" ro="true" type="binary"/>
+		<HistSize desc="Set HistSize" pv="BL11I-EA-DET-02:Stats1:HistSize" ro="false" type="pv"/>
+		<HistSize_RBV desc="Readback for HistSize" pv="BL11I-EA-DET-02:Stats1:HistSize_RBV" ro="true" type="pv"/>
+		<HistMin desc="Set HistMin" pv="BL11I-EA-DET-02:Stats1:HistMin" ro="false" type="pv"/>
+		<HistMin_RBV desc="Readback for HistMin" pv="BL11I-EA-DET-02:Stats1:HistMin_RBV" ro="true" type="pv"/>
+		<HistMax desc="Set HistMax" pv="BL11I-EA-DET-02:Stats1:HistMax" ro="false" type="pv"/>
+		<HistMax_RBV desc="Readback for HistMax" pv="BL11I-EA-DET-02:Stats1:HistMax_RBV" ro="true" type="pv"/>
+		<HistEntropy_RBV desc="Readback for HistEntropy" pv="BL11I-EA-DET-02:Stats1:HistEntropy_RBV" ro="true" type="pv"/>
+		<Histogram_RBV desc="Readback for Histogram" pv="BL11I-EA-DET-02:Stats1:Histogram_RBV" ro="true" type="array"/>
+		<MaxSizeX desc="Set MaxSizeX" pv="BL11I-EA-DET-02:Stats1:MaxSizeX" ro="false" type="pv"/>
+		<SetXHOPR desc="Set SetXHOPR" pv="BL11I-EA-DET-02:Stats1:SetXHOPR" ro="false" type="pv"/>
+		<MaxSizeY desc="Set MaxSizeY" pv="BL11I-EA-DET-02:Stats1:MaxSizeY" ro="false" type="pv"/>
+		<SetYHOPR desc="Set SetYHOPR" pv="BL11I-EA-DET-02:Stats1:SetYHOPR" ro="false" type="pv"/>
+	</NDStats>
+	<NDStats desc="MAR345DET.STATS2 NDStats class instance" name="MAR345DET.STATS2_NDStats">
+		<ComputeStatistics desc="Set ComputeStatistics" pv="BL11I-EA-DET-02:Stats2:ComputeStatistics" ro="false" type="binary"/>
+		<ComputeStatistics_RBV desc="Readback for ComputeStatistics" pv="BL11I-EA-DET-02:Stats2:ComputeStatistics_RBV" ro="true" type="binary"/>
+		<BgdWidth desc="Set BgdWidth" pv="BL11I-EA-DET-02:Stats2:BgdWidth" ro="false" type="pv"/>
+		<BgdWidth_RBV desc="Readback for BgdWidth" pv="BL11I-EA-DET-02:Stats2:BgdWidth_RBV" ro="true" type="pv"/>
+		<MinValue_RBV desc="Readback for MinValue" pv="BL11I-EA-DET-02:Stats2:MinValue_RBV" ro="true" type="pv"/>
+		<MaxValue_RBV desc="Readback for MaxValue" pv="BL11I-EA-DET-02:Stats2:MaxValue_RBV" ro="true" type="pv"/>
+		<MeanValue_RBV desc="Readback for MeanValue" pv="BL11I-EA-DET-02:Stats2:MeanValue_RBV" ro="true" type="pv"/>
+		<Sigma_RBV desc="Readback for Sigma" pv="BL11I-EA-DET-02:Stats2:Sigma_RBV" ro="true" type="pv"/>
+		<Total_RBV desc="Readback for Total" pv="BL11I-EA-DET-02:Stats2:Total_RBV" ro="true" type="pv"/>
+		<Net_RBV desc="Readback for Net" pv="BL11I-EA-DET-02:Stats2:Net_RBV" ro="true" type="pv"/>
+		<ComputeCentroid desc="Set ComputeCentroid" pv="BL11I-EA-DET-02:Stats2:ComputeCentroid" ro="false" type="binary"/>
+		<ComputeCentroid_RBV desc="Readback for ComputeCentroid" pv="BL11I-EA-DET-02:Stats2:ComputeCentroid_RBV" ro="true" type="binary"/>
+		<CentroidThreshold desc="Set CentroidThreshold" pv="BL11I-EA-DET-02:Stats2:CentroidThreshold" ro="false" type="pv"/>
+		<CentroidThreshold_RBV desc="Readback for CentroidThreshold" pv="BL11I-EA-DET-02:Stats2:CentroidThreshold_RBV" ro="true" type="pv"/>
+		<CentroidX_RBV desc="Readback for CentroidX" pv="BL11I-EA-DET-02:Stats2:CentroidX_RBV" ro="true" type="pv"/>
+		<CentroidY_RBV desc="Readback for CentroidY" pv="BL11I-EA-DET-02:Stats2:CentroidY_RBV" ro="true" type="pv"/>
+		<SigmaX_RBV desc="Readback for SigmaX" pv="BL11I-EA-DET-02:Stats2:SigmaX_RBV" ro="true" type="pv"/>
+		<SigmaY_RBV desc="Readback for SigmaY" pv="BL11I-EA-DET-02:Stats2:SigmaY_RBV" ro="true" type="pv"/>
+		<SigmaXY_RBV desc="Readback for SigmaXY" pv="BL11I-EA-DET-02:Stats2:SigmaXY_RBV" ro="true" type="pv"/>
+		<ComputeProfiles desc="Set ComputeProfiles" pv="BL11I-EA-DET-02:Stats2:ComputeProfiles" ro="false" type="binary"/>
+		<ComputeProfiles_RBV desc="Readback for ComputeProfiles" pv="BL11I-EA-DET-02:Stats2:ComputeProfiles_RBV" ro="true" type="binary"/>
+		<ProfileSizeX_RBV desc="Readback for ProfileSizeX" pv="BL11I-EA-DET-02:Stats2:ProfileSizeX_RBV" ro="true" type="pv"/>
+		<ProfileSizeY_RBV desc="Readback for ProfileSizeY" pv="BL11I-EA-DET-02:Stats2:ProfileSizeY_RBV" ro="true" type="pv"/>
+		<CursorX desc="Set CursorX" pv="BL11I-EA-DET-02:Stats2:CursorX" ro="false" type="pv"/>
+		<CursorX_RBV desc="Readback for CursorX" pv="BL11I-EA-DET-02:Stats2:CursorX_RBV" ro="true" type="pv"/>
+		<CursorY desc="Set CursorY" pv="BL11I-EA-DET-02:Stats2:CursorY" ro="false" type="pv"/>
+		<CursorY_RBV desc="Readback for CursorY" pv="BL11I-EA-DET-02:Stats2:CursorY_RBV" ro="true" type="pv"/>
+		<ProfileAverageX_RBV desc="Readback for ProfileAverageX" pv="BL11I-EA-DET-02:Stats2:ProfileAverageX_RBV" ro="true" type="array"/>
+		<ProfileAverageY_RBV desc="Readback for ProfileAverageY" pv="BL11I-EA-DET-02:Stats2:ProfileAverageY_RBV" ro="true" type="array"/>
+		<ProfileThresholdX_RBV desc="Readback for ProfileThresholdX" pv="BL11I-EA-DET-02:Stats2:ProfileThresholdX_RBV" ro="true" type="array"/>
+		<ProfileThresholdY_RBV desc="Readback for ProfileThresholdY" pv="BL11I-EA-DET-02:Stats2:ProfileThresholdY_RBV" ro="true" type="array"/>
+		<ProfileCentroidX_RBV desc="Readback for ProfileCentroidX" pv="BL11I-EA-DET-02:Stats2:ProfileCentroidX_RBV" ro="true" type="array"/>
+		<ProfileCentroidY_RBV desc="Readback for ProfileCentroidY" pv="BL11I-EA-DET-02:Stats2:ProfileCentroidY_RBV" ro="true" type="array"/>
+		<ProfileCursorX_RBV desc="Readback for ProfileCursorX" pv="BL11I-EA-DET-02:Stats2:ProfileCursorX_RBV" ro="true" type="array"/>
+		<ProfileCursorY_RBV desc="Readback for ProfileCursorY" pv="BL11I-EA-DET-02:Stats2:ProfileCursorY_RBV" ro="true" type="array"/>
+		<ComputeHistogram desc="Set ComputeHistogram" pv="BL11I-EA-DET-02:Stats2:ComputeHistogram" ro="false" type="binary"/>
+		<ComputeHistogram_RBV desc="Readback for ComputeHistogram" pv="BL11I-EA-DET-02:Stats2:ComputeHistogram_RBV" ro="true" type="binary"/>
+		<HistSize desc="Set HistSize" pv="BL11I-EA-DET-02:Stats2:HistSize" ro="false" type="pv"/>
+		<HistSize_RBV desc="Readback for HistSize" pv="BL11I-EA-DET-02:Stats2:HistSize_RBV" ro="true" type="pv"/>
+		<HistMin desc="Set HistMin" pv="BL11I-EA-DET-02:Stats2:HistMin" ro="false" type="pv"/>
+		<HistMin_RBV desc="Readback for HistMin" pv="BL11I-EA-DET-02:Stats2:HistMin_RBV" ro="true" type="pv"/>
+		<HistMax desc="Set HistMax" pv="BL11I-EA-DET-02:Stats2:HistMax" ro="false" type="pv"/>
+		<HistMax_RBV desc="Readback for HistMax" pv="BL11I-EA-DET-02:Stats2:HistMax_RBV" ro="true" type="pv"/>
+		<HistEntropy_RBV desc="Readback for HistEntropy" pv="BL11I-EA-DET-02:Stats2:HistEntropy_RBV" ro="true" type="pv"/>
+		<Histogram_RBV desc="Readback for Histogram" pv="BL11I-EA-DET-02:Stats2:Histogram_RBV" ro="true" type="array"/>
+		<MaxSizeX desc="Set MaxSizeX" pv="BL11I-EA-DET-02:Stats2:MaxSizeX" ro="false" type="pv"/>
+		<SetXHOPR desc="Set SetXHOPR" pv="BL11I-EA-DET-02:Stats2:SetXHOPR" ro="false" type="pv"/>
+		<MaxSizeY desc="Set MaxSizeY" pv="BL11I-EA-DET-02:Stats2:MaxSizeY" ro="false" type="pv"/>
+		<SetYHOPR desc="Set SetYHOPR" pv="BL11I-EA-DET-02:Stats2:SetYHOPR" ro="false" type="pv"/>
+	</NDStats>
+	<NDFileHDF5 desc="MAR345DET.HDF5 NDFileHDF5 class instance" name="MAR345DET.HDF5_NDFileHDF5">
+		<NumRowChunks desc="Number of rows to use per chunk" pv="BL11I-EA-DET-02:HDF5:NumRowChunks" ro="false" type="pv"/>
+		<NumRowChunks_RBV desc="Readback of number of rows to use per chunk" pv="BL11I-EA-DET-02:HDF5:NumRowChunks_RBV" ro="true" type="pv"/>
+		<NumExtraDims desc="Number of extra dimensions [0..2]" pv="BL11I-EA-DET-02:HDF5:NumExtraDims" ro="false" type="pv"/>
+		<NumExtraDims_RBV desc="Readback number of extra dimensions" pv="BL11I-EA-DET-02:HDF5:NumExtraDims_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeN desc="Size of extra dimension N (no. of frames per point)" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeN" ro="false" type="pv"/>
+		<ExtraDimSizeN_RBV desc="Readback size of extra dimension N (no. of frames per point)" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeN_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeX desc="Size of extra dimension X" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeX" ro="false" type="pv"/>
+		<ExtraDimSizeX_RBV desc="Readback size of extra dimension X" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeX_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeY desc="Size of extra dimension Y" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeY" ro="false" type="pv"/>
+		<ExtraDimSizeY_RBV desc="Readback size of extra dimension Y" pv="BL11I-EA-DET-02:HDF5:ExtraDimSizeY_RBV" ro="true" type="pv"/>
+		<runtime desc="Total runtime from first frame to file closed" pv="BL11I-EA-DET-02:HDF5:RunTime" ro="true" type="pv"/>
+		<IOSpeed desc="Overall IO speed from first frame to file closed" pv="BL11I-EA-DET-02:HDF5:IOSpeed" ro="true" type="pv"/>
+		<Compression desc="Select or switch off compression filter" pv="BL11I-EA-DET-02:HDF5:Compression" ro="false" type="mbbinary"/>
+		<Compression_RBV desc="Readback selected compression filter" pv="BL11I-EA-DET-02:HDF5:Compression_RBV" ro="true" type="mbbinary"/>
+		<NumBitPrecision desc="N-bit compression filter: number of data bits per pixel" pv="BL11I-EA-DET-02:HDF5:NumDataBits" ro="false" type="pv"/>
+		<NumBitPrecision_RBV desc="Readback N-bit compression filter: number of data bits per pixel" pv="BL11I-EA-DET-02:HDF5:NumDataBits_RBV" ro="true" type="pv"/>
+		<NumBitOffset desc="N-bit compression filter: dataword bit-offset in pixel" pv="BL11I-EA-DET-02:HDF5:DataBitsOffset" ro="false" type="pv"/>
+		<NumBitOffset_RBV desc="Readback N-bit compression filter: dataword bit-offset in pixel" pv="BL11I-EA-DET-02:HDF5:DataBitsOffset_RBV" ro="true" type="pv"/>
+		<szipNumPixels desc="szip compression filter: number of pixels in filter" pv="BL11I-EA-DET-02:HDF5:SZipNumPixels" ro="false" type="pv"/>
+		<szipNumPixels_RBV desc="Readback szip compression filter: number of pixels in filter" pv="BL11I-EA-DET-02:HDF5:SZipNumPixels_RBV" ro="true" type="pv"/>
+		<ZCompressLevel desc="zlib compression filter: compression level" pv="BL11I-EA-DET-02:HDF5:ZLevel" ro="false" type="pv"/>
+		<ZCompressLevel_RBV desc="Readback zlib compression filter: compression level" pv="BL11I-EA-DET-02:HDF5:ZLevel_RBV" ro="true" type="pv"/>
+	</NDFileHDF5>
+	<ffmpegStream desc="MAR345DET.MJPG1 ffmpegStream class instance" name="MAR345DET.MJPG1_ffmpegStream">
+		<QUALITY desc="Set QUALITY" pv="BL11I-EA-DET-02:MJPG1:QUALITY" ro="false" type="pv"/>
+		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-EA-DET-02:MJPG1:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-EA-DET-02:MJPG1:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-EA-DET-02:MJPG1:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-EA-DET-02:MJPG1:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-EA-DET-02:MJPG1:MAXH_RBV" ro="true" type="pv"/>
+		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-EA-DET-02:MJPG1:FALSE_COL" ro="false" type="binary"/>
+		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-EA-DET-02:MJPG1:FALSE_COL_RBV" ro="true" type="binary"/>
+		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-EA-DET-02:MJPG1:ALWAYS_ON" ro="false" type="binary"/>
+		<ALWAYS_ON_RBV desc="Readback for ALWAYS_ON" pv="BL11I-EA-DET-02:MJPG1:ALWAYS_ON_RBV" ro="true" type="binary"/>
+		<HTTP_PORT_RBV desc="Readback for HTTP_PORT" pv="BL11I-EA-DET-02:MJPG1:HTTP_PORT_RBV" ro="true" type="pv"/>
+		<HOST_RBV desc="Readback for HOST" pv="BL11I-EA-DET-02:MJPG1:HOST_RBV" ro="true" type="pv"/>
+		<CLIENTS_RBV desc="Readback for CLIENTS" pv="BL11I-EA-DET-02:MJPG1:CLIENTS_RBV" ro="true" type="pv"/>
+		<JPG_URL_RBV desc="Readback for JPG URL" pv="BL11I-EA-DET-02:MJPG1:JPG_URL_RBV" ro="true" type="pv"/>
+		<MJPG_URL_RBV desc="Readback for MJPG URL" pv="BL11I-EA-DET-02:MJPG1:MJPG_URL_RBV" ro="true" type="pv"/>
+	</ffmpegStream>
 	<simpleMotor desc="X Size (compound)" name="S1.XSIZE">
 		<RECORD desc="Motor" pv="BL11I-AL-SLITS-01:X:SIZE" ro="false" type="motor"/>
 	</simpleMotor>
@@ -900,6 +1539,9 @@
 	<simpleMotor desc="Translation Motor" name="OT.Z">
 		<RECORD desc="Motor" pv="BL11I-OP-TABLE-01:Z" ro="false" type="motor"/>
 	</simpleMotor>
+	<simpleMotor desc="Focussing horizontal translation Motor" name="OTMOT.POSN">
+		<RECORD desc="Motor" pv="BL11I-OP-MOT-01:POSN" ro="false" type="motor"/>
+	</simpleMotor>
 	<simpleMotor desc="Focussing Yaw Motor" name="OTMOT.YAW">
 		<RECORD desc="Motor" pv="BL11I-OP-MOT-01:YAW" ro="false" type="motor"/>
 	</simpleMotor>
@@ -987,36 +1629,6 @@
 	<simpleMotor desc="Horizontal Motor" name="TL.X">
 		<RECORD desc="Motor" pv="BL11I-MO-TABLE-02:X" ro="false" type="motor"/>
 	</simpleMotor>
-	<simpleMotor desc="Slit X Motor" name="BMAR.SLITX">
-		<RECORD desc="Motor" pv="BL11I-EA-BMAR-01:SLIT:X" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Slit Y Motor" name="BMAR.SLITY">
-		<RECORD desc="Motor" pv="BL11I-EA-BMAR-01:SLIT:Y" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Collimator X Motor" name="BMAR.COLX">
-		<RECORD desc="Motor" pv="BL11I-EA-BMAR-01:COL:X" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Collimator Y Motor" name="BMAR.COLY">
-		<RECORD desc="Motor" pv="BL11I-EA-BMAR-01:COL:Y" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Diode X Motor" name="BMAR.PHDX">
-		<RECORD desc="Motor" pv="BL11I-EA-BMAR-01:PHD:X" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Base Motor" name="TMAR.BASE">
-		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:BASE" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Rotation Motor" name="TMAR.ROT">
-		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:ROT" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Horizontal Motor" name="TMAR.X">
-		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:X" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Vertical Motor" name="TMAR.Y">
-		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:Y" ro="false" type="motor"/>
-	</simpleMotor>
-	<simpleMotor desc="Longitudinal Motor" name="TMAR.Z">
-		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:Z" ro="false" type="motor"/>
-	</simpleMotor>
 	<simpleMotor desc="Two Theta" name="DIFF.TTH">
 		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:2THETA" ro="false" type="motor"/>
 	</simpleMotor>
@@ -1029,17 +1641,17 @@
 	<simpleMotor desc="Sample Pos" name="DIFF.SPOS">
 		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:SPOS" ro="false" type="motor"/>
 	</simpleMotor>
-	<simpleMotor desc="Y1" name="DIFF.Y1">
-		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:Y1" ro="false" type="motor"/>
+	<simpleMotor desc="Y1" name="DIFFB.Y1">
+		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:BASE:Y1" ro="false" type="motor"/>
 	</simpleMotor>
-	<simpleMotor desc="Y2" name="DIFF.Y2">
-		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:Y2" ro="false" type="motor"/>
+	<simpleMotor desc="Y2" name="DIFFB.Y2">
+		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:BASE:Y2" ro="false" type="motor"/>
 	</simpleMotor>
-	<simpleMotor desc="Y3" name="DIFF.Y3">
-		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:Y3" ro="false" type="motor"/>
+	<simpleMotor desc="Y3" name="DIFFB.Y3">
+		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:BASE:Y3" ro="false" type="motor"/>
 	</simpleMotor>
-	<simpleMotor desc="X Translation" name="DIFF.X">
-		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:TRANS" ro="false" type="motor"/>
+	<simpleMotor desc="X Translation" name="DIFFB.X">
+		<RECORD desc="Motor" pv="BL11I-MO-DIFF-01:BASE:X" ro="false" type="motor"/>
 	</simpleMotor>
 	<simpleMotor desc="Fine pitch piezo" name="DCM.FPITCH2">
 		<RECORD desc="Motor Record" pv="BL11I-OP-DCM-01:FPITCH2:MOTOR" ro="false" type="motor"/>
@@ -1118,7 +1730,7 @@
 		<SETACDC desc="Set AC or DC mode" pv="BL11I-DI-IONC-04:PHD1:ACDC" ro="false" type="binary"/>
 		<VENDOR desc="Vendor String" pv="BL11I-DI-IONC-04:VENDOR" ro="true" type="pv"/>
 		<MODEL desc="Model String" pv="BL11I-DI-IONC-04:MODEL" ro="true" type="pv"/>
-		<I desc="Current" pv="BL11I-DI-IONC-04:PHD1:I" ro="true" type="pv"/>
+		<I desc="Current Value" pv="BL11I-DI-IONC-04:PHD1:I" ro="true" type="pv"/>
 	</currAmpSingle>
 	<currAmpSingle desc="Ion Chamber 1 Femto" name="IC1.AMP">
 		<OVERLOAD desc="Get overload status" pv="BL11I-DI-IONC-01:PHD1:OL" ro="true" type="binary"/>
@@ -1155,6 +1767,54 @@
 	<simplePv desc="" name="ENV.TACHO">
 		<RECORD desc="Current Value" pv="BL11I-EA-ENV-01:SPIN:TACHO" ro="true" type="pv"/>
 	</simplePv>
+	<simpleMotor desc="Y Plus Motor" name="S6.YP">
+		<RECORD desc="Motor" pv="BL11I-AL-SLITS-06:YP" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Y Minus Motor" name="S6.YM">
+		<RECORD desc="Motor" pv="BL11I-AL-SLITS-06:YM" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Minus Motor" name="S6.XM">
+		<RECORD desc="Motor" pv="BL11I-AL-SLITS-06:XM" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Plus Motor" name="S6.XP">
+		<RECORD desc="Motor" pv="BL11I-AL-SLITS-06:XP" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Y Motor" name="COL.Y">
+		<RECORD desc="Motor" pv="BL11I-AL-COL-01:Y" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Motor" name="COL.X">
+		<RECORD desc="Motor" pv="BL11I-AL-COL-01:X" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Y Motor" name="BS.Y">
+		<RECORD desc="Motor" pv="BL11I-RS-ABSB-03:Y" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Motor" name="BS.X">
+		<RECORD desc="Motor" pv="BL11I-RS-ABSB-03:X" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Base Motor" name="TMAR.BASE">
+		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:BASE" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Rotation Motor" name="TMAR.ROT">
+		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:ROT" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Motor" name="TMAR.X">
+		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:X" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Y Motor" name="TMAR.Y">
+		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:Y" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Z Motor" name="TMAR.Z">
+		<RECORD desc="Motor" pv="BL11I-EA-TMAR-01:Z" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Diode X Motor" name="D6.X">
+		<RECORD desc="Motor" pv="BL11I-DI-PHDGN-06:X" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="X Motor" name="OAV.X">
+		<RECORD desc="Motor" pv="BL11I-DI-OAV-01:X" ro="false" type="motor"/>
+	</simpleMotor>
+	<simpleMotor desc="Y Motor" name="OAV.Y">
+		<RECORD desc="Motor" pv="BL11I-DI-OAV-01:Y" ro="false" type="motor"/>
+	</simpleMotor>
 	<ADBase desc="D1.CAM.CAM ADBase class instance" name="D1.CAM.CAM_ADBase">
 		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-PHDGN-01:CAM:PortName_RBV" ro="true" type="pv"/>
 		<Manufacturer_RBV desc="Readback for Manufacturer" pv="BL11I-DI-PHDGN-01:CAM:Manufacturer_RBV" ro="true" type="pv"/>
@@ -4968,6 +5628,10 @@
 	<ffmpegStream desc="D1.CAM.MJPG ffmpegStream class instance" name="D1.CAM.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-PHDGN-01:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-PHDGN-01:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-PHDGN-01:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-PHDGN-01:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-PHDGN-01:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-PHDGN-01:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-PHDGN-01:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-PHDGN-01:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-PHDGN-01:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -4981,6 +5645,10 @@
 	<ffmpegStream desc="D2.CAM.MJPG ffmpegStream class instance" name="D2.CAM.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-PHDGN-02:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-PHDGN-02:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-PHDGN-02:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-PHDGN-02:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-PHDGN-02:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-PHDGN-02:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-PHDGN-02:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-PHDGN-02:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-PHDGN-02:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -4994,6 +5662,10 @@
 	<ffmpegStream desc="D3.CAM.MJPG ffmpegStream class instance" name="D3.CAM.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-PHDGN-03:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-PHDGN-03:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-PHDGN-03:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-PHDGN-03:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-PHDGN-03:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-PHDGN-03:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-PHDGN-03:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-PHDGN-03:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-PHDGN-03:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5007,6 +5679,10 @@
 	<ffmpegStream desc="D4.CAM.MJPG ffmpegStream class instance" name="D4.CAM.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-PHDGN-04:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-PHDGN-04:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-PHDGN-04:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-PHDGN-04:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-PHDGN-04:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-PHDGN-04:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-PHDGN-04:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-PHDGN-04:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-PHDGN-04:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5020,6 +5696,10 @@
 	<ffmpegStream desc="D5.CAM.MJPG ffmpegStream class instance" name="D5.CAM.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-PHDGN-05:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-PHDGN-05:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-PHDGN-05:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-PHDGN-05:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-PHDGN-05:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-PHDGN-05:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-PHDGN-05:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-PHDGN-05:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-PHDGN-05:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5033,6 +5713,10 @@
 	<ffmpegStream desc="CAM1.MJPG ffmpegStream class instance" name="CAM1.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-DCAM-01:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-DCAM-01:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-DCAM-01:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-DCAM-01:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-DCAM-01:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-DCAM-01:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-DCAM-01:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-DCAM-01:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-DCAM-01:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5046,6 +5730,10 @@
 	<ffmpegStream desc="CAM2.MJPG ffmpegStream class instance" name="CAM2.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-DCAM-02:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-DCAM-02:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-DCAM-02:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-DCAM-02:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-DCAM-02:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-DCAM-02:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-DCAM-02:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-DCAM-02:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-DCAM-02:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5059,6 +5747,10 @@
 	<ffmpegStream desc="CAM3.MJPG ffmpegStream class instance" name="CAM3.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-DCAM-03:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-DCAM-03:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-DCAM-03:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-DCAM-03:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-DCAM-03:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-DCAM-03:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-DCAM-03:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-DCAM-03:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-DCAM-03:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5072,6 +5764,10 @@
 	<ffmpegStream desc="CAM4.MJPG ffmpegStream class instance" name="CAM4.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-DCAM-04:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-DCAM-04:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-DCAM-04:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-DCAM-04:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-DCAM-04:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-DCAM-04:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-DCAM-04:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-DCAM-04:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-DCAM-04:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5085,6 +5781,10 @@
 	<ffmpegStream desc="CAM5.MJPG ffmpegStream class instance" name="CAM5.MJPG_ffmpegStream">
 		<QUALITY desc="Set QUALITY" pv="BL11I-DI-DCAM-05:MJPG:QUALITY" ro="false" type="pv"/>
 		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-DCAM-05:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-DCAM-05:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-DCAM-05:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-DCAM-05:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-DCAM-05:MJPG:MAXH_RBV" ro="true" type="pv"/>
 		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-DCAM-05:MJPG:FALSE_COL" ro="false" type="binary"/>
 		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-DCAM-05:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
 		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-DCAM-05:MJPG:ALWAYS_ON" ro="false" type="binary"/>
@@ -5094,6 +5794,819 @@
 		<CLIENTS_RBV desc="Readback for CLIENTS" pv="BL11I-DI-DCAM-05:MJPG:CLIENTS_RBV" ro="true" type="pv"/>
 		<JPG_URL_RBV desc="Readback for JPG URL" pv="BL11I-DI-DCAM-05:MJPG:JPG_URL_RBV" ro="true" type="pv"/>
 		<MJPG_URL_RBV desc="Readback for MJPG URL" pv="BL11I-DI-DCAM-05:MJPG:MJPG_URL_RBV" ro="true" type="pv"/>
+	</ffmpegStream>
+	<ADBase desc="OAV.CAM ADBase class instance" name="OAV.CAM_ADBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:CAM:PortName_RBV" ro="true" type="pv"/>
+		<Manufacturer_RBV desc="Readback for Manufacturer" pv="BL11I-DI-OAV-01:CAM:Manufacturer_RBV" ro="true" type="pv"/>
+		<Model_RBV desc="Readback for Model" pv="BL11I-DI-OAV-01:CAM:Model_RBV" ro="true" type="pv"/>
+		<MaxSizeX_RBV desc="Readback for MaxSizeX" pv="BL11I-DI-OAV-01:CAM:MaxSizeX_RBV" ro="true" type="pv"/>
+		<MaxSizeY_RBV desc="Readback for MaxSizeY" pv="BL11I-DI-OAV-01:CAM:MaxSizeY_RBV" ro="true" type="pv"/>
+		<DataType desc="Set DataType" pv="BL11I-DI-OAV-01:CAM:DataType" ro="false" type="mbbinary"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:CAM:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode desc="Set ColorMode" pv="BL11I-DI-OAV-01:CAM:ColorMode" ro="false" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:CAM:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BinX desc="Set BinX" pv="BL11I-DI-OAV-01:CAM:BinX" ro="false" type="pv"/>
+		<BinX_RBV desc="Readback for BinX" pv="BL11I-DI-OAV-01:CAM:BinX_RBV" ro="true" type="pv"/>
+		<BinY desc="Set BinY" pv="BL11I-DI-OAV-01:CAM:BinY" ro="false" type="pv"/>
+		<BinY_RBV desc="Readback for BinY" pv="BL11I-DI-OAV-01:CAM:BinY_RBV" ro="true" type="pv"/>
+		<MinX desc="Set MinX" pv="BL11I-DI-OAV-01:CAM:MinX" ro="false" type="pv"/>
+		<MinX_RBV desc="Readback for MinX" pv="BL11I-DI-OAV-01:CAM:MinX_RBV" ro="true" type="pv"/>
+		<MinY desc="Set MinY" pv="BL11I-DI-OAV-01:CAM:MinY" ro="false" type="pv"/>
+		<MinY_RBV desc="Readback for MinY" pv="BL11I-DI-OAV-01:CAM:MinY_RBV" ro="true" type="pv"/>
+		<SizeX desc="Set SizeX" pv="BL11I-DI-OAV-01:CAM:SizeX" ro="false" type="pv"/>
+		<SizeX_RBV desc="Readback for SizeX" pv="BL11I-DI-OAV-01:CAM:SizeX_RBV" ro="true" type="pv"/>
+		<SizeY desc="Set SizeY" pv="BL11I-DI-OAV-01:CAM:SizeY" ro="false" type="pv"/>
+		<SizeY_RBV desc="Readback for SizeY" pv="BL11I-DI-OAV-01:CAM:SizeY_RBV" ro="true" type="pv"/>
+		<ReverseX desc="Set ReverseX" pv="BL11I-DI-OAV-01:CAM:ReverseX" ro="false" type="binary"/>
+		<ReverseX_RBV desc="Readback for ReverseX" pv="BL11I-DI-OAV-01:CAM:ReverseX_RBV" ro="true" type="binary"/>
+		<ReverseY desc="Set ReverseY" pv="BL11I-DI-OAV-01:CAM:ReverseY" ro="false" type="binary"/>
+		<ReverseY_RBV desc="Readback for ReverseY" pv="BL11I-DI-OAV-01:CAM:ReverseY_RBV" ro="true" type="binary"/>
+		<ArraySizeX_RBV desc="Readback for ArraySizeX" pv="BL11I-DI-OAV-01:CAM:ArraySizeX_RBV" ro="true" type="pv"/>
+		<ArraySizeY_RBV desc="Readback for ArraySizeY" pv="BL11I-DI-OAV-01:CAM:ArraySizeY_RBV" ro="true" type="pv"/>
+		<ArraySizeZ_RBV desc="Readback for ArraySizeZ" pv="BL11I-DI-OAV-01:CAM:ArraySizeZ_RBV" ro="true" type="pv"/>
+		<ArraySize_RBV desc="Readback for ArraySize" pv="BL11I-DI-OAV-01:CAM:ArraySize_RBV" ro="true" type="pv"/>
+		<AcquireTime desc="Set AcquireTime" pv="BL11I-DI-OAV-01:CAM:AcquireTime" ro="false" type="pv"/>
+		<AcquireTime_RBV desc="Readback for AcquireTime" pv="BL11I-DI-OAV-01:CAM:AcquireTime_RBV" ro="true" type="pv"/>
+		<AcquirePeriod desc="Set AcquirePeriod" pv="BL11I-DI-OAV-01:CAM:AcquirePeriod" ro="false" type="pv"/>
+		<AcquirePeriod_RBV desc="Readback for AcquirePeriod" pv="BL11I-DI-OAV-01:CAM:AcquirePeriod_RBV" ro="true" type="pv"/>
+		<TimeRemaining_RBV desc="Readback for TimeRemaining" pv="BL11I-DI-OAV-01:CAM:TimeRemaining_RBV" ro="true" type="pv"/>
+		<Gain desc="Set Gain" pv="BL11I-DI-OAV-01:CAM:Gain" ro="false" type="pv"/>
+		<Gain_RBV desc="Readback for Gain" pv="BL11I-DI-OAV-01:CAM:Gain_RBV" ro="true" type="pv"/>
+		<FrameType desc="Set FrameType" pv="BL11I-DI-OAV-01:CAM:FrameType" ro="false" type="mbbinary"/>
+		<FrameType_RBV desc="Readback for FrameType" pv="BL11I-DI-OAV-01:CAM:FrameType_RBV" ro="true" type="mbbinary"/>
+		<ImageMode desc="Set ImageMode" pv="BL11I-DI-OAV-01:CAM:ImageMode" ro="false" type="mbbinary"/>
+		<ImageMode_RBV desc="Readback for ImageMode" pv="BL11I-DI-OAV-01:CAM:ImageMode_RBV" ro="true" type="mbbinary"/>
+		<TriggerMode desc="Set TriggerMode" pv="BL11I-DI-OAV-01:CAM:TriggerMode" ro="false" type="mbbinary"/>
+		<TriggerMode_RBV desc="Readback for TriggerMode" pv="BL11I-DI-OAV-01:CAM:TriggerMode_RBV" ro="true" type="mbbinary"/>
+		<NumExposures desc="Set NumExposures" pv="BL11I-DI-OAV-01:CAM:NumExposures" ro="false" type="pv"/>
+		<NumExposures_RBV desc="Readback for NumExposures" pv="BL11I-DI-OAV-01:CAM:NumExposures_RBV" ro="true" type="pv"/>
+		<NumExposuresCounter_RBV desc="Readback for NumExposuresCounter" pv="BL11I-DI-OAV-01:CAM:NumExposuresCounter_RBV" ro="true" type="pv"/>
+		<NumImages desc="Set NumImages" pv="BL11I-DI-OAV-01:CAM:NumImages" ro="false" type="pv"/>
+		<NumImages_RBV desc="Readback for NumImages" pv="BL11I-DI-OAV-01:CAM:NumImages_RBV" ro="true" type="pv"/>
+		<NumImagesCounter_RBV desc="Readback for NumImagesCounter" pv="BL11I-DI-OAV-01:CAM:NumImagesCounter_RBV" ro="true" type="pv"/>
+		<Acquire desc="Set Acquire" pv="BL11I-DI-OAV-01:CAM:Acquire" ro="false" type="pv"/>
+		<Acquire_RBV desc="Readback for Acquire" pv="BL11I-DI-OAV-01:CAM:Acquire_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:CAM:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:CAM:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:CAM:ArrayRate_RBV" ro="true" type="pv"/>
+		<DetectorState_RBV desc="Readback for DetectorState" pv="BL11I-DI-OAV-01:CAM:DetectorState_RBV" ro="true" type="mbbinary"/>
+		<ArrayCallbacks desc="Set ArrayCallbacks" pv="BL11I-DI-OAV-01:CAM:ArrayCallbacks" ro="false" type="binary"/>
+		<ArrayCallbacks_RBV desc="Readback for ArrayCallbacks" pv="BL11I-DI-OAV-01:CAM:ArrayCallbacks_RBV" ro="true" type="binary"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:CAM:NDAttributesFile" ro="false" type="array"/>
+		<StatusMessage_RBV desc="Readback for StatusMessage" pv="BL11I-DI-OAV-01:CAM:StatusMessage_RBV" ro="true" type="array"/>
+		<StringToServer_RBV desc="Readback for StringToServer" pv="BL11I-DI-OAV-01:CAM:StringToServer_RBV" ro="true" type="array"/>
+		<StringFromServer_RBV desc="Readback for StringFromServer" pv="BL11I-DI-OAV-01:CAM:StringFromServer_RBV" ro="true" type="array"/>
+		<ReadStatus desc="Force read of Status" pv="BL11I-DI-OAV-01:CAM:ReadStatus" ro="false" type="binary"/>
+		<ShutterMode desc="Set ShutterMode" pv="BL11I-DI-OAV-01:CAM:ShutterMode" ro="false" type="mbbinary"/>
+		<ShutterMode_RBV desc="Readback for ShutterMode" pv="BL11I-DI-OAV-01:CAM:ShutterMode_RBV" ro="true" type="mbbinary"/>
+		<ShutterControl desc="Set ShutterControl" pv="BL11I-DI-OAV-01:CAM:ShutterControl" ro="false" type="binary"/>
+		<ShutterControl_RBV desc="Readback for ShutterControl" pv="BL11I-DI-OAV-01:CAM:ShutterControl_RBV" ro="true" type="binary"/>
+		<ShutterStatus_RBV desc="Readback for ShutterStatus" pv="BL11I-DI-OAV-01:CAM:ShutterStatus_RBV" ro="true" type="binary"/>
+		<ShutterOpenDelay desc="Set ShutterOpenDelay" pv="BL11I-DI-OAV-01:CAM:ShutterOpenDelay" ro="false" type="pv"/>
+		<ShutterOpenDelay_RBV desc="Readback for ShutterOpenDelay" pv="BL11I-DI-OAV-01:CAM:ShutterOpenDelay_RBV" ro="true" type="pv"/>
+		<ShutterCloseDelay desc="Set ShutterCloseDelay" pv="BL11I-DI-OAV-01:CAM:ShutterCloseDelay" ro="false" type="pv"/>
+		<ShutterCloseDelay_RBV desc="Readback for ShutterCloseDelay" pv="BL11I-DI-OAV-01:CAM:ShutterCloseDelay_RBV" ro="true" type="pv"/>
+		<ShutterOpenEPICSPV desc="PV to write ShutterOpenEPICSCmd to" pv="BL11I-DI-OAV-01:CAM:ShutterOpenEPICS.OUT" ro="false" type="pv"/>
+		<ShutterOpenEPICSCmd desc="Open command to be sent to ShutterOpenEPICS" pv="BL11I-DI-OAV-01:CAM:ShutterOpenEPICS" ro="false" type="pv"/>
+		<ShutterCloseEPICSPV desc="PV to write ShutterCloseEPICSCmd to" pv="BL11I-DI-OAV-01:CAM:ShutterCloseEPICS.OUT" ro="false" type="pv"/>
+		<ShutterCloseEPICSCmd desc="Close command to be sent to ShutterCloseEPICSPV" pv="BL11I-DI-OAV-01:CAM:ShutterCloseEPICS.OCAL" ro="false" type="pv"/>
+		<ShutterStatusEPICS_RBV desc="Readback for ShutterStatusEPICS" pv="BL11I-DI-OAV-01:CAM:ShutterStatusEPICS_RBV" ro="true" type="mbbinary"/>
+		<ShutterStatusEPICSPV desc="PV to read ShutterStatusEPICS_RBV from. Must be a &quot;CP&quot; link" pv="BL11I-DI-OAV-01:CAM:ShutterStatusEPICS_RBV.INP" ro="false" type="pv"/>
+		<ShutterStatusEPICSCloseVal desc="Value of ShutterStatusEPICSPV when shutter is closed" pv="BL11I-DI-OAV-01:CAM:ShutterStatusEPICS_RBV.ZRVL" ro="false" type="pv"/>
+		<ShutterStatusEPICSOpenVal desc="Value of ShutterStatusEPICSPV when shutter is open" pv="BL11I-DI-OAV-01:CAM:ShutterStatusEPICS_RBV.ONVL" ro="false" type="pv"/>
+		<Temperature desc="Set Temperature" pv="BL11I-DI-OAV-01:CAM:Temperature" ro="false" type="pv"/>
+		<Temperature_RBV desc="Readback for Temperature" pv="BL11I-DI-OAV-01:CAM:Temperature_RBV" ro="true" type="pv"/>
+	</ADBase>
+	<aravisCamera desc="OAV.CAM aravisCamera class instance" name="OAV.CAM_aravisCamera">
+		<COMPLETED_RBV desc="Readback for Frames Completed" pv="BL11I-DI-OAV-01:CAM:COMPLETED_RBV" ro="true" type="pv"/>
+		<FAILURES_RBV desc="Readback for Frame Failures" pv="BL11I-DI-OAV-01:CAM:FAILURES_RBV" ro="true" type="pv"/>
+		<UNDERRUNS_RBV desc="Readback for Frame Underruns" pv="BL11I-DI-OAV-01:CAM:UNDERRUNS_RBV" ro="true" type="pv"/>
+	</aravisCamera>
+	<NDPluginBase desc="OAV.ROI NDPluginBase class instance" name="OAV.ROI_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:ROI:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:ROI:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:ROI:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:ROI:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:ROI:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:ROI:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:ROI:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:ROI:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:ROI:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:ROI:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:ROI:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:ROI:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:ROI:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:ROI:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:ROI:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:ROI:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:ROI:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:ROI:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:ROI:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:ROI:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:ROI:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:ROI:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:ROI:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:ROI:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:ROI:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:ROI:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:ROI:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.PROC NDPluginBase class instance" name="OAV.PROC_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:PROC:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:PROC:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:PROC:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:PROC:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:PROC:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:PROC:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:PROC:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:PROC:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:PROC:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:PROC:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:PROC:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:PROC:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:PROC:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:PROC:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:PROC:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:PROC:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:PROC:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:PROC:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:PROC:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:PROC:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:PROC:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:PROC:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:PROC:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:PROC:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:PROC:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:PROC:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:PROC:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.STAT NDPluginBase class instance" name="OAV.STAT_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:STAT:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:STAT:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:STAT:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:STAT:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:STAT:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:STAT:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:STAT:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:STAT:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:STAT:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:STAT:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:STAT:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:STAT:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:STAT:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:STAT:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:STAT:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:STAT:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:STAT:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:STAT:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:STAT:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:STAT:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:STAT:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:STAT:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:STAT:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:STAT:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:STAT:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:STAT:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:STAT:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.ARR NDPluginBase class instance" name="OAV.ARR_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:ARR:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:ARR:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:ARR:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:ARR:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:ARR:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:ARR:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:ARR:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:ARR:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:ARR:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:ARR:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:ARR:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:ARR:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:ARR:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:ARR:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:ARR:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:ARR:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:ARR:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:ARR:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:ARR:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:ARR:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:ARR:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:ARR:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:ARR:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:ARR:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:ARR:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:ARR:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:ARR:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.HDF5 NDPluginBase class instance" name="OAV.HDF5_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:HDF5:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:HDF5:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:HDF5:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:HDF5:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:HDF5:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:HDF5:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:HDF5:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:HDF5:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:HDF5:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:HDF5:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:HDF5:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:HDF5:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:HDF5:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:HDF5:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:HDF5:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:HDF5:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:HDF5:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:HDF5:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:HDF5:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:HDF5:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:HDF5:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:HDF5:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:HDF5:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:HDF5:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:HDF5:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:HDF5:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:HDF5:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.FIMG NDPluginBase class instance" name="OAV.FIMG_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:FIMG:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:FIMG:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:FIMG:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:FIMG:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:FIMG:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:FIMG:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:FIMG:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:FIMG:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:FIMG:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:FIMG:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:FIMG:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:FIMG:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:FIMG:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:FIMG:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:FIMG:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:FIMG:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:FIMG:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:FIMG:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:FIMG:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:FIMG:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:FIMG:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:FIMG:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:FIMG:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:FIMG:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:FIMG:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:FIMG:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:FIMG:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.OVER NDPluginBase class instance" name="OAV.OVER_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:OVER:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:OVER:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:OVER:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:OVER:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:OVER:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:OVER:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:OVER:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:OVER:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:OVER:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:OVER:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:OVER:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:OVER:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:OVER:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:OVER:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:OVER:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:OVER:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:OVER:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:OVER:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:OVER:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:OVER:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:OVER:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:OVER:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:OVER:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:OVER:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:OVER:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:OVER:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:OVER:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDPluginBase desc="OAV.MJPG NDPluginBase class instance" name="OAV.MJPG_NDPluginBase">
+		<PortName_RBV desc="Readback for PortName" pv="BL11I-DI-OAV-01:MJPG:PortName_RBV" ro="true" type="pv"/>
+		<PluginType_RBV desc="Readback for PluginType" pv="BL11I-DI-OAV-01:MJPG:PluginType_RBV" ro="true" type="pv"/>
+		<NDArrayPort desc="Set NDArrayPort" pv="BL11I-DI-OAV-01:MJPG:NDArrayPort" ro="false" type="pv"/>
+		<NDArrayPort_RBV desc="Readback for NDArrayPort" pv="BL11I-DI-OAV-01:MJPG:NDArrayPort_RBV" ro="true" type="pv"/>
+		<NDArrayAddress desc="Set NDArrayAddress" pv="BL11I-DI-OAV-01:MJPG:NDArrayAddress" ro="false" type="pv"/>
+		<NDArrayAddress_RBV desc="Readback for NDArrayAddress" pv="BL11I-DI-OAV-01:MJPG:NDArrayAddress_RBV" ro="true" type="pv"/>
+		<EnableCallbacks desc="Set EnableCallbacks" pv="BL11I-DI-OAV-01:MJPG:EnableCallbacks" ro="false" type="binary"/>
+		<EnableCallbacks_RBV desc="Readback for EnableCallbacks" pv="BL11I-DI-OAV-01:MJPG:EnableCallbacks_RBV" ro="true" type="binary"/>
+		<MinCallbackTime desc="Set MinCallbackTime" pv="BL11I-DI-OAV-01:MJPG:MinCallbackTime" ro="false" type="pv"/>
+		<MinCallbackTime_RBV desc="Readback for MinCallbackTime" pv="BL11I-DI-OAV-01:MJPG:MinCallbackTime_RBV" ro="true" type="pv"/>
+		<BlockingCallbacks desc="Set BlockingCallbacks" pv="BL11I-DI-OAV-01:MJPG:BlockingCallbacks" ro="false" type="binary"/>
+		<BlockingCallbacks_RBV desc="Readback for BlockingCallbacks" pv="BL11I-DI-OAV-01:MJPG:BlockingCallbacks_RBV" ro="true" type="binary"/>
+		<ArrayCounter desc="Set ArrayCounter" pv="BL11I-DI-OAV-01:MJPG:ArrayCounter" ro="false" type="pv"/>
+		<ArrayCounter_RBV desc="Readback for ArrayCounter" pv="BL11I-DI-OAV-01:MJPG:ArrayCounter_RBV" ro="true" type="pv"/>
+		<ArrayRate_RBV desc="Readback for ArrayRate" pv="BL11I-DI-OAV-01:MJPG:ArrayRate_RBV" ro="true" type="pv"/>
+		<DroppedArrays desc="Set DroppedArrays" pv="BL11I-DI-OAV-01:MJPG:DroppedArrays" ro="false" type="pv"/>
+		<DroppedArrays_RBV desc="Readback for DroppedArrays" pv="BL11I-DI-OAV-01:MJPG:DroppedArrays_RBV" ro="true" type="pv"/>
+		<NDimensions_RBV desc="Readback for NDimensions" pv="BL11I-DI-OAV-01:MJPG:NDimensions_RBV" ro="true" type="pv"/>
+		<ArraySize0_RBV desc="Readback for ArraySize0" pv="BL11I-DI-OAV-01:MJPG:ArraySize0_RBV" ro="true" type="pv"/>
+		<ArraySize1_RBV desc="Readback for ArraySize1" pv="BL11I-DI-OAV-01:MJPG:ArraySize1_RBV" ro="true" type="pv"/>
+		<ArraySize2_RBV desc="Readback for ArraySize2" pv="BL11I-DI-OAV-01:MJPG:ArraySize2_RBV" ro="true" type="pv"/>
+		<DataType_RBV desc="Readback for DataType" pv="BL11I-DI-OAV-01:MJPG:DataType_RBV" ro="true" type="mbbinary"/>
+		<ColorMode_RBV desc="Readback for ColorMode" pv="BL11I-DI-OAV-01:MJPG:ColorMode_RBV" ro="true" type="mbbinary"/>
+		<BayerPattern_RBV desc="Readback for BayerPattern" pv="BL11I-DI-OAV-01:MJPG:BayerPattern_RBV" ro="true" type="mbbinary"/>
+		<UniqueId_RBV desc="Readback for UniqueId" pv="BL11I-DI-OAV-01:MJPG:UniqueId_RBV" ro="true" type="pv"/>
+		<TimeStamp_RBV desc="Readback for TimeStamp" pv="BL11I-DI-OAV-01:MJPG:TimeStamp_RBV" ro="true" type="pv"/>
+		<NDAttributesFile desc="Set NDAttributesFile" pv="BL11I-DI-OAV-01:MJPG:NDAttributesFile" ro="false" type="array"/>
+	</NDPluginBase>
+	<NDROI desc="OAV.ROI NDROI class instance" name="OAV.ROI_NDROI">
+		<Label desc="Set Label" pv="BL11I-DI-OAV-01:ROI:Name" ro="false" type="pv"/>
+		<Label_RBV desc="Readback for Label" pv="BL11I-DI-OAV-01:ROI:Name_RBV" ro="true" type="pv"/>
+		<BinX desc="Set BinX" pv="BL11I-DI-OAV-01:ROI:BinX" ro="false" type="pv"/>
+		<BinX_RBV desc="Readback for BinX" pv="BL11I-DI-OAV-01:ROI:BinX_RBV" ro="true" type="pv"/>
+		<BinY desc="Set BinY" pv="BL11I-DI-OAV-01:ROI:BinY" ro="false" type="pv"/>
+		<BinY_RBV desc="Readback for BinY" pv="BL11I-DI-OAV-01:ROI:BinY_RBV" ro="true" type="pv"/>
+		<BinZ desc="Set BinZ" pv="BL11I-DI-OAV-01:ROI:BinZ" ro="false" type="pv"/>
+		<BinZ_RBV desc="Readback for BinZ" pv="BL11I-DI-OAV-01:ROI:BinZ_RBV" ro="true" type="pv"/>
+		<MinX desc="Set MinX" pv="BL11I-DI-OAV-01:ROI:MinX" ro="false" type="pv"/>
+		<MinX_RBV desc="Readback for MinX" pv="BL11I-DI-OAV-01:ROI:MinX_RBV" ro="true" type="pv"/>
+		<MinY desc="Set MinY" pv="BL11I-DI-OAV-01:ROI:MinY" ro="false" type="pv"/>
+		<MinY_RBV desc="Readback for MinY" pv="BL11I-DI-OAV-01:ROI:MinY_RBV" ro="true" type="pv"/>
+		<MinZ desc="Set MinZ" pv="BL11I-DI-OAV-01:ROI:MinZ" ro="false" type="pv"/>
+		<MinZ_RBV desc="Readback for MinZ" pv="BL11I-DI-OAV-01:ROI:MinZ_RBV" ro="true" type="pv"/>
+		<SizeX desc="Set SizeX" pv="BL11I-DI-OAV-01:ROI:SizeX" ro="false" type="pv"/>
+		<SizeX_RBV desc="Readback for SizeX" pv="BL11I-DI-OAV-01:ROI:SizeX_RBV" ro="true" type="pv"/>
+		<SizeY desc="Set SizeY" pv="BL11I-DI-OAV-01:ROI:SizeY" ro="false" type="pv"/>
+		<SizeY_RBV desc="Readback for SizeY" pv="BL11I-DI-OAV-01:ROI:SizeY_RBV" ro="true" type="pv"/>
+		<SizeZ desc="Set SizeZ" pv="BL11I-DI-OAV-01:ROI:SizeZ" ro="false" type="pv"/>
+		<SizeZ_RBV desc="Readback for SizeZ" pv="BL11I-DI-OAV-01:ROI:SizeZ_RBV" ro="true" type="pv"/>
+		<MaxSizeX_RBV desc="Readback for MaxSizeX" pv="BL11I-DI-OAV-01:ROI:MaxSizeX_RBV" ro="true" type="pv"/>
+		<MaxSizeY_RBV desc="Readback for MaxSizeY" pv="BL11I-DI-OAV-01:ROI:MaxSizeY_RBV" ro="true" type="pv"/>
+		<MaxSizeZ_RBV desc="Readback for MaxSizeZ" pv="BL11I-DI-OAV-01:ROI:MaxSizeZ_RBV" ro="true" type="pv"/>
+		<ReverseX desc="Set ReverseX" pv="BL11I-DI-OAV-01:ROI:ReverseX" ro="false" type="binary"/>
+		<ReverseX_RBV desc="Readback for ReverseX" pv="BL11I-DI-OAV-01:ROI:ReverseX_RBV" ro="true" type="binary"/>
+		<ReverseY desc="Set ReverseY" pv="BL11I-DI-OAV-01:ROI:ReverseY" ro="false" type="binary"/>
+		<ReverseY_RBV desc="Readback for ReverseY" pv="BL11I-DI-OAV-01:ROI:ReverseY_RBV" ro="true" type="binary"/>
+		<ReverseZ desc="Set ReverseZ" pv="BL11I-DI-OAV-01:ROI:ReverseZ" ro="false" type="binary"/>
+		<ReverseZ_RBV desc="Readback for ReverseZ" pv="BL11I-DI-OAV-01:ROI:ReverseZ_RBV" ro="true" type="binary"/>
+		<ArraySizeX_RBV desc="Readback for ArraySizeX" pv="BL11I-DI-OAV-01:ROI:ArraySizeX_RBV" ro="true" type="pv"/>
+		<ArraySizeY_RBV desc="Readback for ArraySizeY" pv="BL11I-DI-OAV-01:ROI:ArraySizeY_RBV" ro="true" type="pv"/>
+		<ArraySizeZ_RBV desc="Readback for ArraySizeZ" pv="BL11I-DI-OAV-01:ROI:ArraySizeZ_RBV" ro="true" type="pv"/>
+		<EnableX desc="Set EnableX" pv="BL11I-DI-OAV-01:ROI:EnableX" ro="false" type="binary"/>
+		<EnableX_RBV desc="Readback for EnableX" pv="BL11I-DI-OAV-01:ROI:EnableX_RBV" ro="true" type="binary"/>
+		<EnableY desc="Set EnableY" pv="BL11I-DI-OAV-01:ROI:EnableY" ro="false" type="binary"/>
+		<EnableY_RBV desc="Readback for EnableY" pv="BL11I-DI-OAV-01:ROI:EnableY_RBV" ro="true" type="binary"/>
+		<EnableZ desc="Set EnableZ" pv="BL11I-DI-OAV-01:ROI:EnableZ" ro="false" type="binary"/>
+		<EnableZ_RBV desc="Readback for EnableZ" pv="BL11I-DI-OAV-01:ROI:EnableZ_RBV" ro="true" type="binary"/>
+		<EnableScale desc="Set EnableScale" pv="BL11I-DI-OAV-01:ROI:EnableScale" ro="false" type="binary"/>
+		<EnableScale_RBV desc="Readback for EnableScale" pv="BL11I-DI-OAV-01:ROI:EnableScale_RBV" ro="true" type="binary"/>
+		<Scale desc="Set Scale" pv="BL11I-DI-OAV-01:ROI:Scale" ro="false" type="pv"/>
+		<Scale_RBV desc="Readback for Scale" pv="BL11I-DI-OAV-01:ROI:Scale_RBV" ro="true" type="pv"/>
+		<DataTypeOut desc="Set DataTypeOut" pv="BL11I-DI-OAV-01:ROI:DataTypeOut" ro="false" type="mbbinary"/>
+		<DataTypeOut_RBV desc="Readback for DataTypeOut" pv="BL11I-DI-OAV-01:ROI:DataTypeOut_RBV" ro="true" type="mbbinary"/>
+	</NDROI>
+	<NDProcess desc="OAV.PROC NDProcess class instance" name="OAV.PROC_NDProcess">
+		<DataTypeOut desc="Set DataTypeOut" pv="BL11I-DI-OAV-01:PROC:DataTypeOut" ro="false" type="mbbinary"/>
+		<DataTypeOut_RBV desc="Readback for DataTypeOut" pv="BL11I-DI-OAV-01:PROC:DataTypeOut_RBV" ro="true" type="mbbinary"/>
+		<SaveBackground desc="Set SaveBackground" pv="BL11I-DI-OAV-01:PROC:SaveBackground" ro="false" type="binary"/>
+		<SaveBackground_RBV desc="Readback for SaveBackground" pv="BL11I-DI-OAV-01:PROC:SaveBackground_RBV" ro="true" type="binary"/>
+		<EnableBackground desc="Set EnableBackground" pv="BL11I-DI-OAV-01:PROC:EnableBackground" ro="false" type="binary"/>
+		<EnableBackground_RBV desc="Readback for EnableBackground" pv="BL11I-DI-OAV-01:PROC:EnableBackground_RBV" ro="true" type="binary"/>
+		<ValidBackground_RBV desc="Readback for ValidBackground" pv="BL11I-DI-OAV-01:PROC:ValidBackground_RBV" ro="true" type="binary"/>
+		<SaveFlatField desc="Set SaveFlatField" pv="BL11I-DI-OAV-01:PROC:SaveFlatField" ro="false" type="binary"/>
+		<SaveFlatField_RBV desc="Readback for SaveFlatField" pv="BL11I-DI-OAV-01:PROC:SaveFlatField_RBV" ro="true" type="binary"/>
+		<EnableFlatField desc="Set EnableFlatField" pv="BL11I-DI-OAV-01:PROC:EnableFlatField" ro="false" type="binary"/>
+		<EnableFlatField_RBV desc="Readback for EnableFlatField" pv="BL11I-DI-OAV-01:PROC:EnableFlatField_RBV" ro="true" type="binary"/>
+		<ValidFlatField_RBV desc="Readback for ValidFlatField" pv="BL11I-DI-OAV-01:PROC:ValidFlatField_RBV" ro="true" type="binary"/>
+		<ScaleFlatField desc="Set ScaleFlatField" pv="BL11I-DI-OAV-01:PROC:ScaleFlatField" ro="false" type="pv"/>
+		<ScaleFlatField_RBV desc="Readback for ScaleFlatField" pv="BL11I-DI-OAV-01:PROC:ScaleFlatField_RBV" ro="true" type="pv"/>
+		<EnableOffsetScale desc="Set EnableOffsetScale" pv="BL11I-DI-OAV-01:PROC:EnableOffsetScale" ro="false" type="binary"/>
+		<EnableOffsetScale_RBV desc="Readback for EnableOffsetScale" pv="BL11I-DI-OAV-01:PROC:EnableOffsetScale_RBV" ro="true" type="binary"/>
+		<Offset desc="Set Offset" pv="BL11I-DI-OAV-01:PROC:Offset" ro="false" type="pv"/>
+		<Offset_RBV desc="Readback for Offset" pv="BL11I-DI-OAV-01:PROC:Offset_RBV" ro="true" type="pv"/>
+		<Scale desc="Set Scale" pv="BL11I-DI-OAV-01:PROC:Scale" ro="false" type="pv"/>
+		<Scale_RBV desc="Readback for Scale" pv="BL11I-DI-OAV-01:PROC:Scale_RBV" ro="true" type="pv"/>
+		<EnableLowClip desc="Set EnableLowClip" pv="BL11I-DI-OAV-01:PROC:EnableLowClip" ro="false" type="binary"/>
+		<EnableLowClip_RBV desc="Readback for EnableLowClip" pv="BL11I-DI-OAV-01:PROC:EnableLowClip_RBV" ro="true" type="binary"/>
+		<LowClip desc="Set LowClip" pv="BL11I-DI-OAV-01:PROC:LowClip" ro="false" type="pv"/>
+		<LowClip_RBV desc="Readback for LowClip" pv="BL11I-DI-OAV-01:PROC:LowClip_RBV" ro="true" type="pv"/>
+		<EnableHighClip desc="Set EnableHighClip" pv="BL11I-DI-OAV-01:PROC:EnableHighClip" ro="false" type="binary"/>
+		<EnableHighClip_RBV desc="Readback for EnableHighClip" pv="BL11I-DI-OAV-01:PROC:EnableHighClip_RBV" ro="true" type="binary"/>
+		<HighClip desc="Set HighClip" pv="BL11I-DI-OAV-01:PROC:HighClip" ro="false" type="pv"/>
+		<HighClip_RBV desc="Readback for HighClip" pv="BL11I-DI-OAV-01:PROC:HighClip_RBV" ro="true" type="pv"/>
+		<EnableFilter desc="Set EnableFilter" pv="BL11I-DI-OAV-01:PROC:EnableFilter" ro="false" type="binary"/>
+		<EnableFilter_RBV desc="Readback for EnableFilter" pv="BL11I-DI-OAV-01:PROC:EnableFilter_RBV" ro="true" type="binary"/>
+		<ResetFilter desc="Set ResetFilter" pv="BL11I-DI-OAV-01:PROC:ResetFilter" ro="false" type="binary"/>
+		<ResetFilter_RBV desc="Readback for ResetFilter" pv="BL11I-DI-OAV-01:PROC:ResetFilter_RBV" ro="true" type="binary"/>
+		<NumFilter desc="Set NumFilter" pv="BL11I-DI-OAV-01:PROC:NumFilter" ro="false" type="pv"/>
+		<NumFilter_RBV desc="Readback for NumFilter" pv="BL11I-DI-OAV-01:PROC:NumFilter_RBV" ro="true" type="pv"/>
+		<NumFilterRecip desc="Set NumFilterRecip" pv="BL11I-DI-OAV-01:PROC:NumFilterRecip" ro="false" type="pv"/>
+		<NumFiltered_RBV desc="Readback for NumFiltered" pv="BL11I-DI-OAV-01:PROC:NumFiltered_RBV" ro="true" type="pv"/>
+		<OOffset desc="Set OOffset" pv="BL11I-DI-OAV-01:PROC:OOffset" ro="false" type="pv"/>
+		<OOffset_RBV desc="Readback for OOffset" pv="BL11I-DI-OAV-01:PROC:OOffset_RBV" ro="true" type="pv"/>
+		<OScale desc="Set OScale" pv="BL11I-DI-OAV-01:PROC:OScale" ro="false" type="pv"/>
+		<OScale_RBV desc="Readback for OScale" pv="BL11I-DI-OAV-01:PROC:OScale_RBV" ro="true" type="pv"/>
+		<OC1 desc="Set OC1" pv="BL11I-DI-OAV-01:PROC:OC1" ro="false" type="pv"/>
+		<OC1_RBV desc="Readback for OC1" pv="BL11I-DI-OAV-01:PROC:OC1_RBV" ro="true" type="pv"/>
+		<OC2 desc="Set OC2" pv="BL11I-DI-OAV-01:PROC:OC2" ro="false" type="pv"/>
+		<OC2_RBV desc="Readback for OC2" pv="BL11I-DI-OAV-01:PROC:OC2_RBV" ro="true" type="pv"/>
+		<OC3 desc="Set OC3" pv="BL11I-DI-OAV-01:PROC:OC3" ro="false" type="pv"/>
+		<OC3_RBV desc="Readback for OC3" pv="BL11I-DI-OAV-01:PROC:OC3_RBV" ro="true" type="pv"/>
+		<OC4 desc="Set OC4" pv="BL11I-DI-OAV-01:PROC:OC4" ro="false" type="pv"/>
+		<OC4_RBV desc="Readback for OC4" pv="BL11I-DI-OAV-01:PROC:OC4_RBV" ro="true" type="pv"/>
+		<FOffset desc="Set FOffset" pv="BL11I-DI-OAV-01:PROC:FOffset" ro="false" type="pv"/>
+		<FOffset_RBV desc="Readback for FOffset" pv="BL11I-DI-OAV-01:PROC:FOffset_RBV" ro="true" type="pv"/>
+		<FScale desc="Set FScale" pv="BL11I-DI-OAV-01:PROC:FScale" ro="false" type="pv"/>
+		<FScale_RBV desc="Readback for FScale" pv="BL11I-DI-OAV-01:PROC:FScale_RBV" ro="true" type="pv"/>
+		<FC1 desc="Set FC1" pv="BL11I-DI-OAV-01:PROC:FC1" ro="false" type="pv"/>
+		<FC1_RBV desc="Readback for FC1" pv="BL11I-DI-OAV-01:PROC:FC1_RBV" ro="true" type="pv"/>
+		<FC2 desc="Set FC2" pv="BL11I-DI-OAV-01:PROC:FC2" ro="false" type="pv"/>
+		<FC2_RBV desc="Readback for FC2" pv="BL11I-DI-OAV-01:PROC:FC2_RBV" ro="true" type="pv"/>
+		<FC3 desc="Set FC3" pv="BL11I-DI-OAV-01:PROC:FC3" ro="false" type="pv"/>
+		<FC3_RBV desc="Readback for FC3" pv="BL11I-DI-OAV-01:PROC:FC3_RBV" ro="true" type="pv"/>
+		<FC4 desc="Set FC4" pv="BL11I-DI-OAV-01:PROC:FC4" ro="false" type="pv"/>
+		<FC4_RBV desc="Readback for FC4" pv="BL11I-DI-OAV-01:PROC:FC4_RBV" ro="true" type="pv"/>
+		<ROffset desc="Set ROffset" pv="BL11I-DI-OAV-01:PROC:ROffset" ro="false" type="pv"/>
+		<ROffset_RBV desc="Readback for ROffset" pv="BL11I-DI-OAV-01:PROC:ROffset_RBV" ro="true" type="pv"/>
+		<RC1 desc="Set RC1" pv="BL11I-DI-OAV-01:PROC:RC1" ro="false" type="pv"/>
+		<RC1_RBV desc="Readback for RC1" pv="BL11I-DI-OAV-01:PROC:RC1_RBV" ro="true" type="pv"/>
+		<RC2 desc="Set RC2" pv="BL11I-DI-OAV-01:PROC:RC2" ro="false" type="pv"/>
+		<RC2_RBV desc="Readback for RC2" pv="BL11I-DI-OAV-01:PROC:RC2_RBV" ro="true" type="pv"/>
+		<FilterType desc="Set FilterType" pv="BL11I-DI-OAV-01:PROC:FilterType" ro="false" type="mbbinary"/>
+		<FilterTypeSeq desc="Set FilterTypeSeq" pv="BL11I-DI-OAV-01:PROC:FilterTypeSeq" ro="false" type="pv"/>
+		<RecursiveAveSeq desc="Set RecursiveAveSeq" pv="BL11I-DI-OAV-01:PROC:RecursiveAveSeq" ro="false" type="pv"/>
+		<RecursiveSumSeq desc="Set RecursiveSumSeq" pv="BL11I-DI-OAV-01:PROC:RecursiveSumSeq" ro="false" type="pv"/>
+		<DifferenceSeq desc="Set DifferenceSeq" pv="BL11I-DI-OAV-01:PROC:DifferenceSeq" ro="false" type="pv"/>
+		<RecursiveAveDiffSeq desc="Set RecursiveAveDiffSeq" pv="BL11I-DI-OAV-01:PROC:RecursiveAveDiffSeq" ro="false" type="pv"/>
+		<CopyToFilterSeq desc="Set CopyToFilterSeq" pv="BL11I-DI-OAV-01:PROC:CopyToFilterSeq" ro="false" type="pv"/>
+	</NDProcess>
+	<NDStats desc="OAV.STAT NDStats class instance" name="OAV.STAT_NDStats">
+		<ComputeStatistics desc="Set ComputeStatistics" pv="BL11I-DI-OAV-01:STAT:ComputeStatistics" ro="false" type="binary"/>
+		<ComputeStatistics_RBV desc="Readback for ComputeStatistics" pv="BL11I-DI-OAV-01:STAT:ComputeStatistics_RBV" ro="true" type="binary"/>
+		<BgdWidth desc="Set BgdWidth" pv="BL11I-DI-OAV-01:STAT:BgdWidth" ro="false" type="pv"/>
+		<BgdWidth_RBV desc="Readback for BgdWidth" pv="BL11I-DI-OAV-01:STAT:BgdWidth_RBV" ro="true" type="pv"/>
+		<MinValue_RBV desc="Readback for MinValue" pv="BL11I-DI-OAV-01:STAT:MinValue_RBV" ro="true" type="pv"/>
+		<MaxValue_RBV desc="Readback for MaxValue" pv="BL11I-DI-OAV-01:STAT:MaxValue_RBV" ro="true" type="pv"/>
+		<MeanValue_RBV desc="Readback for MeanValue" pv="BL11I-DI-OAV-01:STAT:MeanValue_RBV" ro="true" type="pv"/>
+		<Sigma_RBV desc="Readback for Sigma" pv="BL11I-DI-OAV-01:STAT:Sigma_RBV" ro="true" type="pv"/>
+		<Total_RBV desc="Readback for Total" pv="BL11I-DI-OAV-01:STAT:Total_RBV" ro="true" type="pv"/>
+		<Net_RBV desc="Readback for Net" pv="BL11I-DI-OAV-01:STAT:Net_RBV" ro="true" type="pv"/>
+		<ComputeCentroid desc="Set ComputeCentroid" pv="BL11I-DI-OAV-01:STAT:ComputeCentroid" ro="false" type="binary"/>
+		<ComputeCentroid_RBV desc="Readback for ComputeCentroid" pv="BL11I-DI-OAV-01:STAT:ComputeCentroid_RBV" ro="true" type="binary"/>
+		<CentroidThreshold desc="Set CentroidThreshold" pv="BL11I-DI-OAV-01:STAT:CentroidThreshold" ro="false" type="pv"/>
+		<CentroidThreshold_RBV desc="Readback for CentroidThreshold" pv="BL11I-DI-OAV-01:STAT:CentroidThreshold_RBV" ro="true" type="pv"/>
+		<CentroidX_RBV desc="Readback for CentroidX" pv="BL11I-DI-OAV-01:STAT:CentroidX_RBV" ro="true" type="pv"/>
+		<CentroidY_RBV desc="Readback for CentroidY" pv="BL11I-DI-OAV-01:STAT:CentroidY_RBV" ro="true" type="pv"/>
+		<SigmaX_RBV desc="Readback for SigmaX" pv="BL11I-DI-OAV-01:STAT:SigmaX_RBV" ro="true" type="pv"/>
+		<SigmaY_RBV desc="Readback for SigmaY" pv="BL11I-DI-OAV-01:STAT:SigmaY_RBV" ro="true" type="pv"/>
+		<SigmaXY_RBV desc="Readback for SigmaXY" pv="BL11I-DI-OAV-01:STAT:SigmaXY_RBV" ro="true" type="pv"/>
+		<ComputeProfiles desc="Set ComputeProfiles" pv="BL11I-DI-OAV-01:STAT:ComputeProfiles" ro="false" type="binary"/>
+		<ComputeProfiles_RBV desc="Readback for ComputeProfiles" pv="BL11I-DI-OAV-01:STAT:ComputeProfiles_RBV" ro="true" type="binary"/>
+		<ProfileSizeX_RBV desc="Readback for ProfileSizeX" pv="BL11I-DI-OAV-01:STAT:ProfileSizeX_RBV" ro="true" type="pv"/>
+		<ProfileSizeY_RBV desc="Readback for ProfileSizeY" pv="BL11I-DI-OAV-01:STAT:ProfileSizeY_RBV" ro="true" type="pv"/>
+		<CursorX desc="Set CursorX" pv="BL11I-DI-OAV-01:STAT:CursorX" ro="false" type="pv"/>
+		<CursorX_RBV desc="Readback for CursorX" pv="BL11I-DI-OAV-01:STAT:CursorX_RBV" ro="true" type="pv"/>
+		<CursorY desc="Set CursorY" pv="BL11I-DI-OAV-01:STAT:CursorY" ro="false" type="pv"/>
+		<CursorY_RBV desc="Readback for CursorY" pv="BL11I-DI-OAV-01:STAT:CursorY_RBV" ro="true" type="pv"/>
+		<ProfileAverageX_RBV desc="Readback for ProfileAverageX" pv="BL11I-DI-OAV-01:STAT:ProfileAverageX_RBV" ro="true" type="array"/>
+		<ProfileAverageY_RBV desc="Readback for ProfileAverageY" pv="BL11I-DI-OAV-01:STAT:ProfileAverageY_RBV" ro="true" type="array"/>
+		<ProfileThresholdX_RBV desc="Readback for ProfileThresholdX" pv="BL11I-DI-OAV-01:STAT:ProfileThresholdX_RBV" ro="true" type="array"/>
+		<ProfileThresholdY_RBV desc="Readback for ProfileThresholdY" pv="BL11I-DI-OAV-01:STAT:ProfileThresholdY_RBV" ro="true" type="array"/>
+		<ProfileCentroidX_RBV desc="Readback for ProfileCentroidX" pv="BL11I-DI-OAV-01:STAT:ProfileCentroidX_RBV" ro="true" type="array"/>
+		<ProfileCentroidY_RBV desc="Readback for ProfileCentroidY" pv="BL11I-DI-OAV-01:STAT:ProfileCentroidY_RBV" ro="true" type="array"/>
+		<ProfileCursorX_RBV desc="Readback for ProfileCursorX" pv="BL11I-DI-OAV-01:STAT:ProfileCursorX_RBV" ro="true" type="array"/>
+		<ProfileCursorY_RBV desc="Readback for ProfileCursorY" pv="BL11I-DI-OAV-01:STAT:ProfileCursorY_RBV" ro="true" type="array"/>
+		<ComputeHistogram desc="Set ComputeHistogram" pv="BL11I-DI-OAV-01:STAT:ComputeHistogram" ro="false" type="binary"/>
+		<ComputeHistogram_RBV desc="Readback for ComputeHistogram" pv="BL11I-DI-OAV-01:STAT:ComputeHistogram_RBV" ro="true" type="binary"/>
+		<HistSize desc="Set HistSize" pv="BL11I-DI-OAV-01:STAT:HistSize" ro="false" type="pv"/>
+		<HistSize_RBV desc="Readback for HistSize" pv="BL11I-DI-OAV-01:STAT:HistSize_RBV" ro="true" type="pv"/>
+		<HistMin desc="Set HistMin" pv="BL11I-DI-OAV-01:STAT:HistMin" ro="false" type="pv"/>
+		<HistMin_RBV desc="Readback for HistMin" pv="BL11I-DI-OAV-01:STAT:HistMin_RBV" ro="true" type="pv"/>
+		<HistMax desc="Set HistMax" pv="BL11I-DI-OAV-01:STAT:HistMax" ro="false" type="pv"/>
+		<HistMax_RBV desc="Readback for HistMax" pv="BL11I-DI-OAV-01:STAT:HistMax_RBV" ro="true" type="pv"/>
+		<HistEntropy_RBV desc="Readback for HistEntropy" pv="BL11I-DI-OAV-01:STAT:HistEntropy_RBV" ro="true" type="pv"/>
+		<Histogram_RBV desc="Readback for Histogram" pv="BL11I-DI-OAV-01:STAT:Histogram_RBV" ro="true" type="array"/>
+		<MaxSizeX desc="Set MaxSizeX" pv="BL11I-DI-OAV-01:STAT:MaxSizeX" ro="false" type="pv"/>
+		<SetXHOPR desc="Set SetXHOPR" pv="BL11I-DI-OAV-01:STAT:SetXHOPR" ro="false" type="pv"/>
+		<MaxSizeY desc="Set MaxSizeY" pv="BL11I-DI-OAV-01:STAT:MaxSizeY" ro="false" type="pv"/>
+		<SetYHOPR desc="Set SetYHOPR" pv="BL11I-DI-OAV-01:STAT:SetYHOPR" ro="false" type="pv"/>
+	</NDStats>
+	<NDStdArrays desc="OAV.ARR NDStdArrays class instance" name="OAV.ARR_NDStdArrays">
+		<ArrayData desc="Set ArrayData" pv="BL11I-DI-OAV-01:ARR:ArrayData" ro="false" type="array"/>
+	</NDStdArrays>
+	<NDFile desc="OAV.HDF5 NDFile class instance" name="OAV.HDF5_NDFile">
+		<FilePath desc="Set FilePath" pv="BL11I-DI-OAV-01:HDF5:FilePath" ro="false" type="array"/>
+		<FilePath_RBV desc="Readback for FilePath" pv="BL11I-DI-OAV-01:HDF5:FilePath_RBV" ro="true" type="array"/>
+		<FileName desc="Set FileName" pv="BL11I-DI-OAV-01:HDF5:FileName" ro="false" type="array"/>
+		<FileName_RBV desc="Readback for FileName" pv="BL11I-DI-OAV-01:HDF5:FileName_RBV" ro="true" type="array"/>
+		<FileNumber desc="Set FileNumber" pv="BL11I-DI-OAV-01:HDF5:FileNumber" ro="false" type="pv"/>
+		<FileNumber_RBV desc="Readback for FileNumber" pv="BL11I-DI-OAV-01:HDF5:FileNumber_RBV" ro="true" type="pv"/>
+		<AutoIncrement desc="Set AutoIncrement" pv="BL11I-DI-OAV-01:HDF5:AutoIncrement" ro="false" type="binary"/>
+		<AutoIncrement_RBV desc="Readback for AutoIncrement" pv="BL11I-DI-OAV-01:HDF5:AutoIncrement_RBV" ro="true" type="binary"/>
+		<FileTemplate desc="Set FileTemplate" pv="BL11I-DI-OAV-01:HDF5:FileTemplate" ro="false" type="array"/>
+		<FileTemplate_RBV desc="Readback for FileTemplate" pv="BL11I-DI-OAV-01:HDF5:FileTemplate_RBV" ro="true" type="array"/>
+		<FullFileName_RBV desc="Readback for FullFileName" pv="BL11I-DI-OAV-01:HDF5:FullFileName_RBV" ro="true" type="array"/>
+		<AutoSave desc="Set AutoSave" pv="BL11I-DI-OAV-01:HDF5:AutoSave" ro="false" type="binary"/>
+		<AutoSave_RBV desc="Readback for AutoSave" pv="BL11I-DI-OAV-01:HDF5:AutoSave_RBV" ro="true" type="binary"/>
+		<WriteFile desc="Set WriteFile" pv="BL11I-DI-OAV-01:HDF5:WriteFile" ro="false" type="pv"/>
+		<WriteFile_RBV desc="Readback for WriteFile" pv="BL11I-DI-OAV-01:HDF5:WriteFile_RBV" ro="true" type="binary"/>
+		<ReadFile desc="Set ReadFile" pv="BL11I-DI-OAV-01:HDF5:ReadFile" ro="false" type="pv"/>
+		<ReadFile_RBV desc="Readback for ReadFile" pv="BL11I-DI-OAV-01:HDF5:ReadFile_RBV" ro="true" type="binary"/>
+		<FileFormat desc="Set FileFormat" pv="BL11I-DI-OAV-01:HDF5:FileFormat" ro="false" type="mbbinary"/>
+		<FileFormat_RBV desc="Readback for FileFormat" pv="BL11I-DI-OAV-01:HDF5:FileFormat_RBV" ro="true" type="mbbinary"/>
+		<FileWriteMode desc="Set FileWriteMode" pv="BL11I-DI-OAV-01:HDF5:FileWriteMode" ro="false" type="mbbinary"/>
+		<FileWriteMode_RBV desc="Readback for FileWriteMode" pv="BL11I-DI-OAV-01:HDF5:FileWriteMode_RBV" ro="true" type="mbbinary"/>
+		<Capture desc="Set Capture" pv="BL11I-DI-OAV-01:HDF5:Capture" ro="false" type="pv"/>
+		<Capture_RBV desc="Readback for Capture" pv="BL11I-DI-OAV-01:HDF5:Capture_RBV" ro="true" type="binary"/>
+		<NumCapture desc="Set NumCapture" pv="BL11I-DI-OAV-01:HDF5:NumCapture" ro="false" type="pv"/>
+		<NumCapture_RBV desc="Readback for NumCapture" pv="BL11I-DI-OAV-01:HDF5:NumCapture_RBV" ro="true" type="pv"/>
+		<NumCaptured_RBV desc="Readback for NumCaptured" pv="BL11I-DI-OAV-01:HDF5:NumCaptured_RBV" ro="true" type="pv"/>
+	</NDFile>
+	<NDFile desc="OAV.FIMG NDFile class instance" name="OAV.FIMG_NDFile">
+		<FilePath desc="Set FilePath" pv="BL11I-DI-OAV-01:FIMG:FilePath" ro="false" type="array"/>
+		<FilePath_RBV desc="Readback for FilePath" pv="BL11I-DI-OAV-01:FIMG:FilePath_RBV" ro="true" type="array"/>
+		<FileName desc="Set FileName" pv="BL11I-DI-OAV-01:FIMG:FileName" ro="false" type="array"/>
+		<FileName_RBV desc="Readback for FileName" pv="BL11I-DI-OAV-01:FIMG:FileName_RBV" ro="true" type="array"/>
+		<FileNumber desc="Set FileNumber" pv="BL11I-DI-OAV-01:FIMG:FileNumber" ro="false" type="pv"/>
+		<FileNumber_RBV desc="Readback for FileNumber" pv="BL11I-DI-OAV-01:FIMG:FileNumber_RBV" ro="true" type="pv"/>
+		<AutoIncrement desc="Set AutoIncrement" pv="BL11I-DI-OAV-01:FIMG:AutoIncrement" ro="false" type="binary"/>
+		<AutoIncrement_RBV desc="Readback for AutoIncrement" pv="BL11I-DI-OAV-01:FIMG:AutoIncrement_RBV" ro="true" type="binary"/>
+		<FileTemplate desc="Set FileTemplate" pv="BL11I-DI-OAV-01:FIMG:FileTemplate" ro="false" type="array"/>
+		<FileTemplate_RBV desc="Readback for FileTemplate" pv="BL11I-DI-OAV-01:FIMG:FileTemplate_RBV" ro="true" type="array"/>
+		<FullFileName_RBV desc="Readback for FullFileName" pv="BL11I-DI-OAV-01:FIMG:FullFileName_RBV" ro="true" type="array"/>
+		<AutoSave desc="Set AutoSave" pv="BL11I-DI-OAV-01:FIMG:AutoSave" ro="false" type="binary"/>
+		<AutoSave_RBV desc="Readback for AutoSave" pv="BL11I-DI-OAV-01:FIMG:AutoSave_RBV" ro="true" type="binary"/>
+		<WriteFile desc="Set WriteFile" pv="BL11I-DI-OAV-01:FIMG:WriteFile" ro="false" type="pv"/>
+		<WriteFile_RBV desc="Readback for WriteFile" pv="BL11I-DI-OAV-01:FIMG:WriteFile_RBV" ro="true" type="binary"/>
+		<ReadFile desc="Set ReadFile" pv="BL11I-DI-OAV-01:FIMG:ReadFile" ro="false" type="pv"/>
+		<ReadFile_RBV desc="Readback for ReadFile" pv="BL11I-DI-OAV-01:FIMG:ReadFile_RBV" ro="true" type="binary"/>
+		<FileFormat desc="Set FileFormat" pv="BL11I-DI-OAV-01:FIMG:FileFormat" ro="false" type="mbbinary"/>
+		<FileFormat_RBV desc="Readback for FileFormat" pv="BL11I-DI-OAV-01:FIMG:FileFormat_RBV" ro="true" type="mbbinary"/>
+		<FileWriteMode desc="Set FileWriteMode" pv="BL11I-DI-OAV-01:FIMG:FileWriteMode" ro="false" type="mbbinary"/>
+		<FileWriteMode_RBV desc="Readback for FileWriteMode" pv="BL11I-DI-OAV-01:FIMG:FileWriteMode_RBV" ro="true" type="mbbinary"/>
+		<Capture desc="Set Capture" pv="BL11I-DI-OAV-01:FIMG:Capture" ro="false" type="pv"/>
+		<Capture_RBV desc="Readback for Capture" pv="BL11I-DI-OAV-01:FIMG:Capture_RBV" ro="true" type="binary"/>
+		<NumCapture desc="Set NumCapture" pv="BL11I-DI-OAV-01:FIMG:NumCapture" ro="false" type="pv"/>
+		<NumCapture_RBV desc="Readback for NumCapture" pv="BL11I-DI-OAV-01:FIMG:NumCapture_RBV" ro="true" type="pv"/>
+		<NumCaptured_RBV desc="Readback for NumCaptured" pv="BL11I-DI-OAV-01:FIMG:NumCaptured_RBV" ro="true" type="pv"/>
+	</NDFile>
+	<NDFileHDF5 desc="OAV.HDF5 NDFileHDF5 class instance" name="OAV.HDF5_NDFileHDF5">
+		<NumRowChunks desc="Number of rows to use per chunk" pv="BL11I-DI-OAV-01:HDF5:NumRowChunks" ro="false" type="pv"/>
+		<NumRowChunks_RBV desc="Readback of number of rows to use per chunk" pv="BL11I-DI-OAV-01:HDF5:NumRowChunks_RBV" ro="true" type="pv"/>
+		<NumExtraDims desc="Number of extra dimensions [0..2]" pv="BL11I-DI-OAV-01:HDF5:NumExtraDims" ro="false" type="pv"/>
+		<NumExtraDims_RBV desc="Readback number of extra dimensions" pv="BL11I-DI-OAV-01:HDF5:NumExtraDims_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeN desc="Size of extra dimension N (no. of frames per point)" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeN" ro="false" type="pv"/>
+		<ExtraDimSizeN_RBV desc="Readback size of extra dimension N (no. of frames per point)" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeN_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeX desc="Size of extra dimension X" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeX" ro="false" type="pv"/>
+		<ExtraDimSizeX_RBV desc="Readback size of extra dimension X" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeX_RBV" ro="true" type="pv"/>
+		<ExtraDimSizeY desc="Size of extra dimension Y" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeY" ro="false" type="pv"/>
+		<ExtraDimSizeY_RBV desc="Readback size of extra dimension Y" pv="BL11I-DI-OAV-01:HDF5:ExtraDimSizeY_RBV" ro="true" type="pv"/>
+		<runtime desc="Total runtime from first frame to file closed" pv="BL11I-DI-OAV-01:HDF5:RunTime" ro="true" type="pv"/>
+		<IOSpeed desc="Overall IO speed from first frame to file closed" pv="BL11I-DI-OAV-01:HDF5:IOSpeed" ro="true" type="pv"/>
+		<Compression desc="Select or switch off compression filter" pv="BL11I-DI-OAV-01:HDF5:Compression" ro="false" type="mbbinary"/>
+		<Compression_RBV desc="Readback selected compression filter" pv="BL11I-DI-OAV-01:HDF5:Compression_RBV" ro="true" type="mbbinary"/>
+		<NumBitPrecision desc="N-bit compression filter: number of data bits per pixel" pv="BL11I-DI-OAV-01:HDF5:NumDataBits" ro="false" type="pv"/>
+		<NumBitPrecision_RBV desc="Readback N-bit compression filter: number of data bits per pixel" pv="BL11I-DI-OAV-01:HDF5:NumDataBits_RBV" ro="true" type="pv"/>
+		<NumBitOffset desc="N-bit compression filter: dataword bit-offset in pixel" pv="BL11I-DI-OAV-01:HDF5:DataBitsOffset" ro="false" type="pv"/>
+		<NumBitOffset_RBV desc="Readback N-bit compression filter: dataword bit-offset in pixel" pv="BL11I-DI-OAV-01:HDF5:DataBitsOffset_RBV" ro="true" type="pv"/>
+		<szipNumPixels desc="szip compression filter: number of pixels in filter" pv="BL11I-DI-OAV-01:HDF5:SZipNumPixels" ro="false" type="pv"/>
+		<szipNumPixels_RBV desc="Readback szip compression filter: number of pixels in filter" pv="BL11I-DI-OAV-01:HDF5:SZipNumPixels_RBV" ro="true" type="pv"/>
+		<ZCompressLevel desc="zlib compression filter: compression level" pv="BL11I-DI-OAV-01:HDF5:ZLevel" ro="false" type="pv"/>
+		<ZCompressLevel_RBV desc="Readback zlib compression filter: compression level" pv="BL11I-DI-OAV-01:HDF5:ZLevel_RBV" ro="true" type="pv"/>
+	</NDFileHDF5>
+	<ffmpegFile desc="OAV.FIMG ffmpegFile class instance" name="OAV.FIMG_ffmpegFile">
+		<FileFormat desc="Set FileFormat" pv="BL11I-DI-OAV-01:FIMG:FileFormat" ro="false" type="mbbinary"/>
+		<FileFormat_RBV desc="Readback for FileFormat" pv="BL11I-DI-OAV-01:FIMG:FileFormat_RBV" ro="true" type="mbbinary"/>
+		<BITRATE desc="Set BITRATE" pv="BL11I-DI-OAV-01:FIMG:BITRATE" ro="false" type="pv"/>
+		<BITRATE_RBV desc="Readback for BITRATE" pv="BL11I-DI-OAV-01:FIMG:BITRATE_RBV" ro="true" type="pv"/>
+		<FPS desc="Set FPS" pv="BL11I-DI-OAV-01:FIMG:FPS" ro="false" type="pv"/>
+		<FPS_RBV desc="Readback for FPS" pv="BL11I-DI-OAV-01:FIMG:FPS_RBV" ro="true" type="pv"/>
+		<WIDTH desc="Set WIDTH" pv="BL11I-DI-OAV-01:FIMG:WIDTH" ro="false" type="pv"/>
+		<WIDTH_RBV desc="Readback for WIDTH" pv="BL11I-DI-OAV-01:FIMG:WIDTH_RBV" ro="true" type="pv"/>
+		<HEIGHT desc="Set HEIGHT" pv="BL11I-DI-OAV-01:FIMG:HEIGHT" ro="false" type="pv"/>
+		<HEIGHT_RBV desc="Readback for HEIGHT" pv="BL11I-DI-OAV-01:FIMG:HEIGHT_RBV" ro="true" type="pv"/>
+	</ffmpegFile>
+	<NDOverlay desc="OAV.OVER NDOverlay class instance" name="OAV.OVER_NDOverlay">
+		<Name0 desc="Set Name0" pv="BL11I-DI-OAV-01:OVER:1:Name" ro="false" type="pv"/>
+		<Name_RBV0 desc="Readback for Name0" pv="BL11I-DI-OAV-01:OVER:1:Name_RBV" ro="true" type="pv"/>
+		<Use0 desc="Set Use0" pv="BL11I-DI-OAV-01:OVER:1:Use" ro="false" type="binary"/>
+		<Use0_RBV desc="Readback for Use0" pv="BL11I-DI-OAV-01:OVER:1:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink0 desc="Set PositionXLink0" pv="BL11I-DI-OAV-01:OVER:1:PositionXLink" ro="false" type="pv"/>
+		<PositionX0 desc="Set PositionX0" pv="BL11I-DI-OAV-01:OVER:1:PositionX" ro="false" type="pv"/>
+		<PositionX0_RBV desc="Readback for PositionX0" pv="BL11I-DI-OAV-01:OVER:1:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink0 desc="Set PositionYLink0" pv="BL11I-DI-OAV-01:OVER:1:PositionYLink" ro="false" type="pv"/>
+		<PositionY0 desc="Set PositionY0" pv="BL11I-DI-OAV-01:OVER:1:PositionY" ro="false" type="pv"/>
+		<PositionY0_RBV desc="Readback for PositionY0" pv="BL11I-DI-OAV-01:OVER:1:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink0 desc="Set SizeXLink0" pv="BL11I-DI-OAV-01:OVER:1:SizeXLink" ro="false" type="pv"/>
+		<SizeX0 desc="Set SizeX0" pv="BL11I-DI-OAV-01:OVER:1:SizeX" ro="false" type="pv"/>
+		<SizeX0_RBV desc="Readback for SizeX0" pv="BL11I-DI-OAV-01:OVER:1:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink0 desc="Set SizeYLink0" pv="BL11I-DI-OAV-01:OVER:1:SizeYLink" ro="false" type="pv"/>
+		<SizeY0 desc="Set SizeY0" pv="BL11I-DI-OAV-01:OVER:1:SizeY" ro="false" type="pv"/>
+		<SizeY0_RBV desc="Readback for SizeY0" pv="BL11I-DI-OAV-01:OVER:1:SizeY_RBV" ro="true" type="pv"/>
+		<Shape0 desc="Set Shape0" pv="BL11I-DI-OAV-01:OVER:1:Shape" ro="false" type="mbbinary"/>
+		<Shape0_RBV desc="Readback for Shape0" pv="BL11I-DI-OAV-01:OVER:1:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode0 desc="Set DrawMode0" pv="BL11I-DI-OAV-01:OVER:1:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode0_RBV desc="Readback for DrawMode0" pv="BL11I-DI-OAV-01:OVER:1:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red0 desc="Set Red0" pv="BL11I-DI-OAV-01:OVER:1:Red" ro="false" type="pv"/>
+		<Red0_RBV desc="Readback for Red0" pv="BL11I-DI-OAV-01:OVER:1:Red_RBV" ro="true" type="pv"/>
+		<Green0 desc="Set Green0" pv="BL11I-DI-OAV-01:OVER:1:Green" ro="false" type="pv"/>
+		<Green0_RBV desc="Readback for Green0" pv="BL11I-DI-OAV-01:OVER:1:Green_RBV" ro="true" type="pv"/>
+		<Blue0 desc="Set Blue0" pv="BL11I-DI-OAV-01:OVER:1:Blue" ro="false" type="pv"/>
+		<Blue0_RBV desc="Readback for Blue0" pv="BL11I-DI-OAV-01:OVER:1:Blue_RBV" ro="true" type="pv"/>
+		<Name1 desc="Set Name1" pv="BL11I-DI-OAV-01:OVER:2:Name" ro="false" type="pv"/>
+		<Name_RBV1 desc="Readback for Name1" pv="BL11I-DI-OAV-01:OVER:2:Name_RBV" ro="true" type="pv"/>
+		<Use1 desc="Set Use1" pv="BL11I-DI-OAV-01:OVER:2:Use" ro="false" type="binary"/>
+		<Use1_RBV desc="Readback for Use1" pv="BL11I-DI-OAV-01:OVER:2:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink1 desc="Set PositionXLink1" pv="BL11I-DI-OAV-01:OVER:2:PositionXLink" ro="false" type="pv"/>
+		<PositionX1 desc="Set PositionX1" pv="BL11I-DI-OAV-01:OVER:2:PositionX" ro="false" type="pv"/>
+		<PositionX1_RBV desc="Readback for PositionX1" pv="BL11I-DI-OAV-01:OVER:2:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink1 desc="Set PositionYLink1" pv="BL11I-DI-OAV-01:OVER:2:PositionYLink" ro="false" type="pv"/>
+		<PositionY1 desc="Set PositionY1" pv="BL11I-DI-OAV-01:OVER:2:PositionY" ro="false" type="pv"/>
+		<PositionY1_RBV desc="Readback for PositionY1" pv="BL11I-DI-OAV-01:OVER:2:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink1 desc="Set SizeXLink1" pv="BL11I-DI-OAV-01:OVER:2:SizeXLink" ro="false" type="pv"/>
+		<SizeX1 desc="Set SizeX1" pv="BL11I-DI-OAV-01:OVER:2:SizeX" ro="false" type="pv"/>
+		<SizeX1_RBV desc="Readback for SizeX1" pv="BL11I-DI-OAV-01:OVER:2:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink1 desc="Set SizeYLink1" pv="BL11I-DI-OAV-01:OVER:2:SizeYLink" ro="false" type="pv"/>
+		<SizeY1 desc="Set SizeY1" pv="BL11I-DI-OAV-01:OVER:2:SizeY" ro="false" type="pv"/>
+		<SizeY1_RBV desc="Readback for SizeY1" pv="BL11I-DI-OAV-01:OVER:2:SizeY_RBV" ro="true" type="pv"/>
+		<Shape1 desc="Set Shape1" pv="BL11I-DI-OAV-01:OVER:2:Shape" ro="false" type="mbbinary"/>
+		<Shape1_RBV desc="Readback for Shape1" pv="BL11I-DI-OAV-01:OVER:2:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode1 desc="Set DrawMode1" pv="BL11I-DI-OAV-01:OVER:2:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode1_RBV desc="Readback for DrawMode1" pv="BL11I-DI-OAV-01:OVER:2:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red1 desc="Set Red1" pv="BL11I-DI-OAV-01:OVER:2:Red" ro="false" type="pv"/>
+		<Red1_RBV desc="Readback for Red1" pv="BL11I-DI-OAV-01:OVER:2:Red_RBV" ro="true" type="pv"/>
+		<Green1 desc="Set Green1" pv="BL11I-DI-OAV-01:OVER:2:Green" ro="false" type="pv"/>
+		<Green1_RBV desc="Readback for Green1" pv="BL11I-DI-OAV-01:OVER:2:Green_RBV" ro="true" type="pv"/>
+		<Blue1 desc="Set Blue1" pv="BL11I-DI-OAV-01:OVER:2:Blue" ro="false" type="pv"/>
+		<Blue1_RBV desc="Readback for Blue1" pv="BL11I-DI-OAV-01:OVER:2:Blue_RBV" ro="true" type="pv"/>
+		<Name2 desc="Set Name2" pv="BL11I-DI-OAV-01:OVER:3:Name" ro="false" type="pv"/>
+		<Name_RBV2 desc="Readback for Name2" pv="BL11I-DI-OAV-01:OVER:3:Name_RBV" ro="true" type="pv"/>
+		<Use2 desc="Set Use2" pv="BL11I-DI-OAV-01:OVER:3:Use" ro="false" type="binary"/>
+		<Use2_RBV desc="Readback for Use2" pv="BL11I-DI-OAV-01:OVER:3:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink2 desc="Set PositionXLink2" pv="BL11I-DI-OAV-01:OVER:3:PositionXLink" ro="false" type="pv"/>
+		<PositionX2 desc="Set PositionX2" pv="BL11I-DI-OAV-01:OVER:3:PositionX" ro="false" type="pv"/>
+		<PositionX2_RBV desc="Readback for PositionX2" pv="BL11I-DI-OAV-01:OVER:3:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink2 desc="Set PositionYLink2" pv="BL11I-DI-OAV-01:OVER:3:PositionYLink" ro="false" type="pv"/>
+		<PositionY2 desc="Set PositionY2" pv="BL11I-DI-OAV-01:OVER:3:PositionY" ro="false" type="pv"/>
+		<PositionY2_RBV desc="Readback for PositionY2" pv="BL11I-DI-OAV-01:OVER:3:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink2 desc="Set SizeXLink2" pv="BL11I-DI-OAV-01:OVER:3:SizeXLink" ro="false" type="pv"/>
+		<SizeX2 desc="Set SizeX2" pv="BL11I-DI-OAV-01:OVER:3:SizeX" ro="false" type="pv"/>
+		<SizeX2_RBV desc="Readback for SizeX2" pv="BL11I-DI-OAV-01:OVER:3:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink2 desc="Set SizeYLink2" pv="BL11I-DI-OAV-01:OVER:3:SizeYLink" ro="false" type="pv"/>
+		<SizeY2 desc="Set SizeY2" pv="BL11I-DI-OAV-01:OVER:3:SizeY" ro="false" type="pv"/>
+		<SizeY2_RBV desc="Readback for SizeY2" pv="BL11I-DI-OAV-01:OVER:3:SizeY_RBV" ro="true" type="pv"/>
+		<Shape2 desc="Set Shape2" pv="BL11I-DI-OAV-01:OVER:3:Shape" ro="false" type="mbbinary"/>
+		<Shape2_RBV desc="Readback for Shape2" pv="BL11I-DI-OAV-01:OVER:3:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode2 desc="Set DrawMode2" pv="BL11I-DI-OAV-01:OVER:3:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode2_RBV desc="Readback for DrawMode2" pv="BL11I-DI-OAV-01:OVER:3:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red2 desc="Set Red2" pv="BL11I-DI-OAV-01:OVER:3:Red" ro="false" type="pv"/>
+		<Red2_RBV desc="Readback for Red2" pv="BL11I-DI-OAV-01:OVER:3:Red_RBV" ro="true" type="pv"/>
+		<Green2 desc="Set Green2" pv="BL11I-DI-OAV-01:OVER:3:Green" ro="false" type="pv"/>
+		<Green2_RBV desc="Readback for Green2" pv="BL11I-DI-OAV-01:OVER:3:Green_RBV" ro="true" type="pv"/>
+		<Blue2 desc="Set Blue2" pv="BL11I-DI-OAV-01:OVER:3:Blue" ro="false" type="pv"/>
+		<Blue2_RBV desc="Readback for Blue2" pv="BL11I-DI-OAV-01:OVER:3:Blue_RBV" ro="true" type="pv"/>
+		<Name3 desc="Set Name3" pv="BL11I-DI-OAV-01:OVER:4:Name" ro="false" type="pv"/>
+		<Name_RBV3 desc="Readback for Name3" pv="BL11I-DI-OAV-01:OVER:4:Name_RBV" ro="true" type="pv"/>
+		<Use3 desc="Set Use3" pv="BL11I-DI-OAV-01:OVER:4:Use" ro="false" type="binary"/>
+		<Use3_RBV desc="Readback for Use3" pv="BL11I-DI-OAV-01:OVER:4:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink3 desc="Set PositionXLink3" pv="BL11I-DI-OAV-01:OVER:4:PositionXLink" ro="false" type="pv"/>
+		<PositionX3 desc="Set PositionX3" pv="BL11I-DI-OAV-01:OVER:4:PositionX" ro="false" type="pv"/>
+		<PositionX3_RBV desc="Readback for PositionX3" pv="BL11I-DI-OAV-01:OVER:4:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink3 desc="Set PositionYLink3" pv="BL11I-DI-OAV-01:OVER:4:PositionYLink" ro="false" type="pv"/>
+		<PositionY3 desc="Set PositionY3" pv="BL11I-DI-OAV-01:OVER:4:PositionY" ro="false" type="pv"/>
+		<PositionY3_RBV desc="Readback for PositionY3" pv="BL11I-DI-OAV-01:OVER:4:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink3 desc="Set SizeXLink3" pv="BL11I-DI-OAV-01:OVER:4:SizeXLink" ro="false" type="pv"/>
+		<SizeX3 desc="Set SizeX3" pv="BL11I-DI-OAV-01:OVER:4:SizeX" ro="false" type="pv"/>
+		<SizeX3_RBV desc="Readback for SizeX3" pv="BL11I-DI-OAV-01:OVER:4:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink3 desc="Set SizeYLink3" pv="BL11I-DI-OAV-01:OVER:4:SizeYLink" ro="false" type="pv"/>
+		<SizeY3 desc="Set SizeY3" pv="BL11I-DI-OAV-01:OVER:4:SizeY" ro="false" type="pv"/>
+		<SizeY3_RBV desc="Readback for SizeY3" pv="BL11I-DI-OAV-01:OVER:4:SizeY_RBV" ro="true" type="pv"/>
+		<Shape3 desc="Set Shape3" pv="BL11I-DI-OAV-01:OVER:4:Shape" ro="false" type="mbbinary"/>
+		<Shape3_RBV desc="Readback for Shape3" pv="BL11I-DI-OAV-01:OVER:4:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode3 desc="Set DrawMode3" pv="BL11I-DI-OAV-01:OVER:4:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode3_RBV desc="Readback for DrawMode3" pv="BL11I-DI-OAV-01:OVER:4:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red3 desc="Set Red3" pv="BL11I-DI-OAV-01:OVER:4:Red" ro="false" type="pv"/>
+		<Red3_RBV desc="Readback for Red3" pv="BL11I-DI-OAV-01:OVER:4:Red_RBV" ro="true" type="pv"/>
+		<Green3 desc="Set Green3" pv="BL11I-DI-OAV-01:OVER:4:Green" ro="false" type="pv"/>
+		<Green3_RBV desc="Readback for Green3" pv="BL11I-DI-OAV-01:OVER:4:Green_RBV" ro="true" type="pv"/>
+		<Blue3 desc="Set Blue3" pv="BL11I-DI-OAV-01:OVER:4:Blue" ro="false" type="pv"/>
+		<Blue3_RBV desc="Readback for Blue3" pv="BL11I-DI-OAV-01:OVER:4:Blue_RBV" ro="true" type="pv"/>
+		<Name4 desc="Set Name4" pv="BL11I-DI-OAV-01:OVER:5:Name" ro="false" type="pv"/>
+		<Name_RBV4 desc="Readback for Name4" pv="BL11I-DI-OAV-01:OVER:5:Name_RBV" ro="true" type="pv"/>
+		<Use4 desc="Set Use4" pv="BL11I-DI-OAV-01:OVER:5:Use" ro="false" type="binary"/>
+		<Use4_RBV desc="Readback for Use4" pv="BL11I-DI-OAV-01:OVER:5:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink4 desc="Set PositionXLink4" pv="BL11I-DI-OAV-01:OVER:5:PositionXLink" ro="false" type="pv"/>
+		<PositionX4 desc="Set PositionX4" pv="BL11I-DI-OAV-01:OVER:5:PositionX" ro="false" type="pv"/>
+		<PositionX4_RBV desc="Readback for PositionX4" pv="BL11I-DI-OAV-01:OVER:5:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink4 desc="Set PositionYLink4" pv="BL11I-DI-OAV-01:OVER:5:PositionYLink" ro="false" type="pv"/>
+		<PositionY4 desc="Set PositionY4" pv="BL11I-DI-OAV-01:OVER:5:PositionY" ro="false" type="pv"/>
+		<PositionY4_RBV desc="Readback for PositionY4" pv="BL11I-DI-OAV-01:OVER:5:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink4 desc="Set SizeXLink4" pv="BL11I-DI-OAV-01:OVER:5:SizeXLink" ro="false" type="pv"/>
+		<SizeX4 desc="Set SizeX4" pv="BL11I-DI-OAV-01:OVER:5:SizeX" ro="false" type="pv"/>
+		<SizeX4_RBV desc="Readback for SizeX4" pv="BL11I-DI-OAV-01:OVER:5:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink4 desc="Set SizeYLink4" pv="BL11I-DI-OAV-01:OVER:5:SizeYLink" ro="false" type="pv"/>
+		<SizeY4 desc="Set SizeY4" pv="BL11I-DI-OAV-01:OVER:5:SizeY" ro="false" type="pv"/>
+		<SizeY4_RBV desc="Readback for SizeY4" pv="BL11I-DI-OAV-01:OVER:5:SizeY_RBV" ro="true" type="pv"/>
+		<Shape4 desc="Set Shape4" pv="BL11I-DI-OAV-01:OVER:5:Shape" ro="false" type="mbbinary"/>
+		<Shape4_RBV desc="Readback for Shape4" pv="BL11I-DI-OAV-01:OVER:5:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode4 desc="Set DrawMode4" pv="BL11I-DI-OAV-01:OVER:5:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode4_RBV desc="Readback for DrawMode4" pv="BL11I-DI-OAV-01:OVER:5:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red4 desc="Set Red4" pv="BL11I-DI-OAV-01:OVER:5:Red" ro="false" type="pv"/>
+		<Red4_RBV desc="Readback for Red4" pv="BL11I-DI-OAV-01:OVER:5:Red_RBV" ro="true" type="pv"/>
+		<Green4 desc="Set Green4" pv="BL11I-DI-OAV-01:OVER:5:Green" ro="false" type="pv"/>
+		<Green4_RBV desc="Readback for Green4" pv="BL11I-DI-OAV-01:OVER:5:Green_RBV" ro="true" type="pv"/>
+		<Blue4 desc="Set Blue4" pv="BL11I-DI-OAV-01:OVER:5:Blue" ro="false" type="pv"/>
+		<Blue4_RBV desc="Readback for Blue4" pv="BL11I-DI-OAV-01:OVER:5:Blue_RBV" ro="true" type="pv"/>
+		<Name5 desc="Set Name5" pv="BL11I-DI-OAV-01:OVER:6:Name" ro="false" type="pv"/>
+		<Name_RBV5 desc="Readback for Name5" pv="BL11I-DI-OAV-01:OVER:6:Name_RBV" ro="true" type="pv"/>
+		<Use5 desc="Set Use5" pv="BL11I-DI-OAV-01:OVER:6:Use" ro="false" type="binary"/>
+		<Use5_RBV desc="Readback for Use5" pv="BL11I-DI-OAV-01:OVER:6:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink5 desc="Set PositionXLink5" pv="BL11I-DI-OAV-01:OVER:6:PositionXLink" ro="false" type="pv"/>
+		<PositionX5 desc="Set PositionX5" pv="BL11I-DI-OAV-01:OVER:6:PositionX" ro="false" type="pv"/>
+		<PositionX5_RBV desc="Readback for PositionX5" pv="BL11I-DI-OAV-01:OVER:6:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink5 desc="Set PositionYLink5" pv="BL11I-DI-OAV-01:OVER:6:PositionYLink" ro="false" type="pv"/>
+		<PositionY5 desc="Set PositionY5" pv="BL11I-DI-OAV-01:OVER:6:PositionY" ro="false" type="pv"/>
+		<PositionY5_RBV desc="Readback for PositionY5" pv="BL11I-DI-OAV-01:OVER:6:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink5 desc="Set SizeXLink5" pv="BL11I-DI-OAV-01:OVER:6:SizeXLink" ro="false" type="pv"/>
+		<SizeX5 desc="Set SizeX5" pv="BL11I-DI-OAV-01:OVER:6:SizeX" ro="false" type="pv"/>
+		<SizeX5_RBV desc="Readback for SizeX5" pv="BL11I-DI-OAV-01:OVER:6:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink5 desc="Set SizeYLink5" pv="BL11I-DI-OAV-01:OVER:6:SizeYLink" ro="false" type="pv"/>
+		<SizeY5 desc="Set SizeY5" pv="BL11I-DI-OAV-01:OVER:6:SizeY" ro="false" type="pv"/>
+		<SizeY5_RBV desc="Readback for SizeY5" pv="BL11I-DI-OAV-01:OVER:6:SizeY_RBV" ro="true" type="pv"/>
+		<Shape5 desc="Set Shape5" pv="BL11I-DI-OAV-01:OVER:6:Shape" ro="false" type="mbbinary"/>
+		<Shape5_RBV desc="Readback for Shape5" pv="BL11I-DI-OAV-01:OVER:6:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode5 desc="Set DrawMode5" pv="BL11I-DI-OAV-01:OVER:6:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode5_RBV desc="Readback for DrawMode5" pv="BL11I-DI-OAV-01:OVER:6:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red5 desc="Set Red5" pv="BL11I-DI-OAV-01:OVER:6:Red" ro="false" type="pv"/>
+		<Red5_RBV desc="Readback for Red5" pv="BL11I-DI-OAV-01:OVER:6:Red_RBV" ro="true" type="pv"/>
+		<Green5 desc="Set Green5" pv="BL11I-DI-OAV-01:OVER:6:Green" ro="false" type="pv"/>
+		<Green5_RBV desc="Readback for Green5" pv="BL11I-DI-OAV-01:OVER:6:Green_RBV" ro="true" type="pv"/>
+		<Blue5 desc="Set Blue5" pv="BL11I-DI-OAV-01:OVER:6:Blue" ro="false" type="pv"/>
+		<Blue5_RBV desc="Readback for Blue5" pv="BL11I-DI-OAV-01:OVER:6:Blue_RBV" ro="true" type="pv"/>
+		<Name6 desc="Set Name6" pv="BL11I-DI-OAV-01:OVER:7:Name" ro="false" type="pv"/>
+		<Name_RBV6 desc="Readback for Name6" pv="BL11I-DI-OAV-01:OVER:7:Name_RBV" ro="true" type="pv"/>
+		<Use6 desc="Set Use6" pv="BL11I-DI-OAV-01:OVER:7:Use" ro="false" type="binary"/>
+		<Use6_RBV desc="Readback for Use6" pv="BL11I-DI-OAV-01:OVER:7:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink6 desc="Set PositionXLink6" pv="BL11I-DI-OAV-01:OVER:7:PositionXLink" ro="false" type="pv"/>
+		<PositionX6 desc="Set PositionX6" pv="BL11I-DI-OAV-01:OVER:7:PositionX" ro="false" type="pv"/>
+		<PositionX6_RBV desc="Readback for PositionX6" pv="BL11I-DI-OAV-01:OVER:7:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink6 desc="Set PositionYLink6" pv="BL11I-DI-OAV-01:OVER:7:PositionYLink" ro="false" type="pv"/>
+		<PositionY6 desc="Set PositionY6" pv="BL11I-DI-OAV-01:OVER:7:PositionY" ro="false" type="pv"/>
+		<PositionY6_RBV desc="Readback for PositionY6" pv="BL11I-DI-OAV-01:OVER:7:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink6 desc="Set SizeXLink6" pv="BL11I-DI-OAV-01:OVER:7:SizeXLink" ro="false" type="pv"/>
+		<SizeX6 desc="Set SizeX6" pv="BL11I-DI-OAV-01:OVER:7:SizeX" ro="false" type="pv"/>
+		<SizeX6_RBV desc="Readback for SizeX6" pv="BL11I-DI-OAV-01:OVER:7:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink6 desc="Set SizeYLink6" pv="BL11I-DI-OAV-01:OVER:7:SizeYLink" ro="false" type="pv"/>
+		<SizeY6 desc="Set SizeY6" pv="BL11I-DI-OAV-01:OVER:7:SizeY" ro="false" type="pv"/>
+		<SizeY6_RBV desc="Readback for SizeY6" pv="BL11I-DI-OAV-01:OVER:7:SizeY_RBV" ro="true" type="pv"/>
+		<Shape6 desc="Set Shape6" pv="BL11I-DI-OAV-01:OVER:7:Shape" ro="false" type="mbbinary"/>
+		<Shape6_RBV desc="Readback for Shape6" pv="BL11I-DI-OAV-01:OVER:7:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode6 desc="Set DrawMode6" pv="BL11I-DI-OAV-01:OVER:7:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode6_RBV desc="Readback for DrawMode6" pv="BL11I-DI-OAV-01:OVER:7:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red6 desc="Set Red6" pv="BL11I-DI-OAV-01:OVER:7:Red" ro="false" type="pv"/>
+		<Red6_RBV desc="Readback for Red6" pv="BL11I-DI-OAV-01:OVER:7:Red_RBV" ro="true" type="pv"/>
+		<Green6 desc="Set Green6" pv="BL11I-DI-OAV-01:OVER:7:Green" ro="false" type="pv"/>
+		<Green6_RBV desc="Readback for Green6" pv="BL11I-DI-OAV-01:OVER:7:Green_RBV" ro="true" type="pv"/>
+		<Blue6 desc="Set Blue6" pv="BL11I-DI-OAV-01:OVER:7:Blue" ro="false" type="pv"/>
+		<Blue6_RBV desc="Readback for Blue6" pv="BL11I-DI-OAV-01:OVER:7:Blue_RBV" ro="true" type="pv"/>
+		<Name7 desc="Set Name7" pv="BL11I-DI-OAV-01:OVER:8:Name" ro="false" type="pv"/>
+		<Name_RBV7 desc="Readback for Name7" pv="BL11I-DI-OAV-01:OVER:8:Name_RBV" ro="true" type="pv"/>
+		<Use7 desc="Set Use7" pv="BL11I-DI-OAV-01:OVER:8:Use" ro="false" type="binary"/>
+		<Use7_RBV desc="Readback for Use7" pv="BL11I-DI-OAV-01:OVER:8:Use_RBV" ro="true" type="binary"/>
+		<PositionXLink7 desc="Set PositionXLink7" pv="BL11I-DI-OAV-01:OVER:8:PositionXLink" ro="false" type="pv"/>
+		<PositionX7 desc="Set PositionX7" pv="BL11I-DI-OAV-01:OVER:8:PositionX" ro="false" type="pv"/>
+		<PositionX7_RBV desc="Readback for PositionX7" pv="BL11I-DI-OAV-01:OVER:8:PositionX_RBV" ro="true" type="pv"/>
+		<PositionYLink7 desc="Set PositionYLink7" pv="BL11I-DI-OAV-01:OVER:8:PositionYLink" ro="false" type="pv"/>
+		<PositionY7 desc="Set PositionY7" pv="BL11I-DI-OAV-01:OVER:8:PositionY" ro="false" type="pv"/>
+		<PositionY7_RBV desc="Readback for PositionY7" pv="BL11I-DI-OAV-01:OVER:8:PositionY_RBV" ro="true" type="pv"/>
+		<SizeXLink7 desc="Set SizeXLink7" pv="BL11I-DI-OAV-01:OVER:8:SizeXLink" ro="false" type="pv"/>
+		<SizeX7 desc="Set SizeX7" pv="BL11I-DI-OAV-01:OVER:8:SizeX" ro="false" type="pv"/>
+		<SizeX7_RBV desc="Readback for SizeX7" pv="BL11I-DI-OAV-01:OVER:8:SizeX_RBV" ro="true" type="pv"/>
+		<SizeYLink7 desc="Set SizeYLink7" pv="BL11I-DI-OAV-01:OVER:8:SizeYLink" ro="false" type="pv"/>
+		<SizeY7 desc="Set SizeY7" pv="BL11I-DI-OAV-01:OVER:8:SizeY" ro="false" type="pv"/>
+		<SizeY7_RBV desc="Readback for SizeY7" pv="BL11I-DI-OAV-01:OVER:8:SizeY_RBV" ro="true" type="pv"/>
+		<Shape7 desc="Set Shape7" pv="BL11I-DI-OAV-01:OVER:8:Shape" ro="false" type="mbbinary"/>
+		<Shape7_RBV desc="Readback for Shape7" pv="BL11I-DI-OAV-01:OVER:8:Shape_RBV" ro="true" type="mbbinary"/>
+		<DrawMode7 desc="Set DrawMode7" pv="BL11I-DI-OAV-01:OVER:8:DrawMode" ro="false" type="mbbinary"/>
+		<DrawMode7_RBV desc="Readback for DrawMode7" pv="BL11I-DI-OAV-01:OVER:8:DrawMode_RBV" ro="true" type="mbbinary"/>
+		<Red7 desc="Set Red7" pv="BL11I-DI-OAV-01:OVER:8:Red" ro="false" type="pv"/>
+		<Red7_RBV desc="Readback for Red7" pv="BL11I-DI-OAV-01:OVER:8:Red_RBV" ro="true" type="pv"/>
+		<Green7 desc="Set Green7" pv="BL11I-DI-OAV-01:OVER:8:Green" ro="false" type="pv"/>
+		<Green7_RBV desc="Readback for Green7" pv="BL11I-DI-OAV-01:OVER:8:Green_RBV" ro="true" type="pv"/>
+		<Blue7 desc="Set Blue7" pv="BL11I-DI-OAV-01:OVER:8:Blue" ro="false" type="pv"/>
+		<Blue7_RBV desc="Readback for Blue7" pv="BL11I-DI-OAV-01:OVER:8:Blue_RBV" ro="true" type="pv"/>
+	</NDOverlay>
+	<ffmpegStream desc="OAV.MJPG ffmpegStream class instance" name="OAV.MJPG_ffmpegStream">
+		<QUALITY desc="Set QUALITY" pv="BL11I-DI-OAV-01:MJPG:QUALITY" ro="false" type="pv"/>
+		<QUALITY_RBV desc="Readback for QUALITY" pv="BL11I-DI-OAV-01:MJPG:QUALITY_RBV" ro="true" type="pv"/>
+		<MAXW desc="Set MAXW" pv="BL11I-DI-OAV-01:MJPG:MAXW" ro="false" type="pv"/>
+		<MAXW_RBV desc="Readback for MAXW" pv="BL11I-DI-OAV-01:MJPG:MAXW_RBV" ro="true" type="pv"/>
+		<MAXH desc="Set MAXH" pv="BL11I-DI-OAV-01:MJPG:MAXH" ro="false" type="pv"/>
+		<MAXH_RBV desc="Readback for MAXH" pv="BL11I-DI-OAV-01:MJPG:MAXH_RBV" ro="true" type="pv"/>
+		<FALSE_COL desc="Set FALSE_COL" pv="BL11I-DI-OAV-01:MJPG:FALSE_COL" ro="false" type="binary"/>
+		<FALSE_COL_RBV desc="Readback for FALSE_COL" pv="BL11I-DI-OAV-01:MJPG:FALSE_COL_RBV" ro="true" type="binary"/>
+		<ALWAYS_ON desc="Set ALWAYS_ON" pv="BL11I-DI-OAV-01:MJPG:ALWAYS_ON" ro="false" type="binary"/>
+		<ALWAYS_ON_RBV desc="Readback for ALWAYS_ON" pv="BL11I-DI-OAV-01:MJPG:ALWAYS_ON_RBV" ro="true" type="binary"/>
+		<HTTP_PORT_RBV desc="Readback for HTTP_PORT" pv="BL11I-DI-OAV-01:MJPG:HTTP_PORT_RBV" ro="true" type="pv"/>
+		<HOST_RBV desc="Readback for HOST" pv="BL11I-DI-OAV-01:MJPG:HOST_RBV" ro="true" type="pv"/>
+		<CLIENTS_RBV desc="Readback for CLIENTS" pv="BL11I-DI-OAV-01:MJPG:CLIENTS_RBV" ro="true" type="pv"/>
+		<JPG_URL_RBV desc="Readback for JPG URL" pv="BL11I-DI-OAV-01:MJPG:JPG_URL_RBV" ro="true" type="pv"/>
+		<MJPG_URL_RBV desc="Readback for MJPG URL" pv="BL11I-DI-OAV-01:MJPG:MJPG_URL_RBV" ro="true" type="pv"/>
 	</ffmpegStream>
 	<simpleMotor desc="Custom Aperture X" name="CA.X">
 		<RECORD desc="Motor Record" pv="FE11I-AL-APTR-02:X" ro="false" type="motor"/>
@@ -5312,30 +6825,19 @@
 	<simpleMbbinary desc="Sample Shutter" name="ENV.SHTR">
 		<RECORD desc="control shutter state" pv="BL11I-EA-SHTR-01:SHUTTER" ro="false" type="mbbinary"/>
 	</simpleMbbinary>
-	<nx100 desc="Robot Controller" name="ROBOT.ROBOT">
-		<JOB desc="robot job selection" pv="BL11I-EA-ROBOT-01:JOB" ro="false" type="mbbinary"/>
-		<START desc="START" pv="BL11I-EA-ROBOT-01:START" ro="false" type="pv"/>
-		<COUNTER desc="time robot running for" pv="BL11I-EA-ROBOT-01:COUNTER" ro="false" type="binary"/>
-		<HOLD desc="hold/stop robot" pv="BL11I-EA-ROBOT-01:HOLD" ro="false" type="binary"/>
-		<SVON desc="servo control" pv="BL11I-EA-ROBOT-01:SVON" ro="false" type="binary"/>
-		<ERR desc="error string" pv="BL11I-EA-ROBOT-01:ERR" ro="false" type="pv"/>
-	</nx100>
-	<simplePv desc="Sample state: 0=Carousel 1=InJaws 2=Diff" name="ROBOT.SSTATE">
-		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D010:RBV" ro="true" type="pv"/>
-	</simplePv>
-	<simplePv desc="Sample number demand position" name="ROBOT.SNUM">
-		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D011" ro="false" type="pv"/>
-	</simplePv>
-	<simplePv desc="Sample number actual position" name="ROBOT.SNUMRBV">
-		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D012:RBV" ro="true" type="pv"/>
-	</simplePv>
-	<simplePv desc="Robot needs recovery job latch" name="ROBOT.NEEDRECOVER">
-		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:NEEDRECOVER" ro="true" type="pv"/>
-	</simplePv>
 	<agilent33220A desc="Function generator" name="FGEN">
 		<DISABLE desc="disable comms" pv="BL11I-EA-FGEN-01:DISABLE" ro="false" type="binary"/>
 		<FUNC desc="function" pv="BL11I-EA-FGEN-01:FUNC" ro="false" type="mbbinary"/>
 		<FUNCRBV desc="function readback" pv="BL11I-EA-FGEN-01:FUNC:RBV" ro="true" type="mbbinary"/>
+		<TRIGSRC desc="trigger source" pv="BL11I-EA-FGEN-01:TRIGSRC" ro="false" type="mbbinary"/>
+		<TRIGSRCRBV desc="trigger source readback" pv="BL11I-EA-FGEN-01:TRIGSRC:RBV" ro="true" type="mbbinary"/>
+		<BURSTMODE desc="burst mode" pv="BL11I-EA-FGEN-01:BURSTMODE" ro="false" type="mbbinary"/>
+		<BURSTMODERBV desc="burst mode readback" pv="BL11I-EA-FGEN-01:BURSTMODE:RBV" ro="true" type="mbbinary"/>
+		<BURSTNCYC desc="burst number of cycles" pv="BL11I-EA-FGEN-01:BURSTNCYC" ro="false" type="pv"/>
+		<BURSTNCYCINF desc="Set Burst Number of Cycles to Infinite" pv="BL11I-EA-FGEN-01:BURSTNCYC:INF.PROC" ro="false" type="pv"/>
+		<BURSTNCYCRBV desc="burst number of cycles readback" pv="BL11I-EA-FGEN-01:BURSTNCYC:RBV" ro="true" type="pv"/>
+		<BURST desc="burst state" pv="BL11I-EA-FGEN-01:BURST" ro="false" type="binary"/>
+		<BURSTRBV desc="burst state readback" pv="BL11I-EA-FGEN-01:BURST:RBV" ro="true" type="binary"/>
 		<FREQ desc="frequency" pv="BL11I-EA-FGEN-01:FREQ" ro="false" type="pv"/>
 		<FREQRBV desc="frequency readback" pv="BL11I-EA-FGEN-01:FREQ:RBV" ro="true" type="pv"/>
 		<AMP desc="amplitude" pv="BL11I-EA-FGEN-01:AMP" ro="false" type="pv"/>
@@ -5353,4 +6855,54 @@
 		<TRAN desc="pulse edge transition" pv="BL11I-EA-FGEN-01:TRAN" ro="false" type="pv"/>
 		<TRANRBV desc="pulse edge transition readback" pv="BL11I-EA-FGEN-01:TRAN:RBV" ro="true" type="pv"/>
 	</agilent33220A>
+	<agilent33220A desc="Function generator 2" name="FGEN2">
+		<DISABLE desc="disable comms" pv="BL11I-EA-FGEN-02:DISABLE" ro="false" type="binary"/>
+		<FUNC desc="function" pv="BL11I-EA-FGEN-02:FUNC" ro="false" type="mbbinary"/>
+		<FUNCRBV desc="function readback" pv="BL11I-EA-FGEN-02:FUNC:RBV" ro="true" type="mbbinary"/>
+		<TRIGSRC desc="trigger source" pv="BL11I-EA-FGEN-02:TRIGSRC" ro="false" type="mbbinary"/>
+		<TRIGSRCRBV desc="trigger source readback" pv="BL11I-EA-FGEN-02:TRIGSRC:RBV" ro="true" type="mbbinary"/>
+		<BURSTMODE desc="burst mode" pv="BL11I-EA-FGEN-02:BURSTMODE" ro="false" type="mbbinary"/>
+		<BURSTMODERBV desc="burst mode readback" pv="BL11I-EA-FGEN-02:BURSTMODE:RBV" ro="true" type="mbbinary"/>
+		<BURSTNCYC desc="burst number of cycles" pv="BL11I-EA-FGEN-02:BURSTNCYC" ro="false" type="pv"/>
+		<BURSTNCYCINF desc="Set Burst Number of Cycles to Infinite" pv="BL11I-EA-FGEN-02:BURSTNCYC:INF.PROC" ro="false" type="pv"/>
+		<BURSTNCYCRBV desc="burst number of cycles readback" pv="BL11I-EA-FGEN-02:BURSTNCYC:RBV" ro="true" type="pv"/>
+		<BURST desc="burst state" pv="BL11I-EA-FGEN-02:BURST" ro="false" type="binary"/>
+		<BURSTRBV desc="burst state readback" pv="BL11I-EA-FGEN-02:BURST:RBV" ro="true" type="binary"/>
+		<FREQ desc="frequency" pv="BL11I-EA-FGEN-02:FREQ" ro="false" type="pv"/>
+		<FREQRBV desc="frequency readback" pv="BL11I-EA-FGEN-02:FREQ:RBV" ro="true" type="pv"/>
+		<AMP desc="amplitude" pv="BL11I-EA-FGEN-02:AMP" ro="false" type="pv"/>
+		<AMPRBV desc="amplitude readback" pv="BL11I-EA-FGEN-02:AMP:RBV" ro="true" type="pv"/>
+		<OFF desc="offset" pv="BL11I-EA-FGEN-02:OFF" ro="false" type="pv"/>
+		<OFFRBV desc="offset readback" pv="BL11I-EA-FGEN-02:OFF:RBV" ro="true" type="pv"/>
+		<OUT desc="output" pv="BL11I-EA-FGEN-02:OUT" ro="false" type="binary"/>
+		<OUTRBV desc="output readback" pv="BL11I-EA-FGEN-02:OUT:RBV" ro="true" type="binary"/>
+		<DCYC desc="duty cycle" pv="BL11I-EA-FGEN-02:DCYC" ro="false" type="pv"/>
+		<DCYCRBV desc="duty cycle readback" pv="BL11I-EA-FGEN-02:DCYC:RBV" ro="true" type="pv"/>
+		<SYMM desc="ramp symmetry" pv="BL11I-EA-FGEN-02:SYMM" ro="false" type="pv"/>
+		<SYMMRBV desc="ramp symmetry readback" pv="BL11I-EA-FGEN-02:SYMM:RBV" ro="true" type="pv"/>
+		<WIDT desc="pulse width" pv="BL11I-EA-FGEN-02:WIDT" ro="false" type="pv"/>
+		<WIDTRBV desc="pulse width readback" pv="BL11I-EA-FGEN-02:WIDT:RBV" ro="true" type="pv"/>
+		<TRAN desc="pulse edge transition" pv="BL11I-EA-FGEN-02:TRAN" ro="false" type="pv"/>
+		<TRANRBV desc="pulse edge transition readback" pv="BL11I-EA-FGEN-02:TRAN:RBV" ro="true" type="pv"/>
+	</agilent33220A>
+	<nx100 desc="Robot Controller" name="ROBOT.ROBOT">
+		<JOB desc="robot job selection" pv="BL11I-EA-ROBOT-01:JOB" ro="false" type="mbbinary"/>
+		<START desc="START" pv="BL11I-EA-ROBOT-01:START" ro="false" type="pv"/>
+		<COUNTER desc="time robot running for" pv="BL11I-EA-ROBOT-01:COUNTER" ro="false" type="pv"/>
+		<HOLD desc="hold/stop robot" pv="BL11I-EA-ROBOT-01:HOLD" ro="false" type="binary"/>
+		<SVON desc="servo control" pv="BL11I-EA-ROBOT-01:SVON" ro="false" type="binary"/>
+		<ERR desc="error number" pv="BL11I-EA-ROBOT-01:ERR" ro="false" type="pv"/>
+	</nx100>
+	<simplePv desc="Robot needs recovery job latch" name="ROBOT.NEEDRECOVER">
+		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:NEEDRECOVER" ro="true" type="pv"/>
+	</simplePv>
+	<simplePv desc="Sample state: 0=Carousel 1=InJaws 2=Diff" name="ROBOT.SSTATE">
+		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D010:RBV" ro="true" type="pv"/>
+	</simplePv>
+	<simplePv desc="Sample number demand position" name="ROBOT.SNUM">
+		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D011" ro="false" type="pv"/>
+	</simplePv>
+	<simplePv desc="Sample number actual position" name="ROBOT.SNUMRBV">
+		<RECORD desc="PV" pv="BL11I-EA-ROBOT-01:D012:RBV" ro="true" type="pv"/>
+	</simplePv>
 </devices>

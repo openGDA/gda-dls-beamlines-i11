@@ -4,6 +4,10 @@
 	
 	<bean id="feshutter" class="gda.spring.EpicsPneumaticFactoryBean">
 		<property name="deviceName" value="FE.BEAM" />
+		<property name="statusPvIndicatesPositionOnly" value="true"/>
+	</bean>
+	<bean id="portshutter" class="gda.device.enumpositioner.EpicsSimpleMbbinary">
+		<property name="deviceName" value="FE.SHTR1"/>
 	</bean>
 
 </beans>

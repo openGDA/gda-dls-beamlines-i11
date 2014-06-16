@@ -5,7 +5,7 @@ import string
 from optparse import OptionParser
 import math
 
-usage = "%s [OPTIONS] files..."
+usage = "%s [OPTIONS] files... > output_filename"
 parser = OptionParser(usage % "%prog")
 parser.add_option("-b", "--binsize", action="store", dest="binsize", type="float", help="Bin size in degrees (default: 0.004)", default=0.004, metavar="DEGREES")
 parser.add_option("-f", "--function", action="store", dest="function", help="Function to use for merging datasets - 'max' (default) or 'mean'", default="max")
@@ -75,7 +75,7 @@ def determine_bin(angle, min_angle, binsize):
 	return int((angle - min_angle) / binsize)
 	
 if len(args) == 0:
-	print >>sys.stderr, "usage: %s" % (usage % "mythenbin")
+	print >>sys.stderr, "usage: %s" % (usage % "mythenbin.py")
 	sys.exit(1)
 
 if options.function not in ("mean", "max"):
@@ -89,7 +89,7 @@ binned_data = bin_datasets(datasets, options.binsize, options.fillgaps, options.
 if options.function == "max":
 	output_format = "%f %f %f"
 else:
-	output_format = "%f %f"
+	output_format = "%f %f %f"
 
 for line in binned_data:
 	print output_format % line
