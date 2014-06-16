@@ -231,11 +231,6 @@ class AlicatMassFlowController(ScannableMotionBase):
             
             
 #### methods for scannable 
-    def atScanStart(self):
-        pass
-    def atPointStart(self):
-        pass
-    
     def getPosition(self):
         return self.getCurrentFlow()
     
@@ -245,6 +240,10 @@ class AlicatMassFlowController(ScannableMotionBase):
     def isBusy(self):
         return (abs(self.getPosition()-self.getTarget())>self.getTolerance())
     
+    def atScanStart(self):
+        pass
+    def atPointStart(self):
+        pass
     def stop(self):
         pass
     def atPointEnd(self):
