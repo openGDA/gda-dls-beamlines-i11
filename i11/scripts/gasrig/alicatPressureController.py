@@ -1,5 +1,13 @@
 '''
+scannable for Alicat pressure controller to provide access to its properties, i.e. 
+get and set methods.
+Build in default flow tolerance is 0.01, and reading precision is 3 decimals.
+
+usage example:
+    bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:BPR:","%.3f")
+    
 Created on 6 Dec 2013
+updated on 16 June 2014
 
 @author: fy65
 '''
@@ -21,7 +29,7 @@ from gda.device.scannable import ScannableMotionBase
 
 class AlicatPressureController(ScannableMotionBase):
     '''
-    classdocs
+    construct a scannable for pressure control. It also provides access to other properties.
     '''
     def __init__(self,name, rootPV, tolerance=0.01, formatstring="%.3f"):
         '''
