@@ -1,16 +1,18 @@
 '''
 a scannable for controlling the gas injection rig system which are used to prepare the sample environment:
-    1. Before starting the environment, you must initialise the system using gasrig.initialise();
-    2. Then you need to set the system pressure by selecting a mass flow controller, its flow, and target pressure using gdarig.gasin(mcf2,1.0,1.0);
-    3. scan the sample pressure,
-    4. on completion, vent the system by calling gasrig.complete(). 
+    1. Before starting the environment, you flush the system with gas using gasrig.flushSystem();
+    2. then vacuum the sample using gasrig.vacSample();
+    3. Then set the system pressure by selecting a mass flow controller, its flow, and target pressure using gdarig.gasin(mcf2,1.0,1.0);
+    4. scan the sample pressure and collect data e.g. scan sampleP 0.5 0.9 0.1 w 100 cvscan 1800;
+    5. on completion, vent the system by calling gasrig.complete(). 
 
 Created on 6 Dec 2013
 updated on 16 June 2014
 
 @author: fy65
 '''
-from gasrig.i11gasrig import mfc1, bpr, ventvalve, sampleP, dvpc
+from gasrig.i11gasrig import mfc1, bpr, ventvalve, sampleP, dvpc, isolationvalve
+from time import sleep
 #ROOT_PV="BL11I-EA-GIR-01:"
 SEQUENCE_CONTROL="SEQ:CON"
 SEQUENCE_STATUS="SEQ:STA"
@@ -30,21 +32,39 @@ class GasRigClass(ScannableMotionBase):
         self.setsequencecli=CAClient(rootPV+SEQUENCE_CONTROL)
         self.statecli=CAClient(rootPV+SEQUENCE_STATUS)
         
-    def initialise(self, systemPressure=bpr, samplePressure=dvpc):
+    def vacSample(self, systemPressure=bpr, samplePressure=dvpc):
+        print "Vacuum the system and sample ..."
         systemPressure.setMode(0)
         samplePressure.setMode(0)
+        self.on()
+        systemPressure.moveTo(0)
+        samplePressure.moveTo(0)
+        print "sample is under vacuum now."
         
-    def gasin(self, mfc=mfc1, flow=1.0, pressuretarget=1.0, systemPressure=bpr):
+    def gasin(self, mfc=mfc1, flow=0.1, pressuretarget=1.0, systemPressure=bpr):
         '''select gas flow control and set system pressure'''
+        print "inject gas %s into the system." % (mfc.getGasType())
         mfc.asynchronousMoveTo(flow)
         systemPressure.moveTo(pressuretarget)
         mfc.asynchronousMoveTo(0)
+        print "The system reaches at target pressure %f" % (pressuretarget)
         
     def complete(self,valve=ventvalve,systemPressure=bpr, samplePressure=sampleP):
+        print "complete this sample, vent the system"
         self.off()
         valve.on()
         systemPressure.asynchronousMoveTo(0)
         samplePressure.asynchronousMoveTo(0)
+        
+    def flushSystem(self, isolation=isolationvalve, vent=ventvalve, systemPressure=bpr, mfc=mfc1, flow=0.99):
+        print "flushing the system for 1 minute ..."
+        isolation.off()
+        vent.on()
+        systemPressure.moveTo(0)
+        mfc.asynchronousMoveTo(flow)
+        sleep(60)
+        mfc.asynchronousMoveTo(0)
+        print "flush system completed."
 
     def getState(self):
         try:
