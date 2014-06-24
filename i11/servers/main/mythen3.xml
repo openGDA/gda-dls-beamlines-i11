@@ -36,7 +36,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/calibration/ang.off</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/calibration/ang.off</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>
@@ -47,7 +47,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/calibration/badchannel_detector_standard.list</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>
@@ -58,7 +58,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>
@@ -120,7 +120,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/calibration/ang.off</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/calibration/ang.off</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>
@@ -131,7 +131,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/calibration/badchannel_detector_standard.list</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/calibration/badchannel_detector_standard.list</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>
@@ -142,7 +142,7 @@
 						<constructor-arg>
 							<bean class="java.io.File">
 								<constructor-arg>
-									<value>/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration</value>
+									<value>/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration</value>
 								</constructor-arg>
 							</bean>
 						</constructor-arg>

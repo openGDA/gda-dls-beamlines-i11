@@ -15,9 +15,9 @@ REQUIRED_PIXEL_COUNT      =100000
 QUICK_SCAN_TIME           = 60   # 1 min scan
 SLOW_SCAN_TIME            = 1800 # 30 mins scn
 
-PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
-PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
-CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_file"
+PSD_FLATFIELD_DIR="/dls_sw/i11/software/var/mythen/diamond/flatfield"
+PSD_CALIBRATION_DIR="/dls_sw/i11/software/var/mythen/diamond/calibration"
+CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_file"
 BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector.lst"
 
 Usage:
@@ -59,9 +59,9 @@ REQUIRED_PIXEL_COUNT      =100000
 QUICK_SCAN_TIME           = 60   # 1 min scan
 SLOW_SCAN_TIME            = 1800 # 30 mins scn
 
-PSD_FLATFIELD_DIR="/dls_sw/i11/software/mythen/diamond/flatfield"
-PSD_CALIBRATION_DIR="/dls_sw/i11/software/mythen/diamond/calibration"
-CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
+PSD_FLATFIELD_DIR="/dls_sw/i11/software/var/mythen/diamond/flatfield"
+PSD_CALIBRATION_DIR="/dls_sw/i11/software/var/mythen/diamond/calibration"
+CURRENT_FLAT_FIELD_FILE="/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration"
 BAD_CHANNEL_LIST=PSD_CALIBRATION_DIR+os.sep+"badchannel_detector_standard.lst"
 scanNumTracker = NumTracker("i11");
 
