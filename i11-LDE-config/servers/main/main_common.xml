@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
 <!-- Optic Hutch, EH1 -->
-<!-- 	<import resource="EnergyLUT.xml"/>	 -->
+	<import resource="EnergyLUT.xml"/>	
 <!-- 	<import resource="ID.xml"/> -->
 <!-- 	<import resource="ForntEndAperture.xml"/> -->
 <!-- 	<import resource="S1.xml" /> -->
