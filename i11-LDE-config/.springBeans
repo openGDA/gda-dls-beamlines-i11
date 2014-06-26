@@ -29,28 +29,21 @@
 		<config>clients/clients-common.xml</config>
 		<config>servers/commandQueueProcessor.xml</config>
 		<config>servers/CommandServer.xml</config>
-		<config>servers/main/CVScan.xml</config>
 		<config>servers/main/dummy/CVScanController.xml</config>
-		<config>servers/main/live/CVScanController.xml</config>
 		<config>servers/main/simulation/CVScanController.xml</config>
 		<config>servers/main/CyberStarBlower.xml</config>
 		<config>servers/main/dummy/CyberStarBlower.xml</config>
 		<config>servers/main/live/CyberStarBlower.xml</config>
 		<config>servers/main/simulation/CyberStarBlower.xml</config>
 		<config>servers/main/dummy/D1.xml</config>
-		<config>servers/main/live/D1.xml</config>
 		<config>servers/main/simulation/D1.xml</config>
 		<config>servers/main/dummy/D2.xml</config>
-		<config>servers/main/live/D2.xml</config>
 		<config>servers/main/simulation/D2.xml</config>
 		<config>servers/main/dummy/D3.xml</config>
-		<config>servers/main/live/D3.xml</config>
 		<config>servers/main/simulation/D3.xml</config>
 		<config>servers/main/dummy/D4.xml</config>
-		<config>servers/main/live/D4.xml</config>
 		<config>servers/main/simulation/D4.xml</config>
 		<config>servers/main/dummy/D5.xml</config>
-		<config>servers/main/live/D5.xml</config>
 		<config>servers/main/simulation/D5.xml</config>
 		<config>servers/main/DCM.xml</config>
 		<config>servers/main/dummy/DCM.xml</config>
@@ -60,16 +53,13 @@
 		<config>servers/main/live/DCMxtal.xml</config>
 		<config>servers/main/simulation/DCMxtal.xml</config>
 		<config>servers/main/DetectorsSafePositions.xml</config>
-		<config>servers/main/Diffractometer.xml</config>
 		<config>servers/main/dummy/Diffractometer.xml</config>
-		<config>servers/main/live/Diffractometer.xml</config>
 		<config>servers/main/simulation/Diffractometer.xml</config>
 		<config>servers/main/dummy/DummyMotors.xml</config>
 		<config>servers/main/live/DummyMotors.xml</config>
 		<config>servers/main/simulation/DummyMotors.xml</config>
 		<config>servers/main/EnergyLUT.xml</config>
 		<config>servers/main/dummy/ETL.xml</config>
-		<config>servers/main/live/ETL.xml</config>
 		<config>servers/main/simulation/ETL.xml</config>
 		<config>servers/main/etl1.xml</config>
 		<config>servers/main/live/etl1.xml</config>
@@ -147,15 +137,11 @@
 		<config>servers/main/dummy/M1.xml</config>
 		<config>servers/main/live/M1.xml</config>
 		<config>servers/main/simulation/M1.xml</config>
-		<config>servers/main/MACDataWriter.xml</config>
-		<config>servers/main/MACDetectors.xml</config>
 		<config>servers/main/dummy/MachineStatus.xml</config>
 		<config>servers/main/live/MachineStatus.xml</config>
 		<config>servers/main/simulation/MachineStatus.xml</config>
 		<config>servers/main/dummy/MACMotors.xml</config>
-		<config>servers/main/live/MACMotors.xml</config>
 		<config>servers/main/simulation/MACMotors.xml</config>
-		<config>servers/main/MACScannables.xml</config>
 		<config>servers/main/main_common.xml</config>
 		<config>clients/main/main-common.xml</config>
 		<config>servers/main/Mar345.xml</config>
@@ -193,23 +179,18 @@
 		<config>servers/main/simulation/RobotNX100.xml</config>
 		<config>servers/main/S1.xml</config>
 		<config>servers/main/dummy/S1.xml</config>
-		<config>servers/main/live/S1.xml</config>
 		<config>servers/main/simulation/S1.xml</config>
 		<config>servers/main/S2.xml</config>
 		<config>servers/main/dummy/S2.xml</config>
-		<config>servers/main/live/S2.xml</config>
 		<config>servers/main/simulation/S2.xml</config>
 		<config>servers/main/S3.xml</config>
 		<config>servers/main/dummy/S3.xml</config>
-		<config>servers/main/live/S3.xml</config>
 		<config>servers/main/simulation/S3.xml</config>
 		<config>servers/main/S4.xml</config>
 		<config>servers/main/dummy/S4.xml</config>
-		<config>servers/main/live/S4.xml</config>
 		<config>servers/main/simulation/S4.xml</config>
 		<config>servers/main/S5.xml</config>
 		<config>servers/main/dummy/S5.xml</config>
-		<config>servers/main/live/S5.xml</config>
 		<config>servers/main/simulation/S5.xml</config>
 		<config>servers/main/SampleInfo.xml</config>
 		<config>servers/main/dummy/Scaler1.xml</config>
@@ -228,7 +209,6 @@
 		<config>servers/main/live/SmallSampleTable.xml</config>
 		<config>servers/main/simulation/SmallSampleTable.xml</config>
 		<config>servers/main/dummy/Spinner.xml</config>
-		<config>servers/main/live/Spinner.xml</config>
 		<config>servers/main/simulation/Spinner.xml</config>
 		<config>servers/main/StoeFurnace.xml</config>
 		<config>servers/main/dummy/StoeFurnace.xml</config>
@@ -237,10 +217,8 @@
 		<config>servers/main/TestMotors.xml</config>
 		<config>servers/main/tfg2.xml</config>
 		<config>servers/main/dummy/TrajectoryScan.xml</config>
-		<config>servers/main/live/TrajectoryScan.xml</config>
 		<config>servers/main/simulation/TrajectoryScan.xml</config>
 		<config>clients/rcp/commandQueueProcessor.xml</config>
-		<config>servers/main/mythen.xml</config>
 		<config>clients/rcp/statusView.xml</config>
 		<config>servers/dataWriter.xml</config>
 		<config>servers/dataArchieval.xml</config>
@@ -254,9 +232,15 @@
 		<config>clients/rcp/dataFileMonitor.xml</config>
 		<config>clients/rcp/commandRunner.xml</config>
 		<config>clients/rcp/batonStateProvider.xml</config>
-		<config>clients/rcp/live/spinner.xml</config>
 		<config>clients/rcp/detectorFileDisplayer.xml</config>
-		<config>clients/rcp/cvscan.xml</config>
+		<config>clients/rcp/live/spinner2.xml</config>
+		<config>servers/main/live/S6.xml</config>
+		<config>servers/main/live/S1.xml</config>
+		<config>servers/main/live/S2.xml</config>
+		<config>servers/main/live/S3.xml</config>
+		<config>servers/main/live/S4.xml</config>
+		<config>servers/main/live/S5.xml</config>
+		<config>servers/main/live/Spinner2.xml</config>
 	</configs>
 	<configSets>
 		<configSet>
@@ -290,11 +274,9 @@
 				<config>servers/main/BPM1.xml</config>
 				<config>servers/main/BPM2.xml</config>
 				<config>servers/main/BPM3.xml</config>
-				<config>servers/main/CVScan.xml</config>
 				<config>servers/main/CyberStarBlower.xml</config>
 				<config>servers/main/DCM.xml</config>
 				<config>servers/main/DetectorsSafePositions.xml</config>
-				<config>servers/main/Diffractometer.xml</config>
 				<config>servers/main/EnergyLUT.xml</config>
 				<config>servers/main/etl1.xml</config>
 				<config>servers/main/etl2.xml</config>
@@ -309,18 +291,10 @@
 				<config>servers/main/live/BPM1.xml</config>
 				<config>servers/main/live/BPM2.xml</config>
 				<config>servers/main/live/BPM3.xml</config>
-				<config>servers/main/live/CVScanController.xml</config>
 				<config>servers/main/live/CyberStarBlower.xml</config>
-				<config>servers/main/live/D1.xml</config>
-				<config>servers/main/live/D2.xml</config>
-				<config>servers/main/live/D3.xml</config>
-				<config>servers/main/live/D4.xml</config>
-				<config>servers/main/live/D5.xml</config>
 				<config>servers/main/live/DCM.xml</config>
 				<config>servers/main/live/DCMxtal.xml</config>
-				<config>servers/main/live/Diffractometer.xml</config>
 				<config>servers/main/live/DummyMotors.xml</config>
-				<config>servers/main/live/ETL.xml</config>
 				<config>servers/main/live/etl1.xml</config>
 				<config>servers/main/live/etl2.xml</config>
 				<config>servers/main/live/ExperimentHutchShutter.xml</config>
@@ -345,7 +319,6 @@
 				<config>servers/main/live/LargeSampleTable.xml</config>
 				<config>servers/main/live/M1.xml</config>
 				<config>servers/main/live/MachineStatus.xml</config>
-				<config>servers/main/live/MACMotors.xml</config>
 				<config>servers/main/live/Mar345.xml</config>
 				<config>servers/main/live/MCSSis3820.xml</config>
 				<config>servers/main/live/MRIFurnace.xml</config>
@@ -354,22 +327,12 @@
 				<config>servers/main/live/OxfordCryoStream2.xml</config>
 				<config>servers/main/live/PhenixCryostat.xml</config>
 				<config>servers/main/live/RobotNX100.xml</config>
-				<config>servers/main/live/S1.xml</config>
-				<config>servers/main/live/S2.xml</config>
-				<config>servers/main/live/S3.xml</config>
-				<config>servers/main/live/S4.xml</config>
-				<config>servers/main/live/S5.xml</config>
 				<config>servers/main/live/Scaler1.xml</config>
 				<config>servers/main/live/Scaler2.xml</config>
 				<config>servers/main/live/server.xml</config>
 				<config>servers/main/live/SmallSampleTable.xml</config>
-				<config>servers/main/live/Spinner.xml</config>
 				<config>servers/main/live/StoeFurnace.xml</config>
-				<config>servers/main/live/TrajectoryScan.xml</config>
 				<config>servers/main/M1.xml</config>
-				<config>servers/main/MACDataWriter.xml</config>
-				<config>servers/main/MACDetectors.xml</config>
-				<config>servers/main/MACScannables.xml</config>
 				<config>servers/main/main_common.xml</config>
 				<config>servers/main/Mar345.xml</config>
 				<config>servers/main/MCS.xml</config>
@@ -391,8 +354,9 @@
 				<config>servers/main/tfg2.xml</config>
 				<config>servers/scriptControllers.xml</config>
 				<config>servers/servers_common.xml</config>
-				<config>servers/main/mythen.xml</config>
-				<config>clients/rcp/live/spinner.xml</config>
+				<config>clients/rcp/live/spinner2.xml</config>
+				<config>servers/main/live/S6.xml</config>
+				<config>servers/main/live/Spinner2.xml</config>
 			</configs>
 			<profiles>
 				<profile><![CDATA[server]]></profile>
@@ -461,7 +425,6 @@
 				<config>servers/main/dummy/Spinner.xml</config>
 				<config>servers/main/dummy/StoeFurnace.xml</config>
 				<config>servers/main/dummy/TrajectoryScan.xml</config>
-				<config>servers/main/mythen.xml</config>
 			</configs>
 			<profiles>
 				<profile><![CDATA[Server]]></profile>
