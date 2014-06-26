@@ -1,2 +1,2 @@
 #!/bin/sh
-export BEAMLINE=i11
+export BEAMLINE=i11-1
