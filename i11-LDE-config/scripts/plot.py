@@ -129,8 +129,8 @@ def plotdata(filename, dataType=MAC, plotPane="DataPlot", Overlay=True):
     elif dataType == RAW:
             # mythen raw data file
             dataset = loadMythenRawData(filename)
-            data=DoubleDataset(dataset.getCountArray())
-            channeldata=DoubleDataset(dataset.getChannelArray())
+            data=DoubleDataset(dataset.getCountArray(), dataset.getCountArray().length)
+            channeldata=DoubleDataset(dataset.getChannelArray(),dataset.getChannelArray().length)
             data.setName(filename)
             if Overlay:
                 Plotter.plotOver(plotPane, channeldata, data)
