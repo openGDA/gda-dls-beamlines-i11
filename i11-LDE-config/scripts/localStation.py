@@ -1,12 +1,12 @@
 # file:        localStation.py
 # Description: For beamline specific initialisation.
 # @author: Fajin Yuan
-# updated 23/12/2010
+# updated 26/06/2014
 from types import NoneType
 
 
 print "=================================================================================================================";
-print "Performing beamline I11 specific initialisation.";
+print "Performing beamline I11-1 specific initialisation.";
 print
 from gda.data import PathConstructor, NumTracker
 from gda.jython.commands.GeneralCommands import alias, run
@@ -35,7 +35,7 @@ print "   >>>getSubdirectory() - return the current sub-directory setting if exi
 print "Please note: users can only create sub-directory within their permitted visit data directory via GDA, not themselves."
 print "To create another sub-directory 'child-test' inside a sub-directory 'test', you must specify the full path as 'test/child-test' "
 # set up a nice method for getting the latest file path
-i11NumTracker = NumTracker("i11");
+i11JNumTracker = NumTracker("i11-1");
 
 # function to find the working directory
 def pwd():
@@ -49,7 +49,7 @@ alias("pwd")
 def lwf():
     '''return the last working file path root'''
     cwd = PathConstructor.createFromDefaultProperty()
-    filenumber = i11NumTracker.getCurrentFileNumber();
+    filenumber = i11JNumTracker.getCurrentFileNumber();
     return os.path.join(cwd,str(filenumber))
     
 alias("lwf")
@@ -58,7 +58,7 @@ alias("lwf")
 def nwf():
     '''query the next working file path root'''
     cwd = PathConstructor.createFromDefaultProperty()
-    filenumber = i11NumTracker.getCurrentFileNumber();
+    filenumber = i11JNumTracker.getCurrentFileNumber();
     return os.path.join(cwd,str(filenumber+1))
     
 alias("nwf")
@@ -66,7 +66,7 @@ alias("nwf")
 # function to find the next scan number
 def nfn():
     '''query the next file number or scan number'''
-    filenumber = i11NumTracker.getCurrentFileNumber();
+    filenumber = i11JNumTracker.getCurrentFileNumber();
     return filenumber+1
     
 alias("nfn")
@@ -142,31 +142,14 @@ print "-------------------------------------------------------------------------
 print "Enable automatic beamline energy setting for all devices by e.g. 'pos setenergy 15.0'."
 ALL, BEAM_ENERGY, STAGE_ANGLE, DETECTOR=range(4)
 from Automation_class import Automation
-setenergy=Automation('setenergy','energytable', ALL, rootNameSpace=globals())
 print "To set/get Mono and ID energy only, use 'energy_gap' object"
 energy_gap=Automation('energy_gap','energytable', BEAM_ENERGY, rootNameSpace=globals())
-print "To set/get MAC stage angles to specific energy, use 'mac_energy' object"
-mac_energy=Automation('mac_energy','energytable', STAGE_ANGLE, rootNameSpace=globals())
-print "To set/get ETL detector voltages to specific energy, use 'det_energy' object"
-det_energy=Automation('det_energy','energytable', DETECTOR, rootNameSpace=globals())
-pds.append(setenergy) 
 pds.append(energy_gap) 
-pds.append(mac_energy) 
-pds.append(det_energy) 
 print
-
-#print 'setting up PDs for QBPMs'
-#execfile(gdaScriptDir+"qbpm_pd_class.py");
 
 ### set output format for scannables
-globals()['tth'].setOutputFormat(["%10.7f"])
 globals()['energy'].setOutputFormat(["%10.7f"])
 globals()['bragg'].setOutputFormat(["%10.7f"])    
-
-print "-----------------------------------------------------------------------------------------------------------------"
-print "Setup 'plot' function for plotting collected, rebinned MAC data. use 'help plot' for syntax"
-from plot import plot, plotover, plotdata, PSD,MAC,SRS #@UnusedImport
-print
 
 print "-----------------------------------------------------------------------------------------------------------------"
 print "function to set wavelength >>>setwavelength(value)"
@@ -185,70 +168,19 @@ import gda
 from gda.device.scannable import DummyScannable
 ds = DummyScannable("ds")
 
-def psd(t,n=1.0):
-    scan(ds, 1.0, n, 1.0, mythen, t, Io, t, Ie, delta)  # @UndefinedVariable
-    scaler2(1)  # @UndefinedVariable
-    
-
-alias("psd")
-
 print
 print "-----------------------------------------------------------------------------------------------------------------"
 print "The default scannable list: "
 list_defaults #@UndefinedVariable
 sleep(0.5)
-
-
 print
-print "-----------------------------------------------------------------------------------------------------------------"
-print "create detector collision prevention commands: 'move' and 'asynmove' "
-print "    move -- synchronous, blocking until completed, like 'pos'        "
-print "    asynmove -- asynchronous, non-blocking move                      "
-#from avoidcollision import *  # @UnusedWildImport
-run("avoidcollision.py") 
-
-print
-print "-----------------------------------------------------------------------------------------------------------------"
-print "method to change MYTHEN flat field file dynamically, temporarily. "
-print "    >>>setMythenFlatFieldFile('flatfield_filename')"
-print "This must be called each time you reset_namespce or restart GDA servers"
-def setMythenFlatFieldFile(filename):
-    mythen_flat_field = gda.device.detector.mythen.data.MythenRawDataset(java.io.File(filename))
-    mythen.getDataConverter().setFlatFieldData(mythen_flat_field)  # @UndefinedVariable
-
-print
-print "---------------------------------------------------------numFrames--------------------------------------------------------"
-print "Create rocking theta scannable 'rocktheta'"
-print "    To change the rocking limits, use 'rocktheta.setLowerLimit(10)', 'rocktheta.setUpperLimit(10)'; "
-print "    To view the rocking limits, use 'rocktheta.getLowerLimit()', 'rockthets.getUpperLimit()'."
-from rockingMotion_class import RockingMotion
-theta1=finder.find("theta")
-rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
-print "Create 'psdrt' command for PSD data collection with theta rocking"
-def psdrt(t, n=1.0):
-    scan(ds, 1.0, n, 1.0, mythen, t, rocktheta, Io, t, Ie, delta)  # @UndefinedVariable
-    scaler2(1)  # @UndefinedVariable
-
-alias("psdrt")
-
-print
-print "-----------------------------------------------------------------------------------------------------------------"
-print "Create commands to enable/disable plot update from server."
-print "    To enable plot update from server, use 'startupdate'"
-print "    To disable plot update from server, use 'stopupdate'"
-print "    The default is plot update enabled."
-# set plot update rule in GDA server:
-LIVE=True
-def stopupdate():
-    global LIVE
-    LIVE=False
-
-def startupdate():
-    global LIVE
-    LIVE=True
-
-alias("startupdate")
-alias("stopupdate")
+#print "---------------------------------------------------------numFrames--------------------------------------------------------"
+#print "Create rocking theta scannable 'rocktheta'"
+#print "    To change the rocking limits, use 'rocktheta.setLowerLimit(10)', 'rocktheta.setUpperLimit(10)'; "
+#print "    To view the rocking limits, use 'rocktheta.getLowerLimit()', 'rockthets.getUpperLimit()'."
+from rockingMotion_class import RockingMotion  # @UnusedImport
+#theta1=finder.find("theta")
+#rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 
 print
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -256,9 +188,7 @@ print "Create an 'interruptable()' function which can be used to make for-loop i
 print "    To use this, you must place 'interruptable()' call as the 1st or last line in your for-loop."
 def interruptable():
     enable_pause_or_interrupt()
-print "-----------------------------------------------------------------------------------------------------------------"
-print "Create 'cvscan' command"
-alias("cvscan") 
+
 print
 from timerelated import clock, t, dt, w #@UnusedImport
 print
@@ -272,19 +202,12 @@ fg2=FunctionGenerator("fg2")
 print "create 'tfg2' object to provide control of Time Frame Generator device"
 from peloop.tfg2 import TFG2
 tfg2=TFG2("tfg2")
-
-print "create 'pedata' object to capture the PE data from ADC2 device"
-from peloop.pedatacapturer import DataCapturer
-pedata=DataCapturer("pedata")
-print "create 'pel' object for PE Loop experiment"
-from tfg_peloop import PELoop
-pel=PELoop("pel", tfg2, fg2, adc2, pedata, mythen)  # @UndefinedVariable
 daserver=finder.find("daserver")
 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "create derivative scannable 'deriv' object to provide derivative value of enegry to elt1"
+print "create derivative scannable 'deriv' object to provide derivative value of enegry to Ie2"
 from scan_detetor_with_derivative import DeviceDerivativeClass
-deriv = DeviceDerivativeClass("deriv", "energy", "etl1", "derivative");
+deriv = DeviceDerivativeClass("deriv", "energy", "Ie2", "derivative");
 
 print "-----------------------------------------------------------------------------------------------------------------"
 print "create extra pixium scannables: pixium_PUMode, pixium_BaseExposure, pixium_BaseAcquirePeriod, pixium_EarlyFrames, pixium_TotalCount,pixium_FanSpeed1,pixium_FanSpeed2,pixium_DetectorTemperature"
@@ -349,37 +272,9 @@ print "=========================================================================
 print "Initialisation script complete." 
 print
 ###Must leave what after this line last.
-bm1=finder.find("bm")
-if bm1.isBeamOn():
+bm2=finder.find("bm2")
+if bm2.isBeamOn():
     print "PHOTON BEAM IS ON SAMPLE NOW."
 else:
     print "NO PHOTON BEAM ON SAMPLE."
 
-
-# setup I11 specific scans
-#### The XPS CVScan commands and objects - replaced by PMAC CVScan object
-#print "---------------------------------------------------------------------------------------------"
-#print "create I11 specific XPS scan commands: cvscan, robotscan, robotscan2d, stagescan, tempscan"
-#from gda.hrpd.commands.ScanCommands import cvscan, robotscan, robotscan2d, stagescan, tempscan #@UnusedImport
-# create command alias
-
-#vararg_alias("robotscan") 
-#vararg_alias("robotscan2d") 
-#vararg_alias("stagescan") 
-#vararg_alias("tempscan") 
-#print
-#print "---------------------------------------------------------------------------------------------"
-#print "create MAC data processing object 'rebin' to control MAC data rebin and plotting"
-#print "To enable rebinning and plotting during data collection, use >>>rebin.enable()"
-#print "To disable rebinning and plotting during data collection, use >>>rebin.disable()"
-#print "The default is enabled"
-#from gda.hrpd.data import MacDataProcessing
-#rebin=MacDataProcessing.getInstance()
-#print
-#print "---------------------------------------------------------------------------------------------"
-#print "create Scan File Holder object 'sfh' for scan data file load."
-#from gda.analysis import ScanFileHolder
-#sfh=ScanFileHolder()
-#print "To load in a MAC data file, use >>>sfh.loadMAC('absolute/path/to/file')"
-#print "To plot these data in MAC panel, use >>>Plotter.plot('MAC', sfh.getAxis(0), sfh.getAxis(1))"
-#print
