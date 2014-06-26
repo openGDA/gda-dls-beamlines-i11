@@ -12,7 +12,7 @@
 
 	<import resource="commandQueueProcessor.xml" />
 
-	<corba:import namespace="i11" names="plot_server" />
+	<corba:import namespace="i11-1" names="plot_server" />
 	<bean class="gda.rcp.util.OSGIServiceRegister">
 		<property name="class" value="uk.ac.diamond.scisoft.analysis.PlotServer" />
 		<property name="service" ref="plot_server" />
@@ -26,8 +26,7 @@
 <!-- 	<import resource="RCPController.xml"/> -->
 	<import resource="beamlineStatus.xml"/>
 	<import resource="statusView.xml"/>
-	<import resource="cvscan.xml"/>
-	<import resource="mythenview.xml"/>
+
 	
 	<import resource="../clients-common.xml" />
 

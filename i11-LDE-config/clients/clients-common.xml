@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-    <corba:import namespace="i11" names="command_server, ScanDataStore, SimpleServlet"/>
+    <corba:import namespace="i11-1" names="command_server, ScanDataStore, SimpleServlet"/>
 	
 	<import resource="scanDataPointServer.xml"/>
 	

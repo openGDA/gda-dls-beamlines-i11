@@ -11,7 +11,7 @@
 	
 	 
 <!-- import server objects required in GUI -->
-    <corba:import namespace="i11" names="Plot_Manager, Ic4, beam, ehshutter, spin"/>
+    <corba:import namespace="i11-1" names="Plot_Manager, Ic4, beam, ehshutter, spin"/>
 	
 <!--  Experiment Shutter control panel -->
     <bean id="shutterPanel" class="gda.gui.util.ShutterPanel">
@@ -72,8 +72,6 @@
     		</list>
     	</property>
     </bean>
-<!--  add a log panel to GDA client GUI -->
-	<!--    <bean id="Message" class="gda.util.LogPanel" />-->
    
 	<bean id="JythonEditor" class="gda.jython.gui.JythonEditor" />
 
@@ -84,13 +82,7 @@
 		<property name="closeDownOnBatonRenewTimeoutTimeMinutes" value="2.0"/>
 		<property name="closeDownOnBatonRenewUserPromptTimeMinutes"	value="0.1"/>
 	</bean>
-<!-- I11 data visualisation panels -->   
-    <bean id="MAC" class="gda.gui.dv.DataVectorPlot">
-    	<property name="label" value="MAC"/> 
-    </bean>
-    <bean id="Mythen" class="gda.gui.dv.DataVectorPlot">
-    	<property name="label" value="Mythen"/> 
-    </bean>
+
     <bean id="DataPlot" class="gda.gui.dv.DataVectorPlot">
     	<property name="label" value="DataPlot"/> 
     </bean>

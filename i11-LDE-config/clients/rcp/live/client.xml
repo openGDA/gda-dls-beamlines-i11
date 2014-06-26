@@ -20,15 +20,7 @@
 		file:${gda.config}/properties/gda.properties" />
 		
 	<import resource="machineStatus.xml"/>
-	<import resource="spinner.xml"/>
+	<import resource="spinner2.xml"/>
 	<import resource="../rcp-common.xml"/>
-	
-	<!--
-	<bean id="OavReceiver" class="gda.images.camera.RTPStreamReceiverSWT">
-		<property name="host" value="224.120.120.120" />
-		<property name="port" value="22224" />
-		<property name="desiredFrameRate" value="15" />
-		<property name="displayName" value="On Axis Viewer" />
-	</bean>
-	-->
+
 </beans>

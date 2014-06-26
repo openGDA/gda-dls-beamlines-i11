@@ -11,16 +11,16 @@
 	
 	 
 <!-- import server objects required in GUI -->
-    <corba:import namespace="i11" names="Plot_Manager, Ic4, beam, ehshutter, spin"/>
+    <corba:import namespace="i11-1" names="Plot_Manager, Ic6, beam, es2shutter, spin2"/>
 	
 <!--  Experiment Shutter control panel -->
-    <bean id="shutterPanel" class="gda.gui.util.ShutterPanel">
-    	<property name="shutter" ref="ehshutter"/>
+    <bean id="es2ShutterPanel" class="gda.gui.util.ShutterPanel">
+    	<property name="shutter" ref="es2shutter"/>
     </bean>
  
 <!-- photon beam state monitor using Ion Chamber -->
-    <bean id="Ic4Panel" class="gda.gui.util.CurrentAmplifierPanel">
-    	<property name="curramp" ref="Ic4"/>
+    <bean id="Ic6Panel" class="gda.gui.util.CurrentAmplifierPanel">
+    	<property name="curramp" ref="Ic6"/>
     	<property name="threshold" value="0.05"/>
     </bean>
     
@@ -31,8 +31,8 @@
     </bean>
 
 <!-- sample SPIN state indicator -->
-    <bean id="spinner" class="gda.gui.util.StateDisplayPanel">
-    	<property name="scannable" ref="spin"/>
+    <bean id="spinner2" class="gda.gui.util.StateDisplayPanel">
+    	<property name="scannable" ref="spin2"/>
     	<property name="valueTitle" value="Spin"/>
     	<property name="states">
     		<map>
@@ -53,12 +53,12 @@
     	<property name="extraGraphs" value="true" />
 		<property name="shutterPanels">
 			<list>
-				<ref bean="shutterPanel"/>
+				<ref bean="es2ShutterPanel"/>
 			</list>
 		</property>
 		<property name="amplifierPanels">
 			<list>
-				<ref bean="Ic4Panel"/>
+				<ref bean="Ic6Panel"/>
     		</list>
     	</property>
     	<property name="valueDisplayPanel">
@@ -68,7 +68,7 @@
     	</property>
     	<property name="stateDisplayPanels">
     		<list>
-    			<ref bean="spinner"/>
+    			<ref bean="spinner2"/>
     		</list>
     	</property>
     </bean>
@@ -85,12 +85,6 @@
 		<property name="closeDownOnBatonRenewUserPromptTimeMinutes"	value="0.1"/>
 	</bean>
 <!-- I11 data visualisation panels -->   
-    <bean id="MAC" class="gda.gui.dv.DataVectorPlot">
-    	<property name="label" value="MAC"/> 
-    </bean>
-    <bean id="Mythen" class="gda.gui.dv.DataVectorPlot">
-    	<property name="label" value="Mythen"/> 
-    </bean>
     <bean id="DataPlot" class="gda.gui.dv.DataVectorPlot">
     	<property name="label" value="DataPlot"/> 
     </bean>
