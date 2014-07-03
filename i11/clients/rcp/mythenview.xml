@@ -14,8 +14,11 @@
 		<property name="name" value="startListener"/>
 		<property name="pvName" value="BL11I-EA-DET-03:DET:Acquire"/>
 	</bean>
-	<bean id="stopscannable" class="gda.device.scannable.EpicsScannable">
+	<bean id="stopmythen" class="uk.ac.gda.client.hrpd.typedpvscannables.EpicsEnumPVScannable">
+		<property name="name" value="stopmythen"/>
 		<property name="pvName" value="BL11I-EA-DET-03:DET:Acquire"/>
+		<property name="type" value="gda.device.detector.EpicsAreaDetectorConstants.Acquire"/>
+		<property name="local" value="true"/>
 	</bean>
 	<bean id="timeRemainingListener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataListener">
 		<property name="name" value="timeRemainingListener"/>
@@ -32,11 +35,11 @@
 		<property name="exposureTimeListener" ref="exposureTimeListener"/> <!--essential-->
 		<property name="timeRemainingListener" ref="timeRemainingListener"/> <!--essential-->
 		<property name="epicsProcessName" value="Mythen acquiring"/> <!--essential-->
-		<property name="stopScannable" ref="stopscannable"/> <!--essential-->
+		<property name="stopScannable" ref="stopmythen"/> <!--essential-->
 	</bean>
 	
 	<bean id="mythenliveplotfactory" class="uk.ac.gda.epics.client.mythen.viewfactories.LivePlotViewFactory">
-		<property name="plotName" value="MYTHEN"/>
+		<property name="plotName" value="Mythen"/>
 		<property name="xAxisMin" value="0.000"/>
 		<property name="xAxisMax" value="100.000"/>
 		<property name="eventAdminName" value="mytheneventadmin"/>
@@ -45,7 +48,7 @@
 		<property name="exposureTimeListener" ref="exposureTimeListener"/>
 		<property name="timeRemainingListener" ref="timeRemainingListener"/>
 		<property name="taskName" value="Mythen acquiring"/>
-		<property name="stopScannable" ref="stopscannable"/>
+		<property name="stopScannable" ref="stopmythen"/>
 	</bean>
 
 </beans>
