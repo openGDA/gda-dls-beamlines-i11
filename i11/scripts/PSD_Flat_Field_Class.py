@@ -51,6 +51,7 @@ import threading
 from time import sleep
 from plot import plot,RAW
 from gda.data import NumTracker
+from gdascripts.utils import caget
 
 #default vaules
 START_ANGLE               = -15
@@ -165,8 +166,12 @@ class FlatFieldCalibration(ScannableMotionBase):
             print "Sum all scanned raw data into one flat field data file..."
             self.sum_flat_field_file = sumScanRawData(numberofscan)
             #plot and view flat field raw data in SWING GUI
-            plot(RAW,self.sum_flat_field_file)
-            
+            try:
+                plot(RAW,self.sum_flat_field_file)
+            except:
+                print "Plot flat field data from .raw data file failed."
+                print "Unexpected error:", sys.exc_info()[0], sys.exc_info()[1]  # @UndefinedVariable
+                            
             print "Please check the flat field file for any dead pixels, etc.and check that all the bad channels are in the bed channel list at "+BAD_CHANNEL_LIST
             #apply this flat field correction to PSD in GDA permanently
             self.applyFlatFieldCalibration()
@@ -201,7 +206,8 @@ class FlatFieldCalibration(ScannableMotionBase):
             self.detector.collectData()
             sleep(2) #must give time for detector for detector to respond to request.
             while self.detector.isBusy():
-                sleep(0.1)
+            #while caget("BL11I-EA-DET-03:DET:Acquire")==1:
+                sleep(1)
             sleep(1)
             self.detector.atPointEnd()
             scancounter += 1
