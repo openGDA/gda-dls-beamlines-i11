@@ -1,8 +1,8 @@
 '''
 define class that performs the data reduction process and the default correction and calibration files:
-BADCHANNELLISTFILE="/dls_sw/i11/software/mythen/diamond/calibration/badchannel_detector.list"
-FlatFieldDataFile="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
-ANGULARCONVERSIONFILE="/dls_sw/i11/software/mythen/diamond/calibration/ang.off"
+BADCHANNELLISTFILE="/dls_sw/i11/software/var/mythen/diamond/calibration/badchannel_detector.list"
+FlatFieldDataFile="/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration"
+ANGULARCONVERSIONFILE="/dls_sw/i11/software/var/mythen/diamond/calibration/ang.off"
 
 Created on 24 Feb 2014
 
@@ -14,9 +14,9 @@ from AngularCalibration import applyAngularConversion
 from DataFileReader import read_processed_data
 from AngularCalibration import BEAMLINE_OFFSET
 
-BADCHANNELLISTFILE="/dls_sw/i11/software/mythen/diamond/calibration/badchannel_detector.list"
-FlatFieldDataFile="/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
-ANGULARCONVERSIONFILE="/dls_sw/i11/software/mythen/diamond/calibration/ang.off"
+BADCHANNELLISTFILE="/dls_sw/i11/software/var/mythen/diamond/calibration/badchannel_detector.list"
+FlatFieldDataFile="/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration"
+ANGULARCONVERSIONFILE="/dls_sw/i11/software/var/mythen/diamond/calibration/ang.off"
 
 class DataReduction(object):
     '''
@@ -26,9 +26,9 @@ class DataReduction(object):
         3. angular conversion - from channel number to angle in degree.
     Methods available:
         1. process(rawDataFile, detectorPosition) - do the actual data reduction processes
-        2. setBadChannelFile(filename), getBadChannelFile() - default to "/dls_sw/i11/software/mythen/diamond/calibration/badchannel_detector.list"
-        3. setFlatFieldFile(filename), getFlatFieldFile() - default to "/dls_sw/i11/software/mythen/diamond/flatfield/current_flat_field_calibration"
-        4. setAngularCalibrationFile(filename), getAngularCalibrationFile() - default to "/dls_sw/i11/software/mythen/diamond/calibration/ang.off"
+        2. setBadChannelFile(filename), getBadChannelFile() - default to "/dls_sw/i11/software/var/mythen/diamond/calibration/badchannel_detector.list"
+        3. setFlatFieldFile(filename), getFlatFieldFile() - default to "/dls_sw/i11/software/var/mythen/diamond/flatfield/current_flat_field_calibration"
+        4. setAngularCalibrationFile(filename), getAngularCalibrationFile() - default to "/dls_sw/i11/software/var/mythen/diamond/calibration/ang.off"
         5. reprocess(rawDataFile) - re-do the actual data reduction processes, previous process data file must exist alongside of the raw data file.
     '''
 
