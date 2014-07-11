@@ -1,83 +1,109 @@
-from gdascripts.utils import caget, caput
-from time import sleep 
-from gda.jython.commands.ScannableCommands import pos
-from localStation import finder
-
-fpitch2=finder.find("fpitch2")
-Io=finder.find("Io")
-# setup parameters for the scans
-#start = -10
-#step = 0.2
-start = -4
-step = 0.2
-n = 176
+# this is the start position
+start = -10
+# this is the coarse step of the piezo
+step = 1.0
+# this is the maximum number of steps we should take
+n = ((10 - start) / step) + 1
+# this is the y size of S4
 ysize = 0.8
+# this is the y centre of S4
 ycentre = -1.226
+# this is the pc for the fast feedback
+ffb = "BL11I-OP-DCM-01:FP:S4FB"
+# this is the pv for DCM pitch
+fp = "BL11I-OP-DCM-01:FB:DAC:02"
+
+# make sure we use builtin python sum
+try:
+ del(sum)
+except:
+ pass
 
 # wait for topup to complete if it will interrupt us
 topup_time = float(caget("SR-CS-FILL-01:COUNTDOWN"))
-needed_time = n*0.29 + 20.0
+# assume it will take 0.6 seconds per point, a position will be found
+# halfway through each scan, and we need 3 scan iterations
+needed_time = n*0.7*0.5*3
 if needed_time > topup_time:
-    waiting_time = topup_time + 10
-    print "Waiting %.2fs for topup to complete..." % waiting_time
-    sleep(waiting_time)
+ waiting_time = topup_time + 10
+ print "Waiting %.2fs for topup to complete..." % waiting_time
+ sleep(waiting_time)
 print "Starting Optimisation"
 
 # setup scaler and disable fast feedback
-caput("BL11I-EA-COUNT-01.TP",0.1)
-caput("BL11I-OP-DCM-01:PID:AUTO", 0)
-caput("BL11I-OP-DCM-01:PID.FBON", 0)
+caput("BL11I-EA-COUNT-02.TP",0.5)
+caput(ffb+":AUTO", 0)
+caput(ffb+".FBON", 0)
+
 '''
 s4yplus.asynchronousMoveTo(1.4)
 s4yminus.asynchronousMoveTo(-2.4)
 s4yplus.waitWhileBusy()
 s4yminus.waitWhileBusy()
 '''
+
 # moving function
 def scan_fpitch(start, step, n):
-    posns = []
-    izeros = []
-    pos(fpitch2, start)
-    sleep(1)
-    less = 0
-    for i in range(n):
-        posn = start + step * i
-        pos(fpitch2, posn)
-        sleep(0.12)
-        posns.append(posn)
-        caput("BL11I-EA-COUNT-01.CNT", 1)
-        sleep(0.12)
-        izero = Io.getPosition()
-        izeros.append(izero)
-        if len(izeros) < 3:
-            continue
-        if izeros[-1] > izeros[-2]:
-            less = 0
-        else:
-            less += 1
-        if less > 5:
-            break
-    return (posns, izeros)
+ posns = []
+ izeros = []
+ caput(fp, start)
+ sleep(1)
+ less = 0
+ for i in range(n):
+  posn = start + step * i
+  caput(fp, posn)
+  sleep(0.12)
+  posns.append(posn)
+  caput("BL11I-EA-COUNT-02.CNT", 1)
+  sleep(0.52)
+  izero = Io.getPosition()
+  izeros.append(izero)
+  if len(izeros) < 3:
+   continue
+  if izeros[-1] > izeros[-2]:
+   less = 0
+  else:
+   less += 1
+  if less > 3:
+   break
+ return (posns, izeros)
 
 # scan fine pitch (coarse)
 posns, izeros = scan_fpitch(start, step, n)
+pxs = [p for p, x in zip(posns,izeros) if x > 0.95*max(izeros)]
+maximum = sum(pxs) / len(pxs)
+print "maximum1", maximum
 
 # scan fine pitch (fine)
-step = step / 20.0
-index = izeros.index(max(izeros))
-start = posns[index] - (n * step * 0.8)
+caput(fp, -10)
+sleep(2)
+step = step / 10.0
+start = maximum - (n * 0.5 * step)
 posns, izeros = scan_fpitch(start, step, n)
+pxs = [p for p, x in zip(posns,izeros) if x > 0.95*max(izeros)]
+maximum = sum(pxs) / len(pxs)
+print "maximum2", maximum
+
+# scan fine pitch (v fine)
+caput(fp, -10)
+sleep(2)
+step = step / 10.0
+start = maximum - (n * 0.5 * step)
+posns, izeros = scan_fpitch(start, step, n)
+pxs = [p for p, x in zip(posns,izeros) if x > 0.95*max(izeros)]
+maximum = sum(pxs) / len(pxs)
+print "maximum3", maximum
 
 # move to maximum
-maximum = posns[izeros.index(max(izeros))]
-pos(fpitch2, maximum)
-print "Optimisation max Izero: %.1f cts" % max(izeros)
-print "Optimisation fpitch2 value: %.3f mDeg" % maximum
-
+caput(fp, -10)
+sleep(2)
+caput(fp, maximum)
+print "Optimisation max Izero: %d cts" % (max(izeros)*2)
+print "Optimisation fpitch2 value: %.3f mdeg" % maximum
 '''
 print "Moving slit blades in"
 pos s4ygap ysize
-diff = float(caget("BL11I-AL-SLITS-04:Y:PLUS:I")) - float(caget("BL11I-AL-SLITS-04:Y:MINUS:I"))
+diff = float(caget("BL11I-AL-SLITS-04:Y:MINUS:I"))
 sum = abs(float(caget("BL11I-AL-SLITS-04:Y:PLUS:I"))) + abs(float(caget("BL11I-AL-SLITS-04:Y:MINUS:I"))) / 2
 while abs(diff) > 0.02:
  print diff / sum * 0.2
@@ -87,18 +113,26 @@ while abs(diff) > 0.02:
  sum = abs(float(caget("BL11I-AL-SLITS-04:Y:PLUS:I")) + float(caget("BL11I-AL-SLITS-04:Y:MINUS:I"))) / 2
 '''
 sleep(2)
-print "Enabling fast feedback"
-PPOS = float(caget("BL11I-OP-DCM-01:FPITCH2.RVAL"))
-caput("BL11I-OP-DCM-01:PID:LIMITS.A", PPOS * 0.95)
-caput("BL11I-OP-DCM-01:PID:LIMITS.B", PPOS * 1.05)
-caput("BL11I-OP-DCM-01:PID.I", PPOS)
-caput("BL11I-OP-DCM-01:PID.KP", 0.01)
-caput("BL11I-OP-DCM-01:PID.KI", 1500)
-caput("BL11I-OP-DCM-01:PID.VAL", 32768)
-caput("BL11I-OP-DCM-01:PID.DT", 0.03)
-caput("BL11I-OP-DCM-01:PID.FBON", 1)
-caput("BL11I-OP-DCM-01:PID:AUTO", 1)
+PPOS = float(caget(fp+".RVAL"))
+print "Enabling fast feedback around", PPOS
+caput("BL11I-DI-IAMP-04:SETRANGE", 1)
+caput(ffb+":LIMITS.DISA", 1)
+caput(ffb+".DRVL", PPOS - 1000)
+caput(ffb+".DRVH", PPOS + 1000)
+caput(ffb+".I", PPOS)
+caput(ffb+".KP", 0.01)
+caput(ffb+".KI", 150)
+caput(ffb+".VAL", 0)
+caput(ffb+".DT", 0.03)
+'''
+caput(ffb+".FBON", 1)
+caput(ffb+":AUTO", 1)
+'''
 
 # tidy up
 caput("BL11I-EA-COUNT-01.TP1",1.0)
+caput("BL11I-EA-COUNT-01.CONT", "AutoCount")
+caput("BL11I-EA-COUNT-02.CONT", "AutoCount")
+caput("BL11I-EA-COUNT-02.CNT", 1)
 print "Optimisation Complete"
+print "Now you need to centre the slits, then enable feedback"
