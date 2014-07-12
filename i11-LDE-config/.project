@@ -3,6 +3,7 @@
 	<name>i11-LDE-config</name>
 	<comment></comment>
 	<projects>
+		<project>org.opengda.lde.ui</project>
 		<project>uk.ac.diamond.scisoft.python</project>
 		<project>uk.ac.gda.api</project>
 		<project>uk.ac.gda.beamline.i11</project>
