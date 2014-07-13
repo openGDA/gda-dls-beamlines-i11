@@ -260,4 +260,10 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="gda/pixium" />
+		<property name="service" ref="pixium" />
+		<property name="serviceInterface" value="gda.device.detector.pixium.IPixiumNXDetector" />
+	</bean>
 </beans>
