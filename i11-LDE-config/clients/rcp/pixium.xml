@@ -48,7 +48,7 @@
 		<property name="refreshStubOnConnectFailure" value="true" />
 	</bean>
 
-	<bean id="imageviewfactory" class="org.opengda.lde.ui.viewfactories.ImageViewFactory">
+	<bean id="imageviewfactory" class="org.opengda.lde.ui.viewfactories.LiveImageViewFactory">
 		<property name="viewPartName" value="Image" />
 		<property name="xDimension" value="2880" />
 		<property name="yDimension" value="2881" />
