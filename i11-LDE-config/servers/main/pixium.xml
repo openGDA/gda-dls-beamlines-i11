@@ -167,13 +167,14 @@
 		<property name="initialAlwaysOn" value="0" />
 	</bean>
 
-<!-- Pixium10 uses NXDetector -->
+<!-- Pixium uses NXDetector -->
+	<!-- using multiple exposures per image in HDF, not process plugin, using EPICS write HDF files -->
 	<bean id="pixium.hdffileWriter"	class="gda.device.detector.addetector.filewriter.MultipleImagesPerHDF5FileWriter">
 		<property name="ndFileHDF5" ref="pixium.hdf"/>
 		<property name="fileNameTemplate" value="$scan$-pixium"/>
 		<property name="filePathTemplate" value="$datadir$"/>
 		<property name="fileTemplate" value="%s%s_%05d.hdf"/>
-		<property name="fileNumberAtScanStart" value="-1"/>
+		<property name="fileNumberAtScanStart" value="1"/>
 		<property name="setFileNameAndNumber" value="true"/>
 		<property name="blocking" value="False"/>
 		<property name="rowChunks" value="2881"/>
@@ -198,12 +199,15 @@
 		</property>
 	</bean>
 	
+	<!-- using multiple exposures per image in TIFF, not process plugin, using EPICS write tiff files -->
 	<bean id="pixium.multipleExposure"	class="gda.device.detector.addetector.triggering.PixiumMultipleExposureSoftwareTriggerAutoMode">
 		<constructor-arg ref="pixium.cam" />
 		<constructor-arg value="10.0" />
 		<property name="exposureTime" value="0.5" />
 		<property name="readAcquireTimeFromHardware" value="true" />
 		<property name="ndFile" ref="pixium.tif" />
+		<!-- comment out 'ndFile' comment in 'ndProcess to use process plugin to do the sum -->
+		<!-- <property name="ndProcess" ref="pixium.proc" /> -->
 		<property name="prefix" value="BL11J-EA-DET-10:CAM:"/>
 	</bean>
 	<bean id="pixium.singleImageFileWriter" class="gda.device.detector.addetector.filewriter.SingleImagePerFileWriter">
@@ -214,6 +218,7 @@
 		<property name="fileNumberAtScanStart" value="1" />
 		<property name="blocking" value="0" />
 		<property name="ndFile" ref="pixium.tif" />
+		<!-- change the value below from 'Pixium.cam' to Pixium.proc' to use process plugin to sum images.  -->
 		<property name="ndArrayPortVal" value="Pixium.Cam" />
 		<property name="fileWriteMode" value="STREAM" />
 	</bean>
@@ -232,6 +237,7 @@
 		</property>
 	</bean>
 	
+	<!-- using multiple exposures per image in Nexus, not process plugin, using GDA NexusDataWriter to write files -->
 	<bean id="pixium.adcollectionstrategy" class="gda.device.detector.addetector.triggering.SingleExposureStandard">
 		<constructor-arg ref="pixium.cam" />
 		<constructor-arg value="0.143" />
@@ -247,7 +253,7 @@
 		<property name="shutterIntForClose" value="1"/>
 		<property name="shutterIntForOpen" value="0"/>
 		<property name="fastshutter" ref="fastshutter"/>
-		<property name="collectionStrategy" ref="pixium.adcollectionstrategy"/>
+		<property name="collectionStrategy" ref="pixium.simpleAcquire"/>
 		<property name="additionalPluginList">
 			<list>
 				<ref bean="pixium.adarrayplugin" />
