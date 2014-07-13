@@ -54,7 +54,10 @@
 		<property name="yDimension" value="2881" />
 		<property name="arrayPV" value="BL11J-EA-DET-10:ARR:ArrayData"/>
 	</bean>
-<!-- 	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.DataPlotViewFactory"> -->
-<!-- 		<property name="viewPartName" value="Reduced Data" /> -->
-<!-- 	</bean> -->
+	
+	<bean name="eventadmin" class="gda.jython.scriptcontroller.ScriptControllerBase"/>
+	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.ReducedDataPlotViewFactory">
+		<property name="viewPartName" value="Reduced Data" />
+		<property name="eventAdmin" ref="eventadmin"/>
+	</bean>
 </beans>
