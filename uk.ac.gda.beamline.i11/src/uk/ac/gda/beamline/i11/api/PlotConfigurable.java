@@ -18,7 +18,7 @@
 
 package uk.ac.gda.beamline.i11.api;
 
-import org.dawnsci.plotting.api.PlotType;
+import org.eclipse.dawnsci.plotting.api.PlotType;
 
 public interface PlotConfigurable {
 	boolean isNewPlot();

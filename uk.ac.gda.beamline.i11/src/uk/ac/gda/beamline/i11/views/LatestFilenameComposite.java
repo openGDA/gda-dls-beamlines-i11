@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.vfs.FileObject;
-import org.dawnsci.plotting.api.PlotType;
+import org.eclipse.dawnsci.plotting.api.PlotType;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
