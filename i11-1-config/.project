@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>i11-LDE-config</name>
+	<name>i11-1-config</name>
 	<comment></comment>
 	<projects>
 		<project>org.opengda.lde</project>
