@@ -3,6 +3,12 @@
 	<name>i11-LDE-config</name>
 	<comment></comment>
 	<projects>
+		<project>org.opengda.lde</project>
+		<project>org.opengda.lde.model</project>
+		<project>org.opengda.lde.model.edit</project>
+		<project>org.opengda.lde.model.editor</project>
+		<project>org.opengda.lde.model.tests</project>
+		<project>org.opengda.lde.model.viewmodel</project>
 		<project>org.opengda.lde.ui</project>
 		<project>uk.ac.diamond.scisoft.python</project>
 		<project>uk.ac.gda.api</project>
