@@ -26,6 +26,9 @@
 <!-- 	<import resource="RCPController.xml"/> -->
 	<import resource="beamlineStatus.xml"/>
 	<import resource="statusView.xml"/>
+	<import resource="samplesView.xml"/>
+	<import resource="pixium.xml"/>
+
 
 	
 	<import resource="../clients-common.xml" />
