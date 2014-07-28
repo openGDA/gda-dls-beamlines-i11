@@ -11,6 +11,10 @@
 		<property name="pvName" value="BL11I-EA-COUNT-02.S18"/>
 		<property name="useNameAsExtraName" value="true"/>
 	</bean>	
+	<bean id="Ie2-monitor" class="gda.device.scannable.EpicsScannable">
+		<property name="pvName" value="BL11I-EA-COUNT-02.S21"/>
+		<property name="useNameAsExtraName" value="true"/>
+	</bean>	
 	<bean id="Ie-analogue" class="gda.device.scannable.EpicsScannable">
 		<property name="pvName" value="BL11I-DI-IMON-02:E1"/>
 		<property name="useNameAsExtraName" value="true"/>
