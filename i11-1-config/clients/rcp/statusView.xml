@@ -25,7 +25,7 @@
 			<list>
 				<bean class="gda.rcp.views.GroupCompositeFactory">
 					<property name="label" value="Status" />
-					<property name="columns" value="4" />
+					<property name="columns" value="3" />
 					<property name="compositeFactories">
 						<list>
 							<bean class="uk.ac.gda.dls.client.views.BatonStatusCompositeFactory">
