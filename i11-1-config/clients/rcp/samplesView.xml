@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	
+	<bean id="resUtil" class="org.opengda.lde.ui.utils.LDEResourceUtil">
+<!-- 		<property name="fileName" value="D:/scratch/i11/data/Test123/My.seq" /> -->
+		<property name="fileName" value="samples.lde" />
+	</bean>
+	<bean id="sampleGroupViewFactory" class="org.opengda.lde.ui.viewfactories.SampleGroupViewFactory">
+		<property name="viewPartName" value="Samples View" />
+		<property name="resUtil" ref="resUtil" />
+		<property name="dataDriver" value="dls"/>
+		<property name="dataFolder" value="data"/>
+	</bean>
+
+</beans>
