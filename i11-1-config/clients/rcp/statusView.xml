@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, wavelength"/>
+	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, wavelength, es2shutter"/>
 	
 	<bean id="bm" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
 		<property name="serviceUrl" value="${gda.rmi.prefix}/bm" />
@@ -25,21 +25,21 @@
 			<list>
 				<bean class="gda.rcp.views.GroupCompositeFactory">
 					<property name="label" value="Status" />
-					<property name="columns" value="4" />
+					<property name="columns" value="3" />
 					<property name="compositeFactories">
 						<list>
 							<bean class="uk.ac.gda.dls.client.views.BatonStatusCompositeFactory">
 								<property name="label" value="Baton" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.BeamStatusCompositeFactory">
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamStatusCompositeFactory">
 								<property name="label" value="Beam" />
 								<property name="beamMonitor" ref="bm"/>
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.SpinStatusCompositeFactory">
-								<property name="label" value="Spin" />
-								<property name="spin" ref="spin"/>
-							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.BeamStopStatusCompositeFactory">
+<!-- 							<bean class="uk.ac.gda.beamline.synoptics.composites.SpinStatusCompositeFactory"> -->
+<!-- 								<property name="label" value="Spin" /> -->
+<!-- 								<property name="spin" ref="spin"/> -->
+<!-- 							</bean> -->
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamStopStatusCompositeFactory">
 								<property name="label" value="BStop" />
 								<property name="pvName" value="BL11I-PS-SHTR-01:RAWILK.B5"/>
 							</bean>
@@ -48,25 +48,30 @@
 				</bean>
 				<bean class="gda.rcp.views.GroupCompositeFactory">
 					<property name="label" value="Shutter" />
-					<property name="columns" value="4" />
+					<property name="columns" value="5" />
 					<property name="compositeFactories">
 						<list>
-							<bean class="uk.ac.gda.beamline.i11.views.BeamlineMbbinaryShutterCompositeFactory">
-								<property name="label" value="Fast" />
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlinePneumaticShutterCompositeFactory">
+								<property name="label" value="EH2" />
+								<property name="controlPermitted" value="true" />
+								<property name="shutter" ref="es2shutter" />
+							</bean>
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlineMbbinaryShutterCompositeFactory">
+								<property name="label" value="Fast1" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="fastshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.BeamlinePneumaticShutterCompositeFactory">
-								<property name="label" value="EH" />
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlinePneumaticShutterCompositeFactory">
+								<property name="label" value="EH1" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="ehshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.FrontEndPneumaticShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.synoptics.composites.FrontEndPneumaticShutterCompositeFactory">
 								<property name="label" value="FE" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="feshutter" />
 							</bean>
-							<bean class="uk.ac.gda.beamline.i11.views.FrontEndPneumaticShutterCompositeFactory">
+							<bean class="uk.ac.gda.beamline.synoptics.composites.FrontEndPneumaticShutterCompositeFactory">
 								<property name="label" value="Port" />
 								<property name="controlPermitted" value="false" />
 								<property name="shutter" ref="portshutter" />
@@ -111,14 +116,14 @@
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
 								<property name="scannable" ref="Io-monitor" />
-								<property name="label" value="Io Monitor" />
+								<property name="label" value="Io" />
 								<property name="units" value="" />
 								<property name="decimalPlaces" value="0" />
 							</bean>
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
-								<property name="scannable" ref="Ie-analogue" />
-								<property name="label" value="Ie " />
+								<property name="scannable" ref="Ie2-monitor" />
+								<property name="label" value="Ie2 " />
 								<property name="units" value="" />
 								<property name="decimalPlaces" value="0" />
 							</bean>
@@ -132,7 +137,7 @@
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
 								<property name="scannable" ref="Ie-monitor" />
-								<property name="label" value="Ie Monitor" />
+								<property name="label" value="Ie" />
 								<property name="units" value="" />
 								<property name="decimalPlaces" value="0" />
 							</bean>
@@ -153,7 +158,7 @@
 						</list>
 					</property>
 				</bean>
-				<bean class="uk.ac.gda.beamline.i11.views.LatestFilenameCompositeFactory">
+				<bean class="uk.ac.gda.beamline.synoptics.composites.LatestFilenameCompositeFactory">
 					<property name="label" value="Latest Detector File" />
 					<property name="fileProcessor" ref="detectorFileDisplayer" />
 					<property name="dirWatcher" ref="dirListener"/>
@@ -162,7 +167,7 @@
 					<property name="separatePlayPauseButtons" value="true" />
 					<property name="startNumber" value="0"/>
 				</bean>
-				<bean class="uk.ac.gda.beamline.i11.views.ImageButtonCompositeFactory">
+				<bean class="uk.ac.gda.beamline.synoptics.composites.ImageButtonCompositeFactory">
 					<property name="label" value="Panic"/>
 					<property name="tooltipText" value="Stop all motors" />
 					<property name="imagePath" value="icons/panicstop80x80.png" />

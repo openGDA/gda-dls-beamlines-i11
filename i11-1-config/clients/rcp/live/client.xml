@@ -20,7 +20,7 @@
 		file:${gda.config}/properties/gda.properties" />
 		
 	<import resource="machineStatus.xml"/>
-	<import resource="spinner2.xml"/>
+<!-- 	<import resource="spinner2.xml"/> -->
 	<import resource="../rcp-common.xml"/>
 
 </beans>

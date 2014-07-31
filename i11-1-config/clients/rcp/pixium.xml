@@ -8,11 +8,11 @@
 	</bean>
 
 	<bean id="pixiumFileSaverModel" class="uk.ac.gda.epics.client.views.model.impl.FileSaverModelImpl">
-		<property name="basePVName" value="BL11J-EA-DET-10:HDF:" />
+		<property name="basePVName" value="BL11J-EA-DET-10:HDF5:" />
 	</bean>
 
 	<bean id="pixiumFfmjpeg" class="uk.ac.gda.epics.client.views.model.impl.FFMjpegModelImpl">
-		<property name="basePVName" value="BL11J-EA-DET-10:MPG:" />
+		<property name="basePVName" value="BL11J-EA-DET-10:MJPG:" />
 	</bean>
 
 	<bean id="pixiumNdProc" class="uk.ac.gda.epics.client.views.model.impl.NDProcModelImpl">
