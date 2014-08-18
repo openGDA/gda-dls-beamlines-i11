@@ -13,6 +13,49 @@
 		<property name="resUtil" ref="resUtil" />
 		<property name="dataDriver" value="dls"/>
 		<property name="dataFolder" value="data"/>
+		<property name="beamlineID" value="i11-1"/>
+		<property name="cellIDs">
+			<list>
+				<value>LS1</value>
+				<value>LS2</value>
+				<value>MS1-1</value>
+				<value>MS1-2</value>
+				<value>MS1-3</value>
+				<value>MS2-1</value>
+				<value>MS2-2</value>
+				<value>MS2-3</value>
+				<value>MS3-1</value>
+				<value>MS3-2</value>
+				<value>MS3-3</value>
+				<value>MS4-1</value>
+				<value>MS4-2</value>
+				<value>MS4-3</value>
+				<value>SS1-1</value>
+				<value>SS1-2</value>
+				<value>SS1-3</value>
+				<value>SS2-1</value>
+				<value>SS2-2</value>
+				<value>SS2-3</value>
+				<value>SS3-1</value>
+				<value>SS3-2</value>
+				<value>SS3-3</value>
+				<value>SS4-1</value>
+				<value>SS4-2</value>
+				<value>SS4-3</value>
+				<value>SS5-1</value>
+				<value>SS5-2</value>
+				<value>SS5-3</value>
+				<value>SS6-1</value>
+				<value>SS6-2</value>
+				<value>SS6-3</value>
+			</list>
+		</property>
+		<property name="calibrantNames">
+			<list>
+				<value>Si</value>
+				<value>CeO2</value>
+			</list>
+		</property>
 	</bean>
 
 </beans>
