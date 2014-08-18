@@ -7,7 +7,7 @@
 		<property name="viewID" value="uk.ac.gda.beamline.i11.views.DetectorFilePlotView"/>
 		<property name="viewName" value="DetectorPlot"/>
 		<property name="newPlot" value="true"/>
-		<property name="plotType" value="#{ T(org.dawnsci.plotting.api.PlotType).XY}"/>
+		<property name="plotType" value="#{ T(org.eclipse.dawnsci.plotting.api.PlotType).XY}"/>
 	</bean>
 
 </beans>
