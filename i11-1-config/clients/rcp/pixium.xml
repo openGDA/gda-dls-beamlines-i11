@@ -53,6 +53,7 @@
 		<property name="xDimension" value="2880" />
 		<property name="yDimension" value="2881" />
 		<property name="arrayPV" value="BL11J-EA-DET-10:ARR:ArrayData"/>
+		<property name="arrayEnablePV" value="BL11J-EA-DET-10:ARR:EnableCallbacks"/>
 	</bean>
 	
 	<bean name="eventadmin" class="gda.jython.scriptcontroller.ScriptControllerBase"/>
