@@ -35,7 +35,7 @@ class AlicatPressureController(ScannableMotionBase):
         '''
         Constructor
         '''
-        self.setName(name);
+        self.setName(name)
         self.setInputNames([name])
         self.setOutputFormat([formatstring])
         self.setLevel(3)
@@ -160,6 +160,11 @@ class AlicatPressureController(ScannableMotionBase):
             print "error set to derivative gain"
             
             
+    def getTolerance(self):
+        return self.tolerance
+    
+#    def setTolerance(self, value):
+#        self.tolerance=value
 #### methods for scannable 
     def getPosition(self):
         return self.getPressure()

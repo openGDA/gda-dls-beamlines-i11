@@ -11,7 +11,23 @@ updated on 16 June 2014
 
 @author: fy65
 '''
-from gasrig.i11gasrig import mfc1, bpr, ventvalve, sampleP, dvpc, isolationvalve
+#from gasrig.i11gasrig import mfc1, bpr, ventvalve, sampleP, dvpc, isolationvalve
+from gasrig.gasRigValve import GasRigValveClass
+from gasrig.alicatMassFlowController import AlicatMassFlowController
+from gasrig.alicatPressureController import AlicatPressureController
+from gasrig.samplePressure import SamplePressure
+
+mfc1=AlicatMassFlowController("mfc1","BL11I-EA-GIR-01:MFC1:",0.01,"%.3f")
+mfc2=AlicatMassFlowController("mfc2","BL11I-EA-GIR-01:MFC2:",0.01,"%.3f")
+mfc3=AlicatMassFlowController("mfc3","BL11I-EA-GIR-01:MFC3:",0.01,"%.3f")
+bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:BPR:",0.01,"%.3f")
+dvpc=AlicatPressureController("dvpc","BL11I-EA-GIR-01:DVPC:",0.01,"%.3f")
+ventvalve=GasRigValveClass("ventvalve", "BL11I-EA-GIR-01:VENT:")
+isolationvalve=GasRigValveClass("isolationvalve", "BL11I-EA-GIR-01:ISO:")
+backvalve=GasRigValveClass("backvalve", "BL11I-EA-GIR-01:BACK:")
+
+sampleP=SamplePressure("sampleP", bpr)
+
 from time import sleep
 #ROOT_PV="BL11I-EA-GIR-01:"
 SEQUENCE_CONTROL="SEQ:CON"
@@ -120,3 +136,4 @@ class GasRigClass(ScannableMotionBase):
     def atScanEnd(self):
         pass
     
+gasrig=GasRigClass("gasrig", "BL11I-EA-GIR-01:")

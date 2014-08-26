@@ -108,7 +108,7 @@ class GasRigValveClass(ScannableMotionBase):
         
 #### methods for scannable 
     def getPosition(self):
-        return self.getState()
+        return self.getStatus()
     
     def asynchronousMoveTo(self, new_position):
         self.setSequence(float(new_position))

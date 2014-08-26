@@ -346,8 +346,8 @@ def meta_rm_allPIXIUM():
             print msg
 alias("meta_rm_allPIXIUM")
 
-#dose=DoseControl("dose","BL11I-EA-GIR-01:BPR:P:RD")
-#vac=VacControl("vac")
+dose=DoseControl("dose","BL11I-EA-GIR-01:BPR:P:RD")
+vac=VacControl("vac")
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";

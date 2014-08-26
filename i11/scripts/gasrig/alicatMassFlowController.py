@@ -42,7 +42,7 @@ class AlicatMassFlowController(ScannableMotionBase):
         '''
         Constructor
         '''
-        self.setName(name);
+        self.setName(name)
         self.setInputNames([name])
         self.setOutputFormat([formatstring])
         self.setLevel(5)
@@ -65,8 +65,8 @@ class AlicatMassFlowController(ScannableMotionBase):
     def getTolerance(self):
         return self.tolerance
     
-    def setTolerance(self, value):
-        self.tolerance=value
+#    def setTolerance(self, value):
+#        self.tolerance=value
     
     def getCurrentFlow(self):
         try:
