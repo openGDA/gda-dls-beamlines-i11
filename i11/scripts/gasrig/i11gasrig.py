@@ -23,5 +23,5 @@ from gasrig.alicatPressureController import AlicatPressureController
 from gasrig.samplePressure import SamplePressure
 
 
-sampleP=SamplePressure("sampleP", bpr)
+#sampleP=SamplePressure("sampleP", bpr)
 gasrig=GasRigClass("gasrig", "BL11I-EA-GIR-01:")

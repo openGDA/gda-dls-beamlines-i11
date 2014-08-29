@@ -98,20 +98,20 @@ class GasRigValveClass(ScannableMotionBase):
             print "error setting sequence"
             
     def on(self):
-        self.setSequence(0)
+        self.setControl(0)
         
     def off(self):
-        self.setSequence(1)
+        self.setControl(1)
         
     def reset(self):
-        self.setSequence(2)
+        self.setControl(2)
         
 #### methods for scannable 
     def getPosition(self):
         return self.getStatus()
     
     def asynchronousMoveTo(self, new_position):
-        self.setSequence(float(new_position))
+        self.setControl(float(new_position))
 
     def isBusy(self):
         return False

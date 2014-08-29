@@ -48,8 +48,37 @@ class AlicatPressureController(ScannableMotionBase):
         self.readproportionalgaincli=CAClient(rootPV+READ_PROPORTIONAL_GAIN)
         self.setderivativegaincli=CAClient(rootPV+SET_DERIVATIVE_GAIN)
         self.readderivativegaincli=CAClient(rootPV+READ_DERIVATIVE_GAIN)
-        self.tolerance=tolerance
+        self.mytolerance=tolerance
+        self.isConfigured=False
         
+    def configure(self):
+        if not self.isConfigured:
+            if not self.readmodecli.isConfigured():
+                self.readmodecli.configure()
+            if not self.setmodecli.isConfigured():
+                self.setmodecli.configure()
+            if not self.settargetcli.isConfigured():
+                self.settargetcli.configure()
+            if not self.readtargetcli.isConfigured():
+                self.readtargetcli.configure()
+            if not self.readpressurecli.isConfigured():
+                self.readpressurecli.configure()
+            self.isConfigured=True
+            
+    def deconfigure(self):
+        if self.isConfigured:
+            if self.readmodecli.isConfigured():
+                self.readmodecli.clearup()
+            if self.setmodecli.isConfigured():
+                self.setmodecli.clearup()
+            if self.settargetcli.isConfigured():
+                self.settargetcli.clearup()
+            if self.readtargetcli.isConfigured():
+                self.readtargetcli.clearup()
+            if self.readpressurecli.isConfigured():
+                self.readpressurecli.clearup()
+            self.isConfigured=False
+            
     def getMode(self):
         try:
             if not self.readmodecli.isConfigured():
@@ -161,10 +190,11 @@ class AlicatPressureController(ScannableMotionBase):
             
             
     def getTolerance(self):
-        return self.tolerance
+        return self.mytolerance
     
-#    def setTolerance(self, value):
-#        self.tolerance=value
+    def setTolerance(self, value):
+        self.mytolerance=value
+
 #### methods for scannable 
     def getPosition(self):
         return self.getPressure()

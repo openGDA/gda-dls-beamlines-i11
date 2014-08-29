@@ -60,13 +60,13 @@ class AlicatMassFlowController(ScannableMotionBase):
         self.readproportionalgaincli=CAClient(rootPV+READ_PROPORTIONAL_GAIN)
         self.setderivativegaincli=CAClient(rootPV+SET_DERIVATIVE_GAIN)
         self.readderivativegaincli=CAClient(rootPV+READ_DERIVATIVE_GAIN)
-        self.tolerance=tolerance
+        self.mytolerance=tolerance
         
     def getTolerance(self):
-        return self.tolerance
+        return self.mytolerance
     
-#    def setTolerance(self, value):
-#        self.tolerance=value
+    def setTolerance(self, value):
+        self.mytolerance=value
     
     def getCurrentFlow(self):
         try:
