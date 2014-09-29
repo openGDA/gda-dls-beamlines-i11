@@ -4,7 +4,9 @@ Created on 22 Sep 2009
 @author: fy65
 '''
 from gda.analysis import ScanFileHolder, Plotter
-from gda.analysis.io import MACLoader, ScanFileHolderException
+from gda.analysis.io import MACLoader
+from org.eclipse.dawnsci.analysis.api.io import ScanFileHolderException
+
 
 import re
 INT_RE = re.compile(r"^[-]?\d+$")
