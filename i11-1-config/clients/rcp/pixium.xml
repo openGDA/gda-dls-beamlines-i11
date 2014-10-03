@@ -56,9 +56,8 @@
 		<property name="arrayEnablePV" value="BL11J-EA-DET-10:ARR:EnableCallbacks"/>
 	</bean>
 	
-	<bean name="eventadmin" class="gda.jython.scriptcontroller.ScriptControllerBase"/>
 	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.ReducedDataPlotViewFactory">
 		<property name="viewPartName" value="Reduced Data" />
-		<property name="eventAdmin" ref="eventadmin"/>
+		<property name="eventAdminName" value="eventadmin"/>
 	</bean>
 </beans>
