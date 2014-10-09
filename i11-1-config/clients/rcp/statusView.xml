@@ -129,10 +129,10 @@
 							</bean>
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
-								<property name="scannable" ref="wavelength" />
+								<property name="scannable" ref="dcm_lambda" />
 								<property name="label" value="Wavelength" />
 								<property name="units" value="Ang" />
-								<property name="decimalPlaces" value="5" />
+								<property name="decimalPlaces" value="6" />
 							</bean>
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
