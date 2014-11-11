@@ -59,5 +59,6 @@
 	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.ReducedDataPlotViewFactory">
 		<property name="viewPartName" value="Reduced Data" />
 		<property name="eventAdminName" value="eventadmin"/>
+		<property name="resUtil" ref="resUtil"/>
 	</bean>
 </beans>
