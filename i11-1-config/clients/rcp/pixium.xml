@@ -11,6 +11,10 @@
 		<property name="basePVName" value="BL11J-EA-DET-10:HDF5:" />
 	</bean>
 
+	<bean id="pixiumModel" class="uk.ac.gda.epics.client.pixium.views.PixiumModelImpl">
+		<property name="basePVName" value="BL11J-EA-DET-10:CAM:" />
+	</bean>
+	
 	<bean id="pixiumFfmjpeg" class="uk.ac.gda.epics.client.views.model.impl.FFMjpegModelImpl">
 		<property name="basePVName" value="BL11J-EA-DET-10:MJPG:" />
 	</bean>
@@ -40,6 +44,17 @@
 	<bean id="statusViewFactory" class="uk.ac.gda.epics.client.views.factories.StatusViewFactory">
 		<property name="viewPartName" value="Pixium Status" />
 		<property name="statusViewController" ref="pixiumStatusViewController" />
+	</bean>
+	
+	<bean id="pixiumViewController" class="uk.ac.gda.epics.client.pixium.views.PixiumViewController">
+		<property name="adBaseModel" ref="pixiumAdBaseModel" />
+		<property name="fileSaverModel" ref="pixiumFileSaverModel" />
+		<property name="pixiumModel" ref="pixiumModel" />
+	</bean>
+
+	<bean id="pixiumViewFactory" class="uk.ac.gda.epics.client.pixium.views.factories.PixiumViewFactory">
+		<property name="viewPartName" value="Pixium Detector" />
+		<property name="pixiumViewController" ref="pixiumViewController" />
 	</bean>
 	
 	<bean id="pixium" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
