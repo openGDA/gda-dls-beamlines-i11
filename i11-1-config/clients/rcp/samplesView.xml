@@ -5,6 +5,7 @@
 
 	
 	<bean id="resUtil" class="org.opengda.lde.util.LDEResourceUtil">
+
 <!-- 		<property name="fileName" value="D:/scratch/i11/data/Test123/My.seq" /> -->
 		<property name="fileName" value="samples.lde" />
 	</bean>
@@ -14,6 +15,7 @@
 		<property name="dataDriver" value="dls"/>
 		<property name="dataFolder" value="data"/>
 		<property name="beamlineID" value="i11-1"/>
+		<property name="eventAdminName" value="eventadmin"/>
 		<property name="cellIDs">
 			<list>
 				<value>LS1</value>

@@ -1,0 +1,126 @@
+Notes:
+de.kupzog.ktable.*  Version 2.2.0
+
+URL: http://ktable.sourceforge.net/
+_______________________________________________________________________
+
+This is a custom table class for Java SWT applications.
+
+Please not that THIS IS BETA SOFTWARE THAT IS PROVIDED WITHOUT ANY WARRANTY!
+
+The original version of this table was written by Konstantin Scheglov. 
+KTable is a completely new implementation but uses the structure and
+some code fragments from the old version.
+
+The features of this table implementation in short terms:
+
+- a table model provides the data for the table (comparable
+  to the Swing table model)
+  
+- cell rendering is done by external classes and thus can easily
+  be changed to any rendering one could imagine...
+  
+- Columns and rows can be resized by mouse.
+  
+- There can be horizontal and vertical headers (fixed cells)
+  as many as needed.
+  
+- Different selection modes are available
+
+- In place editing is possible by using editor classes that
+  can easily be adjusted to special needs.
+  
+- Cells may span over several columns and/or rows.
+  
+  
+For a detailed function description refer to the API documentation that 
+is included in the sourcefiles.
+
+For examples how to use KTable, see the "ExampleGUI" class. You can 
+run this class and see different examples of KTables.
+
+Text Table		Shows a Table with 100 rows and 100 columns.
+				Row selection mode is demonstrated - with properly configured cellrenderers.
+				The use of cell editors is shown (textcelleditor and combocelleditor).
+				You can resize rows and columns.
+				Selection Listeners are used (see the console output).
+				
+Boolean Table   Demonstrates a huge table (1000000x1000000)
+                Operates with boolean values and shows them using
+                CheckableCellRenderer
+                Demonstrates the usage of KTableCellEditorCheckbox2 which
+                is only sensitive for activation at a specific region of the cell.
+                Cells that have focus are also shown in the fixed cells (like in Excel)
+                
+Span Table		Demonstrates the cell spanning feature. Cells in the content area 
+				always span over 2 rows and 2 columns.
+				
+Sortable Table	Demonstrates the usage of a KTableSortedModel and the appropriate usage
+				of KTableSortComparator.
+				Shows how sort indicators are painted to column headers.
+				Shows how cells that span react when the table is sorted.
+				Multi-Selection-Mode is on.
+				
+Non-Scrolling Table Demonstrates a tablemodel that splits the available horizontal space 
+				between the columns. When resizing, the other columns get larger or smaller,
+				keeping the total size of the table constant.
+				
+Color Palette	Here you can see that a table does not have to
+				look like a table...
+				See how the cell renderer is implemented and 
+				what the table model does.
+				
+Towns			This example shows how images can be included in
+				table cells together with text. It also shows the use
+				of the multi line cell editor.
+				
+
+
+The authors welcomes any feedback:  fkmk@kupzog.de
+                                    lorenz.maierhofer@logicmindguide.com
+                                    magnus@vonkoeller.de
+
+Changes:
+de.kupzog.ktable.*  Version 2.2.0
+URL: http://ktable.sourceforge.net/
+_______________________________________________________________________
+
+CHANGELOG VERSION 2.2.0:
+
+BF = Bugfix
+FT = New feature / enhancement
+
+-(BF) Small bugfix regarding empty tooltips.
+-(FT) Make color of borders configurable.
+-(BF) Take cell merging into account when firing cell selection & clicked events.
+-(FT) Add cursor provider option; it is now possible to display a different cursor depending on the mouse position.
+-(BF) Don't subtract scrollbar height when determining fully visible row count. Scrollable#getClientArea() already takes care of this.
+-(BF) Ensure constant size of scroll bar thumbs. Previously, the size of the thumbs would change during scrolling if column width was not uniform.
+-(FT) Add computation of preferred size via computeSize(). The preferred size always provides enough space for all header rows and columns, as well as for a configurable number of data rows and columns.
+-(BF) Fixed calculation of number of fully visible rows. Previously, the partially visible row was also counted.
+-(BF) Fix calculation in getRowForY() where rows where off by one pixel.
+-(BF) Clean up getYForRow().
+-(BF) Prevent model queries for cells that don't exist.
+-(BF) Take cell merging into account when determining tooltips. Also, don't query tooltips from model for cells that don't exist.
+-(BF) Take cell merging into account when determining whether a cell is clicked on during rendering.
+-(BF) Avoid flickering when using a checkbox-style cell editor that does not open an SWT control by always drawing these cells as selected, even if an editor is open.
+-(BF) Fix cell visibility: fixed cells were somtimes incorrectly assumed to be invisible.
+-(FT) Refactor: extract closeCellEditor() method; make this method public such that it is possible for a caller to assure that all user-entered values have been saved to the model.
+-(BF) Set bounds of cell editors through a seperate method that prevents an infinite redraw loop where the setBounds() on an editor would lead to a redraw event on the KTable which would in turn lead to another call to setBounds() etc.
+-(BF) Fix KTableCellEditor#KEY_ANY constant.
+-(BF) Fix a bug where pressing the right or down arrow key would not correctly select the next cell but stay in the same cell due to cell merging.
+-(FT) Add public method to check whether a cell editor is currently open.
+-(BF) When resizing a column automatically, don't query width for merged cells that are not the root cell.
+-(BF) Fix getCellForCoordinates() to account for fixed columns.
+-(BF) Deprecate calcColumnNum(); use getCellForCoordinates() instead.
+-(BF) Fix cell drawing behavior for merged cells; previously, merged cells were not drawn correctly when they were partially visible. Partially visible cells are now drawn within the available space.
+-(BF) When dragging a selection, only extend the selection when a cell boundary was actually crossed; previously, a new selection was triggered at each movement of the mouse, even one pixel; now, this only happens when the mouse crosses a cell boundary which is much faster.
+-(FT) Make it possible to override the source of the data to be edited in the KTableCellEditorText and KTableCellEditorText2 such that a different source than the model may be used.
+-(BF) Don't cut off text without adding an ellipsis at the end.
+-(FT) Draw text transparently such that gradients can be used as background.
+-(FT) Immediately redraw table on column/row resize
+-(FT) Added KTableClickInterceptionListener to intercept clicks before they are processed for selection
+-(FT) Also check 50 rows to the top and bottom of the visible area when optimizing column width; this has a number of advantages and is still fast.
+-(BF) Fix an obscure bug on Windows XP where the scrollbars would not work as expected with a non-zero minimum value; we now always set 0 as minimum value and take this into account in the listeners.
+-(BF) Prevent the following bug: user scrolls to right / bottom, then increases window size so that no scroll bars are necessary, now he is still scrolled out but with no way to scroll back.
+-(FT) New style flag to allow resize on the entire column, not just on headers; this is useful if there are no headers.

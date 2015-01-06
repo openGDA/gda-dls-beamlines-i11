@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, wavelength, es2shutter"/>
+	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, es2shutter, dcm_lambda"/>
 	
 	<bean id="bm" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
 		<property name="serviceUrl" value="${gda.rmi.prefix}/bm" />
@@ -129,10 +129,10 @@
 							</bean>
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
-								<property name="scannable" ref="wavelength" />
+								<property name="scannable" ref="dcm_lambda" />
 								<property name="label" value="Wavelength" />
 								<property name="units" value="Ang" />
-								<property name="decimalPlaces" value="5" />
+								<property name="decimalPlaces" value="6" />
 							</bean>
 							<bean
 								class="uk.ac.gda.dls.client.views.ReadonlyScannableCompositeFactory">
