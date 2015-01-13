@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, es2shutter, dcm_lambda"/>
+	<corba:import namespace="i11-1" names="Ic4, beam, fastshutter,fastshutter1, fastshutter2, ehshutter, feshutter, portshutter, es2shutter, dcm_lambda"/>
 	
 	<bean id="bm" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
 		<property name="serviceUrl" value="${gda.rmi.prefix}/bm" />
@@ -48,16 +48,26 @@
 				</bean>
 				<bean class="gda.rcp.views.GroupCompositeFactory">
 					<property name="label" value="Shutter" />
-					<property name="columns" value="5" />
+					<property name="columns" value="7" />
 					<property name="compositeFactories">
 						<list>
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlineMbbinaryShutterCompositeFactory">
+								<property name="label" value="FS1" />
+								<property name="controlPermitted" value="true" />
+								<property name="shutter" ref="fastshutter1" />
+							</bean>
+							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlineMbbinaryShutterCompositeFactory">
+								<property name="label" value="FS2" />
+								<property name="controlPermitted" value="true" />
+								<property name="shutter" ref="fastshutter2" />
+							</bean>
 							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlinePneumaticShutterCompositeFactory">
 								<property name="label" value="EH2" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="es2shutter" />
 							</bean>
 							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamlineMbbinaryShutterCompositeFactory">
-								<property name="label" value="Fast1" />
+								<property name="label" value="FS" />
 								<property name="controlPermitted" value="true" />
 								<property name="shutter" ref="fastshutter" />
 							</bean>
