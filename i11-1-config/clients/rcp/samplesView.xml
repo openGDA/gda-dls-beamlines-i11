@@ -25,6 +25,12 @@
 				<value>MS2-1</value>
 				<value>MS2-2</value>
 				<value>MS2-3</value>
+				<value>MS2-4</value>
+				<value>MS2-5</value>
+				<value>MS2-6</value>
+				<value>MS2-7</value>
+				<value>MS2-8</value>
+				<value>MS2-9</value>
 				<value>MS3-1</value>
 				<value>MS3-2</value>
 				<value>MS3-3</value>
@@ -46,9 +52,6 @@
 				<value>SS5-1</value>
 				<value>SS5-2</value>
 				<value>SS5-3</value>
-				<value>SS6-1</value>
-				<value>SS6-2</value>
-				<value>SS6-3</value>
 			</list>
 		</property>
 		<property name="calibrantNames">
