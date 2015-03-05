@@ -69,6 +69,8 @@
 		<property name="yDimension" value="2881" />
 		<property name="arrayPV" value="BL11J-EA-DET-10:ARR:ArrayData"/>
 		<property name="arrayEnablePV" value="BL11J-EA-DET-10:ARR:EnableCallbacks"/>
+		<property name="xSizePV" value="BL11J-EA-DET-10:ARR:ArraySize0_RBV"/>
+		<property name="ySizePV" value="BL11J-EA-DET-10:ARR:ArraySize1_RBV"/>
 	</bean>
 	
 	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.ReducedDataPlotViewFactory">
