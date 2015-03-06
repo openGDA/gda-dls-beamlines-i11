@@ -3,6 +3,8 @@
 # @author: Fajin Yuan
 # updated 23/12/2010
 from types import NoneType
+from gasrig.gdaScriptDose import DoseControl
+from gasrig.gadSriptVac import VacControl
 
 
 print "=================================================================================================================";
@@ -166,6 +168,7 @@ globals()['bragg'].setOutputFormat(["%10.7f"])
 print "-----------------------------------------------------------------------------------------------------------------"
 print "Setup 'plot' function for plotting collected, rebinned MAC data. use 'help plot' for syntax"
 from plot import plot, plotover, plotdata, PSD,MAC,SRS #@UnusedImport
+from multiplot import plots
 print
 
 print "-----------------------------------------------------------------------------------------------------------------"
@@ -343,6 +346,13 @@ def meta_rm_allPIXIUM():
             msg = "\t Unable to find a meta scannable named: " + sname
             print msg
 alias("meta_rm_allPIXIUM")
+
+dose=DoseControl("dose","BL11I-EA-GIR-01:BPR:P:RD")
+vac=VacControl("vac")
+
+from gasrig.gasRig import *  # @UnusedWildImport
+gasrig=GasRigClass("gasrig", "BL11I-EA-GIR-01:")
+
 ##### new objects must be added above this line ###############
 print
 print "=================================================================================================================";
