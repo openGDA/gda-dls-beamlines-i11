@@ -26,6 +26,12 @@ class TimeResolvedExperimentScannable(ScannableBase):
         self.collectionNumber = 0;
         self.scanNumber = scanNumTracker.getCurrentFileNumber()
         
+    def config(self, numberOfFrames, numberOfGates, gateTime, writerTime ):
+        self.setNumberOfFrames(numberOfFrames)
+        self.setNumberOfGates(numberOfGates)
+        self.setGateTime(gateTime)
+        self.setWriterTime(writerTime)
+        
     def atScanStart(self):
         self.collectionNumber = 0;
         self.scanNumber = scanNumTracker.getCurrentFileNumber();
