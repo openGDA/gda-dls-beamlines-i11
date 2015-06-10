@@ -11,9 +11,7 @@ updateed to add "DataPlot" panel, 06 Dec 2010
 @author: fy65
 '''
 from gda.analysis import ScanFileHolder, Plotter
-from gda.analysis.io import MACLoader, SRSLoader
-from org.eclipse.dawnsci.analysis.api.io import ScanFileHolderException
-
+from gda.analysis.io import MACLoader, SRSLoader, ScanFileHolderException
 from gda.data import NumTracker, PathConstructor
 from gda.jython.commands.GeneralCommands import alias
 from java.io import IOException, File #@UnresolvedImport
@@ -22,7 +20,7 @@ import re
 from gda.configuration.properties import LocalProperties
 import os
 from uk.ac.diamond.scisoft.analysis import SDAPlotter
-from org.eclipse.dawnsci.analysis.dataset.impl import DoubleDataset
+from uk.ac.diamond.scisoft.analysis.dataset import DoubleDataset
 
 INT_RE = re.compile(r"^[-]?\d+$")
 def representsInt(s):
@@ -131,8 +129,8 @@ def plotdata(filename, dataType=MAC, plotPane="DataPlot", Overlay=True):
     elif dataType == RAW:
             # mythen raw data file
             dataset = loadMythenRawData(filename)
-            data=DoubleDataset(dataset.getCountArray())
-            channeldata=DoubleDataset(dataset.getChannelArray())
+            data=DoubleDataset(dataset.getCountArray(),[len(dataset.getCountArray())])
+            channeldata=DoubleDataset(dataset.getChannelArray(),[len(dataset.getChannelArray())])
             data.setName(filename)
             if Overlay:
                 Plotter.plotOver(plotPane, channeldata, data)
