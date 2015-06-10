@@ -1,4 +1,17 @@
 '''
+This module defines a Scannable class that delivers time resolved experiment data collection. 
+It is implemented as a scannable so that it will support easy integration with other sample 
+environment scannables, such as laser or temperature controller.
+
+This module delivers 2 scannables for use in GDA 'scan' command
+    1. a 'delayTime' scannable - allow scan the delayTime between laser pulse and PSD exposure;
+    2. a 'timeresolvedscannable' - which integrate tfg2 and mythen detector to deliver diffraction data at specified delay time.
+Usages:
+    1. you need to configure 
+        >>>timeresolvedscannable.config(numberOfFrames, numberOfGates, gateTime, writerTime )
+    2. do data collection with 
+        scan delayTime 0.0 1.0 0.01 timeresolvedscannable
+
 Created on 9 Jun 2015
 
 @author: fy65
@@ -25,6 +38,7 @@ class TimeResolvedExperimentScannable(ScannableBase):
         self.writerTime=writerTime
         self.collectionNumber = 0;
         self.scanNumber = scanNumTracker.getCurrentFileNumber()
+        self.setLevel(9)
         
     def config(self, numberOfFrames, numberOfGates, gateTime, writerTime ):
         self.setNumberOfFrames(numberOfFrames)
