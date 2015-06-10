@@ -1,6 +1,6 @@
 ''' filename:tfg.py
 This module defines a class for TFG2 configuration and control.
-TFG2 configuration implemeneted use string.Template to substitute livetime, deadtime, number of Frames, number of sequences and number of cycles.
+TFG2 configuration implemented use string.Template to substitute livetime, deadtime, number of Frames, number of sequences and number of cycles.
 Java tfg object dose not support 'sequence configuration so we cannot use the loadFrameSet() of Tfg.java. Here we bypass these methods in Java. 
 
 Author: Fajin Yuan, created 30 Jan 2012
@@ -177,14 +177,46 @@ class TFG2(ScannableBase):
     def fireSingleTrigger(self):
         s=''
         s+='tfg setup-groups cycles 1 \n'
-        s+='1 1.00e-6 0 1 0 0 0\n'
+        s+='1 1.00e-6 0 1 0 0\n'
         s+='-1\n'
         s+='tfg start\n'
         print s
         self.daserver.sendCommand(s)
     
+    def fireSingleTriggerOnTTL0Input(self):
+        s=''
+        s+='tfg setup-trig ttl0 start \n'
+        s+='tfg setup-groups cycles 1 \n'
+        s+='1000 0 1.00e-2 0 1 8 0\n'
+        s+='-1\n'
+        s+='tfg start\n'
+        print s
+        self.daserver.sendCommand(s)
+
+    def doCollectTest(self, gatesize, numberofgates, numberofframes, delaybefore, writerTime):
+        s=''
+        s+='tfg setup-trig ttl0 start \n'
+        s+='tfg setup-groups cycles '+str(numberofframes)+' \n'
+        s+=str(numberofgates)+' '+str(delaybefore)+' '+str(gatesize)+' 0 1 8 0\n'
+        s+='1 ' + str(writerTime) + ' 0 0 0 0 0\n'
+        s+='-1\n'
+        s+='tfg start\n'
+        print s
+        self.daserver.sendCommand(s)
+
+    def configure4TimeResolvedExperiment(self, gatesize, numberofgates, numberofframes, delaybefore, writerTime):
+        s=''
+        s+='tfg setup-trig ttl0 start \n'
+        s+='tfg setup-groups cycles '+str(numberofframes)+' \n'
+        s+=str(numberofgates)+' '+str(delaybefore)+' '+str(gatesize)+' 0 1 8 0\n'
+        s+='1 ' + str(writerTime) + ' 0 0 0 0 0\n'
+        s+='-1\n'
+        #s+='tfg start\n'
+        print s
+        self.daserver.sendCommand(s)
+        
     def start(self):
-        ''' start tfg process - cannot call java tfg object as it checkes loaded Frames which we are not used here.
+        ''' start tfg process - cannot call java tfg object as it checks loaded Frames which we are not used here.
         '''
         #commands="tfg start"
         #print commands
