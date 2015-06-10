@@ -69,7 +69,7 @@
 	<import resource="etl1.xml" />
 	<import resource="etl2.xml" />
 	<import resource="tfg2.xml"/>
-	<import resource="usermotors.xml"/>
+	<import resource="GrazingIncidentStage.xml"/>
 	<import resource="wavelength.xml"/>
 	<import resource="mythen3.xml"/>
 <!-- 	<import resource="pixium.xml"/> -->

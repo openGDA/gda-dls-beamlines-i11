@@ -80,7 +80,7 @@
 	<import resource="SmallSampleTable.xml"/>
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
-	<import resource="usermotors.xml"/>
+	<import resource="GrazingIncidentStage.xml"/>
 	<!-- XPS-backed Trajectory scan: epicsTrajectoryScanController (hard coded in CVScan) -->
 <!--	<import resource="TrajectoryScan.xml"/>-->
 	

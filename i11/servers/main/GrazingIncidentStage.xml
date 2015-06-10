@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	
 	<bean id="height" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="user_motor1"/>
+		<property name="motor" ref="gis_y_motor"/>
 	</bean>
 	<bean id="chi" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="user_motor3"/>
+		<property name="motor" ref="gis_chi_motor"/>
 	</bean>
 	<bean id="psi" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="user_motor4"/>
+		<property name="motor" ref="gis_psi_motor"/>
 	</bean>
 	
-	<bean id="usermotors" class="gda.device.scannable.scannablegroup.ScannableGroup">
+	<bean id="gis" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="height"/>
