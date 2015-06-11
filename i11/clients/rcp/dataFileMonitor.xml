@@ -11,7 +11,7 @@
 <!-- 		<property name="excludedDirectory" value="processing,spool,tmp,xml"/> -->
 <!-- 		<property name="server" value="false"/> -->
 <!-- 	</bean> -->
-	<bean id="dirListener" class="uk.ac.gda.beamline.i11.utils.DataFileListener">
+	<bean id="dirListener" class="uk.ac.gda.beamline.synoptics.utils.DataFileListener">
 		<property name="directory" value=""/>
 		<property name="recursive" value="true"/>
 		<!-- the following property only works for String[], not List<String> -->
