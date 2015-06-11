@@ -9,8 +9,12 @@ This module delivers 2 scannables for use in GDA 'scan' command
 Usages:
     1. you need to configure 
         >>>timeresolvedscannable.config(numberOfFrames, numberOfGates, gateTime, writerTime )
+        or set each parameter individually using its getter/setter method.
+        
     2. do data collection with 
-        scan delayTime 0.0 1.0 0.01 timeresolvedscannable
+        >>>scan delayTime 0.0 1.0 0.01 timeresolvedscannable
+        >>>scan delayTime 0.0 1.0 0.01 timeresolvedscannable gateTime
+        >>>scan delayTime 0.0 1.0 0.01 timeresolvedscannable [numberOfFrames, numberOfGates, gateTime, writerTime]
 
 Created on 9 Jun 2015
 
@@ -20,6 +24,7 @@ Created on 9 Jun 2015
 #from uk.ac.gda.devices.mythen.epics import MythenDetector
 from gda.data import NumTracker
 from gda.device.scannable import SimpleScannable, ScannableBase
+from types import FloatType, ListType
 
 #mythen=MythenDetector()
 #tfg2=TFG2()
@@ -51,13 +56,27 @@ class TimeResolvedExperimentScannable(ScannableBase):
         self.scanNumber = scanNumTracker.getCurrentFileNumber();
 
     def atPointStart(self):
-        self.tfg.configure4TimeResolvedExperiment(self.gateTime, self.numberOfGate, self.numberOfFrames, float(self.delayScannable.getPosition()), self.writerTime)
-        self.detector.gated(self.numberOfFrames, self.numberOfGate, self.scanNumber , self.collectionNumber)
-        
+        pass
+    
     def getPosition(self):
         return self.collectionNumber
     
-    def asynchronousMoveTo(self, value):
+    def asynchronousMoveTo(self, value=None):
+        if value is None:
+            pass #parameters must be set before scan
+        elif type(value)==FloatType:
+            # override gate time in scan - a single value
+            self.gateTime=float(value)
+        elif type(value) == ListType and len(value)==4:
+            #override parameters in scan - a single list [numberOfFrames, numberOfGates, gateTime, writerTime]
+            self.numberOfFrames=value[0]
+            self.numberOfGate=value[1]
+            self.gateTime=value[2]
+            self.writerTime=value[3]
+        else:
+            raise Exception("Cannot parse input parameters to " +str(self.getName()))
+        self.tfg.configure4TimeResolvedExperiment(self.gateTime, self.numberOfGate, self.numberOfFrames, float(self.delayScannable.getPosition()), self.writerTime)
+        self.detector.gated(self.numberOfFrames, self.numberOfGate, self.scanNumber , self.collectionNumber)
         self.tfg.start()
         
     def isBusy(self):
