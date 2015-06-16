@@ -74,12 +74,20 @@
 		<property name="pvName" value="BL11I-EA-MAC-01:STATE"/>
 	</bean>
 	
+	<bean id="stopcvscan" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
+		<property name="serviceUrl" value="${gda.rmi.prefix}/cvscan" />
+		<property name="serviceInterface" value="gda.device.Scannable" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+	</bean>
+	
 <!-- 	<bean id="stopcvscan" class="uk.ac.gda.client.hrpd.typedpvscannables.EpicsEnumPVScannable"> -->
+<!-- 		<constructor-arg index="0" type="java.lang.Class" value="gda.device.detector.EpicsAreaDetectorConstants.Acquire"/> -->
 <!-- 		<property name="name" value="stopcvscan"/> -->
 <!-- 		<property name="pvName" value="BL11I-EA-MAC-01:ABORT"/> -->
 <!-- 		<property name="type" value="gda.device.detector.EpicsAreaDetectorConstants.Acquire"/> -->
 <!-- 		<property name="local" value="true"/> -->
 <!-- 	</bean> -->
+	
 	<bean id="messagelistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsStringDataListener">
 		<property name="name" value="messagelistener"/>
 		<property name="pvName" value="BL11I-EA-MAC-01:MESSAGE"/>
@@ -97,7 +105,7 @@
 		<property name="workedSoFarListener" ref="worklistener"/>
 		<property name="messageListener" ref="messagelistener"/>
 		<property name="epicsProcessName" value="cvscan"/>
-<!-- 		<property name="stopScannable" ref="stopcvscan"/> -->
+		<property name="stopScannable" ref="stopcvscan"/>
 	</bean>
 	
 	<bean id="macliveplotfactory" class="uk.ac.gda.client.hrpd.viewfactories.LivePlotViewFactory">
@@ -144,14 +152,14 @@
 		<property name="detectorStateListener" ref="state"/>
 		<property name="detectorStateToPlotReducedData" value="Flyback"/>
 		<property name="detectorStateToRunProgressService" value="Executing"/>
+		<property name="epicsProgressMonitor" ref="epicsprogressmonitor"/>
 		<property name="dataFilenameObserverName" value="dataFilenameObserver"/>
 		<property name="lowDataBound" value="16501"/>
 		<property name="highDataBound" value="65000"/>
-		<property name="epicsProgressMonitor" ref="epicsprogressmonitor"/>
 		<property name="totalWorkListener" ref="totalworklistener"/>
 		<property name="workListener" ref="worklistener"/>
 		<property name="messageListener" ref="messagelistener"/>
-<!-- 		<property name="stopScannable" ref="stopcvscan"/> -->
+		<property name="stopScannable" ref="stopcvscan"/>
 	</bean>
 
 </beans>
