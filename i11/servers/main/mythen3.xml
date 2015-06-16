@@ -206,4 +206,10 @@
 		<property name="hasChannelInfo" value="false"/>
 		<property name="numberOfModules" value="18"/>
 	</bean>
+	
+	<bean class="uk.ac.gda.remoting.server.GdaRmiServiceExporter">
+		<property name="serviceName" value="gda/mythen" />
+		<property name="service" ref="mythen" />
+		<property name="serviceInterface" value="gda.device.Scannable" />
+	</bean>  
 </beans>
