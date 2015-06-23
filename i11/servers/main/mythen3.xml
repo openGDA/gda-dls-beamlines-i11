@@ -210,6 +210,6 @@
 	<bean class="uk.ac.gda.remoting.server.GdaRmiServiceExporter">
 		<property name="serviceName" value="gda/mythen" />
 		<property name="service" ref="mythen" />
-		<property name="serviceInterface" value="gda.device.Scannable" />
+		<property name="serviceInterface" value="uk.ac.gda.devices.mythen.epics.IMythenDetector" />
 	</bean>  
 </beans>
