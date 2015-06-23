@@ -14,6 +14,7 @@
 		<project>uk.ac.gda.common.client</project>
 		<project>uk.ac.gda.common.rcp</project>
 		<project>uk.ac.gda.core</project>
+		<project>uk.ac.gda.devices.hidenrga</project>
 		<project>uk.ac.gda.devices.mythen</project>
 		<project>uk.ac.gda.devices.mythen.visualisation</project>
 		<project>uk.ac.gda.dls</project>
