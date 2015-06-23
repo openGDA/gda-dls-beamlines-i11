@@ -228,8 +228,10 @@ class TFG2(ScannableBase):
         #commands="tfg stop"
         #print commands
         #self.daserver.sendCommand(commands) 
-        self.tfg.stop()
-        print "tfg stopped"
+        status = int(self.tfg.getStatus())
+        if not status == 0:
+            self.tfg.stop()
+            print "    tfg stopped"
         
     def progress(self):
         '''check tfg process progress - print message to terminal, This method does not implemented in Java tfg object.
