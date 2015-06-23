@@ -38,7 +38,7 @@
 	<import resource="ETL.xml"/>
 	<import resource="ExperimentHutchShutter.xml"/>
 	<import resource="FastShutter.xml"/>
-	<import resource="FrontEndAperture.xml"/>
+<!-- 	<import resource="FrontEndAperture.xml"/> -->
 	<import resource="FrontEndShutter.xml"/>
 	<import resource="GBC.xml"/>
 	<import resource="GV1.xml"/>

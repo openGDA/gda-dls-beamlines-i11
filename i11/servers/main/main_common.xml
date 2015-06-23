@@ -12,7 +12,7 @@
 	
 	<!--  Front End Devices -->
 	<import resource="ID.xml"/>
-	<import resource="ForntEndAperture.xml"/>
+<!-- 	<import resource="ForntEndAperture.xml"/> -->
 	<!-- Optics Hutch -->
 	<import resource="S1.xml" />
 	<import resource="DCM.xml" />
