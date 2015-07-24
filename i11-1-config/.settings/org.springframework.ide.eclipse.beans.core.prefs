@@ -2,6 +2,8 @@
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/aop=
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/batch=
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/beans=
+//org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/c=
+//org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/cache=
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/context=
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/faces=
 //org.springframework.ide.eclipse.beans.core.default.version.http\://www.springframework.org/schema/flex=
@@ -38,6 +40,8 @@
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/aop=aop
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/batch=batch
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/beans=beans
+//org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/c=c
+//org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/cache=cache
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/context=context
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/faces=faces
 //org.springframework.ide.eclipse.beans.core.prefix.http\://www.springframework.org/schema/flex=flex
