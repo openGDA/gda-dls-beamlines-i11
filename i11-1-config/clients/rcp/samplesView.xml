@@ -9,8 +9,8 @@
 <!-- 		<property name="fileName" value="D:/scratch/i11/data/Test123/My.seq" /> -->
 		<property name="fileName" value="samples.lde" />
 	</bean>
-	<bean id="sampleGroupViewFactory" class="org.opengda.lde.ui.viewfactories.SampleGroupViewFactory">
-		<property name="viewPartName" value="Samples View" />
+	<bean id="childrenTableViewFactory" class="org.opengda.lde.ui.viewfactories.ChildrenTableViewFactory">
+		<property name="viewPartName" value="Children List" />
 		<property name="resUtil" ref="resUtil" />
 		<property name="dataDriver" value="dls"/>
 		<property name="dataFolder" value="data"/>
