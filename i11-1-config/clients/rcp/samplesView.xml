@@ -8,7 +8,7 @@
 		<property name="fileName" value="newsamples.lde" />
 	</bean>
 	<bean id="childrenTableViewFactory" class="org.opengda.lde.ui.viewfactories.ChildrenTableViewFactory">
-		<property name="viewPartName" value="Children List" />
+		<property name="viewPartName" value="Children" />
 		<property name="resUtil" ref="resUtil" />
 		<property name="dataDriver" value="dls"/>
 		<property name="dataFolder" value="data"/>
