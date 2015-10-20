@@ -12,5 +12,10 @@
 		<property name="resUtil" ref="resUtil" />
 		<property name="eventAdminName" value="eventadmin"/>
 	</bean>
+	<bean id="dataCollectionStatusFactory" class="org.opengda.lde.ui.viewfactories.DataCollectionStatusFactory">
+		<property name="viewPartName" value="Data Collection Status" />
+		<property name="resUtil" ref="resUtil" />
+		<property name="eventAdminName" value="eventadmin"/>
+	</bean>
 
 </beans>
