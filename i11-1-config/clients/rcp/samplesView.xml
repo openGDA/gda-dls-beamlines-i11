@@ -10,6 +10,10 @@
 	<bean id="childrenTableViewFactory" class="org.opengda.lde.ui.viewfactories.ChildrenTableViewFactory">
 		<property name="viewPartName" value="Children" />
 		<property name="resUtil" ref="resUtil" />
+	</bean>
+	<bean id="samplesViewFactory" class="org.opengda.lde.ui.viewfactories.SampleGroupViewFactory">
+		<property name="viewPartName" value="Samples (server)" />
+		<property name="resUtil" ref="resUtil" />
 		<property name="eventAdminName" value="eventadmin"/>
 	</bean>
 	<bean id="dataCollectionStatusFactory" class="org.opengda.lde.ui.viewfactories.DataCollectionStatusFactory">
