@@ -177,7 +177,7 @@ class TFG2(ScannableBase):
     def fireSingleTrigger(self):
         s=''
         s+='tfg setup-groups cycles 1 \n'
-        s+='1 1.00e-6 0 1 0 0\n'
+        s+='100 0.09 0.01 0 1 0 0\n'
         s+='-1\n'
         s+='tfg start\n'
         print s
@@ -187,7 +187,7 @@ class TFG2(ScannableBase):
         s=''
         s+='tfg setup-trig ttl0 start \n'
         s+='tfg setup-groups cycles 1 \n'
-        s+='1000 0 1.00e-2 0 1 8 0\n'
+        s+='100 0.09 0.01 0 1 8 0\n'
         s+='-1\n'
         s+='tfg start\n'
         print s
@@ -204,16 +204,17 @@ class TFG2(ScannableBase):
         print s
         self.daserver.sendCommand(s)
 
-    def configure4TimeResolvedExperiment(self, gatesize, numberofgates, numberofframes, delaybefore, writerTime):
+    def startTimeResolvedExperiment(self, numCycles, numFrames, numGates, gatesize, delaybefore, writerTime):
         s=''
         s+='tfg setup-trig ttl0 start \n'
-        s+='tfg setup-groups cycles '+str(numberofframes)+' \n'
-        s+=str(numberofgates)+' '+str(delaybefore)+' '+str(gatesize)+' 0 1 8 0\n'
+        s+='tfg setup-groups cycles '+str(numCycles*numFrames)+' \n'
+        s+=str(numGates)+' '+str(delaybefore)+' '+str(gatesize)+' 0 1 8 0\n'
         s+='1 ' + str(writerTime) + ' 0 0 0 0 0\n'
         s+='-1\n'
-        #s+='tfg start\n'
+        s+='tfg start\n'
         print s
         self.daserver.sendCommand(s)
+        #self.tfg.setFramesLoaded(True) 
         
     def start(self):
         ''' start tfg process - cannot call java tfg object as it checks loaded Frames which we are not used here.
