@@ -302,16 +302,18 @@ class PELoop(ScannableBase):
         self.pedata.removeMonitors()
  
     def stop(self): 
-        print "%s: stop called at %d" % (self.getName(),time())
-        GeneralCommands.pause()
-        self.pedata.removeMonitors()        # ensure monitor removed
-        self.tfg.stop()
-        #self.fg.stop()
-        #self.adc.stop()
-        self.detector.stop()
-        #self.resetDetector()
-        self.gateDetectorCompleted=True
-        self.adcStreamerCompleted=True
+        if self.isBusy():
+            print "    %s: stop called at %d" % (self.getName(),time())
+            GeneralCommands.pause()
+            self.pedata.removeMonitors()        # ensure monitor removed
+            self.tfg.stop()
+            #self.fg.stop()
+            #self.adc.stop()
+            self.detector.stop()
+            #self.resetDetector()
+            self.gateDetectorCompleted=True
+            self.adcStreamerCompleted=True
+            
     def resetDetector(self):
         if self.numFrames != None:
             self.tfg.releaser(self.numFrames*self.numCycles*self.numGates)

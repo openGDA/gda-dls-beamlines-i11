@@ -21,9 +21,9 @@ from gda.jython.commands.GeneralCommands import pause as interruptable
 mfc1=AlicatMassFlowController("mfc1","BL11I-EA-GIR-01:MFC1:",0.01,"%.3f")
 mfc2=AlicatMassFlowController("mfc2","BL11I-EA-GIR-01:MFC2:",0.01,"%.3f")
 mfc3=AlicatMassFlowController("mfc3","BL11I-EA-GIR-01:MFC3:",0.01,"%.3f")
-bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:BPR:",0.01,"%.3f")
+bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:SYSTEM:",0.01,"%.3f")
 bpr.configure()
-dvpc=AlicatPressureController("dvpc","BL11I-EA-GIR-01:DVPC:",0.01,"%.3f")
+dvpc=AlicatPressureController("dvpc","BL11I-EA-GIR-01:SAMPLE:",0.01,"%.3f")
 dvpc.configure()
 ventvalve=GasRigValveClass("ventvalve", "BL11I-EA-GIR-01:VENT:")
 isolationvalve=GasRigValveClass("isolationvalve", "BL11I-EA-GIR-01:ISO:")
@@ -191,7 +191,6 @@ class GasRigClass(ScannableMotionBase):
     def atScanEnd(self):
         pass
     
-#gasrig=GasRigClass("gasrig", "BL11I-EA-GIR-01:")
     def xgasin(self, mfc=mfc1, flow=0.1, pressuretarget=1.0, systemPressure=bpr, sleepdelta=1, sleepmove=0.5):
         '''select gas flow control and set system pressure'''
         print "xgasin: inject gas %s into the system." % (mfc.getGasType())
@@ -204,3 +203,5 @@ class GasRigClass(ScannableMotionBase):
         mfc.asynchronousMoveTo(0)
         print "The system reaches at target pressure %f" % (pressuretarget)
 
+# Usage example
+#gasrig=GasRigClass("gasrig", "BL11I-EA-GIR-01:")

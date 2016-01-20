@@ -51,6 +51,7 @@ import threading
 from time import sleep
 from plot import plot,RAW
 from gda.data import NumTracker
+from gdascripts.utils import caget
 
 #default vaules
 START_ANGLE               = -15
@@ -165,8 +166,12 @@ class FlatFieldCalibration(ScannableMotionBase):
             print "Sum all scanned raw data into one flat field data file..."
             self.sum_flat_field_file = sumScanRawData(numberofscan)
             #plot and view flat field raw data in SWING GUI
-            plot(RAW,self.sum_flat_field_file)
-            
+            try:
+                plot(RAW,self.sum_flat_field_file)
+            except:
+                print "Plot flat field data from .raw data file failed."
+                print "Unexpected error:", sys.exc_info()[0], sys.exc_info()[1]  # @UndefinedVariable
+                            
             print "Please check the flat field file for any dead pixels, etc.and check that all the bad channels are in the bed channel list at "+BAD_CHANNEL_LIST
             #apply this flat field correction to PSD in GDA permanently
             self.applyFlatFieldCalibration()
@@ -201,7 +206,8 @@ class FlatFieldCalibration(ScannableMotionBase):
             self.detector.collectData()
             sleep(2) #must give time for detector for detector to respond to request.
             while self.detector.isBusy():
-                sleep(0.1)
+            #while caget("BL11I-EA-DET-03:DET:Acquire")==1:
+                sleep(1)
             sleep(1)
             self.detector.atPointEnd()
             scancounter += 1
@@ -239,7 +245,28 @@ def read_raw_data(filename):
     f.close()
     return [tuple(map(int, l.strip().split(" "))) for l in lines]
 
+previous_flatfield_calibration_file=None
 
+def changeFlatFieldCalibrationTo(real_flatfield_filename, detector=mythen):  # @UndefinedVariable
+    if os.path.isfile(real_flatfield_filename):
+        try:
+            previous_flatfield_calibration_file=os.readlink(CURRENT_FLAT_FIELD_FILE)
+            os.unlink(CURRENT_FLAT_FIELD_FILE)
+            if os.path.isabs(real_flatfield_filename):
+                os.symlink(real_flatfield_filename, CURRENT_FLAT_FIELD_FILE)
+            else:
+                os.symlink(os.path.join(PSD_FLATFIELD_DIR,real_flatfield_filename), CURRENT_FLAT_FIELD_FILE)
+                
+            print "Current Flat Field data file is update to " + str(os.readlink(CURRENT_FLAT_FIELD_FILE))
+            from gda.device.detector.mythen.data import MythenRawDataset
+            from java.io import File
+            detector.getDataConverter().setFlatFieldData(MythenRawDataset(File(CURRENT_FLAT_FIELD_FILE)))
+            print "Mythen detector will now use the new flatfield calibration data stored at " + str(os.readlink(CURRENT_FLAT_FIELD_FILE))
+        except:
+            raise(Exception("Update Flatfield Calibration Data Failed!"))
+    else:
+        print "Flat field calibration file "+ str(real_flatfield_filename) +" is not exist. Please ensure you provide the full path name."
+            
 def averageScanRawCount(numberofscan, detector=mythen): #@UndefinedVariable
     filenames = []
     for i in range(numberofscan):

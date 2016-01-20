@@ -32,13 +32,13 @@
 	<import resource="D4.xml" />
 	<import resource="D5.xml"/>
 	<import resource="DCM.xml"/>
-	<import resource="DCMxtal.xml"/>
+<!-- 	<import resource="DCMxtal.xml"/> -->
 	<import resource="Diffractometer.xml"/>
 	<import resource="DummyMotors.xml"/>
 	<import resource="ETL.xml"/>
 	<import resource="ExperimentHutchShutter.xml"/>
 	<import resource="FastShutter.xml"/>
-	<import resource="FrontEndAperture.xml"/>
+<!-- 	<import resource="FrontEndAperture.xml"/> -->
 	<import resource="FrontEndShutter.xml"/>
 	<import resource="GBC.xml"/>
 	<import resource="GV1.xml"/>
@@ -65,6 +65,7 @@
 <!-- 	<import resource="Mar345.xml"/> -->
 	<import resource="MCSSis3820.xml"/>
 	<import resource="MRIFurnace.xml"/>
+<!-- 	<import resource="BatteryHeater.xml"/> -->
 	<import resource="OpticalTable.xml"/>
 	<import resource="OxfordCryoStream.xml"/>
 	<import resource="OxfordCryoStream2.xml"/>
@@ -80,7 +81,8 @@
 	<import resource="SmallSampleTable.xml"/>
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
-	<import resource="usermotors.xml"/>
+	<import resource="GrazingIncidentStage.xml"/>
+	<import resource="HidenRGAController.xml"/>
 	<!-- XPS-backed Trajectory scan: epicsTrajectoryScanController (hard coded in CVScan) -->
 <!--	<import resource="TrajectoryScan.xml"/>-->
 	

@@ -10,32 +10,38 @@
 	http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd
 	http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd">
 	<!-- acquire state -->
-	<bean id="startListener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsEnumDataListener">
-		<property name="name" value="startListener"/>
+	<bean id="startlistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsEnumDataListener">
+		<property name="name" value="startlistener"/>
 		<property name="pvName" value="BL11I-EA-DET-03:DET:Acquire"/>
 	</bean>
-	<bean id="stopmythen" class="uk.ac.gda.client.hrpd.typedpvscannables.EpicsEnumPVScannable">
-		<property name="name" value="stopmythen"/>
-		<property name="pvName" value="BL11I-EA-DET-03:DET:Acquire"/>
-		<property name="type" value="gda.device.detector.EpicsAreaDetectorConstants.Acquire"/>
-		<property name="local" value="true"/>
+	
+	<bean id="mythen" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
+		<property name="serviceUrl" value="${gda.rmi.prefix}/mythen" />
+		<property name="serviceInterface" value="uk.ac.gda.devices.mythen.epics.IMythenDetector" />
+		<property name="refreshStubOnConnectFailure" value="true" />
 	</bean>
-	<bean id="timeRemainingListener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataListener">
-		<property name="name" value="timeRemainingListener"/>
+
+	<bean id="mythenmessagelistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsByteArrayAsStringDataListener">
+		<property name="name" value="mythenmessagelistener"/>
+		<property name="pvName" value="BL11I-EA-DET-03:DET:StatusMessage_RBV"/>
+	</bean>
+	
+	<bean id="timeremaininglistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataListener">
+		<property name="name" value="timeremaininglistener"/>
 		<property name="pvName" value="BL11I-EA-DET-03:DET:TimeRemaining_RBV"/>
 		<property name="poll" value="true"/>
 	</bean>
-	<bean id="exposureTimeListener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataListener">
-		<property name="name" value="exposureTimeListener"/>
+	<bean id="exposuretimelistener" class="uk.ac.gda.client.hrpd.epicsdatamonitor.EpicsDoubleDataListener">
+		<property name="name" value="exposuretimelistener"/>
 		<property name="pvName" value="BL11I-EA-DET-03:DET:AcquireTime_RBV"/>
 		<property name="poll" value="true"/>
 	</bean>
 
 	<bean id="mythenprogressmonitor" class="uk.ac.gda.epics.client.mythen.views.EpicsDetectorRunableWithProgress">
-		<property name="exposureTimeListener" ref="exposureTimeListener"/> <!--essential-->
-		<property name="timeRemainingListener" ref="timeRemainingListener"/> <!--essential-->
+		<property name="exposureTimeListener" ref="exposuretimelistener"/> <!--essential-->
+		<property name="timeRemainingListener" ref="timeremaininglistener"/> <!--essential-->
 		<property name="epicsProcessName" value="Mythen acquiring"/> <!--essential-->
-		<property name="stopScannable" ref="stopmythen"/> <!--essential-->
+ 		<property name="stopScannable" ref="mythen"/> <!--essential -->
 	</bean>
 	
 	<bean id="mythenliveplotfactory" class="uk.ac.gda.epics.client.mythen.viewfactories.LivePlotViewFactory">
@@ -44,11 +50,12 @@
 		<property name="xAxisMax" value="100.000"/>
 		<property name="eventAdminName" value="mytheneventadmin"/>
 		<property name="epicsProgressMonitor" ref="mythenprogressmonitor"/>
-		<property name="startListener" ref="startListener"/>
-		<property name="exposureTimeListener" ref="exposureTimeListener"/>
-		<property name="timeRemainingListener" ref="timeRemainingListener"/>
-		<property name="taskName" value="Mythen acquiring"/>
-		<property name="stopScannable" ref="stopmythen"/>
+		<property name="startListener" ref="startlistener"/>
+		<property name="exposureTimeListener" ref="exposuretimelistener"/>
+		<property name="timeRemainingListener" ref="timeremaininglistener"/>
+		<property name="messageListener" ref="mythenmessagelistener"/>
+		<property name="taskName" value="Mythen"/>
+		<property name="stopScannable" ref="mythen"/>
 	</bean>
 
 </beans>

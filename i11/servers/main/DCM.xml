@@ -24,10 +24,10 @@
 	<bean id="energy" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="dcmenergy" />
 	</bean>
-	<bean id="offset" class="gda.device.scannable.ScannableMotor">
+	<bean id="monooffset" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="dcmoffset" />
 	</bean>
-	<bean id="wavelength" class="gda.device.scannable.ScannableMotor">
+	<bean id="monolambda" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="dcmlambda" />
 	</bean>
 	
@@ -41,8 +41,8 @@
 				<ref bean="fpitch2"/>
 				<ref bean="translation"/>
 				<ref bean="energy"/>
-				<ref bean="offset"/>
-				<ref bean="wavelength"/>
+				<ref bean="monooffset"/>
+				<ref bean="monolambda"/>
 			</list>
 		</property>
 	</bean>

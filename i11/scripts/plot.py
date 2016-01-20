@@ -11,9 +11,8 @@ updateed to add "DataPlot" panel, 06 Dec 2010
 @author: fy65
 '''
 from gda.analysis import ScanFileHolder, Plotter
-from gda.analysis.io import MACLoader, SRSLoader
-from org.eclipse.dawnsci.analysis.api.io import ScanFileHolderException
-
+from gda.analysis.io import MACLoader
+from uk.ac.diamond.scisoft.analysis.io import SRSLoader
 from gda.data import NumTracker, PathConstructor
 from gda.jython.commands.GeneralCommands import alias
 from java.io import IOException, File #@UnresolvedImport
@@ -131,8 +130,8 @@ def plotdata(filename, dataType=MAC, plotPane="DataPlot", Overlay=True):
     elif dataType == RAW:
             # mythen raw data file
             dataset = loadMythenRawData(filename)
-            data=DoubleDataset(dataset.getCountArray())
-            channeldata=DoubleDataset(dataset.getChannelArray())
+            data=DoubleDataset(dataset.getCountArray(),[len(dataset.getCountArray())])
+            channeldata=DoubleDataset(dataset.getChannelArray(),[len(dataset.getChannelArray())])
             data.setName(filename)
             if Overlay:
                 Plotter.plotOver(plotPane, channeldata, data)
@@ -158,7 +157,7 @@ def loadMacData(filename):
         else:
             #absolute file path or filename with extension MACLoader will prepend the directory
             sfh.load(MACLoader(filename))
-    except ScanFileHolderException, err:
+    except Exception, err:
         print "File loader failed", err
     return sfh
 
@@ -179,7 +178,7 @@ def loadSRSData(filename):
         else:
             #absolute file path
             sfh.load(SRSLoader(filename))
-    except ScanFileHolderException, err:
+    except Exception, err:
         print "File loader failed. " + err
     return sfh
 

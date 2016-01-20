@@ -28,6 +28,7 @@
 	<import resource="statusView.xml"/>
 	<import resource="cvscan.xml"/>
 	<import resource="mythenview.xml"/>
+	<import resource="HidenRGA.xml"/>
 	
 	<import resource="../clients-common.xml" />
 

@@ -93,9 +93,9 @@
 					<property name="eventAdmin" ref="mytheneventadmin"/>
 				</bean>
 				<!-- Swing plot -->
-				<bean class="gda.device.detector.mythen.tasks.PlotLastPointTask">
-					<property name="panelName" value="Mythen"/>
-				</bean>
+<!-- 				<bean class="gda.device.detector.mythen.tasks.PlotLastPointTask"> -->
+<!-- 					<property name="panelName" value="Mythen"/> -->
+<!-- 				</bean> -->
 			</list>
 		</property>
 		<property name="atScanEndTasks">
@@ -179,9 +179,9 @@
 					<property name="eventAdmin" ref="mytheneventadmin"/>
 				</bean>
 				<!-- Swing plot -->
-				<bean class="gda.device.detector.mythen.tasks.PlotLastPointTask">
-					<property name="panelName" value="Mythen"/>
-				</bean>
+<!-- 				<bean class="gda.device.detector.mythen.tasks.PlotLastPointTask"> -->
+<!-- 					<property name="panelName" value="Mythen"/> -->
+<!-- 				</bean> -->
 			</list>
 		</property>
 		<property name="atScanEndTasks">
@@ -206,4 +206,10 @@
 		<property name="hasChannelInfo" value="false"/>
 		<property name="numberOfModules" value="18"/>
 	</bean>
+	
+	<bean class="uk.ac.gda.remoting.server.GdaRmiServiceExporter">
+		<property name="serviceName" value="gda/mythen" />
+		<property name="service" ref="mythen" />
+		<property name="serviceInterface" value="uk.ac.gda.devices.mythen.epics.IMythenDetector" />
+	</bean>  
 </beans>
