@@ -4,7 +4,7 @@ get and set methods.
 Build in default flow tolerance is 0.01, and reading precision is 3 decimals.
 
 usage example:
-    bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:BPR:","%.3f")
+    bpr=AlicatPressureController("bpr","BL11I-EA-GIR-01:SYSTEM:","%.3f")
     
 Created on 6 Dec 2013
 updated on 16 June 2014

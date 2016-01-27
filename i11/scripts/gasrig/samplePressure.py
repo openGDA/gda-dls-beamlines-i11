@@ -13,9 +13,9 @@ from gda.epics import CAClient
 import thread
 from gda.jython.commands.GeneralCommands import pause as interruptable
 
-CurrentPressure = "BL11I-EA-GIR-01:DVPC:P:RD"
-TargetPressure = "BL11I-EA-GIR-01:DVPC:SETPOINT:WR"
-PressureControl = "BL11I-EA-GIR-01:DVPC:MODE:WR"
+CurrentPressure = "BL11I-EA-GIR-01:SAMPLE:P:RD"
+TargetPressure = "BL11I-EA-GIR-01:SAMPLE:SETPOINT:WR"
+PressureControl = "BL11I-EA-GIR-01:SAMPLE:MODE:WR"
 
 class SamplePressure(ScannableBase, MonitorListener):
     '''

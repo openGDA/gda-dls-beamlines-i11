@@ -82,6 +82,7 @@
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
+	<import resource="HidenRGAController.xml"/>
 	<!-- XPS-backed Trajectory scan: epicsTrajectoryScanController (hard coded in CVScan) -->
 <!--	<import resource="TrajectoryScan.xml"/>-->
 	

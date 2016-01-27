@@ -9,27 +9,11 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	http://www.diamond.ac.uk/schema/gda/corba http://www.diamond.ac.uk/schema/gda/corba/gda-corba-1.0.xsd
 	http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd">
-
-	<import resource="commandQueueProcessor.xml" />
-
-	<corba:import namespace="i11" names="plot_server" />
-	<bean class="gda.rcp.util.OSGIServiceRegister">
-		<property name="class" value="uk.ac.diamond.scisoft.analysis.PlotServer" />
-		<property name="service" ref="plot_server" />
-	</bean>
 	
-	<import resource="commandRunner.xml"/>
-	<import resource="batonStateProvider.xml"/>
-	
-	<import resource="dataFileMonitor.xml"/>
-	<import resource="detectorFileDisplayer.xml"/>
-<!-- 	<import resource="RCPController.xml"/> -->
-	<import resource="beamlineStatus.xml"/>
-	<import resource="statusView.xml"/>
-	<import resource="cvscan.xml"/>
-	<import resource="mythenview.xml"/>
-	<import resource="HidenRGA.xml"/>
-	
-	<import resource="../clients-common.xml" />
+     <bean id="rga" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
+                <property name="serviceUrl" value="${gda.rmi.prefix}/rga" />
+                <property name="serviceInterface" value="gda.device.HidenRGA" />
+                <property name="refreshStubOnConnectFailure" value="true" />
+      </bean>
 
 </beans>
