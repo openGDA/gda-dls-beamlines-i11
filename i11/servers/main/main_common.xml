@@ -7,9 +7,9 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
 	<!-- Beamline energy setup lookup table -->
-	<import resource="EnergyLUT.xml"/>	
-	<import resource="GDAMetadata.xml"/>
+	<import resource="EnergyLUT.xml"/>
 	
+
 	<!--  Front End Devices -->
 	<import resource="ID.xml"/>
 <!-- 	<import resource="ForntEndAperture.xml"/> -->

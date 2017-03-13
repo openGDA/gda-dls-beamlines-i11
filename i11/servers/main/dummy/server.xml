@@ -45,6 +45,7 @@
 	<import resource="GV4.xml"/>
 	<import resource="GV5.xml"/>
 	<import resource="GV6.xml"/>
+	<import resource="GDAMetadata.xml"/>
 	<import resource="Ic1.xml"/>
 	<import resource="Ic2.xml"/>
 	<import resource="Ic3.xml"/>
@@ -76,5 +77,6 @@
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
 	
-	<import resource="../main_common.xml"/>
+	<import resource="CommandServer.xml"/>
+	<import resource="../_common/*.xml"/>
 </beans>
