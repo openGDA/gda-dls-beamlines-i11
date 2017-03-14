@@ -15,6 +15,10 @@
 	<import resource="D4.xml"/>
 	<import resource="D5.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
+	<import resource="Ic1.xml"/>
+	<import resource="Ic2.xml"/>
+	<import resource="Ic3.xml"/>
+	<import resource="Ic4.xml"/>
 	<import resource="S1.xml"/>
 	<import resource="S2.xml"/>
 	<import resource="S3.xml"/>
