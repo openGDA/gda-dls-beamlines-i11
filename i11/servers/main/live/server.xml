@@ -31,6 +31,7 @@
 	<import resource="D3.xml"/>
 	<import resource="D4.xml" />
 	<import resource="D5.xml"/>
+	<import resource="daserver.xml"/>
 	<import resource="DCM.xml"/>
 <!-- 	<import resource="DCMxtal.xml"/> -->
 	<import resource="Diffractometer.xml"/>
