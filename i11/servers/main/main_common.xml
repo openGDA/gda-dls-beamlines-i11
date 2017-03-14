@@ -14,20 +14,15 @@
 	<import resource="ID.xml"/>
 <!-- 	<import resource="ForntEndAperture.xml"/> -->
 	<!-- Optics Hutch -->
-	<import resource="S1.xml" />
-	<import resource="S2.xml" />
 <!--	<import resource="BPM1.xml" />-->
 	<import resource="M1.xml"/>
-	<import resource="S3.xml" />
 <!--	<import resource="BPM2.xml" />-->
 	<import resource="Io.xml" />
 	
 	<!-- Experiment Hutch -->
-	<import resource="S4.xml" />
 	<import resource="BPM3.xml" />
 	<import resource="OpticalTable.xml" />
 	<import resource="Ie.xml" />
-	<import resource="S5.xml" />
 	<import resource="BeamMonitor.xml"/>
 	<import resource="Diffractometer.xml"/>
 	<import resource="SmallSampleTable.xml"/>
