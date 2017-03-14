@@ -3,10 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="d5aposn" class="gda.spring.EpicsPositionerFactoryBean">
-		<property name="deviceName" value="D5.APOSN"/>
+	<bean id="d5aposn" class="gda.device.enumpositioner.DummyEnumPositioner">
+		<property name="positions">
+			<list>
+				<value>Clear</value>
+				<value>Molybdenum</value>
+				<value>Lead</value>
+				<value>Zinc</value>
+				<value>Chromium</value>
+			</list>
+		</property>
 	</bean>
-	<bean id="d5bposn" class="gda.spring.EpicsPositionerFactoryBean">
-		<property name="deviceName" value="D5.BPOSN"/>
+	<bean id="d5bposn" class="gda.device.enumpositioner.DummyEnumPositioner">
+		<property name="positions">
+			<list>
+				<value>Silver</value>
+				<value>Clear</value>
+				<value>Black Diamond</value>
+			</list>
+		</property>
 	</bean>
 </beans>
