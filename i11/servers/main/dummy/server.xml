@@ -25,6 +25,7 @@
 	<import resource="S3.xml"/>
 	<import resource="S4.xml"/>
 	<import resource="S5.xml"/>
+	<import resource="SmallSampleTable.xml"/>
 	<import resource="DCM.xml"/>
 	<import resource="CommandServer.xml"/>
 	<import resource="../_common/*.xml"/>
