@@ -20,7 +20,6 @@
 	
 	<!-- Experiment Hutch -->
 	<import resource="BPM3.xml" />
-	<import resource="OpticalTable.xml" />
 	<import resource="Ie.xml" />
 	<import resource="BeamMonitor.xml"/>
 	<import resource="Diffractometer.xml"/>
