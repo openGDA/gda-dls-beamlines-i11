@@ -17,6 +17,7 @@
 	<import resource="D3.xml"/>
 	<import resource="D4.xml"/>
 	<import resource="D5.xml"/>
+	<import resource="FrontEndAperture.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
 	<import resource="Ic1.xml"/>
 	<import resource="Ic2.xml"/>
