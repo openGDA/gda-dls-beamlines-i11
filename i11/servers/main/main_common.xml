@@ -24,7 +24,6 @@
 	<import resource="Ie.xml" />
 	<import resource="BeamMonitor.xml"/>
 	<import resource="Diffractometer.xml"/>
-	<import resource="LargeSampleTable.xml"/>
 	<import resource="Robot.xml"/>
 	
 	<!-- Detectors -->

@@ -20,6 +20,7 @@
 	<import resource="Ic3.xml"/>
 	<import resource="Ic4.xml"/>
 	<import resource="ID.xml"/>
+	<import resource="LargeSampleTable.xml"/>
 	<import resource="S1.xml"/>
 	<import resource="S2.xml"/>
 	<import resource="S3.xml"/>
