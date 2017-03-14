@@ -48,8 +48,6 @@
 	<import resource="StoeFurnace.xml"/>
 	<!-- 4K Cryostat -->
 	<import resource="LakeShore.xml"/>
-	<import resource="TestMotors.xml"/>
-	
 	<import resource="DetectorsSafePositions.xml"/>
 
 	<!-- Beamline objects -->
