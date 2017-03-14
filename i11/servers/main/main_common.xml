@@ -25,7 +25,6 @@
 	<!-- Detectors -->
 	<!-- Multi-channel Analyser Crystal detectors: mac11, mac29, ... -->
 	<import resource="MACDetectors.xml" />
-	<import resource="MACScannables.xml"/>
 	<!-- Multi-Channel Scaler (Struck): mcs1, mcs2 -->
 	<import resource="MCS.xml"/>
 <!-- 	<import resource="Mar345.xml"/> -->

@@ -26,6 +26,7 @@
 	<import resource="Ic4.xml"/>
 	<import resource="ID.xml"/>
 	<import resource="LargeSampleTable.xml"/>
+	<import resource="MACMotors.xml"/>
 	<import resource="M1.xml"/>
 	<import resource="OpticalTable.xml"/>
 	<import resource="OxfordCryoStream.xml"/>
