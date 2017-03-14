@@ -25,6 +25,7 @@
 	<import resource="Ic4.xml"/>
 	<import resource="ID.xml"/>
 	<import resource="LargeSampleTable.xml"/>
+	<import resource="M1.xml"/>
 	<import resource="OpticalTable.xml"/>
 	<import resource="S1.xml"/>
 	<import resource="S2.xml"/>
