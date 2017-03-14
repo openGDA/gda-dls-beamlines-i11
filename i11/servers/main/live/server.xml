@@ -70,7 +70,6 @@
 <!-- 	<import resource="BatteryHeater.xml"/> -->
 	<import resource="OpticalTable.xml"/>
 	<import resource="OxfordCryoStream.xml"/>
-	<import resource="OxfordCryoStream2.xml"/>
 	<import resource="PhenixCryostat.xml"/>
 	<import resource="RobotNX100.xml"/>
 	<import resource="S1.xml"/>
