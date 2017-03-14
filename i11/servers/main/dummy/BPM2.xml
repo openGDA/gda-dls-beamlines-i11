@@ -3,14 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="bpm2posn" class="gda.spring.EpicsPositionerFactoryBean">
-		<property name="deviceName" value="BPM2.POSN"/>
+	<bean id="bpm2posn" class="gda.device.enumpositioner.DummyEnumPositioner">
+		<property name="positions">
+			<list>
+				<value>Empty</value>
+				<value>Nickel</value>
+				<value>Titanium</value>
+			</list>
+		</property>
 	</bean>
-	<bean id="bpm2_amp" class="gda.device.enumpositioner.EpicsCurrAmpQuadController">
-		<property name="deviceName" value="BPM2.AMP"/>
-		<property name="poll" value="true"/>
-	</bean>
-	<bean id="bpm2_bpm" class="gda.device.monitor.EpicsBpmController">
-		<property name="deviceName" value="BPM2.BPM"/>
-	</bean>
+	<bean id="bpm2" class="gda.device.monitor.DummyQbpm"/>
 </beans>

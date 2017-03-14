@@ -13,16 +13,14 @@
 	<!--  Front End Devices -->
 <!-- 	<import resource="ForntEndAperture.xml"/> -->
 	<!-- Optics Hutch -->
-<!--	<import resource="BPM1.xml" />-->
 	<import resource="M1.xml"/>
-<!--	<import resource="BPM2.xml" />-->
 	<import resource="Io.xml" />
 	
 	<!-- Experiment Hutch -->
-	<import resource="BPM3.xml" />
 	<import resource="Ie.xml" />
 	<import resource="BeamMonitor.xml"/>
 	<import resource="Diffractometer.xml"/>
+
 	<import resource="Robot.xml"/>
 	
 	<!-- Detectors -->
