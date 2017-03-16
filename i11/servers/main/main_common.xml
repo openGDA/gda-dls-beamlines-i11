@@ -27,8 +27,7 @@
 	<import resource="MACDetectors.xml" />
 	<!-- Multi-Channel Scaler (Struck): mcs1, mcs2 -->
 	<import resource="MCS.xml"/>
-<!-- 	<import resource="Mar345.xml"/> -->
-	
+
 	<!--  Sample Environment -->
 	<!-- Oxford Cryostream 700 -->
 	<import resource="PhenixCryostat.xml"/>
