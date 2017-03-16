@@ -39,10 +39,6 @@
 	<!-- 4K Cryostat -->
 	<import resource="LakeShore.xml"/>
 
-	<!-- Beamline objects -->
-	<import resource="BeamlineInfo.xml"/>
-	<import resource="BeamInfo.xml"/>
-	<import resource="SampleInfo.xml"/>
 	<!-- EPICS CVScan object -->
 	<import resource="MACDataWriter.xml"/>
 <!-- 	<import resource="CVScan.xml"/> -->
