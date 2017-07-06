@@ -73,7 +73,6 @@
 	<import resource="SmallSampleTable.xml"/>
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
-	<import resource="TrajectoryScan.xml"/>
 	
 	<import resource="../main_common.xml"/>
 </beans>
