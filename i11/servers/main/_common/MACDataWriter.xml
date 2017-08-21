@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="macdatawriter" class="gda.hrpd.data.EpicsCVscanDataWriter">
-		<property name="beamInfo" ref="beam"></property>
-		<property name="beamlineInfo" ref="beamline"></property>
-		<property name="sampleInfo" ref="SampleInfo"></property>
-		<property name="metadata" ref="GDAMetadata"></property>
+		<property name="beamInfo" ref="beam"/>
+		<property name="beamlineInfo" ref="beamline"/>
+		<property name="sampleInfo" ref="SampleInfo"/>
+		<property name="metadata" ref="GDAMetadata"/>
 	</bean>
 
 </beans>

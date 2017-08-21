@@ -11,16 +11,8 @@
 	
 
 	<bean id="plot_server" class="uk.ac.diamond.scisoft.analysis.plotserver.PlotServerBase" />
-	<!-- SWING plot -->
-	<bean id="Plot_Manager" class="gda.analysis.plotmanager.PlotManager" />
 	
-	<import resource="scanDataPointServer.xml"/>
-	<import resource="commandQueueProcessor.xml" />
-	<import resource="CommandServer.xml" />
-
 	<import resource="dataFileMonitor.xml"/>
-	<import resource="dataArchieval.xml"/>
-	<import resource="dataWriter.xml"/>
 	
 	<import resource="imageProcessors.xml"/>
 
@@ -32,9 +24,6 @@
 		<property name="local" value="true" />
 	</bean>
 	
-	 <!-- ScriptControllers must be after command_server -->
-    <import resource="scriptControllers.xml" />
- 
 	<bean class="gda.spring.FindableNameSetterPostProcessor" />
 	<bean class="gda.spring.SingletonRegistrationPostProcessor" />
 	<!--enable types supported by the PropertyEditors listed in the GdaPropertyEditorRegistrar class -->

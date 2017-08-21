@@ -17,8 +17,6 @@
 	
 	<!-- Experiment Hutch -->
 	<import resource="Ie.xml" />
-	<import resource="BeamMonitor.xml"/>
-
 	<import resource="Robot.xml"/>
 	
 	<!-- Detectors -->

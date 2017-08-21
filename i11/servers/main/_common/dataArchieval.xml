@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="FileRegistrar" class="gda.data.fileregistrar.FileRegistrar">
-		<property name="directory" value="/dls/bl-misc/dropfiles2/icat/dropZone/${gda.instrument}-"/>
+		<property name="directory" value="${gda.paths.archiver.directory}"/>
 	</bean>
 	
 </beans>
