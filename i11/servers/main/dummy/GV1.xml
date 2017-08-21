@@ -3,7 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="gv1" class="gda.spring.EpicsPneumaticFactoryBean">
-		<property name="deviceName" value="GV1"/>
+	<bean id="gv1" class="gda.device.enumpositioner.DummyEnumPositioner">
+		<property name="positions">
+			<value>Fault</value>
+			<value>Open</value>
+			<value>Opening</value>
+			<value>Closed</value>
+			<value>Closing</value>
+		</property>
 	</bean>
 </beans>
