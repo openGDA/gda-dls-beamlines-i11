@@ -19,6 +19,11 @@
 	<import resource="D4.xml"/>
 	<import resource="D5.xml"/>
 	<import resource="Diffractometer.xml" />
+	<import resource="etl1.xml"/>
+	<import resource="etl2.xml"/>
+	<import resource="ExperimentHutchShutter.xml"/>
+	<import resource="FastShutter.xml"/>
+	<import resource="FrontEndShutter.xml"/>
 	<import resource="FrontEndAperture.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
 	<import resource="Ic1.xml"/>
@@ -38,6 +43,8 @@
 	<import resource="S4.xml"/>
 	<import resource="S5.xml"/>
 	<import resource="SmallSampleTable.xml"/>
+	<import resource="Spinner.xml"/>
+	<import resource="StoeFurnace.xml" />
 	<import resource="DCM.xml"/>
 	<import resource="CommandServer.xml"/>
 	<import resource="../_common/*.xml"/>
