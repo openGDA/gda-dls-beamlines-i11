@@ -28,8 +28,6 @@
 	<!--  Sample Environment -->
 	<!-- Oxford Cryostream 700 -->
 	<import resource="PhenixCryostat.xml"/>
-	<!-- Eurotherm 2000 Devices -->
-	<import resource="StoeFurnace.xml"/>
 	<!-- 4K Cryostat -->
 	<import resource="LakeShore.xml"/>
 
