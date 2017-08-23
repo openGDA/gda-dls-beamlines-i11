@@ -29,7 +29,6 @@
 	<!-- Oxford Cryostream 700 -->
 	<import resource="PhenixCryostat.xml"/>
 	<!-- Eurotherm 2000 Devices -->
-	<import resource="CyberStarBlower.xml"/>
 	<import resource="MRIFurnace.xml"/>
 	<import resource="StoeFurnace.xml"/>
 	<!-- 4K Cryostat -->
