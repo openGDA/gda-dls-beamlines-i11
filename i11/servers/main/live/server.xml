@@ -83,6 +83,7 @@
 	<import resource="Spinner.xml"/>
 	<import resource="StoeFurnace.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
+	<import resource="HidenRGA.xml"/>
 	<import resource="HidenRGAController.xml"/>
 	
 	<import resource="../main_common.xml"/>
