@@ -33,8 +33,6 @@
 	<import resource="MACDataWriter.xml"/>
 <!-- 	<import resource="CVScan.xml"/> -->
 	<import resource="NewCVScan.xml"/>
-	<import resource="etl1.xml" />
-	<import resource="etl2.xml" />
 	<import resource="mythen3.xml"/>
 	<import resource="HidenRGA.xml"/>
 <!-- 	<import resource="pixium.xml"/> -->
