@@ -13,10 +13,8 @@
 	<!--  Front End Devices -->
 <!-- 	<import resource="ForntEndAperture.xml"/> -->
 	<!-- Optics Hutch -->
-	<import resource="Io.xml" />
-	
+
 	<!-- Experiment Hutch -->
-	<import resource="Ie.xml" />
 	<import resource="Robot.xml"/>
 	
 	<!-- Detectors -->
