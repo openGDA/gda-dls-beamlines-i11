@@ -35,6 +35,7 @@
 	<import resource="Ie.xml"/>
 	<import resource="Io.xml"/>
 	<import resource="LargeSampleTable.xml"/>
+	<import resource="MACDetectors.xml"/>
 	<import resource="MACMotors.xml"/>
 	<import resource="Mar345.xml"/>
 	<import resource="MRIFurnace.xml"/>

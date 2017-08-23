@@ -14,8 +14,6 @@
 	<import resource="Robot.xml"/>
 	
 	<!-- Detectors -->
-	<!-- Multi-channel Analyser Crystal detectors: mac11, mac29, ... -->
-	<import resource="MACDetectors.xml" />
 	<!-- Multi-Channel Scaler (Struck): mcs1, mcs2 -->
 	<import resource="MCS.xml"/>
 
