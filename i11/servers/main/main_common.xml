@@ -22,8 +22,6 @@
 	<!--  Sample Environment -->
 	<!-- Oxford Cryostream 700 -->
 	<import resource="PhenixCryostat.xml"/>
-	<!-- 4K Cryostat -->
-	<import resource="LakeShore.xml"/>
 
 	<!-- EPICS CVScan object -->
 	<import resource="MACDataWriter.xml"/>
