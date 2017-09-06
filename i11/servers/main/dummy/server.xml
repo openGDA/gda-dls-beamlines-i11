@@ -43,6 +43,7 @@
 	<import resource="OpticalTable.xml"/>
 	<import resource="OxfordCryoStream.xml"/>
 	<import resource="PhenixCryostat.xml"/>
+	<import resource="RobotNX100.xml"/>
 	<import resource="S1.xml"/>
 	<import resource="S2.xml"/>
 	<import resource="S3.xml"/>

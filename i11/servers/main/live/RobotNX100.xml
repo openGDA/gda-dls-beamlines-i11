@@ -26,4 +26,12 @@
 		<property name="local" value="true"/>
 	</bean>
 
+	<bean id="sample" class="gda.device.robot.I11Robot">
+		<property name="robotController" ref="robot_controller"/>
+		<property name="sampleStateController" ref="samplechange_controller"/>
+		<property name="nextSampleNumberController" ref="nextsampleposition_controller"/>
+		<property name="currentSampleNumberController" ref="currentsampleposition_controller"/>
+		<property name="doorLatch" ref="doorLatch_controller"/>
+	</bean>
+
 </beans>
