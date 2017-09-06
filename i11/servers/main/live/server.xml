@@ -67,7 +67,9 @@
 	<import resource="MACDetectors.xml"/>
 <!-- 	<import resource="Mar345.xml"/> -->
 	<import resource="MCSSis3820.xml"/>
+	<import resource="MCS.xml"/>
 	<import resource="MRIFurnace.xml"/>
+	<import resource="NewCVScan.xml"/>
 <!-- 	<import resource="BatteryHeater.xml"/> -->
 	<import resource="OpticalTable.xml"/>
 	<import resource="OxfordCryoStream.xml"/>

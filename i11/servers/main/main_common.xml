@@ -10,17 +10,11 @@
 <!-- 	<import resource="ForntEndAperture.xml"/> -->
 	<!-- Optics Hutch -->
 
-	<!-- Detectors -->
-	<!-- Multi-Channel Scaler (Struck): mcs1, mcs2 -->
-	<import resource="MCS.xml"/>
-
 	<!--  Sample Environment -->
 	<!-- Oxford Cryostream 700 -->
 
 	<!-- EPICS CVScan object -->
 	<import resource="MACDataWriter.xml"/>
-<!-- 	<import resource="CVScan.xml"/> -->
-	<import resource="NewCVScan.xml"/>
 	<import resource="mythen3.xml"/>
 <!-- 	<import resource="pixium.xml"/> -->
 
