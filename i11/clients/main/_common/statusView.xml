@@ -11,7 +11,7 @@
 		http://www.diamond.ac.uk/schema/gda/gda http://www.diamond.ac.uk/schema/gda/gda/gda-gda-1.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
-	<corba:import namespace="i11" names="Ic4, beam, fastshutter, ehshutter, feshutter, portshutter, wavelength"/>
+	<corba:import namespace="i11" names="fastshutter, feshutter, portshutter, wavelength"/>
 	
 	<bean id="bm" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
 		<property name="serviceUrl" value="${gda.rmi.prefix}/bm" />
