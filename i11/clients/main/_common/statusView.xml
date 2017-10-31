@@ -166,7 +166,12 @@
 					<property name="label" value="Latest Detector File" />
 					<property name="fileProcessor" ref="detectorFileDisplayer" />
 					<property name="dirWatcher" ref="dirListener"/>
-					<property name="detectors" value="mythen,mac,pixium"/>
+					<property name="detectors">
+						<map>
+							<entry key="Mythen" value="\d*-mythen_summed.dat" />
+							<entry key="Mac" value=".*mac.*.dat" />
+						</map>
+					</property>
 					<property name="showButtonSeparator" value="true"/>
 					<property name="separatePlayPauseButtons" value="true" />
 					<property name="startNumber" value="0"/>
