@@ -26,6 +26,7 @@
 	<import resource="FastShutter.xml"/>
 	<import resource="FrontEndShutter.xml"/>
 	<import resource="FrontEndAperture.xml"/>
+	<import resource="GDAMetadata.xml"/>
 	<import resource="GrazingIncidentStage.xml"/>
 	<import resource="Ic1.xml"/>
 	<import resource="Ic2.xml"/>
