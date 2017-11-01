@@ -221,7 +221,8 @@ print "---------------------------------------------------------numFrames-------
 print "Create rocking theta scannable 'rocktheta'"
 print "    To change the rocking limits, use 'rocktheta.setLowerLimit(10)', 'rocktheta.setUpperLimit(10)'; "
 print "    To view the rocking limits, use 'rocktheta.getLowerLimit()', 'rockthets.getUpperLimit()'."
-from rockingMotion_class import RockingMotion
+from rockingMotion_class import RockingMotion, PmacRock
+pmac = PmacRock('BL11I-MO-DIFF-01:ROCK:')
 theta1=finder.find("theta")
 rocktheta=RockingMotion("rocktheta", theta1, -10, 10)
 print "Create 'psdrt' command for PSD data collection with theta rocking"
@@ -290,6 +291,11 @@ print "-------------------------------------------------------------------------
 print "setup meta-data provider commands:meta_add, meta_ll, meta_ls, meta_rm "
 import metashop  # @UnusedImport
 
+print '-----------------------------------------------------------------------------------------------------------------'
+print 'setup barcode reader'
+from barcode import reader
+scanner = reader.BarcodeReader('scanner', 'BL11I-EA-BARCR-01:DATA:', 'BL11I-EA-ROBOT-01:')
+print '-----------------------------------------------------------------------------------------------------------------'
 
 ##### new objects must be added above this line ###############
 #print
@@ -334,3 +340,17 @@ else:
 #print "To load in a MAC data file, use >>>sfh.loadMAC('absolute/path/to/file')"
 #print "To plot these data in MAC panel, use >>>Plotter.plot('MAC', sfh.getAxis(0), sfh.getAxis(1))"
 #print
+
+from gda.device.enumpositioner import EpicsSimpleBinary
+turbo = EpicsSimpleBinary()
+turbo.name = 'turbo'
+turbo.positions = ['On', 'Off']
+turbo.pvName = 'BL11I-CG-CSTRM-01:TURBO'
+turbo.configure()
+
+def turboOn(): turbo('On')
+def turboOff(): turbo('Off')
+
+import exposure
+radiation = exposure.RadiationExposure('radiation', fastshutter)
+radiation.configure()
