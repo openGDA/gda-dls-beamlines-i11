@@ -10,16 +10,12 @@
 	<bean id="talp1" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="mac12a_motor"/>
 	</bean>
-	<bean id="trans1" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="mac1trans_motor"/>
-	</bean>
-	
+
 	<bean id="MAC1" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="alp1"/>
 				<ref bean="talp1"/>
-				<ref bean="trans1"/>
 			</list>
 		</property>
 	</bean>
@@ -30,16 +26,12 @@
 	<bean id="talp2" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="mac22a_motor"/>
 	</bean>
-	<bean id="trans2" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="mac2trans_motor"/>
-	</bean>
-	
+
 	<bean id="MAC2" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="alp2"/>
 				<ref bean="talp2"/>
-				<ref bean="trans2"/>
 			</list>
 		</property>
 	</bean>
@@ -50,16 +42,12 @@
 	<bean id="talp3" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="mac32a_motor"/>
 	</bean>
-	<bean id="trans3" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="mac3trans_motor"/>
-	</bean>
-	
+
 	<bean id="MAC3" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="alp3"/>
 				<ref bean="talp3"/>
-				<ref bean="trans3"/>
 			</list>
 		</property>
 	</bean>
@@ -70,16 +58,12 @@
 	<bean id="talp4" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="mac42a_motor"/>
 	</bean>
-	<bean id="trans4" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="mac4trans_motor"/>
-	</bean>
-	
+
 	<bean id="MAC4" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="alp4"/>
 				<ref bean="talp4"/>
-				<ref bean="trans4"/>
 			</list>
 		</property>
 	</bean>
@@ -90,16 +74,12 @@
 	<bean id="talp5" class="gda.device.scannable.ScannableMotor">
 		<property name="motor" ref="mac52a_motor"/>
 	</bean>
-	<bean id="trans5" class="gda.device.scannable.ScannableMotor">
-		<property name="motor" ref="mac5trans_motor"/>
-	</bean>
-	
+
 	<bean id="MAC5" class="gda.device.scannable.scannablegroup.ScannableGroup">
 		<property name="groupMembers">
 			<list>
 				<ref bean="alp5"/>
 				<ref bean="talp5"/>
-				<ref bean="trans5"/>
 			</list>
 		</property>
 	</bean>
