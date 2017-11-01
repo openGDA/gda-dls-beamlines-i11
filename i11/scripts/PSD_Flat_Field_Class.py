@@ -219,6 +219,7 @@ class FlatFieldCalibration(ScannableMotionBase):
             os.unlink(CURRENT_FLAT_FIELD_FILE)
             os.symlink(self.sum_flat_field_file, CURRENT_FLAT_FIELD_FILE)
             print "Current Flat Field data file is update to " + os.readlink(CURRENT_FLAT_FIELD_FILE)
+            changeFlatFieldCalibrationTo(CURRENT_FLAT_FIELD_FILE)
             #print "You now need to run 'reset_namespace' for this to take effect! "
             print "IMPORTANT: You must reset delta limits, theta position, and backstop now!!!"
         else:
@@ -229,6 +230,7 @@ class FlatFieldCalibration(ScannableMotionBase):
             os.unlink(CURRENT_FLAT_FIELD_FILE)
             os.symlink(self.originalflatfieldcalibrationfile, CURRENT_FLAT_FIELD_FILE)
             print "Current Flat Field data file is update to " + os.readlink(CURRENT_FLAT_FIELD_FILE)
+            changeFlatFieldCalibrationTo(CURRENT_FLAT_FIELD_FILE)
             #print "You now need to run 'reset_namespace' for this to take effect! "
             print "IMPORTANT: You must reset delta limits, theta position, and backstop now!!!"
         else:
