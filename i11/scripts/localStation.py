@@ -163,12 +163,6 @@ globals()['energy'].setOutputFormat(["%10.7f"])
 globals()['bragg'].setOutputFormat(["%10.7f"])    
 
 print "-----------------------------------------------------------------------------------------------------------------"
-print "Setup 'plot' function for plotting collected, rebinned MAC data. use 'help plot' for syntax"
-from plot import plot, plotover, plotdata, PSD,MAC,SRS #@UnusedImport
-from multiplot import plots
-print
-
-print "-----------------------------------------------------------------------------------------------------------------"
 print "function to set wavelength >>>setwavelength(value)"
 def setlambda(wavelength):
     wavelength=float(wavelength)
@@ -311,35 +305,6 @@ if bm1.isBeamOn():
     print "PHOTON BEAM IS ON SAMPLE NOW."
 else:
     print "NO PHOTON BEAM ON SAMPLE."
-
-
-# setup I11 specific scans
-#### The XPS CVScan commands and objects - replaced by PMAC CVScan object
-#print "---------------------------------------------------------------------------------------------"
-#print "create I11 specific XPS scan commands: cvscan, robotscan, robotscan2d, stagescan, tempscan"
-#from gda.hrpd.commands.ScanCommands import cvscan, robotscan, robotscan2d, stagescan, tempscan #@UnusedImport
-# create command alias
-
-#vararg_alias("robotscan") 
-#vararg_alias("robotscan2d") 
-#vararg_alias("stagescan") 
-#vararg_alias("tempscan") 
-#print
-#print "---------------------------------------------------------------------------------------------"
-#print "create MAC data processing object 'rebin' to control MAC data rebin and plotting"
-#print "To enable rebinning and plotting during data collection, use >>>rebin.enable()"
-#print "To disable rebinning and plotting during data collection, use >>>rebin.disable()"
-#print "The default is enabled"
-#from gda.hrpd.data import MacDataProcessing
-#rebin=MacDataProcessing.getInstance()
-#print
-#print "---------------------------------------------------------------------------------------------"
-#print "create Scan File Holder object 'sfh' for scan data file load."
-#from gda.analysis import ScanFileHolder
-#sfh=ScanFileHolder()
-#print "To load in a MAC data file, use >>>sfh.loadMAC('absolute/path/to/file')"
-#print "To plot these data in MAC panel, use >>>Plotter.plot('MAC', sfh.getAxis(0), sfh.getAxis(1))"
-#print
 
 from gda.device.enumpositioner import EpicsSimpleBinary
 turbo = EpicsSimpleBinary()

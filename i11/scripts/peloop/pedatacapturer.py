@@ -20,7 +20,7 @@ from gda.factory import FactoryException
 from gov.aps.jca import CAException
 import sys
 from gov.aps.jca.event import MonitorListener
-from gda.analysis import Plotter
+from uk.ac.diamond.scisoft.analysis import SDAPlotter
 import scisoftpy
 from threading import Thread
 #from localStation import adc2
@@ -202,11 +202,11 @@ class DataCapturer(ScannableMotionBase, MonitorListener):
             eds=scisoftpy.toDS(yrarray)
             print "plotting PE-loop in 'DataPlot' panel..."
             if self.firstData:
-                Plotter.plot("DataPlot", vds, eds)
+                SDAPlotter.plot("DataPlot", "", vds, eds)
                 self.firstData=False
             else:
-                Plotter.plotOver("DataPlot", vds, eds)
-            
+                SDAPlotter.addPlot("DataPlot", "", vds, eds)
+
             
     def save(self, filename,collectionNumber,frameNumber):
         #voltages=[]
