@@ -12,6 +12,7 @@ export SOFTWAREFOLDER=dls_sw
 export GDA_ROOT=/$SOFTWAREFOLDER/$BEAMLINE/software/gda
 export GDA_CONFIG=${GDA_ROOT}/config
 export GDA_DATADIR=/dls/$BEAMLINE/data
+export GDA_MODE=live
 
 #IDL VM settings
 export IDL_DIR=/dls/$BEAMLINE/software/itt/idl
