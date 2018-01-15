@@ -33,14 +33,10 @@
 								<property name="label" value="Beam" />
 								<property name="beamMonitor" ref="bm"/>
 							</bean>
-<!-- 							<bean class="uk.ac.gda.beamline.synoptics.composites.SpinStatusCompositeFactory"> -->
-<!-- 								<property name="label" value="Spin" /> -->
-<!-- 								<property name="spin" ref="spin"/> -->
-<!-- 							</bean> -->
-							<bean class="uk.ac.gda.beamline.synoptics.composites.BeamStopStatusCompositeFactory">
-								<property name="label" value="BStop" />
-								<property name="pvName" value="BL11I-PS-SHTR-01:RAWILK.B5"/>
-							</bean>
+							<!-- <bean class="uk.ac.gda.beamline.synoptics.composites.BeamStopStatusCompositeFactory"> -->
+							<!-- 	<property name="label" value="BStop" /> -->
+							<!-- 	<property name="pvName" value="BL11I-PS-SHTR-01:RAWILK.B5"/> -->
+							<!-- </bean> -->
 						</list>
 					</property>
 				</bean>
@@ -170,7 +166,12 @@
 					<property name="label" value="Latest Detector File" />
 					<property name="fileProcessor" ref="detectorFileDisplayer" />
 					<property name="dirWatcher" ref="dirListener"/>
-					<property name="detectors" value="mythen,mac,pixium"/>
+					<property name="detectors">
+						<map>
+							<entry key="Pixium" value="pixium_.*" />
+							<entry key="PerkinElmer" value="perkin_.*" />
+						</map>
+					</property>
 					<property name="showButtonSeparator" value="true"/>
 					<property name="separatePlayPauseButtons" value="true" />
 					<property name="startNumber" value="0"/>
@@ -207,41 +208,6 @@
 					<property name="imagePath" value="icons/panicstop80x80.png" />
 					<property name="actionId" value="uk.ac.gda.client.StopAll" />
 				</bean>
-				
-<!-- 				<bean class="gda.rcp.views.OpenViewListBoxCompositeFactory"> -->
-<!-- 					<property name="label" value="Plots"/> -->
-<!-- 					<property name="tooltipText" value="Open the live plot view for the selected detector"/> -->
-<!-- 					<property name="options"> -->
-<!-- 						<list> -->
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="Select a detector" /> -->
-<!-- 								<constructor-arg value="" /> -->
-<!-- 							</bean> -->
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="Mythen" /> -->
-<!-- 								<constructor-arg value="uk.ac.gda.epics.client.mythen.views.mytheView" /> -->
-<!-- 							</bean> -->
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="MAC" /> -->
-<!-- 								<constructor-arg value="uk.ac.gda.client.hrpd.views.MACPlotView" /> -->
-<!-- 							</bean> -->
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="DataPlot" /> -->
-<!-- 								<constructor-arg value="uk.ac.gda.beamline.i11.dataPlot" /> -->
-<!-- 							</bean> -->
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="Pixium" /> -->
-<!-- 								<constructor-arg value="uk.ac.gda.beamline.i11.PixiumView" /> -->
-<!-- 							</bean> -->
-							
-<!-- 							<bean class="gda.rcp.views.OpenViewOption"> -->
-<!-- 								<constructor-arg value="WebCams" /> -->
-<!-- 								<constructor-arg value="uk.ac.gda.video.views.cameraview" /> -->
-<!-- 							</bean> -->
-<!-- 						</list> -->
-<!-- 					</property> -->
-<!-- 				</bean> -->
-<!-- 				<bean class="uk.ac.gda.dls.client.feedback.FeedbackCompositeFactory"/> -->
 			</list>
 		</property>
 	</bean>

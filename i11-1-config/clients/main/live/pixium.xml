@@ -57,12 +57,6 @@
 		<property name="pixiumViewController" ref="pixiumViewController" />
 	</bean>
 	
-	<bean id="pixium" class="uk.ac.gda.remoting.client.GdaRmiProxyFactoryBean">
-		<property name="serviceUrl" value="${gda.rmi.prefix}/pixium" />
-		<property name="serviceInterface" value="gda.device.detector.pixium.IPixiumNXDetector" />
-		<property name="refreshStubOnConnectFailure" value="true" />
-	</bean>
-
 	<bean id="imageviewfactory" class="org.opengda.lde.ui.viewfactories.LiveImageViewFactory">
 		<property name="viewPartName" value="Image" />
 		<property name="xDimension" value="2880" />
@@ -71,11 +65,5 @@
 		<property name="arrayEnablePV" value="BL11J-EA-DET-10:ARR:EnableCallbacks"/>
 		<property name="xSizePV" value="BL11J-EA-DET-10:ARR:ArraySize0_RBV"/>
 		<property name="ySizePV" value="BL11J-EA-DET-10:ARR:ArraySize1_RBV"/>
-	</bean>
-	
-	<bean id="dataplotviewfactory" class="org.opengda.lde.ui.viewfactories.ReducedDataPlotViewFactory">
-		<property name="viewPartName" value="Reduced Data" />
-		<property name="eventAdminName" value="eventadmin"/>
-		<property name="resUtil" ref="resUtil"/>
 	</bean>
 </beans>
