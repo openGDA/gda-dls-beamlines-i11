@@ -2,3 +2,5 @@
 *.class
 
 scripts/gdaserver.py
+
+**/.*swp
